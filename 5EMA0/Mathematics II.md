@@ -1,11 +1,14 @@
 ## 5EMA0
 
+- Optimizations and Probabilities
+
 >Unconstrained optimization problems
 >Linear optimization
 >Convex optimization
->Lagrange duality theory
+>
+>Language duality theory
 >Probabilities
 >Discrete random variables
->Continuous sandom variables
+>Continuous random variables
 >Pairs and sum of random variables
 

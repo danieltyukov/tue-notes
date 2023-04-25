@@ -1,13 +1,15 @@
 ## 5ECB0 
 
-### Semiconductor
 ## Carriers
 - Intrinsic: electron-hole pair generated from thermal energy $n_{i} = p_{i}$
 - Doped: n-type (donor, n) and p-type (acceptor, p) $\to p\neq q,$ fixed (local) charge, globally neutral
 $$n_{i}*p_{i}=n*p=AT^3e^{-\frac{E_{g}}{kT}}$$
 > $E_{g}: \text{bandgap energy}$
 > $\text{k: Boltzmann's constant}$
-> $A = B^{2}:\text{ material dependent}$,
+> $A = B^{2}:\text{ material dependent}$
+> $n_{i} - 300k = 1.5*10^{10} cm^3$
+> $p = N_{a}$ and $n=\frac{n_{i}^2}{N_{a}}$
+> $n = N_{d}$ and $p = \frac{p_{i}^2}{N_{d}}$
 
 ## Current
 - Drift current: directional, ~E
@@ -35,6 +37,52 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 	- Depletion: $Q \propto \sqrt{ V_{0} + V_{R}} \to C_{j} = \frac{ \partial Q }{ \partial V } = \frac{C_{j_{0}}}{1 + \frac{V_{R}}{V_{0}}}$
 	- Diffusion: $C_{d} = \tau_{T} \frac{I_{D}}{V_{T}}$ 
 	![[Pasted image 20230220180955.png|300]]
+
+## Op-Amps
+
+	$v_{o}=A(V_{+}-V_{-})$
+
+### Inverting
+![[inverting.png|500]]
+- Ideal: $\frac{v_{o}}{v_{i}}=-\frac{R_{2}}{R_{1}}$
+- $R_{i}=R_{1}$ and $R_{o}=0$
+
+![[weighted-summer.png]]
+
+### Non-Inverting
+![[non-inverting.png|500]]
+- Ideal: $\frac{v_{o}}{v_{i}}=1+\frac{R_{2}}{R_{1}}$
+- $R_{i}=\infty$ and $R_{o}=0$
+
+> Voltage follower where no resistances on Non-inverting -> Amplify Current while keeping the voltage the same.
+
+### Difference Amplifiers
+![[difference-amp.png]]
+- $CMMR=20\log\left( \frac{A_{d}}{A_{cm}} \right)$
+> **Difference**
+> $v_{o1}=-\frac{R_{2}}{R_{1}}v_{I1}$
+> $v_{{o2}}=\left( 1+\frac{R_{2}}{R_{1}} \right)\left( \frac{R_{4}}{R_{3}+R_{4}} \right)v_{I2}$
+> $v_{o}=v_{o1}+v_{o2} \to A_{d}=\frac{R_{2}}{R_{1}}$
+> $\frac{R_{4}}{R_{3}}=\frac{R_{2}}{R_{1}}$
+
+> **Common Mode**
+> $A_{cm}=\left( 1+\frac{R_{2}}{R_{1}} \right)\left( \frac{R_{4}}{R_{3}+R_{4}} \right)v_{cm} - \frac{R_{2}}{R_{1}}v_{cm}$
+
+## Diodes
+
+**Bias analysis:**
+> V source = SC
+> Capacitors = OC
+
+**Small Signal Analysis:**
+> I source = OC
+> Capacitors = SC
+> Diodes = R
+
+- Primary goal to analyze diode circuits and precision rectifier.
+![[precision-rect.png]]
+- $V_{avg}=\frac{2v_{i}}{\pi}$ when $v>0 \to v_{o}=v_{i}$
+- $v<0 \to v_{o}=0$
 
 ## MOSFET/MOST
 ![[Pasted image 20230312200929.png]]
