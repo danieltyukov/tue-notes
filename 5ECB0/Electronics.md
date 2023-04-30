@@ -40,7 +40,7 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 
 ## Op-Amps
 
-	$v_{o}=A(V_{+}-V_{-})$
+- $v_{o}=A(V_{+}-V_{-})$
 
 ### Inverting
 ![[inverting.png|500]]
@@ -81,10 +81,14 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 
 - Primary goal to analyze diode circuits and precision rectifier.
 ![[precision-rect.png]]
-- $V_{avg}=\frac{2v_{i}}{\pi}$ when $v>0 \to v_{o}=v_{i}$
+- full wave (bridge) and precision rectifier: $V_{avg}=\frac{2vi-2(1.4)}{\pi}$ and $V_{avg}=\frac{2v_{i}}{\pi}$ respectively when $v>0 \to v_{o}=v_{i}$
 - $v<0 \to v_{o}=0$
+- half wave rectifier: $V_{avg}=\frac{v_{i}}{\pi}$
 
 ## MOSFET/MOST
+
+**When we say for example $V_{GS}$ means current is S->G since that's how charge flows.**
+
 ![[Pasted image 20230312200929.png]]
 
 ![[Pasted image 20230313195803.png]]
@@ -92,14 +96,19 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 Conductance: $g_{DS} = (\mu_{n}C_{ox})\left( \frac{W}{L} \right)(v_{GS}-V_{th}) = (\mu_{n}C_{ox})\left( \frac{W}{L} \right)v_{OV}$
 > $\mu_{n}$: mobility
 > $C_{ox}$: oxide capacitance
-> $\mu_{n}C_{ox} = k'_{n}$: process transconductance parameter
+> $\mu_{n}C_{ox} = k'_{n}$: process trans-conductance parameter
 > W, L: width, length of MOST
 > $v_{ov}=v_{GS}-V_{th}$: overdrive voltage
 -> Voltage controlled resistor with small $v_{DS}$
 
 ### Tapered channel 
-Triode: $i_{D}=k'_{n}\left( \frac{W}{L} \right)* \frac{1}{2}[V_{OV}+(V_{OV}-v_{DS})]v_{DS}=k'_{n}\left( \frac{W}{L} \right)( V_{OV}v_{DS}-\frac{1}{2} v^2_{DS})$
-Saturation: $v_{DS}=V_{OV} \to i_{D}=\frac{1}{2}k'_{n}\left( \frac{W}{L} \right)*V^2_{OV}$
+**Triode:** $i_{D}=k'_{n}\left( \frac{W}{L} \right)* \frac{1}{2}[V_{OV}+(V_{OV}-v_{DS})]v_{DS}=k'_{n}\left( \frac{W}{L} \right)( V_{OV}v_{DS}-\frac{1}{2} v^2_{DS})$
+	- Voltage controlled Resistor
+edge of saturation $V_{ov}=V_{DS}$
+
+**Saturation:** $v_{DS}=V_{OV} \to i_{D}=\frac{1}{2}k'_{n}\left( \frac{W}{L} \right)*V^2_{OV}$ when $V_{ov}\leq V_{DS}$
+	-Voltage controlled Current source
+
 Channel length modulation: $i'_{D} = i_{D} \frac{L}{L-\Delta L} \approx i_{D}\left( 1+\frac{\Delta L}{L} \right) = i_{D}(1+\lambda (v_{DS}-v_{OV})) \approx i_{D}(1+\lambda v_{DS})$
 > @$v_{DS}=-V_{A}=-\frac{1}{\lambda}=-V'_{A}L$ (early voltage): $i'_{D}=0$
 
@@ -110,6 +119,9 @@ $V_{t}=V_{t_{0}}+\gamma [\sqrt{ 2\phi_{f}+V_{SB}} - \sqrt{ 2\phi_{f} }]$
 > $2\phi_{f} \approx 0.6V,\ \gamma \approx 0.4V^{1/2}$
 
 ## Amplifier
+
+![[volt-transfer-char.png]]
+
 $v_{DS} = V_{DD} - I_{D}R_{D} = V_{DD} - \frac{1}{2}k_{n}(v_{GS}-V_{t})^2R_{D}$
 > $v_{DS} = V_{DS} + v_{ds},\ v_{GS} = V_{GS} + v_{gs}$
 
@@ -129,6 +141,10 @@ A_{V} &= \frac{ \partial v_{DS} }{ \partial v_{GS} } = \frac{v_{ds}}{v_{gs}}|_{v
 $$
 $g_{m}=\frac{ \partial i_{d} }{ \partial v_{gs} }=k_{n}(V_{GS}-V_{t})=k_{n}V_{OV}=\frac{-A_{v}}{R_{D}}=\frac{2I_{D}}{V_{OV}}=\sqrt{ 2k'_{n} }\sqrt{ \frac{W}{L} }\sqrt{ I_{D} }$
 Channel-length modulation: $A_{v}'=g_{m}(R_{D}\mid r_{o})$
+
+**Small signal model:** 
+- V source: SC
+- I source: OC
 
 Hybrid-$\pi$ model:
 
