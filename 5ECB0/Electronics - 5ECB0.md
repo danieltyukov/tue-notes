@@ -1,5 +1,3 @@
-## 5ECB0 
-
 ## Carriers
 - Intrinsic: electron-hole pair generated from thermal energy $n_{i} = p_{i}$
 - Doped: n-type (donor, n) and p-type (acceptor, p) $\to p\neq q,$ fixed (local) charge, globally neutral
@@ -19,8 +17,8 @@ $$n_{i}*p_{i}=n*p=AT^3e^{-\frac{E_{g}}{kT}}$$
 	- $J = \frac{I}{S} = \frac{V}{RS} = \frac{V}{\rho \delta L} = \sigma E$
 - Diffusion current: ~concentration difference
 	- $F_{n} = -D_{n} \frac{ \partial n }{ \partial x },\ F_{d} = -D_{p} \frac{ \partial p }{ \partial x }$
-	> $D = \mu\frac{kT}{q} = \mu V_{T} \\ \text{ (thermal voltage, } \frac{kT}{q} \approx 25mV - Si)$
-- $J_{d} = q(F_{n} - F_{d}) = \frac{kT}{q}\left( \mu_{n}\frac{ \partial n }{ \partial x } - \mu_{p}\frac{ \partial p }{ \partial x }\right)$
+	- $D = \mu\frac{kT}{q} = \mu V_{T} \\ \text{ (thermal voltage, } \frac{kT}{q} \approx 25mV - Si)$
+	- $J_{d} = q(F_{n} - F_{d}) = \frac{kT}{q}\left( \mu_{n}\frac{ \partial n }{ \partial x } - \mu_{p}\frac{ \partial p }{ \partial x }\right)$
 
 ## P-N junction
 - Equilibrium: diffusion of majority carriers, forming depletion region with E ($V_{0} = V_{T}\ln{\frac{N_{A}N_{D}}{n_{i}^2}} \approx 0.7V$) that cause drift that balance diffusion 
@@ -152,8 +150,8 @@ Hybrid-$\pi$ model:
 ![[Pasted image 20230319204910.png|CM+Body effect]]
 
 T model:
-![[ss_t_model.png]]
-
+![[ss_t_model.png|500]]
+![[transistor-amp-analyse.png]]
 Body effect: $g_{mb}=\frac{ \partial i_{D} }{ \partial v_{BS} }|_{v_{GS}, v_{DS}=const}=\chi g_{m},\ \chi=\frac{ \partial V_{t} }{ \partial V_{SB} }$
 Maximum $v_{gs}$ swing: $V_{DS}-A_{v}\hat{v}_{gs}\geq V_{OV}+\hat{v}_{gs} \to v_{gs} \leq \frac{V_{DS}-V_{OV}}{1+|A_{v}|}$
 Input resistance: $R_{in} = \frac{v_{in}}{i_{in}} = \frac{v_{in}}{\frac{v_{in}-v_{out}}{R_{G}}} = \frac{R_{G}}{1-A_{v}},\ A_{v} < 0$
