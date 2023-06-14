@@ -237,7 +237,7 @@ Disjoint: $A \cup B = (A \cap B) \cup (B-A) \cup (A-B)$
 >$P[B|A]=\frac{P[A|B]P[B]}{P[A]}$
 
 Events A and B are **independent** if and only if:
-$P[A\cap B]=P[A]P[B]$
+$P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 - Disjoint events $\neq$ Independent Events
 
 >[!NOTE] Sampling WITH/WITHOUT Replacement
@@ -251,3 +251,132 @@ $P[A\cap B]=P[A]P[B]$
 > Probability of $n_{0}$ failures and $n_{1}$ successes
 > $P[S_{n0,n1}]=(n_{0}+n_{1},n_{0})(1-p)^{n_{0}}p^{n_{1}}=(n_{0}+n_{1},n_{1})(1-p)^{n_{0}}p^{n_{1}}$
 
+# Discrete Random Variables
+
+![[discrete-random-variables.png]]
+>**WHEN WHICH:**
+>- **Bernoulli:** A random event that results in a success or a failure.
+>- **Binomial:** Number of trials (n) and the probability of success (p), (x) successes.
+>- **Geometric:** Counts independent Bernoulli trials until a success occurs.
+>- **Pascal:** Until (k) successes, (x) number of trials.
+>- **Poisson:** Counts the number times event occurs in a given unit of distance. It has one parameter, (a) the mean number of occurences per specified unit.
+
+>[!NOTE] Probability Mass Function (PMF)
+>$P_{X}(x)=P[X=x]$
+>
+>**Properties**:
+>For any $x, P_{X}(x)\geq 0$
+>$\sum_{x \in Sx}P_{X}(x)=1$
+>For any event $B \subset Sx,$ the probability that $X$ is in the set $B$ is equal to: $P[B]=\sum_{x \in B}P_{X}(x)$
+
+>[!NOTE] Cumulative Distribution Function (CDF)
+>$F_{X}(x)=P[X\leq x]$
+>
+>**Properties**:
+>$F_{X}(-\infty)=0$ and $F_{X}(\infty)=1$
+>for all $x'\geq x,F_{X}(x')\geq F_{X}(x)$
+>for $x_{i}\in S_{X}$ and $\epsilon$ an arbitrary small positive number:
+>$F_{X}(x_{i})-F_{X}(x_{i}-\epsilon)=P_{X}(x_{i})$
+>$F_{X}(x)=F_{X}(x_{i})$ for all $x$ such that $x_{i}\leq x<x_{i+1}$
+>$F_{X}(b)-F_{X}(a)=P[a<X\leq b]$
+
+>[!NOTE] Expectation (MEAN), Variance, Standard Deviation
+>$E[X]=\mu_{X}=\sum_{x\in S_{X}}xP_{X}(x)$ or $\dots g(x)P_{X}(x)$
+>$E[aX+b]=aE[X]+b$
+>
+>n-th moment: $E[X^n]$
+>n-th central moment: $E[(X-\mu_{X})^n]$
+>
+>$Var[X]=E[(X-\mu_{X})^2]=E(X^2)-\mu^2_{X}=E[X^2]-(E[X])^2$
+>$Var[aX+b]=a^2Var[X]$
+>
+>$\sigma_{X}=\sqrt{ Var[X] }$
+
+# Continuous Random Variables
+
+![[continuous-random-variables.png]]
+
+>[!NOTE] Probability Density Function (PDF)
+>$f_{X}(x)=\frac{dF_{X}(x)}{dx}$
+>
+>**Properties**:
+>$f_{X}(x)\geq 0$ for all $x$
+>$F_{X}(x)=\int ^x _{-\infty} \, f_{X}(u)du$
+>$\int_{-\infty}^{\infty} f_{X}(x) \, dx=1$
+>
+>$P[x_{1}<X\leq x_{2}]=\int _{x_{1}}^{x_{2}} \,f_{X}(x) dx$
+
+>[!NOTE] Expectation (MEAN), Variance
+>$E[X]=\mu_{X}=\int_{-\infty}^{\infty} xf_{X}(x) \, dx$
+>or
+>$E[g(X)]=\mu_{X}=\int_{-\infty}^{\infty} g(x)f_{X}(x) \, dx$
+>
+>$E[X-\mu_{X}]=0$
+>$E[aX+b]=aE[X]+b$
+>$Var[X]=E[X^2]-\mu^2_{X}$
+>$Var[aX+b]=a^2Var[X]$
+
+- Cumulative Distribution Function (CDF): Integral of PDF.
+- CDF is obtained same way as in Discrete Random Variables.
+
+>[!NOTE] Standard Normal Random Variable
+>$\Phi(z):=\frac{1}{\sqrt{ 2\pi }}\int _{-\infty}^z \, e^{-u^2/2} du$
+>$F_{X}(x)=\Phi\left( \frac{x-\mu}{\sigma} \right)$
+
+>[!NOTE] Delta Function
+>**sifting property**: $\int_{-\infty}^{\infty} g(x) \delta(x-x_{0}) \, dx=g(x_{0})$
+>
+>$\int_{-\infty}^{x} \delta(v) \, dv=u(x)$
+>
+>For a discrete with range $S_{X}=\{ x_{1},x_{1} ,\dots\}$ we have:
+>$F_{X}(x)=\sum_{x_{i} \in S_{X}}P_{X}(x_{i})u(x-x_{i})$
+>generalized PDF: $f_{X}(x)=\sum_{x_{i} \in S_{X}}P_{X}(x_{i})\delta(x-x_{i})$
+
+![[random-variable-function.png|500]]
+
+# Summery
+
+![[cdf-pdf-pmf.png|500]]
+
+# Pairs & Sum of Random Variables
+
+> [!NOTE] Joint CDF
+> $F_{X,Y}(x,y)=P(X\leq x,Y\leq y)$
+> $P(x_{1}<X\leq x_{2},y_{1}<Y\leq y_{2})=F_{X,Y}(x_{2},y_{2})-F_{X,Y}(x_{2},y_{1})-F_{X,Y}(x_{1},y_{2})+F_{X,Y}(x_{1},y_{1})$
+
+>[!NOTE] Joint PMF
+>$P_{X,Y}(x,y)=P(X=x,Y=y)$
+>$P(B)=\sum_{(x,y)\in B}P_{X,Y}(x,y)$
+
+>[!NOTE] Joint PDF
+>$F_{X,Y}(x,y)=\int ^x _{-\infty} \, \int ^y _{-\infty} \, f_{X,Y}(u,v) dv du$
+>$f_{X,Y}(x,y)=\frac{\partial^2F_{X,Y}(x,y)}{\partial x\partial y}$
+
+>[!NOTES] Marginal
+>PMF => $P_{X,Y}(x,y)$ => $P_{X}(x)\sum_{y \in S_{Y}}P_{X,Y}(x,y)$ => similar for Y
+>PDF => $f_{X,Y}(x,y)$ => $f_{X}(x)\int ^\infty _{-\infty} \,f_{X,Y}(x,y) dy$ => similar for Y
+
+>[!NOTE] Expectation & Variance
+>**Expectation** -> $W=g(X,Y)$
+>Discrete: => $E(W)=\sum_{x \in S_{x}}\sum_{y \in S_{y}}g(x,y)P_{X,Y}(x,y)$
+>Continuous: => $E(W)=\int ^\infty _{-\infty} \, \int ^\infty _{-\infty} \, g(x,y)f_{X,Y}(x,y) dy dx$
+>$E(X+Y)=E(X)+E(Y)$
+>
+>**Variance**
+>$Var[X+Y]=Var[X]+Var[Y]+2Cov[X,Y]$
+>$Cov(X,Y)=E(XY)-E[X]E[Y]$
+>
+>**Correlation**
+>$\rho_{X,Y}=\frac{Cov[X,Y]}{\sqrt{ Var[X]Var[Y] }}=\frac{Cov[X,Y]}{\sigma_{X}\sigma_{Y}}$
+>always between $-1\leq \rho_{X,Y}\leq 1$ -> negative/positive correlation
+
+>[!NOTE] Independent Random Variables
+>**Discrete:** => $P_{X,Y}(x,y)=P_{X}(x)P_{Y}(y)$
+>**Continuous:** => $f_{X,Y}(x,y)=f_{X}(x)f_{Y}(y)$
+>$E(XY)=E(X)E(Y)$
+>$Cov(X,Y)=\rho_{X,Y}=0$
+>$Var[X+Y]=Var[X]+Var[Y]$
+
+- There can be in general more than 2 variables considered in a probability, below is an example and it applies for continuous in same format:
+
+![[marginal-multivariate-pmf.png|500]]

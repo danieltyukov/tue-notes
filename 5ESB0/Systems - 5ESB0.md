@@ -93,13 +93,93 @@ Poles and zeros of $H$ come in complex conjugate pairs damping and (undamped) na
 ![[dynamic-response-graph.png|500]]
 ![[dynamic-response-eg.png|500]]
 
-# Second Order Systems
->[!NOTE] Final Value Theorem
->Let $y(t)$ <-> $Y(s)$ be a L-transform pair.
->If all poles of $sY(s)$ are in the left-plane, then:
->$\lim_{ t \to \infty }y(t)=\lim_{ s \to 0 }sY(s)$
->
->Consequence: If $u$ is a step, $U(s)=\frac{1}{s}$, and $Y(s)=G(s)U(s)$, then:
->$\lim_{ t \to \infty }y(t)=\lim_{ s \to 0 }s*G(s)* \frac{1}{s}$
->$= \lim_{ s \to 0 }G(s)$ is the DC-gain (steady state value of step response) of G
+# Second Order Systems / Fourier Transforms / System Interconnections and Stability
 
+![[dynamic-response.png|500]]
+
+>[!NOTE] Final Value Theorem -> Steady State Gain
+>Let $y(t)$ <-> $Y(s)$ be a $L$-transform pair.
+>If all poles of $sY(s)$ are in the left-plane, then:
+>$\lim_{ t \to \infty }y(t)=\lim_{ s \to 0 }sY(s)=\lim_{ s \to 0 }G(s)\cdot s \cdot \frac{1}{s^{k+1}}$
+>
+>Consequence: 
+>If $u$ is a **step**, $U(s)=\frac{1}{s}$, and $Y(s)=G(s)U(s)$, then:
+>$\lim_{ t \to \infty }y(t)=\lim_{ s \to 0 }s \cdot G(s) \cdot \frac{1}{s}$
+>$= \lim_{ s \to 0 }G(s)$ 
+>is the DC-gain (steady state value of step response) of G
+
+![[step-response-characterizaton.png|500]]
+![[desired-behaviour.png|500]]
+
+Analytic Express for Step Response: $y(t)=1-e^{-\sigma t}\left( \cos w_{d}t+\frac{\sigma}{\omega _{d}}\sin \omega_{d}t \right)$
+>[!NOTE] Characterization
+>**Rise time $t_{r}$**
+>$w_{n}t_{r}\approx 1.8$ -> $t_{r}\approx \frac{1.8}{w_{n}}$
+>for $\zeta=0.5$
+>
+>**Peak time** $t_{p}$
+>$t_{p}=\frac{\pi}{\omega_{d}}$
+>
+>**Overshoot** $M_{p}$
+>$M_{p}=e^{\frac{-\zeta}{\sqrt{ 1-\zeta^2 }}\pi}$
+>
+>**Settling time** $t_{s}$
+>$t_{s}=\frac{4.6}{\sigma}$
+
+>[!NOTE] One-to-one relations (2nd order systems)
+>$t_{r} \leftrightarrow w_{n}$
+>$t_{p} \leftrightarrow w_{d}$
+>$M_{p} \leftrightarrow \zeta$
+>$t_{s}  \leftrightarrow \sigma$
+
+>[!NOTE] Consequence of extra zero/pole
+>**Extra Zero**
+>If $a\gg 0$ the effect of the zero is negligible
+>If $a$ not large enough -> overshoot $M_{p}$ increases
+>If $a<0$ (zero in RHP (right half plane)) initial response can become negative
+>
+>$M_{p} \uparrow$ and $t_{r} \downarrow$ if zero in neighborhood of poles (LHP).
+>Initial negative response if zero in right half plane (RHP)
+>
+>**Extra Pole**
+>$t_{r} \uparrow$ if pole is neighborhood of the other poles (LHP)
+
+>[!NOTE] Stability
+> An LTI system is called **stable** if all poles of the transfer function are in the open left half plane, i.e. have negative real parts. (If on imaginery line (critically stable) **not stable**)
+> - Routh array -> test stability of systems
+> - Number of sign changes -> Number of poles in RHS -> Stable: No Sign Changes
+> - If Routh first column same sign, positive -> stable
+> 
+> Routh-stability test of: $a_{0}s^3+a_{1}s^2+a_{2}s+a_{3}=0:$
+> $s^3: a_{0}$ $a_{2}$
+> $s^2: a_{1}$ $a_{3}$
+> $s^1: \frac{a_{1}a_{2}-a_{0}a_{3}}{a_{1}}$
+> $s^0:a_{3}$
+
+# Feedback and Feedforward
+
+![[closed-loop-analysis.jpg|500]]
+
+- Closed Loop Sensitivity: $S_{G}^T=\frac{G}{T}\cdot \frac{dT}{dG}=\frac{\frac{\delta T}{T}}{\frac{\delta G}{G}}$
+- If not a closed-loop system -> Routh Stability Check Performed -> Before Final Value Theorem
+
+> [!NOTE] System Types
+> **Reference Tracking:**
+> $R\to Y$
+> $W(s)=0$
+> $E(s)=R(s)(1-T(s))$
+> $e_{ss}=\lim_{ s \to 0 }sE(s)$
+> 
+> **Disturbance Rejection**
+> $W\to Y$
+> $R(s)=0$
+> $E(s)=R(s)-Y(s)=-Y(s)$
+> $\lim_{ s \to 0 }sE(s)$
+
+![[reference-tracking.png|500]]
+![[disturbance-rejection.png|500]]
+
+## When Reference Tracking - Consider Steady State Errors (R(s))
+![[steady-state-error-1.png|500]]
+![[steady-state-error-2.png|500]]
+![[system-type.png|500]]
