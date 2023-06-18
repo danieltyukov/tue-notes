@@ -257,7 +257,7 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 >**WHEN WHICH:**
 >- **Bernoulli:** A random event that results in a success or a failure.
 >- **Binomial:** Number of trials (n) and the probability of success (p), (x) successes.
->- **Geometric:** Counts independent Bernoulli trials until a success occurs.
+>- **Geometric:** Counts independent Bernoulli trials (1-p) until a success (p) occurs.
 >- **Pascal:** Until (k) successes, (x) number of trials.
 >- **Poisson:** Counts the number times event occurs in a given unit of distance. It has one parameter, (a) the mean number of occurences per specified unit.
 
@@ -338,7 +338,7 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 
 ![[cdf-pdf-pmf.png|500]]
 
-# Pairs & Sum of Random Variables
+# Pairs of Random Variables
 
 > [!NOTE] Joint CDF
 > $F_{X,Y}(x,y)=P(X\leq x,Y\leq y)$
@@ -360,6 +360,7 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 >**Expectation** -> $W=g(X,Y)$
 >Discrete: => $E(W)=\sum_{x \in S_{x}}\sum_{y \in S_{y}}g(x,y)P_{X,Y}(x,y)$
 >Continuous: => $E(W)=\int ^\infty _{-\infty} \, \int ^\infty _{-\infty} \, g(x,y)f_{X,Y}(x,y) dy dx$
+>$E(XY)=\int ^\infty _{-\infty} \, \int ^\infty _{-\infty} \, (xy)f_{X,Y}(x,y) dy dx$
 >$E(X+Y)=E(X)+E(Y)$
 >
 >**Variance**
@@ -380,3 +381,71 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 - There can be in general more than 2 variables considered in a probability, below is an example and it applies for continuous in same format:
 
 ![[marginal-multivariate-pmf.png|500]]
+
+# Conditional Probability Models
+
+>[!NOTE] Conditional PMF/PDF
+>**PMF:**
+>$P_{X|B}(x)=P[X=x|B]=\frac{P_{X}(x)}{P[B]}$ if $x \in B$ else $0$
+>$E[X|B]=\sum_{x \in B}xP_{X|B}(x)$
+>
+>**PDF:**
+>$f_{X|B}(x)=\frac{f_{X}(x)}{P[B]}$ if $x \in B$ else $0$
+>$E[X|B]=\int _{-\infty} ^\infty \,xf_{X|B}(x) dx$
+
+>[!NOTE] Conditioning by Event/Random Variable
+>**Event:**
+>$P_{X,Y|B}(x,y)=P(X=x,Y=y|B)=\frac{P_{X,Y}(x,y)}{P(B)}$ if $(x,y \in B)$ else $0$
+>$f_{X,Y}(x,y)=\frac{f_{X,Y}(x,y)}{P(B)}$ if $(x,y) \in B$ else $0$
+>
+>$E[W|B]=\sum_{x \in S_{x}}\sum_{y \in S_{y}}g(x,y)P_{X,Y|B}(x,y)$
+>$E[W|B]=\int _{-\infty} ^\infty \, \int ^\infty _{-\infty} \, g(x,y)f_{X,Y|B}(x,y) dy dx$
+>
+>**Random Variable:**
+>$P_{X|Y}(x|y)=P(X=x|Y=y)=\frac{P_{X,Y}(x,y)}{P_{Y}(y)}$
+>$f_{X|Y}(x|y)=\frac{f_{X,Y}(x,y)}{f_{Y}(y)}$
+>
+>$E[X|Y=y]=\sum_{x \in S_{X}}xP_{X|Y}(x|y)$
+>$E[X|Y=y]=\int ^\infty _{-\infty} \,xf_{X|Y}(x|y) dx$
+
+>[!NOTE] Conditioning of Independent Random Variables
+>$P_{X|Y}(x|y)=P_{X}(x)$ or $f_{X|Y}(x|y)=f_{X}(x)$
+>$E(X|Y=y)=E(x)$ for all $y \in S_{Y}$
+
+
+
+
+
+
+
+# MGF & Sums of Random Variables
+
+>[!NOTE] Moment Generating Function (MGF)
+>Purpose -> Calculate Moments Through Deriviation
+>$\Phi_{X}(s):=E[e^{sX}]$
+>$E[X^n]=\frac{d^n\Phi_{X}(s)}{ds^n}|_{s=0}$
+
+>[!NOTE] Sum of Random Variables
+>**Expectation**
+>$W_{n}=X_{1}+\dots+X_{n}\to E[W_{n}]=E[X_{1}]+\dots +E[X_{n}]$
+>**Variance**
+>$Var[W_{n}]=\sum^n_{i=1}Var[X_{i}]+\sum^{n-1}_{i=1}\sum^n _{j=i+1}Cov[X_{i},X_{j}]$
+>uncorrelated: $Var[ W_{n}]=\sum^n _{i=1} Var[X_{i}]$
+>**PDF**
+>$W=X+Y\to f_{W}(w)=\int ^\infty _{-\infty} \,f_{X,Y}(x,w-x) dx$
+>independent: $f_{W}(w)=\int ^\infty _{-\infty} \,f_{X}(x)f_{Y}(w-x) dx$ -> Convolution of PDF of X and the PDF of Y.
+>**MGF**
+>independent: $\Phi_{W}(s)=\Phi_{X_{1}}(s)\Phi_{X_{2}}(s)\dots \Phi_{X_{n}}(s)$
+
+>[!NOTE] Central Limit Theorem
+>$Z_{n}=\frac{\sum^n_{i=1}X_{i}-n\mu_{X}}{\sqrt{ n\sigma^2_{X} }}$
+>$\lim_{ n \to \infty }F_{X_{n}}(z)=\Phi(z)$
+>$\Phi(z)=\frac{1}{\sqrt{ 2\pi }}\int ^z _{-\infty} \, e^{-u^2/2} du$
+>Cumulative distribution function of a standard normal Gaussian(0,1) Random Variable.
+>
+>$E[X]=\mu_{X}$ & $Var[X]=\sigma^2_{X}$
+
+
+
+
+

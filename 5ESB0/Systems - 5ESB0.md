@@ -183,3 +183,25 @@ Analytic Express for Step Response: $y(t)=1-e^{-\sigma t}\left( \cos w_{d}t+\fra
 ![[steady-state-error-1.png|500]]
 ![[steady-state-error-2.png|500]]
 ![[system-type.png|500]]
+
+# Feedback Controllers (PID)
+
+- P used for "speed"
+- I used for steady state response
+- D used for damping
+
+![[pid.png|500]]
+![[pid-actions.png|500]]
+
+>[!NOTE] PID Action in Detail
+>P-action: increase $k_{P}\to w^2_{n}\uparrow \implies\zeta w_{n}constant$ so $w_{n}\uparrow,\zeta\downarrow$
+>faster response $t_{r}\downarrow$ less damping $M_{p}\uparrow$
+>
+>PI-action: leads to zero steady state error to step input.
+>$k_{I}\uparrow\implies w_{n}\uparrow,\zeta\downarrow$
+>
+>PD-action: leads to increased damping.
+>$k_{D}\uparrow\implies \zeta\uparrow,w_{n}unchanged$
+
+![[pid-summery.png|500]]
+
