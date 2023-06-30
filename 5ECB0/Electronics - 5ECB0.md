@@ -1,3 +1,4 @@
+![[anode-cathode.png|300]]
 ## Carriers
 - Intrinsic: electron-hole pair generated from thermal energy $n_{i} = p_{i}$
 - Doped: n-type (donor, n) and p-type (acceptor, p) $\to p\neq q,$ fixed (local) charge, globally neutral
@@ -23,11 +24,13 @@ $$n_{i}*p_{i}=n*p=AT^3e^{-\frac{E_{g}}{kT}}$$
 ## P-N junction
 - Equilibrium: diffusion of majority carriers, forming depletion region with E ($V_{0} = V_{T}\ln{\frac{N_{A}N_{D}}{n_{i}^2}} \approx 0.7V$) that cause drift that balance diffusion 
 ![[Pasted image 20230220161228.png|300]]
-
+![[reversebiaseddiode.png|300]]
+![[forwardbias.png|300]]
 - Reverse bias: temperature dependent, V independent, drift current $i_{drift} = -I_{s} = const\ \propto n_{i}^2 \propto e^{\frac{-qV_{0}}{kT}}$
 - Forward bias: V dependent, diffusion current $i_{diff} = I_{s} e^{\frac{V_{D}}{V_{T}}}$ 
 - $i_{D} = i_{drift} + i_{diff} = I_{s}\left( e^{\frac{V_{D}}{V_{T}}} - 1 \right) \approx I_{s}e^{\frac{V_{D}}{V_{T}}}$
 $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_{0} \approx 0.7V,\ \partial v_{D}\approx-2mV/K)$
+- Reverse Bias: Capacitors, Forward Bias: Diodes
 
 ### Small signal
 - Resistance: $r_{d} = \frac{1}{\frac{ \partial i_{D} }{ \partial v_{D} }} = \frac{1}{\frac{I_{D}}{V_{T}}} = \frac{V_{T}}{I_{D}} = 25\Omega @1mA$
@@ -60,7 +63,7 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 > **Difference**
 > $v_{o1}=-\frac{R_{2}}{R_{1}}v_{I1}$
 > $v_{{o2}}=\left( 1+\frac{R_{2}}{R_{1}} \right)\left( \frac{R_{4}}{R_{3}+R_{4}} \right)v_{I2}$
-> $v_{o}=v_{o1}+v_{o2} \to A_{d}=\frac{R_{2}}{R_{1}}$
+> $v_{o}=v_{o1}+v_{o2} \to A_{d}=\frac{R_{2}}{R_{1}}\implies v_{o}=\frac{R_{2}}{R_{1}}(v_{2}-v_{1})$
 > $\frac{R_{4}}{R_{3}}=\frac{R_{2}}{R_{1}}$
 
 > **Common Mode**
@@ -83,9 +86,14 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 - $v<0 \to v_{o}=0$
 - half wave rectifier: $V_{avg}=\frac{v_{i}}{\pi}$
 
-## MOSFET/MOST
+# MOSFET/MOST
 
 **When we say for example $V_{GS}$ means current is S->G since that's how charge flows.**
+
+- Saturation: Fully Turned, behaves as a voltage controlled current source. When Vds > Vov (Vov=Vgs-Vt)
+- Triode: Partially turned on, behaves as voltage controlled resistor. When Vds < Vov.
+- For P-Channel just use absolute brackets ||.
+- Application of voltage onto the Body of MOSFET -> can modulated the channel width, as it changes $V_{th}$.
 
 ![[Pasted image 20230312200929.png]]
 
@@ -110,17 +118,22 @@ edge of saturation $V_{ov}=V_{DS}$
 Channel length modulation: $i'_{D} = i_{D} \frac{L}{L-\Delta L} \approx i_{D}\left( 1+\frac{\Delta L}{L} \right) = i_{D}(1+\lambda (v_{DS}-v_{OV})) \approx i_{D}(1+\lambda v_{DS})$
 > @$v_{DS}=-V_{A}=-\frac{1}{\lambda}=-V'_{A}L$ (early voltage): $i'_{D}=0$
 
+$i_{D}=\frac{1}{2}k'_{n}\left( \frac{W}{L} \right)(v_{GS}-V_{tn})^2(1+\lambda v_{DS})$
+$V_{A}=\frac{1}{\lambda}$ => Early Voltage
+$V_{A}=V_{A}'L$
+
 Output resistance: $r_{O} = \left( \frac{ \partial i'_{D} }{ \partial v_{DS} } \right)^{-1} = \frac{V_{A}}{i_{D}} \to \parallel to\  R_{D}$
 
 Body effect: $V_{SB}\neq0$
 $V_{t}=V_{t_{0}}+\gamma [\sqrt{ 2\phi_{f}+V_{SB}} - \sqrt{ 2\phi_{f} }]$
 > $2\phi_{f} \approx 0.6V,\ \gamma \approx 0.4V^{1/2}$
 
-## Amplifier
+# Amplifier
 
 ![[volt-transfer-char.png]]
 
 $v_{DS} = V_{DD} - I_{D}R_{D} = V_{DD} - \frac{1}{2}k_{n}(v_{GS}-V_{t})^2R_{D}$
+
 > $v_{DS} = V_{DS} + v_{ds},\ v_{GS} = V_{GS} + v_{gs}$
 
 $$
@@ -138,11 +151,13 @@ A_{V} &= \frac{ \partial v_{DS} }{ \partial v_{GS} } = \frac{v_{ds}}{v_{gs}}|_{v
 \end{align}
 $$
 $g_{m}=\frac{ \partial i_{d} }{ \partial v_{gs} }=k_{n}(V_{GS}-V_{t})=k_{n}V_{OV}=\frac{-A_{v}}{R_{D}}=\frac{2I_{D}}{V_{OV}}=\sqrt{ 2k'_{n} }\sqrt{ \frac{W}{L} }\sqrt{ I_{D} }$
-Channel-length modulation: $A_{v}'=g_{m}(R_{D}\mid r_{o})$
+Channel-length modulation: $A_{v}'=-g_{m}(R_{D}\mid r_{o})$
 
 **Small signal model:** 
 - V source: SC
 - I source: OC
+
+![[transisitor-amplifier-procedure.png]]
 
 Hybrid-$\pi$ model:
 
@@ -156,8 +171,9 @@ Body effect: $g_{mb}=\frac{ \partial i_{D} }{ \partial v_{BS} }|_{v_{GS}, v_{DS}
 Maximum $v_{gs}$ swing: $V_{DS}-A_{v}\hat{v}_{gs}\geq V_{OV}+\hat{v}_{gs} \to v_{gs} \leq \frac{V_{DS}-V_{OV}}{1+|A_{v}|}$
 Input resistance: $R_{in} = \frac{v_{in}}{i_{in}} = \frac{v_{in}}{\frac{v_{in}-v_{out}}{R_{G}}} = \frac{R_{G}}{1-A_{v}},\ A_{v} < 0$
 
-### Configurations
+# Configurations
 ## Common source:
+
 ![[amp_cs.png]]
 ![[amp_cs_ideal.png]]
 
@@ -168,6 +184,7 @@ Ideal gain: $A_{o}=-g_{m}r_{o}=\frac{2I_{D}}{V_{OV}} \frac{V_{A}}{I_{D}}=\frac{2
 - Very high/inf $R_{in}$, high $R_{out}$
 - High V gain
 - Add [[#Common drain (source follower)|CD]] for low $R_{out}$
+
 ## Common gate:
 
 ![[Pasted image 20230319221602.png|300]]
@@ -181,7 +198,7 @@ $R_{out}=r_{o}+(1+g_{m}r_{o})R_{s}\approx r_{o}+g_{m}r_{o}R_{s}$
 - High $R_{out}$
 - $CG+CS\to$ cascode amp
 
-### Common drain (source follower)
+## Common drain (source follower)
 
 ![[Pasted image 20230319222924.png|300]]
 
@@ -190,13 +207,14 @@ $A_{v}=\frac{g_{m}R_{L}v_{gs}}{v_{gs}(1+g_{m}R_{L})}=\frac{R_{L}}{R_{L}+\frac{1}
 - Very high, inf $R_{in}$, low, controllable $R_{out}$
 - ~1 gain
 - Last stage for low $R_{out}$
-
-### Current steering
+![[transistor-amplifier-summery.png]]
+# Current steering
 ![[ss_current_mirror.png]]
 ![[iv_current_mirror.png]]
 
 Load curve: I-V of Q2 ($v_{o}=V_{DD}-v_{DS_{2}}$)
-
+When MOSFETS (identical W/L)->Current Mirror: $\frac{I_{O}}{I_{REF}}=\frac{\left( \frac{W}{L} \right)_{2}}{\left( \frac{W}{L} \right)1}$
+![[current-steering.png]]
 
 Cascode (CG + CS):
 
@@ -219,6 +237,7 @@ V_{CM_{max}}&=V_{GS}+V_{S_{max}}=(V_{OV}+V_{t})+(V_{D}-V_{DS_{min}}) \\
 \end{align}
 $$
 $V_{CM_{min}}=V_{GS}+V_{S_{min}}=V_{OV}+V_{t}+V_{CS}-V_{SS}$
+
 Differential mode:
 > Virtual GND is established at D -> no bypass C to GND in SSA
 
