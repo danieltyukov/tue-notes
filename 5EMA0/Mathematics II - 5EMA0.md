@@ -11,8 +11,8 @@
 >Pairs and sum of random variables
 
 # Unconstrained Optimization
-![[unconstrained-opt.png]]
-![[convex-func.png]]
+![[unconstrained-opt.png|500]]
+![[convex-func.png|500]]
 
 If $f(x^*)=min_{x}f(x)$ then $\nabla f(x^*)=(0,\dots,0)$ -> only for convex
 
@@ -336,7 +336,7 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 
 # Summery
 
-![[cdf-pdf-pmf.png|500]]
+![[cdf-pdf-pmf.png|700]]
 
 # Pairs of Random Variables
 
