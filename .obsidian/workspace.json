@@ -1,0 +1,166 @@
+{
+  "main": {
+    "id": "cd8a76affc408cf3",
+    "type": "split",
+    "children": [
+      {
+        "id": "32e30b2ccb77b031",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "052ae4e04220c224",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "5EMA0/Math II - 5EMA0.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1f53d138412c9366",
+    "type": "split",
+    "children": [
+      {
+        "id": "a5dd92a3c7575329",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a05c7c2056e5e899",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c4570d47fc5fb641",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "84de31a68772ac1a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "right": {
+    "id": "75fc54ffbb8d3a6a",
+    "type": "split",
+    "children": [
+      {
+        "id": "1be64fc1d90d5bc8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1532c6064b38afdf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "5EMA0/Math II - 5EMA0.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1a3ab255940045f3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "5EMA0/Math II - 5EMA0.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "6350acee82ef0b5a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "490aaa968aca245f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "5EMA0/Math II - 5EMA0.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": true,
+      "canvas:Create new canvas": true,
+      "daily-notes:Open today's daily note": true,
+      "templates:Insert template": true,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "052ae4e04220c224",
+  "lastOpenFiles": [
+    "2DE20/Math I - 2DE20.md",
+    "5EMA0/Math II - 5EMA0.md",
+    "2WBB0/Calculus - 2WBB0.md",
+    "5EPA0/Electromagnetics I - 5EPA0.md",
+    "5EPA0/attachments",
+    "5EPA0",
+    "2WBB0/attachments",
+    "2WBB0",
+    "5ESB0/Systems - 5ESB0.md",
+    "5ECB0/Electronics - 5ECB0.md",
+    "2DE20/attachments",
+    "2DE20/attachments/rref.jpg",
+    "2023-07-01.md"
+  ]
+}

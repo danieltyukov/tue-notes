@@ -256,10 +256,11 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 ![[discrete-random-variables.png]]
 >**WHEN WHICH:**
 >- **Bernoulli:** A random event that results in a success or a failure.
->- **Binomial:** Number of trials (n) and the probability of success (p), (x) successes.
+>- **Binomial:** Number of trials (n) and the probability of success (p), counting amount of (x) successes.
 >- **Geometric:** Counts independent Bernoulli trials (1-p) until a success (p) occurs.
->- **Pascal:** Until (k) successes, (x) number of trials.
->- **Poisson:** Counts the number times event occurs in a given unit of distance. It has one parameter, (a) the mean number of occurences per specified unit.
+>- **Pascal:** Until (k) successes, (x) number of trials required.
+>- **Poisson:** Counts the number times event occurs in a given unit of distance. It has one parameter, (a) the mean number of occurrences per specified unit.
+>- **Uniform:** When all outcomes of a random variable have equal probability within a specified range. 
 
 >[!NOTE] Probability Mass Function (PMF)
 >$P_{X}(x)=P[X=x]$
