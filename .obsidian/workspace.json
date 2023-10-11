@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "32e30b2ccb77b031",
+        "id": "a1c1948d920ccbd7",
         "type": "tabs",
         "children": [
           {
-            "id": "052ae4e04220c224",
+            "id": "e5f51aa28eda467b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "5EMA0/Math II - 5EMA0.md",
+                "file": "5EPA0/Electromagnetics I - 5EPA0.md",
                 "mode": "preview",
                 "source": false
               }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 403.5
   },
   "right": {
     "id": "75fc54ffbb8d3a6a",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "5EMA0/Math II - 5EMA0.md",
+                "file": "5EPA0/Electromagnetics I - 5EPA0.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "5EMA0/Math II - 5EMA0.md",
+                "file": "5EPA0/Electromagnetics I - 5EPA0.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +125,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "5EMA0/Math II - 5EMA0.md"
+                "file": "5EPA0/Electromagnetics I - 5EPA0.md"
+              }
+            }
+          },
+          {
+            "id": "3c46d88a52a98251",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
               }
             }
           }
@@ -147,20 +156,32 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "052ae4e04220c224",
+  "active": "e5f51aa28eda467b",
   "lastOpenFiles": [
-    "2DE20/Math I - 2DE20.md",
-    "5EMA0/Math II - 5EMA0.md",
+    "5EPA0/attachments/differential-operatorss.png",
+    "5EPA0/attachments/maxwell-static.png",
+    "5EPA0/attachments/stoke-theorem.png",
+    "5EPA0/attachments/ampere-point-law.png",
+    "5EPA0/attachments/differential-operators.png",
     "2WBB0/Calculus - 2WBB0.md",
     "5EPA0/Electromagnetics I - 5EPA0.md",
+    "5EPA0/attachments/biot-savart-law.png",
+    "2WBB0/attachments/quotient-rule-formula.png",
+    "2WBB0/attachments/squeeze-theorem.png",
+    "2WBB0/attachments/min-max-theorem.png",
+    "2WBB0/attachments/definition-continuity.png",
+    "2WBB0/attachments/limit.jpg",
+    "5EMA0/Math II - 5EMA0.md",
+    "5EPA0/attachments",
+    "5ECB0/Electronics - 5ECB0.md",
+    "5ESB0/Systems - 5ESB0.md",
+    "2DE20/Math I - 2DE20.md",
+    "2WBB0/attachments",
     "5EPA0/attachments",
     "5EPA0",
     "2WBB0/attachments",
     "2WBB0",
-    "5ESB0/Systems - 5ESB0.md",
-    "5ECB0/Electronics - 5ECB0.md",
     "2DE20/attachments",
-    "2DE20/attachments/rref.jpg",
     "2023-07-01.md"
   ]
 }
