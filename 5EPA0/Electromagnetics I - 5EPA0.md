@@ -1,6 +1,14 @@
-Gauss Divergence Theorem: https://www.youtube.com/watch?v=zZqxbwl3Dno
-Boundary Conditions: https://www.youtube.com/watch?v=_FS6csrxBPU
+Gauss Divergence Theorem: https://www.youtube.com/watch?v=zZqxbwl3Dno | https://www.youtube.com/watch?v=pY4t-ikhzhU
+Stokes Theorem: https://www.youtube.com/watch?v=0UvNF_cfBJ4
+Boundary Conditions (normal and tangential components): https://www.youtube.com/watch?v=_FS6csrxBPU
 									https://www.youtube.com/watch?v=vlNUGyDzJ90
+									https://www.youtube.com/watch?app=desktop&v=MPzdh9ZshLI
+Lorentz Force: https://www.youtube.com/watch?v=grgNdIYP6zI
+Hall Effect: https://www.youtube.com/watch?v=1OZCWetFCps
+Lenz Law: https://www.youtube.com/watch?v=u7Rg0TcHQ4Y
+Maxwell Equations: https://www.youtube.com/watch?v=hJD8ywGrXks
+Motional & Transformer EMF: https://www.youtube.com/watch?v=Xi_wZ1IYLo8
+flux: https://www.youtube.com/watch?v=m1PPujngqAw
 # Course Material
 
 >**Mathematical tools:** 
@@ -26,7 +34,7 @@ Boundary Conditions: https://www.youtube.com/watch?v=_FS6csrxBPU
 >	– Boundary conditions 
 >
 >**Time-dependent fields and waves:** 
->	– Faraday 
+>	– Faraday
 >	– Lenz’s law 
 >	– Continuity equation, displacement current 
 >	– Maxwell’s equations in differential and integral form 
@@ -36,6 +44,13 @@ Boundary Conditions: https://www.youtube.com/watch?v=_FS6csrxBPU
 >	– Poynting’s theorem
 
 # Mathematical Tools
+
+>[!NOTE] GEOMETRY
+>Cylinder: Area: $2\pi (r+h)$ Volume: $\pi r^2h$
+>Sphere: Area: $4\pi r^2$ Volume: $\frac{4}{3}\pi r^3$
+>Circle: Area: $\pi r^2$ Circumference: $2\pi r$
+>
+>$\rho _s=area$ $\rho_{V}=volume$
 
 - unit vector, vector divide by distance
 ###### Two Points
@@ -71,6 +86,8 @@ $\mid A \times B \mid=\mid A\mid\mid B\mid \sin(\psi)$
 ![[paramtrization.png|300]]
 ![[differential-operatorss.png]]
 # Electrostatics
+
+$E=\frac{V}{length}$
 
 $Q=\int_{-x}^{x} \rho(x) \, dx$
 $F=\frac{Qq}{4\epsilon_{0}r^2 }a_{r}\implies E=\frac{F}{Q}$
@@ -169,36 +186,20 @@ on the coordinate system. A common mistake is to forget the additional constants
 >
 >Gauss Law: $\oint\oint_{S}\vec{D}\cdot d\vec{S}=\int \int \int _{V} \nabla \cdot \vec{A} \,  \,  \, dV$
 
-## Electromagnetism
-
->[!NOTE] Steady Current
->steady current
->Current density: $J(A / m^2)\implies I=\int \int J \cdot \,  \, dS$
->$=\oint\oint J \cdot a_{n}dA$
->$=-\frac{dQ}{dt}$ -> accumulation of charges
->$=-\int \int \int \frac{\delta \rho}{\delta t} \,  \,  \, dV$ -> accumulation of continuous point charge density
->
->$\nabla \cdot J=-\frac{\delta \rho_{V}}{\delta t}$-> divergence of current density = of change over time of volume density -> negative sink, positive source
-
-![[continuity.png|300]]
-
->[!NOTE] Charge Conservation
-> $I=\oint\oint J \cdot dS=\oint\oint\sigma E \cdot dS$
-> potential: $V_{AB}=-\int_{B}^{A} E \cdot  \, dl$
-> $R=\frac{V_{AB}}{I}$
-> $\vec{J}=\frac{\vec{I}}{A}$
-> $Iencl=J\times \pi \rho^2$
-
-**Electric flux density for dielectrics**: $D=\epsilon E$ $\epsilon=\epsilon_{r}\epsilon_{0}$
-
+$q \cdot \vec{v}=I$
 # Magnetostatics
 
+**The magnetic field H might be thought of as the magnetic field produced by the flow of current in wires and the magnetic field B as the total magnetic field including also the contribution M made by the magnetic properties of the materials in the field.**
+
 ![[biot-savart-law.png|300]]
+![[Screenshot from 2023-10-17 22-00-53.png|300]]
 
 Ampere law easier: use when symmetry | like Gauss Law
 Biot-Savart law: general | like Coloumb law
 
 $\vec{r}$ observation point $\vec{r'}$ source of field
+
+>$|\vec{r}-\vec{r'}|=(z\vec{a_{z}}-\rho \vec{d_{\rho}})=(z^2-\rho^2)^{3/2}$
 
 ![[ampere-point-law.png|300]]
 ![[stoke-theorem.png|300]]
@@ -210,5 +211,80 @@ $\vec{r}$ observation point $\vec{r'}$ source of field
 
 - **The magnetic flux passing through a closed surface is zero.**
 
+![[lorentz-law.jpg|300]]
+- **FBI: (F thumb) Left Hand Rule for (-), same but right hand for (+) charge & (conventional current)**
+- A circle with a dot in it, represents a vector out of the page. **A circle with an x in it**
+- https://physics.stackexchange.com/questions/395851/left-or-right-hand-rule
+
+![[magnetic-force-on-charge-distribution.png|300]]
+![[polar-magn.png|300]]
+
+- **When an electrical conductor carrying a current is located in a magnetic field perpendicular to that current, a voltage difference will be generated across the conductor in a direction perpendicular to both the current and the magnetic field. This is called the Hall effect.**
+
+![[boundary-cond-magn.png|300]]
+
+The dot product boundary condition: Normal, while the cross product is the tangential fox exmaple:
+![[tangential-component.png|800]]
+![[normal-component.png|800]]
+
+
+>[!NOTE] Magnetic Flux Density
+>$\phi=\int \int \vec{B} \cdot \, \, d\vec{S}$
+>if normal component of flux density is constant across surface: $\phi=BS$
+>  
+**Magnetic field strength or field intensity (H) is the amount of magnetising force**. Magnetic flux density (B) is the amount of magnetic force induced on the given body due to the magnetising force H.
+
+- Inductance measures the ability of a circuit to generate a magnetic field when an electric current flows through it.
+
+![[flux-linkage.png|400]]
+![[mutual-coupling.png|400]]
 # Time-Dependent Fields & Waves
-![[maxwell-static.png|300]]
+
+**Lenz's Law: The direction of the induced current is such as to oppose the very cause producing it**
+
+![[maxwell-1.png|400]]
+![[maxwell-vaccum.png|400]]
+![[maxwell-2.png|400]]
+
+>[!NOTE] Steady Current
+>steady current
+>Current density: $J(A / m^2)\implies I=\int \int J \cdot \,  \, dS$
+>$=\oint\oint J \cdot a_{n}dA$
+>$=-\frac{dQ}{dt}$ -> accumulation of charges
+>$=-\int \int \int \frac{\delta \rho}{\delta t} \,  \,  \, dV$ -> accumulation of continuous point charge density
+>
+>$\nabla \cdot J=-\frac{\delta \rho_{V}}{\delta t}$-> divergence of current density = of change over time of volume density -> negative sink, positive source
+
+![[continuity.png|400]]
+
+>[!NOTE] Charge Conservation
+> $I=\oint\oint J \cdot dS=\oint\oint\sigma E \cdot dS$
+> potential: $V_{AB}=-\int_{B}^{A} E \cdot  \, dl$
+> $R=\frac{V_{AB}}{I}$
+> $\vec{J}=\frac{\vec{I}}{A}$
+> $Iencl=J\times \pi \rho^2$
+
+**Electric flux density for dielectrics**: $D=\epsilon E$ $\epsilon=\epsilon_{r}\epsilon_{0}$
+
+![[faraday-staionary-loop.png|400]]
+
+![[waves-maxwell.png|400]]
+![[helmotz-eq.png|400]]
+![[maxwell-source-free.png|400]]
+![[poynting-theorem.png|400]]
+![[images.png|400]]
+$v=\omega r$
+
+![[inductance-capacitance.png]]
+
+**coloumb potential referenced at infinity**
+
+$I_{encl}=IN$ N number of turns in coil
+
+![[sphere-gauss.png|500]]
+
+**surface integral = area of the object**
+
+$J=\frac{I}{A}$
+
+**Example, if you wanted to find the volume of a cylindrical shell with inner radius R1​ and outer radius R2​, you might integrate dr from R1​ to R2​, and then integrate dz for the height of the shell.**
