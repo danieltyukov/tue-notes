@@ -266,16 +266,13 @@ The dot product boundary condition: Normal, while the cross product is the tange
 
 **Electric flux density for dielectrics**: $D=\epsilon E$ $\epsilon=\epsilon_{r}\epsilon_{0}$
 
-![[faraday-staionary-loop.png|400]]
+![[faraday-staionary-loop.png|290]] ![[waves-maxwell.png|290]]
 
-![[waves-maxwell.png|400]]
-![[helmotz-eq.png|400]]
-![[maxwell-source-free.png|400]]
-![[poynting-theorem.png|400]]
-![[images.png|400]]
+![[waves-maxwell.png|290]] ![[helmotz-eq.png|290]]
+![[maxwell-source-free.png|290]] ![[poynting-theorem.png|290]]
+
+![[images.png|300]] ![[inductance-capacitance.png|300]]
 $v=\omega r$
-
-![[inductance-capacitance.png]]
 
 **coloumb potential referenced at infinity**
 

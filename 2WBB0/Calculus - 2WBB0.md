@@ -145,6 +145,11 @@ $Im(i)=1$ imaginary part of imaginary number = real number
 
 $|z-2i|=|3+4i|\implies \sqrt{ 3^2+4^2 }=5$ so its set of all complex numbers are a circle around not origin but around $-2i$ with radius $5$
 
+imaginary part of imaginary number is a real value: $Im\left( \frac{1}{2} + \frac{\sqrt{ 2 }}{2}i \right)=\frac{\sqrt{ 2 }}{2}$
+
+![[complex-polynomial.jpg|500]]
+Having root $i$ means having 2 roots $i \cap -i$
+
 # Limits & Continuity
 
 >Limits
@@ -172,7 +177,7 @@ $\frac{\infty}{x}=undefined \mid \infty$
 asymptotes  are limits to infinity.
 horizontally it must have both ($-\infty \cap \infty$) asymptote
 vertically it can have either of the asymptote doesn't have to have have both
-
+https://www.youtube.com/watch?v=WT7oxiiFYt8
 ![[definition-continuity.png|300]]
 ![[continuity-interval.png|300]]
 composite functions -> continuous
@@ -247,6 +252,7 @@ to find an error of linear approximation: $\frac{f''(c)}{2}(x-x_{1})^2$ for cert
 >Differentiation of Exponential Functions
 
 - for a function to be invertible it must be one to one. (think graphically).
+- A function is a one to one if its derivative is always positive for all x.
 - if not one to one you can restrict to domain which makes it one to one and find inverse.
 - **Think of implicit differentiation to find derivative of inverse function**
 - to prove a function is one to one you can use a derivative
@@ -319,7 +325,7 @@ $\int \ln(x) \, dx=\int 1\ln(x) \, dx$
 
 ![[integration-by-partial-fractions.png|400]]
 
-![[improper-integrals.png|400]]
+![[improper-integrals.png|500]]
 
 >[!NOTE] Improper Integral Example
 >$\int_{0}^{1} \frac{1}{x} \, dx=[\ln\mid x\mid]^1_{0}=\ln(1)-\ln(0)$

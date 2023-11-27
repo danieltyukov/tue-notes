@@ -42,7 +42,6 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 ## Op-Amps
 
 - $v_{o}=A(V_{+}-V_{-})$
-
 ### Inverting
 ![[inverting.png|500]]
 - Ideal: $\frac{v_{o}}{v_{i}}=-\frac{R_{2}}{R_{1}}$
@@ -77,7 +76,9 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 
 **Small Signal Analysis:**
 > I source = OC
+> V source = SC
 > Capacitors = SC
+> Inductance = OC
 > Diodes = R
 
 - Primary goal to analyze diode circuits and precision rectifier.
