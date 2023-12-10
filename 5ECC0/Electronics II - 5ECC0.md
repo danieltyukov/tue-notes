@@ -1,8 +1,6 @@
 # Content
-
 **Lab, 1 Assigment, Homeworks, 2 Lecture Quizzes**
 **Formula Sheet Given**
-
 ###### Background knowledge (given by Georgi Radulov) 
 	o Network theory, poles and zeros 
 	o Electronics (transistor circuits), MOSFET
@@ -14,7 +12,6 @@
 	o limiting and clamping 
 	o op-amp RC oscillator circuits 
 	o LC and Xtal oscillators
-
 ###### Frequency response (given by Georgi Radulov) 
 	o frequency dependency 
 	o multi-stage amplifier frequency response
@@ -82,7 +79,6 @@ Impedance (opamps): $Z_{x}=\frac{V_{x}}{I_{x}}\to I_{x}=\frac{V_{x}-AV_{x}}{Z}\t
 gyrator: $\frac{sC}{Gm_{1}G_{m_{2}}}$
 Admittance: $Y_{x}=\frac{1}{Z_{x}}$
 [[Electronics I - 5ECB0#Op-Amps]]
-
 #### Poles Zeros
 
 **Poles & Zeros:** https://www.youtube.com/watch?v=AZ7_MvANy_Q
@@ -165,6 +161,104 @@ if all equal $A_{v}=(g_{m}r_{o})^2$
 ![[current-mirror-small-signal-active-load.png|400]]
 ![[20231126_225534.jpg]]
 
-
-
 # Signal generators and waveform-shaping circuits
+oscillator: https://www.youtube.com/watch?v=XVS8Puf4tiw
+there are: RC, LC, Crystal oscillators 
+#### Sine-Wave Oscillators
+**Oscillator Feedback Loop:** $\frac{x_{o}}{x_{s}}=\frac{A(s)}{1-A(s)\beta(s)}$
+open-loop gain: $L(s)=A(s)\beta(s)$
+![[oscillator-feedback-loop.png|300]]
+Barkhausen criteria: At the oscillation frequency,
+- the phase of the open loop gain should be $n\cdot360\degree$ ("right moment", no phase shift in signal) -> $arg(L(s))=\angle A\beta=0$
+- and the magnitude should be $1$ ("right amount", no gain no decrease in amplitude) -> $|L(s)|=1$
+- $2\pi f=\omega$
+#### Op-Amp RC Oscillators
+##### Wien-Bridge Oscillator
+https://www.youtube.com/watch?v=gbUXbaxvX94
+Zero phase at $\omega_{o}$ if $\omega_{o}CR-\frac{1}{w_{o}}CR=0\to \omega_{o}=\frac{1}{CR}$
+at $\omega_{o}=\frac{1}{CR}\to L(j\omega_{o})=\frac{1+\frac{R_{2}}{R_{1}}}{3}$ magnitude = 1 if $R_{2}=2R_{1}$
+
+![[wien-bridge-oscillator.png|400]]
+$Y=\frac{1}{Z}$ admittance
+
+>[!NOTE] Formulas
+>$A=1+\frac{R_{2}}{R_{1}}$
+>$\beta=\frac{1}{\left( R+\frac{1}{sC} \right)\cdot\left( sC+\frac{1}{R} \right)+1}$
+>$A\cdot \beta=L=\frac{1+\frac{R_{2}}{R_{1}}}{3+sCR+\frac{1}{sCR}}$
+>$\frac{x_{o}}{x_{s}}=\frac{A}{1-A\beta}$
+
+Oscillations at stable amplitude $A0$, we need:
+- $|L(s)|>1$ for $V_{o}<A0$
+- $|L(s)|=1$ for $V_{o}=A0$
+- $|L(s)|<1$ for $V_{o}>A0$
+
+~=slightly
+Small amplitude => Open-loop gain == >~1
+Large amplitude => Open-loop gain == <~1 -> (as soft clipping comes on)
+![[wien-bridge-oscillator-proper-analysis.png|400]]
+>[!NOTE] Formulas
+>top diode: min amplitude, bottom diode: max amplitude peak
+>$\frac{V_{dd}-V_{o}}{R_{3}+R_{4}}=\frac{V_{a}-V_{o}}{R_{4}}$
+>$V_{a}=\dots$
+>$V_{i}=\frac{V_{o}}{3}$
+>$V_{i}-V_{a}=v_{D_{1}}$
+>then you can find $V_{o}$ meaning after amplitude reaches that voltage one of diodes turn on
+>$\frac{v_{o}}{v_{i}}=1+\frac{R_{4}//R_{2}}{R_{1}}$
+
+First the oscillations start where $|L(s)|>1$ then at certain point set by limiter resistors diodes turn on and we get $|L(s)|<1$ and then there is this variability which creates stable oscillations
+![[20231202_011047 1.jpg|400]]
+
+![[potentiometer-wien.png|200]]
+$\beta=\frac{1}{3}\to A=3\to A=1+\frac{R_{2}}{R_{1}}\to1+\frac{10+50-x}{x}\to x=R_{1}=20k\Omega$
+$f_{osc}=\frac{1}{2\pi RC}$
+Amplitude (voltage divider between a and (b=o)): $v_{a}=0.7V$ for $R_{2}=10k\Omega\implies v_{o}=3.5V$ as $R_{1}=5\cdot R_{2}$
+
+>[!NOTE] (Passive) Limiter Circuits
+>amplitude dependent gain
+>Hard Limiter (clipper): higher amplitude -> higher attenuation -> distortion
+>**Soft Limiter:** less distortion: 
+>- (ideal diode), 
+>- (ideal diode with voltage source (0.7V))
+>- (ideal diode with voltage source and resistor)
+>- exponential model: $I=I_{S}e^{V/VT}$ where $V_{T}=20mV$ at $300K$
+>  [[Electronics I - 5ECB0#LIMITERS]]
+>  ![[clippers.png|250]]
+>  **Soft Clipping** gets clipped in the **feedback loop** of an op amp. 
+>  **Hard Clipping** gets clipped **after** the feedback loop.
+>  ![[soft-vs-hard-clipping.png|250]]
+##### Phase Shift Oscillator
+https://www.youtube.com/watch?app=desktop&v=Gvb4GIV5ig8
+$A\sin(\omega t)=-A\sin(\omega t+180\degree)$
+If $K$ is real -> $\beta(j\omega_{o})$ should be real -> $6(\omega_{o}RC)-(\omega_{o} RC)^3=0$
+-> $\omega_{o}=2\pi f_{osc}=\frac{\sqrt{ 6 }}{RC}\to \beta(j\omega_{o})=\beta\left( j \frac{\sqrt{ 6 }}{RC} \right)=-\frac{1}{29}$
+-> demand amplifier $gain=29$ $phase=-180\degree$
+![[phase-shift-oscillator.png|400]]
+![[high-pass-low-pass.png|300]]
+take voltage divider: high-pass: $\frac{R}{C+R}$
+each pass filter is $60 \degree$ that's why total is $180\degree$ phase shift 3x60
+
+![[complex-phase-osci.png|300]]
+$L(j\omega)=\frac{\omega^2RR_{f}C^2}{4+j\left( 3\omega RC-\frac{1}{\omega RC} \right)}$
+$\omega_{0}=\frac{1}{RC\sqrt{ 3 }}$
+##### Quadrature Oscillator
+circuit integrator: https://www.youtube.com/watch?v=OPvs7A554Rw
+![[quadrature-oscillator-derive.png|300]]
+![[quadrature-schematic.png|500]]
+#### LC and Crystal Oscillators
+##### LC Oscillators
+intuition: https://youtu.be/2_y_3_3V-so?si=gklbMfbzDkME4z3v
+colpitts: https://www.youtube.com/watch?v=1fgw-ONlAcc
+![[lc-vs-rc.png|350]]
+
+![[lc-tuned-oscillator.png|500]]
+![[transistor-circuit-lc-amp.png|300]]
+$L(j\omega)=-G \frac{Z_{1}\cdot Z_{3}}{Z_{1}+Z_{2}+Z_{3}}\to$Barkhausen$\to1$
+$Z_{1}=R_{1}+jX_{1}$, $Z_{2}=R_{2}+jX_{2}$, $Z_{3}=R_{3}+jX_{3}$ where $R_{1},R_{2},R_{3},G\geq 0$
+$\omega_{0}=\frac{1}{\sqrt{ LC }}$
+we need the amplifier so that the oscillations don't die out (watch video for colpitts)
+
+![[analayze-oscialltor.png|300]]
+![[analysis-colpitts-oscillator.png|500]]
+**Colpitts Oscillator:** $\omega_{0}=\frac{1}{\sqrt{ L \frac{C_{1}C_{2}}{C_{1}+C_{2}} }}$
+Hartley: $\omega_{0}=\frac{1}{\sqrt{ LC }}$
+

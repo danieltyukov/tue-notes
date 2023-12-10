@@ -258,3 +258,25 @@ $\frac{v_{o_{1}}}{v_{cm}}=\frac{v_{o_{2}}}{v_{cm}}=-R_{D}i_{cm}=-\frac{R_{D}}{\f
 $A_{cm}=-\frac{R_{D}}{2R_{ss}} \frac{\Delta R_{D}}{R_{D}}$
 $CMRR=\frac{|A_{d}|}{|A_{cm}|}=(2g_{m}R_{ss}) / (\frac{\Delta R_{D}}{R_{D}}) \to (2g_{m}R_{ss}) / (\frac{\Delta g_{m}}{g_{m}})$
 $CMRR(dB)=20log \frac{|A_{d}|}{|A_{cm}|}$
+
+
+# LIMITERS
+>[!NOTE] (Passive) Limiter Circuits
+>amplitude dependent gain
+>Hard Limiter (clipper): higher amplitude -> higher attenuation -> distortion
+>**Soft Limiter:** less distortion: 
+>- (ideal diode), 
+>- (ideal diode with voltage source (0.7V))
+>- (ideal diode with voltage source and resistor)
+>- exponential model: $I=I_{S}e^{V/VT}$ where $V_{T}=20mV$ at $300K$
+
+![[Electronics I - 5ECB0.png|300]]![[Electronics I - 5ECB0-1.png|300]]
+![[Electronics I - 5ECB0-2.png|300]]![[Electronics I - 5ECB0-3.png|300]]
+![[Electronics I - 5ECB0-4.png|400]]
+![[Electronics I - 5ECB0-5.png|400]]
+![[Electronics I - 5ECB0-6.png|400]]
+![[Electronics I - 5ECB0-7.png|300]]
+
+![[Electronics I - 5ECB0-8.png|300]]
+when D2-ON: $A=1+\frac{R_{2}//R_{5}}{R_{1}}$
+when D2-OFF: $A=1+\frac{R_{2}}{R_{1}}$

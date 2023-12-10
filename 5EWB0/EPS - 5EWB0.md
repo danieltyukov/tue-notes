@@ -16,14 +16,12 @@
 • Understanding the functioning of “automatic voltage control” and the control of reactive power generation.  
 • The principle of the power-frequency control of a power plant.  
 • The concept of economic dispatch of power plants.  
-• Understanding the concepts of conventional power generation.
-  
-##### Week 4 - components in electrical power systems  
+• Understanding the concepts of conventional power generation
+##### Week 4 - Components in electrical power systems  
 • Understanding of the principle of a transformer, its losses, its equivalent circuit in (un)loaded conditions.  
 • Understanding of how a transformer can be used for voltage and phase-angle control.  
 • Knowledge on the construction of lines and cables and their equivalent circuits.  
 • Understanding the lay-out of a high-voltage substation.
-
 ##### Week 5 and 6 - Network calculations and protection  
 • Performing network calculations on voltage levels and transport losses.  
 • Understanding the effect of reactive power transport on network losses and voltage levels.  
@@ -34,20 +32,18 @@
 • Requirements for voltage stability of power systems.  
 • Understanding the causes, consequences and parameters of short circuits in power networks.  
 • Understanding how a power circuit breaker works.
-
 ##### Week 7 and 8 - Renewable generation of electricity  
 • Understanding the sustainability of electricity production.  
 • Electrical characteristics of photovoltaic and wind energy.  
 • Integration of renewables in the electricity grid: Distributed generation, technical problems  (voltage stability, balancing, power quality), enabling technologies, example: electrical vehicles.
 
-# Basic Principles
-
+# Basic principles
 #### Introduction
-
 KVL: https://www.youtube.com/watch?v=qopLFbHdxjA
 KCL: https://www.youtube.com/watch?v=g4HwMC0qU4g&t=199s
-
+current through inductor -> emf
 ![[power-grid.jpg|400]] 
+![[lagging-leading.png|400]]
 
 >[!NOTE] Fundamentals
 >$i=\frac{dq(t)}{t}$, $p(t)=v(t)i(t)$, $q=Cv$, $i(t)=C\frac{dv(t)}{t}$, $\phi=Li$, $\int \vec{E} \, d\vec{l}=-\frac{d\phi}{dt}$, $v(t)=L \frac{di(t)}{dt}$, $P_{encl}=\int \int (\vec{E}\times \vec{H}) \,\, d\vec{A}$, $\omega =2\pi f$
@@ -61,19 +57,20 @@ KCL: https://www.youtube.com/watch?v=g4HwMC0qU4g&t=199s
 >**Magnitude Phasor:** $|Z|=|\frac{z}{\sqrt{ 2 }}|$
 >
 >RMS Value, effective value of AC system=DC: $V_{rms}=\frac{\vec{V}}{\sqrt{ 2 }}\implies \sin wave$
+>
+>![[basics-impedance.png|400]]
 
 ![[complex-plane.png|400]]
 ![[kvl.png|350]] ![[kcl.png|340]]
 ![[time-freq-domain.png|400]]
-
 #### Electrical Power
 
 >[!NOTE] Analysis of a Series RL Circuit
 >**inductive reactance:** $X_{L}=\omega L=2\pi fL$
->$X_{C}=\frac{1}{\omega C}$
+>$X_{C}=\frac{1}{\omega C}=\frac{1}{2\pi C}$
 >**circuit impedance:** $Z=\sqrt{ R^2 +X_{L}^2}$
->**capacitive,inductive:** $C=\frac{1}{2\pi fX_{c}},X_{c}=\frac{V^2}{Q(kvar)}=\frac{V^2}{S^*_{c}}$
->**resistance:** $\frac{V^2}{P(w)}$
+>**capacitive,inductive:** $Z_{c}=\frac{V^2}{Q(kvar)}=\frac{V^2}{S^*_{c}}$
+>**resistance:** $Z_{L}=\frac{V^2}{P(w)}$
 >
 >A positive phase angle would mean the current leads the voltage.
 >A negative phase angle means the current lags the voltage.
@@ -91,7 +88,6 @@ KCL: https://www.youtube.com/watch?v=g4HwMC0qU4g&t=199s
 >
 >**Apparent Power:** $V=ZI=R+jX$ $S=VI^*=ZII^*=I^2R+jI^2X$
 >
->
 >$Z_{1}=X(resistance)-jY(impedance\mid capacitance)$
 >
 >![[electrical-power-summary.png|500]]
@@ -99,7 +95,6 @@ KCL: https://www.youtube.com/watch?v=g4HwMC0qU4g&t=199s
 ![[power-triangle.png|400]]
 ![[apparent-power.png|400]]
 ![[electrical-power-in-main-components.png|700]]
-
 #### Balanced Systems, D/Y Transformations & Per Unit System
 
 3 Phase Network: https://www.youtube.com/watch?v=quABfe4Ev3s
@@ -109,6 +104,8 @@ KCL: https://www.youtube.com/watch?v=g4HwMC0qU4g&t=199s
 >- $120$ degrees out of phase.
 >- equal in magnitude
 >- phases in order, counter-clockwise->$-120\degree$
+>  
+>**Line voltage is the voltage measured between any two lines in a three-phase circuit.** **Phase voltage is the voltage measured across a single component in a three-phase source or load**.
 >  
 > $P_{3,phase}=3VI\cos \phi$
 > Apparent Power: $S_{3f}=P_{3f}+jQ_{3f}=3VI\cos \phi+j3VI\sin \phi$
@@ -123,11 +120,131 @@ KCL: https://www.youtube.com/watch?v=g4HwMC0qU4g&t=199s
 > ![[complex-calc-delta-wye.png|400]]
 > 
 > in a **balanced** system:
->(via power) $S_{total}=3(P_{phase}+jQ_{phase})$
->(via V|I) $S_{total}=3VI^*$
+>	- (via power) $S_{total}=3(P_{phase}+jQ_{phase})$
+>	- (via V|I) $S_{total}=3VI^*$
+>	- $S_{total_{\Delta}}=3S_{total_{Y}}$
+>	- $Z_{\Delta}=3Z_{Y}$
 >
 >**Apparent power per phase using:** 
 >Phase Quantities: $S=VI$
->Line Quantities: 
+>Line Quantities: $S=\frac{V_{L}I_{L}}{\sqrt{ 3 }}$
+>
+>current lags/leads --> power lags/leads
+>
+>**compensation:** $Q_{cap}=\omega CV^2$
+>
+>!!! **DONT USE THIS FORMULA FOR 3 PHASE:** $\sqrt{ 3 }V_{L}I_{L}$ !!!
+>
+>Working in phase domain: (Y-config), Working in line domain: ($\Delta$-config)
+>
+>Y -> the impedance are equal on each branch
+>$\Delta$ -> the impedance are split equally on each branch
 
 ![[3-phase-summary.png|700]]
+![[symmetrical-components.png]]
+![[phase-visual.png]]
+original system=unbalanced system
+![[zero-sequance.png]]
+# Conventional generation & control of electrical power
+
+- An alternator or synchronous generator works on the principle of electromagnetic induction, i.e., **when the flux linking a conductor changes, an EMF is induced in the conductor**. When the armature winding of alternator subjected to the rotating magnetic field, the voltage will be generated in the armature winding.
+![[single-phase-circuit-of-synch-gen.png|500]]
+max power of synchronous generator: $P_{max}=\frac{EV}{X_{S}}$
+**power frequency control:** control of active power and frequency
+**controlling reactive power(Q):** AVR (automatic voltage regulator), varies (E)
+**controlling active power(P):** Power-frequency control (inversely proportional), (speed up generator less power)
+![[power-frequency-control.png|400]]
+
+>[!NOTE] Synchronous Generator
+>alternating induction voltage: $\oint \vec{E}\cdot d \vec{l}=-\frac{\delta}{\delta t}\int \int \vec{B} \cdot d \vec{S} \,  \, d \vec{S}=-\frac{\delta \Phi_{encl}}{\delta t}$
+>$\vec{F}=l(\vec{i}\times \vec{B})$
+>$f=\frac{pn}{120}$ or $f=\frac{Pn}{60}$ where p: number of poles, P: number of pole pairs, f: frequency, n: num of revolutions
+>Mechanical rotational power(T:tension): $P_{M}=\omega \cdot T$
+>
+>![[synchronous-generator.png|500]]
+>
+>unloaded synchronous generator: $E=-j\omega N\Phi_{field}=V$ controlled by AVR
+>
+>![[loaded-synchronous-generator.png|500]]
+>
+>$E=I_{a}(R_{a}+jX_{s})+V \implies E\angle\delta=I_{a}\angle\phi(R_{a}\angle0+X_{s}\angle90)+V\angle0$
+>
+>![[phasor-diagram.png|500]]
+
+>[!NOTE] Power Output Derivation
+>$E\angle\delta=I_{a}\angle\phi(R_{a}+X_{s}\angle90)+V\angle_{0}$
+>**complex current and 3-ph power calculation:** 
+>$S_{Tot}=3VI_{a}^*$,  $Z_{a}\angle\gamma=R_{a}+jX_{s}$
+>rearrange the $E$ formula: $I_{a}=\frac{E\angle\delta-V\angle_{0}}{Z_{a}\angle\gamma}\implies I_{a^*}=\frac{E}{Z_{a}}\angle(\gamma-\delta)-\frac{V}{Z_{a}}\angle(\gamma)$
+>so: $S_{Tot}=\frac{3VE}{Z_{a}}\angle(\gamma-\delta)-\frac{3V^2}{Z_{a}}\angle(\gamma)$
+>If at terminal: ($\gamma=90\degree\implies P_{Tot}=\frac{3VE}{X_{s}}\sin(\delta)$) where $P_{max}=\frac{3VE}{X_{s}}@ \delta=90\degree$ 
+
+
+
+
+
+
+
+
+
+
+# Components in electrical power systems
+
+Lenz law: $\oint\vec{E} \cdot d\vec{l}=-\frac{\delta}{\delta t}\int \int_{A} \vec{B}\cdot  \, d\vec{A} \,=-\frac{\delta \Phi_{enclosed}}{\delta t}$
+skin effect: $\delta=\sqrt{ \frac{2\rho}{\omega \mu} }$
+
+![[ideal-transformer.png|500]]
+![[cable-circuits.png|600]]
+Underground cables currently have a limited voltage capacity and cannot carry more than 66kv. In contrast, **overhead power lines can handle more than 400kv**, making them ideal for serving high-energy needs such as industrial applications.
+![[overhead-underground.png|400]]
+
+**overhead lines:** 
+- $Q_{l}=3\omega Li^2$, $Q_{c}=3\omega CV_{an}^2$
+- $I_{c}=\omega V_{an}C$, $A=\frac{\rho l}{R}$, $\Delta P_{v}=\frac{I^2_{new}}{I^2}$
+- $Q_{begin}=Q_{connection}-Q_{delivery}$
+
+short line model: $l<80km$ or $V<69kV$
+$\pi$ model when: $l<250km$ then $I_{end}=\frac{I_{begin}}{2}$
+**The reactive power of the connection always exists**
+
+Power cables : 
+	1 Can be seen as a capacitor, under both loaded and unloaded conditions. 
+	2 Have a short circuit impedance that is mainly resistive.
+Overhead lines : 
+	1 An unloaded line behaves capacitive. 
+	2 At increasing load, a line behaves resistive, and then inductive. 
+	3 Their short circuit impedance is mainly inductive.
+$P_{loss}=P_{1}-P_{2}=I^2R$
+$Q_{loss}=Q_{1}-Q_{2}=I^2X$
+
+###### Transformer
+eddy current losses: $\frac{V_{Prim}^2}{R_{core}}$
+hysteresis losses: $V_{Prim}^2$
+
+**Coil 1 is normally in delta connection, coil 2 in star connection.**
+
+Zero load = iron losses = secondary nominal voltage, primary side open circuit.
+
+Copper losses are primary side short circuited , secondary side lower voltage.
+
+Short Circuit = Copper Loss = Given Power loss. At no load measure the iron losses, under short circuit the conductor losses.
+
+Disadvantages transformer is saturated B-H curve, Hysteresis losses, Eddy Current losses.
+
+![[iron-losses-open-circuit.png|400]]![[copper-losses-short-circuit.png|400]]![[transformer-model.png|500]]
+
+$V_{2}=V_{1}\cdot \frac{N_{2}}{N_{1}}$, $I_{2}=I_{1}\cdot \frac{N_{1}}{N_{2}}$, $E_{2}=E_{1}\cdot \frac{N_{1}}{N_{2}}$
+Zero Load Losses = $P_{iron,loss}=\sqrt{ 3 }V_{l}I\cos(\theta)$
+$I_{coil_{1}}=\frac{\frac{1}{3}\cdot S}{V_{l_{1}}}=\frac{I_n}{\sqrt{ 3 }}$
+$I_{n}=\frac{S}{\sqrt{ 3 }\cdot V_{l}}$
+$I_{coil_{2}}=I_{n_{2}}$
+$P_{loss,copper@70\%}=0.7^2\cdot P_{normal,copper}$
+
+![[three-phase-transformer-modeling-in-single-phase-model.png|400]]
+
+>transformer maintenance: oil checking etc...
+>transformer (re-)energization: power quality, inrush current, transient Vrms drop etc...
+>transformers failure: insulation failure, hazard function etc...
+>transformers in smart grids: better security, pollution reduce etc...
+
+![[practical-transformer-circuits.png|500]]
