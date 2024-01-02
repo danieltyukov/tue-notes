@@ -1,7 +1,4 @@
-magnetic circuits with air gap: https://www.youtube.com/watch?v=T99_3l0UqB8
-b-h curve: https://www.youtube.com/watch?v=sEGLcpmIIBY
 # Content
-
 **2 Weekly Instructions, 4 Homework, Labs**
 **Cheat Sheet 4 Pages**
 #### **Magnetic equivalent circuits**
@@ -34,7 +31,6 @@ b-h curve: https://www.youtube.com/watch?v=sEGLcpmIIBY
 - analyze the behaviour of an isolated synchronous machine.
 - analyze the behaviour of interconnected/grid-connected synchronous machines.
 - analyze the behaviour of a synchronous motor.
-
 #### **Induction machines**
 
 - describe the different parts of an induction machine and indicate them in a cross-section.
@@ -66,6 +62,8 @@ https://hermitageautomation.com/difference-between-ac-and-dc-motor/
 - **RMS Phase Current of the ACM (Iₚₕ)**: Root Mean Square (RMS) phase current in amperes (A) of an Alternating Current Machine (ACM), showing the effective current in one phase of the machine.
 - **Power Factor of the ACM (PF)**: A dimensionless number (represented by -), it is the ratio of real power flowing to the load to the apparent power in the circuit in an Alternating Current Machine (ACM), indicating efficiency.
 # Magnetic Circuits & Energy Conversion
+magnetic circuits with air gap: https://www.youtube.com/watch?v=T99_3l0UqB8
+b-h curve: https://www.youtube.com/watch?v=sEGLcpmIIBY
 
 >[!NOTE] Definitions
 >$u\to i\to[H\to B\to \phi\to \lambda]\to e$
@@ -134,7 +132,7 @@ $MMF=H_{1}l_{1}+H_{2}l_{2}+H_{3}l_{3}+H_{4}l_{4}$
 ![[bh-curve.png|500]]
 ![[soft-hard-magnet-material.png|500]]
 
->[!NOTE] Inductance
+>Inductance
 >$e=N \frac{d\phi}{dt}$
 >$\lambda=N\phi$
 >$e=N \frac{d\phi}{dt}=\frac{d\lambda}{dt}=\frac{d\lambda}{di} \frac{di}{dt}=L \frac{di}{dt}$
@@ -327,10 +325,100 @@ speed control through: field, armature resistance, armature voltage control
 **armature resistance** control for shunt motor: external resistors added to armature circuit so $\omega_{m}=\frac{V_{t}}{K\phi_{p}}-\frac{R_{a}+\sum_{i}R_{i}}{(K\phi_{p})^2}T_{d}$
 **armature voltage** control for seperatly DC motor: variable high power DC voltage source feeds armature, so $\omega_{m}=\frac{V_{adc}}{K\phi_{p}}-\frac{R_{a}}{(K\phi_{p})^2}T_{d}$
 # Synchronous Machines
+**always: do equivalent circuit, phasor diagram, equations, simulations**
 
 - In DC the coil rotated in the field, in synchronous the field rotates while the coil is stationary.
-- nameplate = line
+- nameplate = line voltage -> terminal voltage
+- excitation voltage = phase voltage
+- circuit model requires phase voltage
+- only work with (wye) connection
+- always transfer line voltages to phase voltages
+- **resistive load:** in phase V, I so pf=1, **inductive:** I lagging, **capacitive:** I leading
+- $R_{s}$ phase resistance
+- $X_{s}$ synchronous reactance
 
-**electric frequency:** $\omega=\frac{p}{2}\omega_{m}$ 
-since mechanical frequency: $\omega_{m}=\omega_{s}$ then **synchronous frequency:** $\omega_{s}=\frac{120f}{p}$
+**synchronous, mechanical, electric frequency**
+$\omega_{m}=\omega_{s}=\frac{d\theta}{dt}=\frac{2}{p}\omega_{e}=\frac{2}{p} 2\pi f[rad/s]$ angular speed
+$n_{m}=n_{s}=\frac{120f}{p}[rpm]$ speed
+$\omega_{s}=\omega_{m}=\frac{\pi n_{s,m}}{30}$
+**electric frequency:** $\omega_{e}=\frac{p}{2}\omega_{m}=2\pi f_{s}\to electrical,speed$
 
+![[frequency-of-poles.png|500]]
+$\phi_{coils}=\frac{3}{2}P_{c}NI_{peak}\cos\left( \omega t-\frac{p}{2}\theta \right)$
+![[fields-armature-coils.png|500]]
+
+>$V_{an}=V_{ph}=\frac{V_{l}}{\sqrt{ 3 }}$
+>$I_{a}=I_{ph}=\frac{I_{l}}{\sqrt{ 3 }}$
+>$S=V_{ph}I_{ph}\to[VA]$
+>$P=V_{ph}I_{ph}\cos \theta\to[W]$
+>$Q=V_{ph}I_{ph}\sin \theta\to [VAr]$
+>$pf=\cos \theta=\frac{P}{S}=\frac{P_{t}}{S}=\frac{P_{s}}{\eta\cdot S}$
+>$\theta=\angle V_{ph}-\angle I_{ph}$ lag behind $V_{ph}$, - lead
+>
+>$P=S\cdot pf$
+>$S=VI^*=P+jQ\implies P=Re(VI^*)\cap Q=Im(VI^*)$
+>$S=P^2+Q^2$
+>
+>![[Pasted image 20231216174216.png|300]]
+
+![[three-phase-sync-machine.png|400]]
+but since $i_{a}=-(i_{b}+i_{c})\to \lambda_{a}=Li_{a}-Mi_{a}+\lambda_{m}$
+$Ls = L − M$ is the synchronous inductance -> $\lambda_{a}L_{s}i_{a}+\lambda_{m}$
+flux linkage affected by mutual inductance
+
+>IF $R_{s}\neq 0$
+>![[developed-torque-phasor.png|150]]
+>$\omega _s=\omega_{m}$
+>$V_{an}=E_{f}$
+>$E_{f}=\lambda_{m} \frac{p}{2}\omega_{m}=\lambda_{m}\omega_{e}$
+>$3P_{d}=3Re(E_{f}I^*_{a})=3T_{d}\omega_{m,s}=3E_{f}I_{a}\cos \beta$
+>$3T_{d}=\frac{3Re(E_{f}I_{a}^*)}{\omega_{m}}=\frac{3E_{f}I_{a}\cos(\angle E_{f}-\angle I_{a})}{\omega_{m}}=3 \frac{p}{2} \lambda_{m} I_{a}\cos \beta$
+>$\beta=\angle E_{f}-\angle I_{a}$, $I_{a}$ lags behind $E_{f}$
+>![[developed-torque-graph.png|400]]
+>![[sync-circuit.png|400]]
+
+>IF $R_{s}=0$
+>![[developed-torque-rs-0.png|400]]
+>$3P_{d}\implies 3E_{f}I_{a}\cos \beta=3V_{an}I_{a}\cos \theta$
+>$\to I_{a}\cos \beta=\frac{V_{an}}{X_{s}}\sin \delta$
+>or we can also say $E_{f}\cos \beta=V_{an}\cos \theta$
+>$3T_{d}=\frac{3E_{f}V_{an}}{\omega_{m,s}X_{s}}\sin \delta$
+>![[developed-torque-graph-2.png|400]]
+
+>$X_{s}=\omega_{e} L_{s}$
+>**generator:** $V_{an}=-R_{s}I_{a}-jX_{s}I_{a}+E_{f}$
+>$T_{s}=3T_{d}+T_{fw}$
+>**motor:** $V_{an}=R_{s}I_{a}+jX_{s}I_{a}+E_{f}$
+>$T_{s}=3T_{d}-T_{fw}$
+>![[per-phase-circuit-sync.png|500]]
+
+$\delta=\angle E_{f}-\angle V_{an}$
+$3P_{elec,at,terminal}=3V_{an}I_{n}\cos \theta=\frac{3E_{f}V_{an}}{X_{s}+R_{s}}\sin(\delta)$
+$3P_{cu,s}=3I_{a}^2R_{s}$
+$P_{mech}=T_{s}\omega_{m}+(P_{fw})$
+$\eta=\frac{P_{out}}{P_{in}}\cdot100\%=\frac{P_{mech}}{P_{el}}\cdot100\%=\frac{3P_{d}-P_{fw}}{3P_{d}+3P_{cu}}\cdot100\%=\frac{3I_{a}E_{f}-P_{fw}}{3I_{a}E_{f}+3R_{s}I_{a}^2}\cdot100\%$
+
+pf lagging => $Im{[I_{a}]}<0$
+pf leading => $Im{[I_{a}]}>0$
+pf unity => $Im{[I_{a}]}=0$
+
+>**PHASOR REPRESENTATIONS**
+>![[steady state only.png|200]]
+>![[generator-lagging.png|400]]
+>![[generator-leading.png|400]]
+>![[motor-in-phase.png|400]]
+>![[motor-lagging.png|400]]
+>![[summery of phasor ac machines.png|300]]
+
+>**POWER FLOW**
+>![[power-flow-gen-exciter.png|400]]
+>![[power-flow-generator-1.png|400]]
+>![[power-flow-motor-1.png|400]]
+
+![[operation-modes.png|300]]
+
+![[sync vs dc.png|300]]![[sync vs dc 2.png|300]]
+###### Isolated & Interconnected Generator
+![[isolated-generator.png|300]]![[interconnected sync gen.png|300]]
+
+![[field weakaning.png|300]]

@@ -258,10 +258,9 @@ $\frac{v_{o_{1}}}{v_{cm}}=\frac{v_{o_{2}}}{v_{cm}}=-R_{D}i_{cm}=-\frac{R_{D}}{\f
 $A_{cm}=-\frac{R_{D}}{2R_{ss}} \frac{\Delta R_{D}}{R_{D}}$
 $CMRR=\frac{|A_{d}|}{|A_{cm}|}=(2g_{m}R_{ss}) / (\frac{\Delta R_{D}}{R_{D}}) \to (2g_{m}R_{ss}) / (\frac{\Delta g_{m}}{g_{m}})$
 $CMRR(dB)=20log \frac{|A_{d}|}{|A_{cm}|}$
-
-
-# LIMITERS
->[!NOTE] (Passive) Limiter Circuits
+# Summery for EC2
+## Limiters
+[!NOTE] (Passive) Limiter Circuits
 >amplitude dependent gain
 >Hard Limiter (clipper): higher amplitude -> higher attenuation -> distortion
 >**Soft Limiter:** less distortion: 
@@ -280,3 +279,12 @@ $CMRR(dB)=20log \frac{|A_{d}|}{|A_{cm}|}$
 ![[Electronics I - 5ECB0-8.png|300]]
 when D2-ON: $A=1+\frac{R_{2}//R_{5}}{R_{1}}$
 when D2-OFF: $A=1+\frac{R_{2}}{R_{1}}$
+## Transistors Config
+example: common source: means signal enters ground and exits drain
+![[NMOS summery.png|400]]
+![[PMOS summery.png|400]]
+
+Diode MOSFET
+https://www.youtube.com/watch?v=XO30McD3V8w&t=458s
+since drain and gate connected: $i_{d}=g_{m}v_{gs}+\frac{v_{ds}}{r_{d}}$ where $v_{gs}=v_{ds}$
+$R_{eq}=\frac{1}{gm}//r_{d}$

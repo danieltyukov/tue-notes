@@ -1,8 +1,11 @@
 # Content
 
-**Weekly Instruction Questions**
-**Cheat Sheet - 2 Pages**
-
+**Weekly Instruction Questions, intermediate test weeks 1-3, no cheat sheet**
+- Single phase complex calculations
+- Calculations in balanced 3-phase systems, star & delta
+- Generator and power-frequency control calculations
+- Transformer calculations, cable and line calculations
+- Network and power flow calculations
 ##### Week 1 and 2 - Basic principles  
 • Energy and power from electric and magnetic fields.  
 • Choices for transport of electrical energy: constant voltage, AC, sinusoidal, 50 Hz, 3-phases, high-voltage.  
@@ -10,7 +13,6 @@
 • Understanding of electrical power: active power P [W], reactive power Q [VAr], apparent power S [VA], complex power P+jQ, power factor (correction).  
 • Three-phase networks: advantages, line and phase voltage, power in 3-phases, per-phase analysis and Y-Δ transformations.
 • Per-unit values .
-
 ##### Week 3 - Conventional generation and control of electrical power  
 • Understanding the operation of a synchronous generator, it’s single-phase equivalent circuit, the (maximal) power it can deliver, synchronous and (sub)transient reactance's.  
 • Understanding the functioning of “automatic voltage control” and the control of reactive power generation.  
@@ -20,7 +22,7 @@
 ##### Week 4 - Components in electrical power systems  
 • Understanding of the principle of a transformer, its losses, its equivalent circuit in (un)loaded conditions.  
 • Understanding of how a transformer can be used for voltage and phase-angle control.  
-• Knowledge on the construction of lines and cables and their equivalent circuits.  
+• Knowledge on the construction of lines and cables and their equivalent circuits. 
 • Understanding the lay-out of a high-voltage substation.
 ##### Week 5 and 6 - Network calculations and protection  
 • Performing network calculations on voltage levels and transport losses.  
@@ -36,16 +38,15 @@
 • Understanding the sustainability of electricity production.  
 • Electrical characteristics of photovoltaic and wind energy.  
 • Integration of renewables in the electricity grid: Distributed generation, technical problems  (voltage stability, balancing, power quality), enabling technologies, example: electrical vehicles.
-
 # Basic principles
 #### Introduction
 KVL: https://www.youtube.com/watch?v=qopLFbHdxjA
 KCL: https://www.youtube.com/watch?v=g4HwMC0qU4g&t=199s
 current through inductor -> emf
-![[power-grid.jpg|400]] 
+
 ![[lagging-leading.png|400]]
 
->[!NOTE] Fundamentals
+>Fundamentals
 >$i=\frac{dq(t)}{t}$, $p(t)=v(t)i(t)$, $q=Cv$, $i(t)=C\frac{dv(t)}{t}$, $\phi=Li$, $\int \vec{E} \, d\vec{l}=-\frac{d\phi}{dt}$, $v(t)=L \frac{di(t)}{dt}$, $P_{encl}=\int \int (\vec{E}\times \vec{H}) \,\, d\vec{A}$, $\omega =2\pi f$
 > -- ->+ Negative, inject of power, & +->- Positive, dissipate power
 >
@@ -65,9 +66,9 @@ current through inductor -> emf
 ![[time-freq-domain.png|400]]
 #### Electrical Power
 
->[!NOTE] Analysis of a Series RL Circuit
+>Analysis of a Series RL Circuit
 >**inductive reactance:** $X_{L}=\omega L=2\pi fL$
->$X_{C}=\frac{1}{\omega C}=\frac{1}{2\pi C}$
+>$X_{C}=\frac{1}{\omega C}=\frac{1}{2\pi f C}$
 >**circuit impedance:** $Z=\sqrt{ R^2 +X_{L}^2}$
 >**capacitive,inductive:** $Z_{c}=\frac{V^2}{Q(kvar)}=\frac{V^2}{S^*_{c}}$
 >**resistance:** $Z_{L}=\frac{V^2}{P(w)}$
@@ -94,12 +95,21 @@ current through inductor -> emf
 
 ![[power-triangle.png|400]]
 ![[apparent-power.png|400]]
+>[!NOTE]
+>In electrical systems, there are two types of power: active and reactive. Active power does the actual work, like spinning a motor. Reactive power, however, doesn't do any work but is necessary for the functioning of magnetic fields in inductive loads like motors.
+>
+Inductive loads, like motors, need reactive power to create magnetic fields, which is crucial for their operation. But, they absorb this reactive power from the grid, which can lead to inefficiencies and higher costs.
+>
+>This is where capacitors come in. Capacitors provide a kind of reactive power that offsets the one absorbed by inductive loads. Think of it like a balance. On one side, you have inductive loads absorbing reactive power (making it positive), and on the other side, you have capacitors supplying it (making it negative). By balancing these two, the overall demand for reactive power from the grid is reduced, leading to a more efficient and cost-effective system.
+>
+>So, capacitors are used to "compensate" or balance out the reactive power in the system, making it more efficient.
+
 ![[electrical-power-in-main-components.png|700]]
 #### Balanced Systems, D/Y Transformations & Per Unit System
 
 3 Phase Network: https://www.youtube.com/watch?v=quABfe4Ev3s
 
->[!NOTE] 3 Phase System
+>3 Phase System
 >increase transported capacity by combining multiple systems in such a way that the total current in one of the conductors becomes zero and so that the total power losses are minimal. balanced:
 >- $120$ degrees out of phase.
 >- equal in magnitude
@@ -133,8 +143,6 @@ current through inductor -> emf
 >
 >**compensation:** $Q_{cap}=\omega CV^2$
 >
->!!! **DONT USE THIS FORMULA FOR 3 PHASE:** $\sqrt{ 3 }V_{L}I_{L}$ !!!
->
 >Working in phase domain: (Y-config), Working in line domain: ($\Delta$-config)
 >
 >Y -> the impedance are equal on each branch
@@ -155,7 +163,7 @@ max power of synchronous generator: $P_{max}=\frac{EV}{X_{S}}$
 **controlling active power(P):** Power-frequency control (inversely proportional), (speed up generator less power)
 ![[power-frequency-control.png|400]]
 
->[!NOTE] Synchronous Generator
+>Synchronous Generator
 >alternating induction voltage: $\oint \vec{E}\cdot d \vec{l}=-\frac{\delta}{\delta t}\int \int \vec{B} \cdot d \vec{S} \,  \, d \vec{S}=-\frac{\delta \Phi_{encl}}{\delta t}$
 >$\vec{F}=l(\vec{i}\times \vec{B})$
 >$f=\frac{pn}{120}$ or $f=\frac{Pn}{60}$ where p: number of poles, P: number of pole pairs, f: frequency, n: num of revolutions
@@ -171,23 +179,14 @@ max power of synchronous generator: $P_{max}=\frac{EV}{X_{S}}$
 >
 >![[phasor-diagram.png|500]]
 
->[!NOTE] Power Output Derivation
+>Power Output Derivation
 >$E\angle\delta=I_{a}\angle\phi(R_{a}+X_{s}\angle90)+V\angle_{0}$
 >**complex current and 3-ph power calculation:** 
 >$S_{Tot}=3VI_{a}^*$,  $Z_{a}\angle\gamma=R_{a}+jX_{s}$
 >rearrange the $E$ formula: $I_{a}=\frac{E\angle\delta-V\angle_{0}}{Z_{a}\angle\gamma}\implies I_{a^*}=\frac{E}{Z_{a}}\angle(\gamma-\delta)-\frac{V}{Z_{a}}\angle(\gamma)$
 >so: $S_{Tot}=\frac{3VE}{Z_{a}}\angle(\gamma-\delta)-\frac{3V^2}{Z_{a}}\angle(\gamma)$
 >If at terminal: ($\gamma=90\degree\implies P_{Tot}=\frac{3VE}{X_{s}}\sin(\delta)$) where $P_{max}=\frac{3VE}{X_{s}}@ \delta=90\degree$ 
-
-
-
-
-
-
-
-
-
-
+![[power-output-gen-diagram.png|500]]
 # Components in electrical power systems
 
 Lenz law: $\oint\vec{E} \cdot d\vec{l}=-\frac{\delta}{\delta t}\int \int_{A} \vec{B}\cdot  \, d\vec{A} \,=-\frac{\delta \Phi_{enclosed}}{\delta t}$
@@ -248,3 +247,56 @@ $P_{loss,copper@70\%}=0.7^2\cdot P_{normal,copper}$
 >transformers in smart grids: better security, pollution reduce etc...
 
 ![[practical-transformer-circuits.png|500]]
+![[recap-single-phase-circuits.png|400]]
+# Network calculations and protection
+remedies to consume less reactive power: limit **power factor:** $\cos \phi>0.85$, power factor correction at the load
+![[power-factor-correction.png|400]]
+
+Load flow calculations are **used to determine the voltage, current, and real and reactive power at various points in a power system under normal steady-state conditions**.
+
+- Transient faults - Do not damage insulation permanently
+###### Circuit Breakers
+- Disconnecter can only switch under the absence of current. Circuit breaker must be able to interrupt short circuit current as well (up to 80 kA).
+- Breakdown will occur at weakest location an ”arc” will start until the magnetic energy will have been dissipated. The arc will not stop before $0.5\cdot L\cdot i^2=0$
+
+Power losses in high voltage line:
+single phase: $S_{1}-S_{2}=V_{1}I-V_{2}I=I^2R+jI^2X$
+$P_{loss}=P_{1}-P_{2}=I^2R$
+$Q_{loss}=Q_{1}-Q_{2}=I^2X$
+**voltages are phase-voltages, $P_{loss}\cap Q_{loss}$ are per phase!**
+![[voltage drop over high voltage line.png|300]]
+![[20231223_015756.jpg|300]]
+
+> **Power Flow**
+> ![[power flow example.png|150]]
+> $Z=R+jX=Z\angle\gamma$
+> $V_{1}=V_{1}\angle\delta_{1} \cap V_{2}=V_{2}\angle \delta_{2}$
+> $I_{12}=\frac{V_{1}\angle\delta_{1}-V_{2}\angle\delta_{2}}{Z\angle\gamma}=\frac{V_{1}}{Z}\angle(\delta_{1}-\gamma)-\frac{V_{2}}{Z}\angle(\delta_{2}-\gamma)$
+> 
+> $S=VI^*$ or $S_{tot}=3VI^*\to S_{12}=3V_{1}I_{12}^*\cap S_{21}=3V_{2}I_{21}^*$
+> therefor (or do times 3): $S_{12}=V_{1}I_{12}^*=V_{1}\angle\delta_{1}\left( \frac{V_{1}}{Z}\angle(\gamma-\delta_{1})-\frac{V_{2}}{Z}\angle(\gamma-\delta_{2})\right)=\frac{V_{1}^2}{Z}\angle\gamma-\frac{V_{1}V_{2}}{Z}\angle(\gamma+\delta_{1}-\delta_{2})$
+> 
+> $P_{12}=\frac{V_{1}^2}{Z}\cos(\gamma)-\frac{V_{1}V_{2}}{Z}\cos(\gamma+\delta_{1}-\delta_{2})$
+> $Q_{12}=\frac{V_{1}^2}{Z}\sin (\gamma)-\frac{V_{1}V_{2}}{Z}\sin (\gamma+\delta_{1}-\delta_{2})$
+> direction of flow of power->sign
+> 
+> ![[power flow example-1.png|400]]
+
+>**Per unit system**
+>only magnitudes are scaled while phase angles are the same
+>allows for interconnection of power systems with different voltage levels
+>**normal phasor quantities:** $V=V\angle\phi_{v}[V]$, $I=I\angle\phi_{i}[A]$, $Z=Z\angle\phi_{z}[\Omega]$, $S=P+jQ[VA]$
+>**base values:** $V_{B}[kV]$ and $S_{B}[MVA]\to I_{B}=\frac{S_{B}}{\sqrt{ 3 }V_{B}}$ and $Z_{B}=\frac{V_{B}}{\sqrt{ 3 }I_{B}}=\frac{V_{B}^2}{S_{B}}$
+>**p.u. quantities:** $V_{pu}=\frac{V}{V_{B}}[pu]$, $Z_{pu}=Z\left( \frac{S_{B}}{V_{B}^2} \right)[pu]$, $I_{pu}=I\left( \frac{\sqrt{ 3 }V_{B}}{S_{B}} \right)[pu]$, $S_{pu}=\frac{P}{S_{B}}+\frac{jQ}{S_{B}}[pu]$
+>
+>![[pu transformer.png|400]]
+>![[pu example.png|300]]
+
+**WITH ASYNCHRONOUS GENERATOR YOU CAN CONTROL $Q$ REACTIVE POWER**
+remember the power flow example:
+![[async-gen.png|100]]![[sync gen.png|100]]
+![[capacitive inductive.png|400]]
+async generator always needs reactive power as it is connected to the grid.
+while sync connected to grid directly which can control the voltage so only needs $P$
+smaller current -> larger voltage as less power drop over transport line since you generate more -> in positive capacitive load case
+# Renewable generation of electricity
