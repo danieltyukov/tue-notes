@@ -467,9 +467,140 @@ $gm=\frac{2I_{Q}}{V_{OV}}$
 ![[ab output stage with none-zero voltage input.png|300]]
 
 # Data Converters
-#### DAC
+#### Data representation
+adc, dac: https://www.youtube.com/watch?v=HicZcgdGxZY
+
 ![[signal processing chain.png|300]]![[analog sampling.png|300]]
 ![[types of adcs dacs.png|300]]![[number representations.png|300]]
-- **Nyquist:** sampling frequency must be at least double.
+![[representations of fractions.png|300]]![[dac static properties.png|300]]
+- **Nyquist:** sampling frequency must be at least double. anti aliasing filter used to make sure.
+- clock period: $T=\frac{1}{f_{s}}$
 - **binary** doesn't have negative, **sign magnitude** LMB 1->-, 0->+, **offset** additional offset , **2s compliment** invert binary string and then +1 and then result is same as sign magnitude.
-- $D_{fraction}=D_{integer}\cdot weight_{LSB ofFraction}$ similar to above for integers but for instance 001 -> $2^{-1},2^{-2},2^{-3}$
+- $D_{fraction}=D_{integer}\cdot weight_{LSB ofFraction}$ similar to above for integers but for instance 001 -> $2^{-1},2^{-2},2^{-3}$ example: $011001:binary:25\to frsction:25\cdot \frac{1}{2^6}$
+- $A[V]=G[V]\cdot D[-]\to A=G\cdot \sum^n_{k=1}b_{k}2^{-k}$ -> A is analog output 
+- ![[binary vals calc.png|300]]
+- offset if 011001: 16+8+1-32=-7
+![[DAC example of static properties.png|400]]
+$FSR\to$FULL SCALE RANGE
+$NFS$->NOMINAL FULL SCALE range which is half of $FSR$
+$FS=NFS-LSB[resolution]$
+$FSR=2^n\cdot LSB$
+$MSB=2^{n-1}\cdot LSB$
+$FSR=2\cdot MSB$
+**STATIC ERRORS:**
+![[static errors.png|400]]
+- INL you can make a curve graph showing the absolute deviation which plots the distortion curve. From curve you can take absolute min max val to find INL. Causes non-linearity.
+- INL is integral of DNL
+- ideal steo should be 1 DNL but if the actual isn't and is smaller than -1LSB since the step moves down...:
+  ![[non monotonicity.png|300]]
+**DYNAMIC ERRORS:**
+*Settling time:* time it takes between:
+	  - input changing from 000..00 to 111..11
+	  - output signal stabilizing within 0.5LSB from final value
+*Slew Rate:* maximum speed with which output signal can change
+*SFDR-(spurious free dynamic range):* difference in height between:
+	- wanted spectral peak (due to sine wave at input)
+	- highest unwanted peak (= spurious tone)
+#### DAC
+##### Weighted resistances Network
+summery: https://www.youtube.com/watch?v=PoOm_G4s1dE
+$V_{out}=V_{ref}\cdot\left( \frac{1}{2}b_{1}+\frac{1}{4}b_{2}+\frac{1}{8}b_{3}+\dots \right)$
+$V_{out}[0,V_{ref})=V_{ref}\sum^n_{k=1}b_{k}2^{-k}$ after Vref -> D
+![[dac with weighted resistances network.png|400]]
+if switch ON or OFF the voltage at that node is always zero, since inverting amplifier always equates to virtual zero at the two branches so we have $V_{b}--V_{ref}=0+V_{ref}=V_{ref}$.
+$i_{k}=b_{k} \frac{V_{ref}}{2^kR}$
+$i_{sum}=\frac{V_{r}}{R}\sum^n_{k=1}b_{k}2^{-k}$
+$V_{out}=FSR=R_{o}i_{sum}$
+
+when: $R_{1}=R$ and not $R_{1}=2^1R$
+$R_{k}=2^{k-1}R_{1}$
+$i_{k}=b_{k} \frac{V_{ref}}{2^{k-1}R}$
+$V_{out}=i_{sum}R_{o}=\frac{2V_{r}R_{o}}{R}\sum^n_{k=1}b_{k}2^{-k}$
+$V_{MSB}=V_{ref} \frac{R_{o}}{R_{1}}$
+
+![[weighted error.png|400]]
+
+*MSB*: smallest resistor, largest current (left side)
+*LSB*: largest resistor, smallest current (right side)
+binary weighted resistors->binary weighted currents
+![[disadvantages of WRN design.png|400]]
+$\Delta i_{1}\to$ (largest) current error
+$|\Delta i_{1}|<i_{n}\implies i_{n}=\frac{i_{1}}{2^{n-1}}\implies \frac{|\Delta i_{1}|}{i_{1}}< \frac{1}{2^{n-1}}$ current error of largest current branch must remain lower than lowest current branch
+- as NUM of bits increases NUM of resistors increases, and if they are not accurate can cause error in output...
+*example:* $\frac{1}{2^{10-1}}=\frac{1}{512}\approx0.2\%$ error must be less than that percentage for 10 bit converter.  so we have to increase the amount of resistors in the circuit which is hard to achieve that's why we have, for high accuracy high resolution:
+##### R2R ladder
+summery: https://www.youtube.com/watch?v=Pc1aFloxSMw
+![[r-2r ladder init.png|400]]
+![[r-2r ladder formula.png|400]]
+$i_{k-1}=2i_{k}$
+we calculate the first block: $i_{1}=\frac{V_{ref}}{2R}$ and then based on relation above we can calculate the rest of currents.
+$i_{o}=\frac{V_{ref}}{R}\sum^n_{k=1}b_{k}2^{-k}$
+$V_{out}=-i_{o}\cdot R_{o}$
+if deviation: $V_{o}=i_{sum}R_{o}\left( 1+\frac{p}{100} \right)$
+![[r2r ladder dac error.png|300]]
+
+summation can also be done with KCL using current sources:
+$V_{out}=i_{out}\cdot R_{out}=2^nI\cdot R_{out}\cdot\sum^n_{k=1}b_{k}2^{-k}$
+![[differential configuation of current steering.png|300]]![[unit current sources.png|300]]
+we can also use triode transistors where the source is $W=2^{n-1}a$
+![[triode implementation of current steering.png|300]]
+##### Charge – redistribution DAC
+![[chareg distribution dac.png|400]]
+$V_{out}=\frac{C_{sum}}{C_{total}}V_{ref}\sum^n_{k=1}b_{k}2^{-k}$
+
+if all off and then we turn on lets say S4: $V_{ref} \cdot \frac{1/8}{C_{total}}$
+![[charge dac error.png|400]]
+![[error calculation charge dac.png|400]]
+![[charge redistribution adv disadv.png|300]]
+#### ADC
+##### Specifications
+non-linearity: https://www.youtube.com/watch?v=TTO35V3XgiU
+It will face the same non-infidelities as DAC +:
+![[errors on ADC.png|200]]
+![[quantization ADC.png|300]]![[quantization 2 adc.png|300]]
+$max(V_{r})=\frac{1}{2} V_{LSB}=\frac{1}{2} \frac{V_{range}}{2^n}=\frac{V_{range}}{2^{n+1}}=\frac{1}{2} \frac{V_{range}}{2^n-1}$
+**Quantization Noise (power):** $V_{r}^2=\frac{V_{range}^2}{2^{2n}\cdot12}$
+
+$V_{error,RMS}=\sqrt{ mean(V_{error}^2) }$
+$mean(V_{error}^2)=\frac{1}{V_{LSB}}\int_{-\frac{1}{2}V_{LSB}}^{+\frac{1}{2}V_{LSB}} x^2 \, dx=\frac{2}{V_{LSB}} \frac{1}{3}\left( \frac{1}{2}V_{LSB} \right)^3=\frac{V_{LSB}^2}{12}\to V_{error,RMS}=\frac{V_{LSB}}{\sqrt{ 12 }}$
+
+max amplitude: $\frac{V_{range}}{2}$->RMS (voltage)->$\frac{V_{range}}{2\sqrt{ 2 }}$->**signal power:**$P_{signal}=\left( \frac{V_{range}}{2\sqrt{ 2 }} \right)^2=\frac{V_{range}^2}{8}$
+**MAX signal quantization error:** $\frac{P_{signal}}{P_{q.error}}=\frac{\frac{V_{range}^2}{8}}{\frac{V_{range}^2}{2^{2n}\cdot12}}=\frac{2^{2n}\cdot12}{8}=3\cdot2^{2n-1}=10\log(3)+10\log(2^{2n-1})=10\log(3)+(2n-1)\cdot10\log(2)=\alpha+\beta\cdot n=(6n+1.76)dB$
+*SQNR (signal to quantization noise ratio)->where n is number of bits in ADC*
+there is also a non-linearity when quantization is larger than the $V_{range}-max$
+
+![[aperture jitter.png|400]]
+max error in sampling: $\Delta V_{in}|_{max}\approx \vec{v}\omega_{max}\cdot \Delta t$
+we must keep it $\mathrm{Re}sulting.error< \frac{1}{2}V_{LSB}$
+$\vec{v}\omega_{max}\cdot \Delta t< \frac{1}{2}\cdot \frac{V_{range}}{2^n}$ so:
+**to have no aperture jitter:** $\Delta t< \frac{1}{2^n\omega_{max}}$ in order to keep $error< \frac{1}{2}V_{LSB}$
+##### Flash ADC
+https://www.youtube.com/watch?v=NASkjo7s8f4&t=1s
+![[flash adc.png|400]]
+- very fast
+- $2^n-1$ comparators needed as you increase bits
+##### Slope ADC
+https://www.youtube.com/watch?v=2gF_nfaBV_0
+![[single slope adc.png|300]]
+![[dual slope adc.png|400]]
+![[cont dual slope ADC.png|400]]
+$D=\frac{T_{2}}{T_{1}}=\frac{V_{in}}{V_{ref}}$
+- slower than single slope
+- very accurate
+- error in capacitance or clock freq does not result in an error in the conversion of the D
+$\frac{T_{1}}{RC}V_{in}=\frac{T_{2}}{RC}V_{ref}\implies T_{2}=T_{1} \frac{V_{in}}{V_{ref}}$
+$T=\frac{cycles}{f}$
+conversion time: $T_{c}=T_{1}+T_{2}\implies T_{2}=T_{1}\cdot \frac{V_{in}}{V_{\mathrm{Re}f}}$
+
+![[dual slope problem.png|300]]
+##### Counter & Tracking ADC
+counter: https://www.youtube.com/watch?v=4zwtA2pG6Vc
+tracking: https://www.youtube.com/watch?v=MMQwa416Cmo
+![[counter adc.png|300]]![[tracking adc 2.png|300]]
+tracking: Looks similar to counter ADC, but instead of resetting the counter to zero at the start of each conversion, the counter value is maintained, and simply incremented or decremented at each clock cycle to follow (track) the input signal.
+##### Successive Approximation ADC
+![[sar adc.png|400]]
+- For an n-bit ADC, n cycles are sufficient (as compared to $2^n$ cycles for the slope and counting ADC).
+- $V_{a}$ is applied to all capacitors.
+- Requires only as many search cycles as we have bits: an n-bit SAR ADC needs n search steps.
+![[final adc comparison.png|300]]
