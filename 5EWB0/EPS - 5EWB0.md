@@ -45,6 +45,8 @@ KCL: https://www.youtube.com/watch?v=g4HwMC0qU4g&t=199s
 current through inductor -> emf
 
 ![[lagging-leading.png|400]]
+![[leading and lagging.png|400]]
+![[inductive capacitive.png|400]]
 
 >Fundamentals
 >$i=\frac{dq(t)}{t}$, $p(t)=v(t)i(t)$, $q=Cv$, $i(t)=C\frac{dv(t)}{t}$, $\phi=Li$, $\int \vec{E} \, d\vec{l}=-\frac{d\phi}{dt}$, $v(t)=L \frac{di(t)}{dt}$, $P_{encl}=\int \int (\vec{E}\times \vec{H}) \,\, d\vec{A}$, $\omega =2\pi f$
@@ -84,9 +86,7 @@ current through inductor -> emf
 >**Apparent(sum):** $S:VA$
 >$S=P+jQ$ ==> $S \angle\phi$
 >$S=\frac{V^2}{Z}$
->
 >$S=VI^*=VI\angle(\phi_{v}-\phi_{i})=VI\angle\phi=VI\cos \phi+jVI\sin \phi\implies S=P+jQ\implies S=\sqrt{ P^2+Q^2 }$
->
 >**Apparent Power:** $V=ZI=R+jX$ $S=VI^*=ZII^*=I^2R+jI^2X$
 >
 >$Z_{1}=X(resistance)-jY(impedance\mid capacitance)$
@@ -239,6 +239,8 @@ $I_{n}=\frac{S}{\sqrt{ 3 }\cdot V_{l}}$
 $I_{coil_{2}}=I_{n_{2}}$
 $P_{loss,copper@70\%}=0.7^2\cdot P_{normal,copper}$
 
+![[transformer analysis types.png|400]]
+
 ![[three-phase-transformer-modeling-in-single-phase-model.png|400]]
 
 >transformer maintenance: oil checking etc...
@@ -300,3 +302,9 @@ async generator always needs reactive power as it is connected to the grid.
 while sync connected to grid directly which can control the voltage so only needs $P$
 smaller current -> larger voltage as less power drop over transport line since you generate more -> in positive capacitive load case
 # Renewable generation of electricity
+RES: Renewable Energy Share
+![[res renewable.png|300]]
+![[new integration of res.png|300]]
+details on slides week 7
+
+*Wind energy is depended on:* $P_{wind,max}=c\cdot \rho\cdot V^3\cdot A$

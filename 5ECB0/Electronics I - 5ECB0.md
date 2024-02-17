@@ -175,8 +175,8 @@ Input resistance: $R_{in} = \frac{v_{in}}{i_{in}} = \frac{v_{in}}{\frac{v_{in}-v
 # Configurations
 ## Common source:
 
-![[amp_cs.png]]
-![[amp_cs_ideal.png]]
+![[5ECB0/attachments/amp_cs.png]]
+![[5ECB0/attachments/amp_cs_ideal.png]]
 
 $R_{in}=\infty$
 Gain: $A_{v}=-g_{m}(R_{D}\parallel R_{L} \parallel r_{o})$
@@ -189,8 +189,8 @@ Ideal gain: $A_{o}=-g_{m}r_{o}=\frac{2I_{D}}{V_{OV}} \frac{V_{A}}{I_{D}}=\frac{2
 ## Common gate:
 
 ![[Pasted image 20230319221602.png|300]]
-![[amp_cg_ss_in.png]]
-![[amp_cg_ss_out.png]]
+![[5ECB0/attachments/amp_cg_ss_in.png]]
+![[5ECB0/attachments/amp_cg_ss_out.png]]
 
 Ideal: $R_{in}=\frac{1}{g_{m}}$
 Real: $R_{in}=\frac{r_{o}+R_{L}}{1+g_{m}r_{o}}\approx \frac{1}{g_{m}}+ \frac{R_{L}}{g_{m}r_{o}}$
@@ -210,7 +210,7 @@ $A_{v}=\frac{g_{m}R_{L}v_{gs}}{v_{gs}(1+g_{m}R_{L})}=\frac{R_{L}}{R_{L}+\frac{1}
 - Last stage for low $R_{out}$
 ![[transistor-amplifier-summery.png]]
 # Current steering
-![[ss_current_mirror.png]]
+![[5ECB0/attachments/ss_current_mirror.png]]
 ![[iv_current_mirror.png]]
 
 Load curve: I-V of Q2 ($v_{o}=V_{DD}-v_{DS_{2}}$)
@@ -219,14 +219,14 @@ When MOSFETS (identical W/L)->Current Mirror: $\frac{I_{O}}{I_{REF}}=\frac{\left
 
 Cascode (CG + CS):
 
-![[cascode_current_source.png]]
-![[cascode_multiple.png]]
+![[5ECB0/attachments/cascode_current_source.png]]
+![[5ECB0/attachments/cascode_multiple.png]]
 
 $A_{v}=-g_{m_{1}}(R_{on}\parallel R_{op})$
 
-![[diff_amp.png]]
+![[5ECB0/attachments/diff_amp.png]]
 ![[ss_diff_amp.png]]
-![[diff_amp_t_model.png]]
+![[5ECB0/attachments/diff_amp_t_model.png]]
 
 
 Common mode:
@@ -250,7 +250,7 @@ $A_{d}=\frac{v_{od}}{v_{id}}=g_{m}(R_{D}\parallel r_{o})$
 
 CMRR: 
 
-![[diff_amp_cmrr.png]]
+![[5ECB0/attachments/diff_amp_cmrr.png]]
 ![[ss_diff_amp_cmrr.png]]
 
 $v_{cm}=\frac{i_{cm}}{g_{m}}+2i_{cm}R_{ss}\to i_{cm}=\frac{v_{cm}}{\frac{1}{g_{m}}+2R_{ss}}$

@@ -116,7 +116,6 @@ MOSFET Logic: https://www.youtube.com/watch?v=g3kn4yeAjEI
 - **PMOS Saturated if:** $V_{DG}<|V_{tp}|$ so if $V_{SD}>|V_{OV}|$
 - **When saturated:** $I_{D}=\frac{1}{2}\mu_{n}C_{ox} \frac{W}{L}V_{OV}^2,g_{m}=\frac{dI_{D}}{dV_{GS}}=\frac{2I_{D}}{V_{OV}},r_{o}=\frac{1}{dI_{D}/dV_{DS}}=\frac{V_{A}}{I_{D}}=\frac{1}{\lambda I_{D}}$
 - **When triode:** $I_{D}=\mu_{n}C_{ox} \frac{W}{L}\left( V_{OV}-\frac{1}{2}V_{DS} \right)V_{DS}$
-  
 >[!NOTE] Modes
 >triode: $V_{GS}-V_{tN}>0$ and $V_{GD}-V_{tN}>0$
 >saturated: $V_{GS}-V_{tN}>0$ and $V_{GD}-V_{tN}<0$
@@ -384,7 +383,7 @@ since we have a diode connected transistor to $Q_{6}\to R_{2}=\frac{1}{G_{m_{2}}
 $\omega_{P_{2}} \approx \frac{G_{m_{2}}C_{C}}{C_{1}C_{2}+C_{C}(C_{1}+C_{2})}\approx \frac{G_{m_{2}}}{C_{2}}=\frac{g_{m_{6}}}{C_{C}}$ instead of $\frac{1}{R_{2}C_{2}}$
 ->**$\omega_{P_{2}}$ has become lot more high-frequency**
 - (note: $C_{2}\gg C_{1}$ as $C_{2}$ includes load capacitance)
-- $\omega_{Z}=\frac{G_{m_{2}}}{C_{C}}$
+- transmission zero $\omega_{Z}=\frac{G_{m_{2}}}{C_{C}}$
 - $A_{0}=G_{m_{1}}G_{m_{2}}R_{1}R_{2}$
 
 $\frac{V_{o}}{V_{id}}=K \frac{s_{z}-s}{(s_{p_{1}-s})(s_{p_{2}}-s)}$
@@ -591,6 +590,7 @@ $D=\frac{T_{2}}{T_{1}}=\frac{V_{in}}{V_{ref}}$
 $\frac{T_{1}}{RC}V_{in}=\frac{T_{2}}{RC}V_{ref}\implies T_{2}=T_{1} \frac{V_{in}}{V_{ref}}$
 $T=\frac{cycles}{f}$
 conversion time: $T_{c}=T_{1}+T_{2}\implies T_{2}=T_{1}\cdot \frac{V_{in}}{V_{\mathrm{Re}f}}$
+integrator voltage: $V_{1}=V_{ref} \frac{T_{1}}{RC}$
 
 ![[dual slope problem.png|300]]
 ##### Counter & Tracking ADC
@@ -598,9 +598,134 @@ counter: https://www.youtube.com/watch?v=4zwtA2pG6Vc
 tracking: https://www.youtube.com/watch?v=MMQwa416Cmo
 ![[counter adc.png|300]]![[tracking adc 2.png|300]]
 tracking: Looks similar to counter ADC, but instead of resetting the counter to zero at the start of each conversion, the counter value is maintained, and simply incremented or decremented at each clock cycle to follow (track) the input signal.
+$SW=\frac{V_{LSB}}{T_{clock}}$
+![[tracking dac.png|300]]
 ##### Successive Approximation ADC
 ![[sar adc.png|400]]
 - For an n-bit ADC, n cycles are sufficient (as compared to $2^n$ cycles for the slope and counting ADC).
 - $V_{a}$ is applied to all capacitors.
 - Requires only as many search cycles as we have bits: an n-bit SAR ADC needs n search steps.
 ![[final adc comparison.png|300]]
+
+![[example of ADCs.png|400]]CMOS digital logic circuits
+# CMOS digital logic circuits
+#### CMOS logic Circuits Dynamic Operation of the CMOS Inverter
+##### Basics
+![[voltage transfer characteristic.png|300]]![[power dissipation in cmos.png|300]]
+![[power dissipation of cmos explained.png|300]]![[cmos inverter.png|100]]
+Energy dissipated in one charging-discharging period: $V_{DD}:E_{DD}=CV_{DD}^2$
+Inverter with complementary switches, switching @ frequency f: $P_{D}=fCV_{DD}^2$
+![[cmos inverter analysis.png|]]
+##### Propagation Delay
+![[propagation delay of cmos circuit.png|400]]
+Power-Delay Product ( PDP): $PDP=P_{D}\cdot t_{P}$
+Inverter with complementary switches: $P_{D}\to fCV_{DD}^2\to PDP=fCV_{DD}^2t_{P}$
+*worst case PDP when f is max*
+$f_{max}=\frac{1}{2t_{P}}\to PDP=\frac{1}{2}CV^2_{DD}$
+*PDP doesnt reflect propagtion delay*
+Better FoM: Energy-Delay Product ( EDP): $EDP=\frac{1}{2}CV^2_{DD}t_{P}$
+
+$t_{PLH}:$
+1st order circuits step response: $v_{o}(t)=v_{o}(\infty)+(v_{o}(0)-v_{o}(\infty))e^{-t/\tau}$
+$\tau_{LH}=R_{U}\cdot C$
+$v_{o}(0)=0$ and $v_{o}(\infty)=V_{DD}$
+$\frac{1}{2}(v_{o,low}+v_{o,high})=\frac{V_{DD}}{2}$ at $t=t_{PLH}$
+=> $v_{o}(t_{PLH})=V_{DD}(1-e^{-t_{PLH}/\tau})=\frac{V_{DD}}{2}$
+$e^{-t_{PLH}/\tau_{LH}}=\frac{1}{2}\implies t_{PLH}=0.69\tau_{LH}$
+
+$t_{PHL}:$
+same...
+
+$t_{p}=\frac{t_{PLH}+t_{PHL}}{2}$
+
+it could also be that one opens and the other closes which means:
+$v_{o}(0)=V_{DD}$ and $v_{o}(\infty)=0$
+
+can also calculate the propagation delay graphically:
+example: $t_{THL}=$ time it takes the output to decrease from $0.9V_{DD}$ down to $0.1V_{DD}$
+=> $0.9V_{DD}=\dots$ and $0.1V_{DD}=\dots$ instead of doing $\frac{V_{DD}}{2}$
+$t_{THL}=t_{2}-t_{1}=\dots$
+#### CMOS Inverter
+##### Basics
+![[voltage transfer characteristic-1.png|400]]
+you can draw the line through this matrix as derived in week 7 slides conclusion:S
+![[voltage transfer characteristic summery.png|400]]
+trip voltage $V_{M}=\frac{a(V_{dd}+V_{tP})+V_{tN}}{1+a}=\frac{V_{dd}}{2}(if.equal)$ where $a=\sqrt{ \frac{K_{P}}{K_{N}} }=\sqrt{ \frac{\mu_{p} W_{p}}{\mu_{n}W_{n}} }$ if $a=1\implies matched\implies \sqrt{ \frac{W_{p}}{4W_{n}} }$
+![[voltage transfer characteristic final.png|400]]
+*Noise margin=$V_{dd}-V_{inH}\mid\mid0+V_{inL}$*
+![[small signal diagram of cmos inverter.png|300]]
+*for symmetric configurations:*
+![[symmetric config.png|400]]
+$V_{inL}=\frac{3}{8}V_{dd}+\frac{1}{4}V_{t}$
+$V_{inH}=\frac{5}{8}V_{dd}-\frac{1}{4}V_{t}$
+Pull down resistance(at NMOS): $R_{on}=\frac{1}{\frac{\delta I_{DN}}{\delta V_{DS}}}$
+where: $I_{D}=\frac{K_{N}}{2}[(V_{GS}-V_{tN})^2-(V_{GS}-V_{DS}-V_{tN})^2]\implies V_{GS}-V_{DS}=V_{GD}$
+so then: $R_{on}=\frac{1}{\frac{K_{N}}{2}[2(V_{GS}-V_{DS}-V_{tN})]}\implies \frac{1}{K_{N}(V_{GS}-V_{DS}-V_{tN})}$
+![[derivation.png|300]]
+
+>SUMMARY
+>$V_{outH}=V_{DD}$ and $V_{outL}=0$
+>$V_{inL}=\frac{3}{8}V_{dd}+\frac{1}{4}V_{t}$ and $V_{inH}=\frac{5}{8}V_{dd}-\frac{1}{4}V_{t}$
+>$V_{NH}=V_{outH}-V_{inH}$ and $V_{NL}=V_{inL}-V_{outL}$
+
+*static power max:* $V_{M}=\frac{V_{DD}}{2}\implies K_{n}=\mu_{n}C_{ox}\left( \frac{W}{L} \right)_{n}\implies I_{D}=\frac{1}{2}K_{n}(V_{m}-V_{tn})^2\implies P_{max}=V_{DD}I_{D}$![[WhatsApp Image 2024-01-16 at 23.56.36.jpeg|300]]
+
+frequency of ring oscillator: $f=\frac{1}{2Nt_{p}}$ since it has odd number of inverters
+
+equivelant load capacitance: $C_{L}=\frac{1}{V_{B}-V_{A}}\int ^{V_{B}}_{V_{A}} C_{Lv}(v) \, dv$ for example $V_{A}=0$ $V_{B}=V_{DD}$
+
+![[inverter sizing.png|300]]
+##### Static CMOS Inverter
+$t<0$ NMOST off, PMOST triode, $C_{L}$ fully charged till $V_{DD}$
+$0\leq t\leq t_{1}$ NMOST saturated, PMOST off, $C_{L}$ is being discharged by constant 
+$t_{1}<t\leq t_{X}$ NMOST triode, PMOST off, $C_{L}$ is further discharged by non-constant current:![[step response 3rd part.png|250]]
+take into account $K$ and $V_{t}$ if its for PMOS or NMOS if symmetric assume NMOS
+![[symmetric propagation delay.png|300]]
+there is 2 other methods you can find in formula sheet...
+![[propagation delay methods summary.png|300]]
+#### CMOS Digital Logic Circuits
+##### Basics
+$Y=\overline{A+B}=\overline{A}\cdot \overline{B}$ and $Y=\overline{A\cdot B}=\overline{A}+\overline{B}$
+$\overline{Y}=\overline{\overline{A+B}}=A+B$ and $\overline{Y}=\overline{\overline{A\cdot B}}=A \cdot B$
+![[cmosl logic gate circuits.png|300]]![[cmos digital logic circuit examples.png|300]]
+![[cmos logic gate exmaple of making it.png|300]]
+##### NOR || NAND
+![[NOR logic gate circuit.png|300]]![[nor logic gate logic.png|100]]
+![[NAND logic gate circuit.png|300]]![[NAND formulation.png|100]]
+![[transistor sizing.png|300]]
+![[NAND NOR area.png]]
+#### CMOS Transmission Gates as Switches
+- **Transmission gate can be used as a (floating) switch, of which the state (on or off) can be controlled by a voltage**
+- NMOS transistor charges $C$ only up to $V_{DD}-V_{tN}$
+- PMOS transistor charges C all the way up to $V_{DD}$
+![[cmos tramission with gates.png|300]]![[transmission gate discharges.png|300]]
+![[transmission gate resistance.png|300]]empirical approximation: $R_{TG}\approx\frac{12.5k\Omega}{(W/L)_{n}}$ as $R_{TG}$ is quite constant over $0\leq v_{o}\leq V_{DD}$
+$t_{PLH}=0.69R_{TG}C$
+# Memory Circuits
+#### Static memories
+it remembers its input, and therefor to reset it you would have to reconnect power.
+![[static memories.png|400]]
+![[static memory metastability.png|400]]
+#### The Latch
+dynamic memory
+latch: https://www.youtube.com/watch?v=KM0DdEaY5sY
+flip flop: https://www.youtube.com/watch?v=F1OC5e7Tn_o
+![[latch graph.png|300]]![[SR latch design.png|300]]
+R: reset, S: Set
+![[sr flip flops.png|300]]
+With the SR flip flop we are able to have more control and remove the 1 1 error, by having a clock speed to trigger the changes same as the latch. Due to a capacitor there is only at trigger when there is that quick discharge moment from the signal at the start, check video. There different flips flops check slides for further info.
+#### Static Memory SRAM Cell
+SRAM: https://www.youtube.com/watch?v=veJs793zvz4&t=49s
+![[static memory SRAM cell.png|400]]
+**READ OPERATION:**
+$Q_{1}<Q_{5}$
+![[SRAM read.png]]
+**WRITE OPERATION:**
+$Q_{1}>Q_{5}$
+![[SRAM write.png]]
+The only way to flip the SRAM cell is that the state on the right side flips, by pulling $V_{Q}$ sufficiently down, to initiate the regenerative action of the latch.
+#### Dynamic memory cell
+![[dynamic memory cell.png]]
+![[sense amplifier.png]]
+
+ROMs are floating gate transistors, see slides it stores permanently above the channel.

@@ -15,6 +15,13 @@
 >Trigonometric Equations
 
 ## Some Notes
+domain of f(g) = g domain
+range of f(g) = f range
+$arg(xy)=arg(x)+arg(y)$
+$(a-b)(a+b)=a^2-b^2$
+numerator to zero = how many solutions in equation
+injective = one to one
+- The domain of a function f(x) is the set of all values for which the function is defined, and the range of the function is the set of all values that f takes.
 
 - You can keep dividing function until denom>num => if remainder => $sol+\frac{remainder}{div}$
 
@@ -64,6 +71,7 @@ $\sin(x)=\cos\left( \frac{\pi}{2}-x \right)$ and $\cos(x)=\sin\left( \frac{\pi}{
 (cos,sin)
 
 >[!NOTE] Trigonometric Rules
+>just remember the identities on formula sheet given
 >$\sin^2(x)+\cos^2(x)=1$
 >$\cos(x+2\pi)=\cos x$ & $\sin(x+2\pi)=\sin x$
 >cos even => $\cos x=\cos(-x)$ sine odd => $\sin x=-\sin(-x)$
@@ -95,9 +103,9 @@ $a^x=b\implies \log_{a}b=x$
 $\log(0) or\ln(1)=0$
 $\log(a)+\log(b)=\log(ab)$ and $\log(a)-\log(b)=\log\left( \frac{a}{b} \right)$
 $\log(a^x)=x\log(a)$
->$\log_{a(x)}=\frac{\log_{b}(x)}{\log_{b}(a)}=\frac{\ln(x)}{\ln(a)}$
+>$\log_{a}(x)=\frac{\log_{e}(x)}{\log_{e}(a)}=\frac{\ln(x)}{\ln(a)}$
 
-- $\log_{a}(x)=\frac{1}{x\ln(a)}$
+- $\log_{a}(x)=\frac{1}{x\ln(a)}$ derivative https://www.youtube.com/watch?v=2A1xgHtTOCk
 
 ![[ln-e-graph.png|300]]
 
@@ -149,7 +157,7 @@ imaginary part of imaginary number is a real value: $Im\left( \frac{1}{2} + \fra
 
 ![[complex-polynomial.jpg|500]]
 Having root $i$ means having 2 roots $i \cap -i$
-
+![[solution for interesting case.png|400]]
 # Limits & Continuity
 
 >Limits
@@ -171,6 +179,7 @@ $\frac{\infty}{x}=undefined \mid \infty$
 - L'Hopital only when $\frac{\infty}{\infty}$ or $\frac{0}{0}$
 - when limit of $\infty$ and has trig manipulate fraction to be div by x
 - $\frac{x^2}{e^{x^2+x}}$ you can see that its basically $\frac{1}{\infty}=0$
+- https://en.wikipedia.org/wiki/Squeeze_theorem
 ![[squeeze-theorem-example.png|500]]
 ![[limit.jpg|500]]
 
@@ -178,6 +187,7 @@ asymptotes  are limits to infinity.
 horizontally it must have both ($-\infty \cap \infty$) asymptote
 vertically it can have either of the asymptote doesn't have to have have both
 https://www.youtube.com/watch?v=WT7oxiiFYt8
+https://www.youtube.com/watch?v=NVQBZWTKygU
 ![[definition-continuity.png|300]]
 ![[continuity-interval.png|300]]
 composite functions -> continuous
@@ -187,7 +197,7 @@ Intermediate Value Theorem. **If f is continuous on the interval [a,b] and N is
 ![[min-max-theorem.png|300]]
 
 ![[squeeze-theorem.png|500]]
-
+taylor: https://www.youtube.com/watch?v=EYjBnnUJTP8, https://www.youtube.com/watch?v=f_NvAc4Ffbg
 # Differentiation
 
 >Tangents
@@ -212,9 +222,9 @@ Intermediate Value Theorem. **If f is continuous on the interval [a,b] and N is
 $\frac{d}{dx}a^x=\frac{d}{dx}e^{\ln(a^x)}=\frac{d}{dx}e^{x\ln(a)}=a^x\ln(a)$
 
 ![[rolle-s-theorem.png|300]]
-
+mean value theorem: https://www.youtube.com/watch?v=Brat34fUe9o
 ![[mean-value-theorem.jpg|400]]
-
+![[20240122_155111.jpg|300]]
 >[!NOTE] Inflection Point
 >$f''(a)=0$ where it switches signs
 
@@ -229,6 +239,7 @@ $\frac{d}{dx}a^x=\frac{d}{dx}e^{\ln(a^x)}=\frac{d}{dx}e^{x\ln(a)}=a^x\ln(a)$
 to find an error of linear approximation: $\frac{f''(c)}{2}(x-x_{1})^2$ for certain $c$ between $x\cap x_{1}$
 
 ![[taylor-series.png|300]]
+*with limits the denom must also go to the same or higher power compared to num.*
 
 >[!NOTE] Big O
 >the max factor the function grows at.
@@ -260,9 +271,10 @@ to find an error of linear approximation: $\frac{f''(c)}{2}(x-x_{1})^2$ for cert
 ![[derivatives-inverses-example.png]]
 ![[inverse-trig-func.png|300]]
 
-$\sin(\arcsin(x))=x$ & $\arcsin(\sin(x))=x$ since $f(f^{-1}(x))=x$ & $f^{-1}(f(x))=x$
+$\sin(\arcsin(x))=x$ & $\arcsin(\sin(x))=x$ since $f(f^{-1}(x))=x$ & $f^{-1}(f(x))=x$ if -val then *answer still always positive*
 
 ![[trig-inverse-stuff.png|400]]
+![[trig funcs.png|300]]
 
 ![[inverse-rig-func-problem.png|300]]
 ![[derivative-arc.png|300]]
@@ -345,6 +357,7 @@ $\int \ln(x) \, dx=\int 1\ln(x) \, dx$
 put constant only on one side
 
 **If f(x) in differential equation is equal to zero, it is said to be a _homogenous_. Otherwise, it is _non-homogenous_. An example of a homogenous differential equation is the second-order linear ODE mentioned above, while an example of non-homogenous differential equation is**
+![[homo non homo.png|300]]
 
 first order linear differential equation: $\frac{dy}{dx}=p(x)y+q(x)$ inhomo $\frac{dy}{dx}=p(x)y$ homo
 
@@ -366,3 +379,11 @@ Integrating Factor: Multiple the equation by $e^{\mu(x)}$
 ![[variation-constant.png|400]]
 ![[vc-ex-1.png|300]]
 ![[vc-ex-2.png|300]]
+# Examples - 2018
+![[20240122_163125.jpg]]
+
+![[20240122_163221.jpg]]
+
+![[20240122_163652.jpg]]
+
+![[20240122_164250.jpg]]
