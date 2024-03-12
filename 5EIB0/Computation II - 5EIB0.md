@@ -1,4 +1,5 @@
 # Goals
+[The Hitchhiker's Guide to the CPU Hardware - YouTube](https://www.youtube.com/watch?v=OKt1SPaqeVs&list=WL&index=48)
 ### Summary
 **Computer architecture:**
 - multi-cycle processors (hardware-performance trade off)
@@ -17,7 +18,6 @@
 - embedded system design concepts
 - real-time systems
 - interfacing with sensors and actuators i/o
-
 ### Learning Goals
 - synthesize a pipelined computer architecture using a hardware description language (HDL);
 - develop custom hardware using synthesis tools;
@@ -306,8 +306,6 @@ difference: https://www.youtube.com/watch?v=YiQxeuB56i0
 ![[mealy moore machine.png]]
 
 ![[moore machine.png|400]]![[mealy machine.png|400]]![[example of moore mealy.png|300]]![[register transfer level (RTL) moore mealy.png|300]]
-
-
 ## FSM Verilog
 ![[moore machine in RTL.png|400]]
 ![[parity checker.png|400]]
@@ -315,3 +313,176 @@ difference: https://www.youtube.com/watch?v=YiQxeuB56i0
 ![[reset set with parity.png|400]]
 ![[operators.png|400]]
 ![[short version of verilog.png|400]]
+# MIPS Recap, MIPS Pipelined
+## Lecture
+(lui) not really a load doesn't load from data memory
+branch instruction works in the following way:
+![[branch instruction.png|300]]![[branch instrcitons.png|300]]
+when a branch is triggered at (1000) due to the clock moving its already at (1004) so it only needs to move 2 instructions
+$\text{PC next} = \text{PC branch} + 4 + 4 \cdot \text{Label}\implies\text{PC next} = \text{PC branch} + 4 + (\text{Instr[15..0] || [00]})$
+adding 2 00s = 4 && Inst[15..0] offset
+
+**moving backwards:**
+If we denote **PCbranch**​ as 1000, we're actually considering the effect from the position of 1004 because of the automatic increment. Therefore, to move from 1004 to 996, we need an offset that, when multiplied by 4 and added to 1004, equals 996.
+
+Solving for the offset:
+1004+(offset×4)=996
+
+Subtract 1004 from both sides:
+offset×4=996−1004
+offset×4=−8
+
+Therefore, the offset:
+offset=−2
+
+This is why the instruction field Instr[15..0] should be set to -2. The representation of -2 in a 16-bit field uses two's complement notation, which is how negative numbers are encoded in binary.
+
+j instruction for jump was structured weirdly as it glues 4 bits instead of adding: so there are limits to where it can jump
+
+**NEXT LECTURE:**
+![[2s complement vs unsigned.png|300]]
+The instruction names are misleading. Use `addu` for both signed and unsigned operands, if you do **not** want a trap on overflow.
+Use `add` if you need a trap on overflow for some reason. Most languages do not want a trap on signed overflow, so `add` is rarely useful.
+unsigned -> used for addressing usually
+![[blt pseudo.png|300]]
+pseudo blt
+
+![[spim example.png|400]]
+
+### Type of MIPS Execution
+[Single Cycle, Multi Cycle, and Pipelining - YouTube](https://www.youtube.com/watch?v=wXo5eyeJZcU)
+[Ift201 MIPS Data Path Lecture - YouTube](https://www.youtube.com/watch?v=YGSAWqQy9bI)
+![[instruction execution.png|400]]![[datapath control.png|400]]
+**Pipeline control:**
+	Instruction Fetch and PC Increment
+	Instruction Decode / Register Fetch
+	Execution
+	Memory Stage
+	Write Back
+## Introduction
+![[mips.png]]
+## Operations of the Computer Hardware
+- MIPS instruction format: `operation destination, source1, source2`
+- Example: `add a, b, c` (adds `b` and `c`, stores the result in `a`)
+## Operands of the Computer Hardware
+- MIPS registers: 32-bit registers, used as operands in instructions. (32 bits, 4 bytes **word** (or 2 bytes), 1 byte->8 bits)
+- Design Principle 2: Smaller is faster, influencing register count for speed and simplicity.
+- Register naming: $s0, $s1, ... for C/Java variables; $t0, $t1, ... for temporary variables.
+- Memory vs. Registers: Arithmetic operations on registers; data transfer instructions (`lw` for load, `sw` for store) for memory access.
+- Addressing: Byte addressing with alignment restriction; word addresses must be multiples of 4.
+- Load/store example: `lw $t0,32($s3)` loads A[8] into $t0 from memory; `sw $t0,48($s3)` stores $t0 into A[12] in memory.
+- Constant operands: `addi $s3,$s3,4` adds 4 to $s3 directly, without loading from memory.
+- [Why is the maximum value of an unsigned n-bit integer 2ⁿ-1 and not 2ⁿ?](https://stackoverflow.com/questions/5771520/why-is-the-maximum-value-of-an-unsigned-n-bit-integer-2%e2%81%bf-1-and-not-2%e2%81%bf)]
+## Signed and Unsigned Numbers
+- Binary representation: $0$ or $1$ (bit) is the basic unit; numbers represented in base $2$
+- Unsigned numbers: Non-negative, range $0$ to $2^{32} - 1$ for $32$-bit systems.
+- Two's complement: Standard for representing signed numbers; leading $0$s for positive, $1$s for negative.
+- Most significant bit (MSB): Indicates sign in two's complement; $0$ for positive, $1$ for negative.
+- Overflow: Occurs when result exceeds hardware representation capacity.
+- Sign extension: Extends a number to a larger bit width by replicating the sign bit.
+- Negation shortcut: Invert all bits and add $1$ to negate a two's complement number.
+## Representing Instructions in the Computer
+- Register mapping: `$s0-$s7` map to registers `16-23`; `$t0-$t7` map to registers `8-15`.
+- Hexadecimal conversion is utilized for easier representation and understanding of binary instructions. (4 bits, 0-F) (base 16)
+![[mips instruction formats.png|400]]
+- `rs`: First register source operand.
+- `rt`: Second register source operand or destination register in I-type instructions.
+- `rd`: Register destination operand (R-type only).
+- I-Immediate (addi,lw,sw) (**Data transfer format, immediate**), R-Register(add,sub) (**arithmetic instruction format**), J-Jump
+![[example of mips instructions.png|400]]
+## Logical Operations
+-  Logical operations in MIPS: `AND`, `OR`, `NOR`, shifts (`sll`, `srl`).
+- `sll` (shift left logical) and `srl` (shift right logical) move bits left/right, filling with 0s.
+- `ANDI` (AND immediate) and `ORI` (OR immediate) for operations with constants.
+- Shifting left by `i` bits is equivalent to multiplying by $2^i$. (dividing for srl)
+- Operations that can isolate a field in a word: `AND`, and a combination of shifts (`sll` followed by `srl`).
+## Instructions for Making Decisions
+- Conditional Branching (also used for loops):
+    - `beq`: Branch if equal.
+    - `bne`: Branch if not equal.
+- Unconditional Branching:
+    - `j`: Unconditional jump to label/address.
+- Comparisons:
+    - `slt`: Set on less than (signed comparison).
+    - `sltu`: Set on less than unsigned (for unsigned comparison).
+- Immediate Comparisons:
+    - `slti`: Set on less than immediate (signed).
+    - `sltiu`: Set on less than immediate unsigned.
+![[loop mips example.png|400]]
+## Supporting Procedures in Computer Hardware
+[C to MIPS Procedures and the Stack](https://www.youtube.com/watch?v=YLllQsnpND0&t=609s)
+- Procedure Call Steps:
+    - Put parameters in accessible registers (`$a0-$a3`).
+    - Use `jal ProcedureAddress` to jump and link to the procedure (saves `PC+4`).
+    - Perform the task and place the result in return value registers (`$v0-$v1`).
+    - Return to the calling program using `jr $ra`.
+    - `$gb` global pointer to static data
+- Stack Management:
+	- `$sp`: Stack pointer register.
+    - Use stack for saving registers before calling procedures.
+    - `push`: Add elements to the stack.
+    - `pop`: Remove elements from the stack.
+    - LIFO queue
+    - Use stack to save `$ra` and arguments for recursive calls (non-leaf procedure).
+![[leaf procedure example.png|400]]
+- adjust stack to have room for 1 item `addi`
+- $f=s0$
+- you could also have pushed space for `t0, t1` and then popped
+![[non leaf procedure recursive.png|300]]![[recursive function.png|300]]
+[Difference between preserved and non preserved](https://stackoverflow.com/questions/76245610/in-mips-architecture-what-is-the-difference-between-a-register-which-is-preserv)
+![[preserved and not preserved.png|300]]![[mips register convention.png|300]]
+![[frame pointer.png|300]]
+- Memory Segments for Programs:
+    - Text Segment: Contains machine code. 
+    - Static Data Segment: For constants and static variables.
+    - Heap: For dynamically allocated data.
+    - Stack: For automatic variables and call stack.
+![[mips memory allocation.png|300]]![[iterative recursion.png|300]]
+
+## Communicating with People
+- ASCII uses 8-bit bytes for character representation, allowing for 256 unique symbols, Unicode 16-bit bytes(150,000 characters).
+- Load byte (`lb, lbu`) loads a byte from memory, placing it in the rightmost 8 bits of a register. Store byte (`sb`) takes a byte from the rightmost 8 bits of a register and writes it to memory.
+- MIPS instructions for 16-bit(`halfwords 2 bytes`) quantities (`lh`, `lhu`, `sh`) facilitate operations with Unicode. (load half - lh)
+![[string copy mips.png|400]]
+Exit loop if the character 0. Exit if last character of string.
+## MIPS Addressing for 32-bit Immediates and Addresses
+- **32-Bit Immediate Operands**: Use `lui` to set upper 16 bits, then `ori` (or similar) for lower 16 bits. E.g., `lui $s0, 61` then `ori $s0, $s0, 2304`. `$at` temp register to decode 32 bit constants.
+- Pseudodirect addressing -> concatenated 26 bits of `$j` with upper PC bits
+![[mips addressing modes.png|400]]
+- **Branching Far with MIPS**: Use `bne` and `j` to handle distant branches beyond 16-bit limit. E.g., `bne $s0, $s1, L2` then `j L1`.
+- **Decoding MIPS Machine Code**: Identify operation from op field, then use instruction formats and encoding tables to translate to assembly. E.g., 00af8020hex -> `add $s0,$a1,$t7`.
+![[example large 32 bit ocnstants.png|400]]
+## Parallelism and Instructions: Synchronization
+- **Data Race**: Occurs with two memory accesses from different threads to the same location, at least one write, without synchronization.
+- **Atomic Operations for Synchronization**: Essential for implementing locks and synchronization primitives to prevent data races.
+- **Atomic Exchange (Swap)**: Interchanges a register value with a memory value atomically; used to implement basic locks. E.g., 0 indicates lock is free, 1 indicates lock is taken.
+- **MIPS Synchronization**: Utilizes `load linked (ll)` and `store conditional (sc)` instructions for atomic operations.
+    - `ll` loads a value from memory; `sc` attempts to store a value back, failing if the location was modified in-between.
+- **Usage of `ll` and `sc`**:
+    1. For synchronizing threads in parallel programs to ensure correct reading/writing of shared data.
+    2. In uniprocessor systems, for process synchronization with shared data.
+## Translating and Starting a Program
+[Compiling, assembling, and linking](https://www.youtube.com/@EngMicroLectures)
+- **Compilation Process**: Transforms C program to assembly, then to machine code.
+- **Linking**: Combines multiple object modules and libraries, resolves references. (so we can compile each object file seperaly dont have to compile whole thing)
+- **Loading**: Places executable into memory for execution.
+![[C to code.png|300]]
+- **DLLs (Dynamically Linked Libraries)**: Libraries linked at runtime, not compile time, saving space and allowing updates.
+- **Key Concepts**:
+  - Assembly language includes pseudoinstructions for easier programming.
+  - MIPS uses `ll` (load linked) and `sc` (store conditional) for synchronization.
+## A C Sort Example to Put It All Together
+![[swap mips.png|400]]
+![[swap mips-1.png|300]]![[sort mips 2.png|300]]
+- **Optimization**: Compiler optimizations impact speed; procedure inlining reduces call overhead.
+## Arrays versus Pointers
+- **Array vs. Pointer in C to Clear Memory**:
+    - Array (`clear1`): Uses array indices. Loops increment index and calculate address each iteration.
+    - Pointer (`clear2`): Directly manipulates memory address. More efficient as it eliminates index-to-address calculation within loop.
+![[array clear mips.png|300]]![[pointer mips clear.png|300]]
+![[pointer array difference.png|400]]
+- **Optimization Insight**:
+    - Pointer version is more efficient, moving constant calculations outside of loop, reducing instructions per iteration from 6 to 4.
+- **Compiler Role**:
+    - Modern compilers can optimize array code to match pointer efficiency, negating the traditional performance rationale for using pointers.
+# smth

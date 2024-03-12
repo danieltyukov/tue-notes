@@ -1,5 +1,5 @@
 ![[course perspective.png]]
-## Goals
+# Goals
 1. Understand and able to apply continuous Fourier analysis to convert between time and frequency representation of signals.
 2. Apply Fourier analysis to functions (periodic and not periodic) to analyze their spectrum.
 3. Apply Nyquist theory to determine the required sampling frequency of a given bandlimited signal and understand the implications of said choice.
@@ -17,7 +17,18 @@
 15. Understand the basic concept of amplitude phase and frequency modulation
 16. Extract and separate the modulated signal from the mathematical representation of the signal and derive the expected spectrum for simple pure tone modulations.
 17. Understand the basic principles behind the physical layer for wireless and wired (optical) transmission including losses, and different distortion mechanisms (dispersion and fading) and apply this knowledge to determine what is the most suitable physical channel required to build a communication channel.
+## Bandwidth
+Network Bandwidth: $B_{pcm}\geq\frac{1}{\eta}R\geq nB_{analog}$ -> Better if we have less requirement of it
+$f_{s}\geq 2B$
+PCM bit rate: $R=f_{s} \cdot n=\frac{n}{T}$
 
+$\text{bit-rate: } R=\frac{n}{T}=n \cdot f_{s}$
+- **Process**: Analog signal → Sampling at Nyquist rate → Quantizing into discrete levels → Encoding into binary digits.
+- **Quantization Levels**: $M = 2^n$, where $n$ is the number of bits per sample.
+- **Bit-rate ($R$)**: $R = n \cdot f_S$ (bits/s), where $f_S$ is the sampling frequency. $f_{s}\geq 2B$
+- **Spectral Efficiency ($\eta$)**: $\eta = \frac{R}{B_{pcm}}$ (bits/s)/Hz, where $B_{pcm}$ is the bandwidth.
+- **(dimensionality theorem)Minimum Bandwidth ($B_{pcm}$)**: $B_{pcm} \geq \frac{1}{2} R = \frac{1}{2} n f_S \geq {nB_{analog}}$, where $\eta$ is spectral efficiency, $B$ is the bandwidth of the analog signal, and $n$ is the number of bits per sample. (**using sinc pulses, half baud rate**)
+- $\frac{1}{2}\text{ when sinc otherwise: } \frac{1}{\eta}$ ![[example of b_pcm.png|100]]
 # Orthogonal basis and the Fourier transform/series
 ## Orthogonal Basis
 $orthogonal:u \cdot v=0$; if each vector in set $length:|v|=1\implies orthonormal$
@@ -132,7 +143,7 @@ $\text{bit-rate: } R=\frac{n}{T}=n \cdot f_{s}$
 ### PCM Bandwidth Overview
 - **Importance**: PCM signals (binary waveforms) must fit within channel bandwidths to avoid intersymbol interference (ISI), which corrupts data.
 - **Dependency**: PCM bandwidth ($B_{pcm}$) depends on bit rate ($R$) and pulse shape (line coding) $\eta$.
-- **Minimum Bandwidth**: For no aliasing, $f_S \geq 2B$, where $B$ is the analog signal bandwidth.
+- **Minimum Bandwidth**: For no aliasing, $f_S \geq 2B_{analog}$, where $B$ is the analog signal bandwidth.
 - **Implication**: PCM requires at least $n$ times the bandwidth of the input analog signal.
 
 - With ideal impulse sampling (meeting Nyquist criteria) and sinc interpolation, a signal can be reconstructed perfectly. And the sinc pulse is a bandlimited signal with bandwidth Bpcm. Hence that leads to the inequality whereas using waveforms other than sinc pulse would have higher frequency components
@@ -181,7 +192,7 @@ $n \uparrow\to SNR_{in}\downarrow\to P_{e}\uparrow\to SNR_{out}\downarrow\left( 
 - **SNR Dynamics**: The input signal-to-noise ratio ($SNR_{in}$) primarily influenced by channel noise, whereas the output signal-to-noise ratio ($SNR_{out}$) also depends on quantization and error probability.
 - **Trade-offs**: Increasing resolution (bits per sample) can improve $SNR_{out}$ but may reduce $SNR_{in}$ due to wider bandwidth increases noise power.
 ![[snr in snr our.png|400]]
-if you keep increasing bits per sample n to increase the $SNR_{out}$, at some point instead of increasing it will start to decrease: Noise Variance: $N=\sigma^2=\left( \frac{N_{O}}{2} \right)(2B_{pcm})=N_{O}B_{pcm}\implies SNR_{in}=\frac{P_{signal}}{N_{O}B_{pcm}}=\frac{P_{signal}}{N_{O}\cdot n\cdot f_{s}} \propto \frac{1}{n}\text{ as }B_{pcm}=n \cdot f_{s}$
+if you keep increasing bits per sample n to increase the $SNR_{out}$, at some point instead of increasing it will start to decrease: Noise Variance: $N=\sigma^2=\left( \frac{N_{O}}{2} \right)(2B_{pcm})=N_{O}B_{pcm}\implies SNR_{in}=\frac{P_{signal}}{N}=\frac{P_{signal}}{N_{O}B_{pcm}}=\frac{P_{signal}}{N_{O}\cdot n\cdot f_{s}} \propto \frac{1}{n}\text{ as }B_{pcm}=n \cdot f_{s}$
 $\frac{N_{O}}{2}$ is noise spectral density used in transmission channel: (use N0/2 because we, by convention, also distribute the noise power over the negative frequencies).
 **If $N_{O}$ given then $N_{O} \cdot2B_{PCM}$
 $\text{attenuation: } \frac{1}{P_{signal}}$
@@ -216,7 +227,7 @@ Baud rate is **the measure of the number of changes to the signal**
 - **Levels and Bits Relationship**:
     - $L = 2^l$
     - $l = \log_2(L)$
-    - Where $L$ is the number of levels, and $l$ is the number of bits per level.
+    - Where $L$ is the number of levels per symbol, and $l$ is the number of bits per level.
 
 - **Advantages**: Allows higher data rates and more efficient use of bandwidth.
 - **Disadvantages**: More susceptible to noise, making it harder to distinguish between levels as the number of levels increases.
@@ -230,12 +241,12 @@ Baud rate is **the measure of the number of changes to the signal**
     ![[bits per sample vs bits per level.png|300]]
 
 ## Baud-rate (or Symbol rate)
-- **Baud Rate ($D$)**: $D = \frac{N}{T_0}=B \cdot \eta$, where $N$ is dimensions, $T_0$ is time per dimension. Number of symbols transmitted per second.
+- **Baud Rate ($D$)**: $D = \frac{N}{T_0}=B \cdot \eta \text{ null bandwidth}$, where $N$ is dimensions, $T_0$ is time per dimension. Number of symbols transmitted per second. $D\leq 2 \text{ it can only become worse, higher bandwidth, (2 is sinc)}$
 
 - **Bit Rate ($R$)**: $R = lD = D\log_2(L) = \frac{N}{T_0}\log_2(L) = \frac{n}{T_0}$ [bits/s], with $L$ levels, $D$ baud rate. One symbol can represent multiple bits.
 - **Binary Signaling**: For $L=2$, $R = D$.
 - **Channel Capacity:** $C=B\log_{2}(1+SNR)\to \frac{bits}{sec}\to \eta_{max}=\frac{C}{B}=\log_{2}\left( 1+SNR \right)$
-- **Channel Capacity (bps): ** $C=2B\log_{2}(L)$
+- **Channel Capacity (bps):** $C=2B\log_{2}(L)$
 ![[multilevel transmission.png|400]]
 
 - **Bandwidth ($B$)**: $B \geq \frac{1}{2}D$. Minimum bandwidth achieved with sinc pulses.
@@ -258,6 +269,8 @@ https://www.youtube.com/watch?v=DoSLMEEo1Y0 : allows to analyze digital signals 
 - **Line Codes**: Choice of waveform for transmitting physical waveforms in the channel, affecting system performance. Types include Unipolar NRZ, Polar NRZ, Unipolar RZ, Bipolar RZ, and Manchester. 
 - Symbols(which we got through encoder) -> physical waveforms.
 
+- **sharp peak in PSD -> DC component**
+
 **NRZ (Non-Return-to-Zero) line coding uses less bandwidth than RZ (Return-to-Zero) because NRZ represents a binary '1' with one signal level and a binary '0' with another signal level, without returning to a neutral or zero level between bits. In contrast, RZ signals return to the zero level within each bit period. This means RZ effectively doubles the number of transitions and therefore requires more bandwidth to accommodate these additional transitions. NRZ's fewer transitions result in a more bandwidth-efficient encoding scheme.**
 ## Unipolar NRZ
 - **Concept**: Unipolar NRZ signaling uses a single power supply, switching between supply voltage (for a "1") and 0 (ground, for a "0").
@@ -265,23 +278,22 @@ https://www.youtube.com/watch?v=DoSLMEEo1Y0 : allows to analyze digital signals 
 - **Analysis**: The power spectral density reflects how power is distributed across different frequencies for Unipolar NRZ signals, highlighting the impact of signal time base $T_b$ and the presence of a DC component in the spectrum.
 ![[unipolar nrz.png|200]]![[unipolar nrz psd.png|200]]
 ## Polar NRZ
-- **Polar NRZ Transmission**: Utilizes positive and negative power supplies for signal representation. Has a significant DC component.
+- **Polar NRZ Transmission**: Utilizes positive and negative power supplies for signal representation. Has a weak DC term (no dc).
 - **PSD Formula**: $P_{\text{polarNRZ}}(f) = \frac{A^2}{T_b} \sin c^2(fT_b)$, where $A$ is the signal amplitude, and $T_b$ is the bit duration.
 ![[polar nrz-1.png|200]]![[polar nrz psd.png|200]]
 ## Unipolar RZ
 - **Unipolar RZ Transmission**: Uses a single power supply and includes a DC component. Incorporates 'Returning-to-Zero' to add synchronization information and doubles bandwidth. has clock info.
 - **PSD for Fixed Duty Cycle**: $P_{\text{unipolarRZ}}(f) = \frac{A^2T_b}{16} \sin c^2\left(\frac{fT_b}{2}\right)\left[1 + \frac{1}{T_b}\sum_{n=-\infty}^{\infty} \delta\left(f - \frac{n}{T_b}\right)\right]$
 - **PSD for Variable Duty Cycle**: $P_{\text{unipolarRZ}}(f) = \frac{A^2d^2T_b}{16} \sin c^2\left(\frac{f dT_b}{2}\right)\left[1 + \frac{1}{T_b}\sum_{n=-\infty}^{\infty} \delta\left(f - \frac{n}{T_b}\right)\right]$, where $d$ is the duty cycle.
-![[unipolar rz.png|200]]![[unipolar rz psd.png|200]]
+![[unipolar rz.png|200]]![[unipolar rz psd.png|200]]![[polar rz.png|200]]
 ## Bipolar RZ
 - **Bipolar RZ Transmission**: Uses positive and negative power supplies, with three possible voltage levels (positive, 0, negative). There is no DC component due to bipolar signaling.
 - **PSD Formula**: $P_{\text{bipolarRZ}}(f) = \frac{A^2T_b}{4} \sin c^2\left(\frac{fT_b}{2}\right) \sin^2(\pi fT_b)$, where $A$ is the signal amplitude, and $T_b$ is the bit duration.
 ![[bipolar rz.png|200]]![[bipolar rz psd.png|200]]
 ## Manchester
-- **Manchester Encoding**: Features inherent clock signal within the data stream, allowing for synchronization and error detection. A string of zeros does not result in clock signal loss. no dc component. Doesn't correct for errors.
+- **Manchester Encoding**: Features inherent clock signal within the data stream, allowing for synchronization and error detection. A string of zeros does not result in clock signal loss. no dc component. Doesn't correct for errors. double bandwidth to polar nrz.
 - **PSD Formula**: $P_{\text{Manchester}}(f) = {A^2}T_b \sin c^2(fT_b)$, where $A$ is the signal amplitude, and $T_b$ is the bit duration.
 ![[manchester.png|200]]![[manchester psd.png|200]]
-
 ## Power spectra for multilevel signaling
 - **Transition to Multilevel Signaling**: When increasing bits per symbol ($l > 1$), PSD must be adjusted for both the signal and its spectral efficiency.
 - **Symbol Rate ($D$) and PSD Conversion**:
@@ -297,3 +309,62 @@ $\text{Unipolar RZ (50\%): }\eta=\frac{1}{2}\text{ if 25\% then }\eta=\frac{1}{4
 ![[pcm transmission example so far.png|500]]
 
 
+
+# Inter-symbol interference
+![[isi topic map.png|300]]
+## What is inter-symbol interference?
+- **Inter-Symbol Interference (ISI):** Overlapping of signals in a communication channel, corrupting information. (smearing into other timeslots).
+- **Cause:** Bandwidth limitations (channel passband) of channel smooth rectangular pulses, spreading them in time. (frequency attenuated -> time domain less rectangular).
+- **Prevention:** equalization techniques, proper pulse shaping, controlled bandwidth.
+![[isi example.png|300]]![[isi practical.png|300]]
+## Modelling ISI
+![[base-band pulse transmission system.png|400]]
+- **Digital Signaling System Modeling (baseband):** $w_{in}(t) = \sum a_{n}h(t - nT_s)\text{ where }h(\dots)=\delta(\dots)*h(t)$.
+- **Output Signal:** $w_{out}(t) = w_{in}(t) \ast h_{T}(t) \ast h_{C}(t) \ast h_{R}(t)=\left( \sum_{n}a_{n}\delta(t-nT_{s}) \right)*h_{e}(t)$, convolution with transmitter, channel, receiver filters.
+- **Overall Impulse Response:** $h_{e}(t) = h(t) \ast h_{T}(t) \ast h_{C}(t) \ast h_{R}(t)$.
+- **Frequency Domain Representation:** $He(f) = H(f)H_{T}(f)H_{C}(f)H_{R}(f)$.
+- **Zero-ISI Criterion:** $h_{e}(\tau + kT_s) = C$ for $k=0$, and $0$ for $k \neq 0$ (Nyquist’s first criterion). **(represented in convolution between (rect spectrum (sinc in time)) and another function which is finite in spectrum).
+- **Objective:** Design $h_{T}(t)$ and $h_{R}(t)$ to minimize ISI, given fixed $h_{C}(t)$.
+## Nyquists first method (Zero ISI)
+- **Nyquist's First Criterion:** Ideal sinc pulse = zero-ISI, non-zero only at designated timeslot. (no overlap at sampling moments).
+![[sinc pulse.png|300]]![[sinc pulse-1.png|300]]
+- **Sinc Pulse:** Satisfies zero-ISI, $sinc(t) = \frac{\sin(\pi t/T_s)}{\pi t/T_s}$, zero at $t \neq kT_s$. They overlap but not at sampling times -> so still correct data.
+- **Waveform Pulses for Zero-ISI:** Rectangular, sinc, triangular; practical issues with infinite bandwidth/time.
+![[summary of idea zero isi.png|300]]![[zero isi pulse shape.png|300]]
+- **Raised-Cosine Spectrum (RACOS):** Realizable, minimizes ISI, practical bandwidth.
+## Raised cosine-rolloff Nyquist filtering (one of zero isi filters)
+- **Raised Cosine-Rolloff Filtering:** Minimizes ISI, customizable rolloff factor $r$ (more bandwidth).
+![[raised cosine rolloff nyquist filter transfer function.png|300]]![[raised-cosine pulses.png|300]]
+![[impulse.png|100]]
+
+- **Transfer Function:** $He(f) = \begin{cases} 1 & |f| \leq f_1 \\ \frac{1}{2}[1 + \cos(\frac{\pi(|f|-f_1)}{2f_{\Delta}})] & f_1 < |f| < B \\ 0 & |f| \geq B \end{cases}$.
+- **Parameters:** $f_{\Delta} = B - f_0$, $f_1 = f_0 - f_{\Delta}$, Rolloff $r = \frac{f_{\Delta}}{f_0}$, $f_{0}=6-dB\text{ bandwidth}$.
+- **Bandwidth:** $B = f_0(1 + r)$.
+- **Ideal for Bandlimited Channels:** Reduces pulse spreading, fits channel bandwidth.
+- **Time-Domain Pulse:** $h_{e}(t) =F^{-1}[H_{e}(f)]= 2f_0 \cdot sinc(2f_0t) \cdot \frac{\cos(2\pi f_{\Delta}t)}{1 - (4f_{\Delta}t)^2}$.
+- **Max Symbol Rate (No ISI):** $D_{max} = 2f_0$.
+- **Practical Application:** Transmits data through bandlimited channels with minimal distortion.
+
+- eg: When sending a square pulse with a bandwidth exceeding the channel’s maximum rated bandwidth, higher frequency components are attenuated, causing pulse spreading, interfering in adjacent time slots and oscillations
+- To address this, on the otherhand sending a raised-cosine filtered pulse with a 0.75 roll-off factor, fitting the channel’s bandwidth, results in significantly reduced pulse spreading
+![[reason for cosine rolloff.png|300]]![[raised cosine filter example.png|300]]
+
+# Information Theory
+![[error correction map.png|300]]
+## Shannon–Hartley channel capacity theorem
+- **Shannon-Hartley Theorem:** $C = B \log_2(1 + SNR_{in})\implies xB\implies xB\log_{2}\left( 1+\frac{SNR_{in} \cdot B}{xB} \right)$ [bits/s], defines max information rate $\text{error free}$.
+- **Max Spectral Efficiency:** $\eta_{max} = \frac{C}{B} = \log_2(1 + SNR_{in})$ [bits/s/Hz], efficiency of bandwidth usage.
+- **Power-Limited Region:** Low SNR ($\text{SNR} << 1$), capacity increases with SNR.
+- **Bandwidth-Limited Region:** High SNR ($\text{SNR} >> 1$), capacity constrained by bandwidth, not SNR.
+![[shannon hartley channel capacity.png|300]]
+
+## Error detection and correction schemes
+[But what are Hamming codes? The origin of error correction - YouTube](https://www.youtube.com/watch?v=X8jsijhllIA)
+- **Parity Bit Checking:** Fails with multiple bit flips, only detects odd number of errors.
+- **Hamming Codes:** Enables both error detection and correction.
+- **Hamming Code Structure:** $n = m + k$, $m$ = data bits, $k$ = parity bits.
+- **Hamming(7,4) Example:** Adds 3 parity bits to 4-bit message, corrects single bit error.
+- **Parity Bit Positions:** Set at powers of 2 (1, 2, 4, 8, ...).
+- **Limitations of Hamming:** Corrects 1-bit errors but only detects multiple errors.
+- **Advanced Schemes:** Modern systems use LDPC, polar codes for better error correction.
+![[parity bit example.png|200]]![[parity bit example-1.png|200]]
