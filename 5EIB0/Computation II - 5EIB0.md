@@ -32,7 +32,6 @@ Introductory:
 	- Operating systems
 	- multi core processors
 	- GPUs (Graphic Processing Units) and Vector processors
-
 ### Learning Outcomes
 • Working knowledge of the properties and function of modern computer architectures and be able to compare them. 
 • Quantitatively analyze the performance of modern computer architectures, including their memory subsystem. 
@@ -53,13 +52,6 @@ Lab is split in two parts:
 	• 3.6-3.8 • 5.1-5.4, 5.7-5.8, 5.10 
 	• 6.1-6.6, 6.9, 6.12-6.13 
 	• Operating Systems: "Introduction to Operating Systems", chapters 1-4 (available on OnCourse)
-
-• Self-study and exercises (6th ed.): 
-	• 2.24-2.25 
-	• 4.18-4-19 
-	• 3.12-3.13 
-	• 5.18-5.19 
-	• 6.18
 # Combinational Verilog & Sequential Circuits, Verilog, FSMs
 ## Logic
 - Signals can be **asserted** (true or 1) or **deasserted** (false or 0).
@@ -485,4 +477,252 @@ Exit loop if the character 0. Exit if last character of string.
     - Pointer version is more efficient, moving constant calculations outside of loop, reducing instructions per iteration from 6 to 4.
 - **Compiler Role**:
     - Modern compilers can optimize array code to match pointer efficiency, negating the traditional performance rationale for using pointers.
-# smth
+# MIPS Hazards, Branch Predictions
+forwarding conditions exam questions
+[L8 4 forwarding - YouTube](https://www.youtube.com/watch?v=7n5VY1k8a4o)
+you can bypass but at least one bubble is needed in between
+- On the MIPS architecture, jump and branch instructions have a "delay slot". This means that **the instruction after the jump or branch instruction is executed before the jump or branch is executed**.
+![[final data pth for pipelining.png|400]]
+## Introduction
+- **Performance Factors**: Instruction count, clock cycle time, CPI(cycles per instruction).
+- **MIPS Focus**: Datapath & control for instruction execution.
+**Core Steps for Instruction Execution**:
+1. Fetch instruction using PC (Program Counter).
+2. Read register(s) as instructed.
+3. Execute operation (ALU for arithmetic/logic, memory access for load/store, compare for branches).
+4. Write back results to register or update PC for branches.
+- **Components**: ALU, registers, memory.
+- **Control**: Multiplexors for source selection, control unit guides operations.
+## Logic Design Conventions
+- **Logic Elements**:
+    - **Combinational**: Output depends only on current inputs (e.g., ALU).
+    - **State Elements**: Contain internal storage, characterize computer state (e.g., registers, memory).
+
+- **Clocking Methodology**:
+    - **Edge-Triggered**: Updates occur at clock edge transition, ensuring predictable hardware operation. Sequential elements update on rising edge.
+- **Control Signals**: Direct operations; asserted (logically high) or deasserted (logically low). (used in multiplexor selection) (control unit sets them)
+![[control signals for 1 and 2 bit control signals.png|200]]![[control unit added to data path to set control signals.png|200]]
+- **Design Implications**:
+    - Edge-triggered allows reading and writing a register in the same cycle without indeterminacy.
+    - MIPS architecture primarily uses 32-bit wide paths for data handling.
+- **Key Concept**: Edge-triggered clocking prevents feedback within a single cycle, crucial for correct sequential logic operation.
+
+- **False Statement**: Multiple register files are not required for edge-triggered writes in MIPS datapath.
+## Building a Datapath
+- **Components**: Instruction memory, PC (Program Counter), adder (increments PC), register file, ALU, data memory, sign extension unit.
+
+- **R-type Instructions**:
+    - **Operations**: Read two registers, perform ALU operation, write result to register.
+    - **Datapath Elements**: Register file (reads/writes registers), ALU (executes arithmetic/logic).
+- **Load/Store Instructions**:
+    - **Operations**: Calculate memory address, load from or store to memory.
+    - **Additional Elements**: Sign extension unit (extends immediate values + 16 bits), data memory (reads/writes data).
+- **Branch Instructions**:
+    - **Operations**: Compare two registers, branch if equal.
+    - **Additional Elements**: ALU (compares registers), adder (calculates branch target address).
+![[combined data path of 3 types of insturciton types.png|200]]
+- **Single Datapath Design**:
+    - **Challenge**: Accommodate all instruction types with minimal duplication.
+    - **Solution**: Use multiplexors to select between different sources/targets for ALU inputs and register writes.
+## A Simple Implementation Scheme
+### MIPS Single-Cycle Implementation
+- **Components**: PC, ALU, register file, instruction/data memory.
+- **Operations**: Instruction fetch, decode, ALU operation, memory access, write back.
+- **Control Logic**: Decides ALU operation, memory read/write, and register write based on instruction type.
+- **Instruction Types**: R-type, load/store, branch, jump.
+- **Limitation**: Slow due to longest instruction path dictating clock cycle.
+- **Efficiency**: Improved by pipelining, allowing simultaneous instruction execution.
+- **dont care term:** element of a logical function in which the output does not depend on the values of all the inputs.
+## A Multicycle Implementation
+[1 4 1 Multicycle Operations - YouTube](https://www.youtube.com/watch?v=QosdsRx1cb4)
+- **Multicycle Implementation**: Executes instructions over multiple cycles, sharing functional units. (each step in the execution will take 1 clock cycle).
+- **Components**: Single memory for code/data, one ALU, additional registers (IR, MDR, A, B, ALUOut) for data holding.
+- **Execution Steps**: Fetch, decode, execute, memory access/write-back, with steps varying by instruction type.
+- **Control**: Managed by a finite-state machine, varying control signals per cycle.
+- **Instruction Cycles**: 
+  - Loads: 5 cycles
+  - Stores: 4 cycles
+  - R-type: 4 cycles
+  - Branches: 3 cycles
+  - Jumps: Direct PC update.
+- **CPI**: Varies by instruction mix; more efficient than single-cycle due to hardware reuse, less efficient than pipelining.
+- $CPU=\frac{\text{CPU clock cycles}}{\text{Instruction count}}=\frac{\sum\text{Instruction count}_{i}CPI_{i}}{\text{Instruction count}}=\sum \frac{\text{Instruction count}_{i}}{\text{Instruction count}}\times CPI_{i}$
+![[multicycle execution.png|200]]![[cpi penalty.png|200]]![[CPI impact of branches.png|200]]
+## An Overview of Pipelining
+- **Pipelining**: Technique to overlap instruction execution, improving throughput without affecting latency per instruction.
+- **MIPS Pipeline Stages**: 5 - Fetch, Decode, Execute, Memory Access, Write Back.
+- **Hazards**:
+  - **Structural**: Hardware cannot support all instruction combinations simultaneously.
+  - **Data**: Instruction waits for previous instruction's result.
+  - **Control**: Branches and instructions altering program flow introduce decision delays.
+- **Solutions**:
+  - **Forwarding**: Direct data transfer between stages to resolve data hazards.
+  - **Stalling**: Introduces delays ("bubbles") for hazard resolution.
+  - **Branch Prediction**: Predicts branch decisions to maintain flow; incorrect predictions cause stalls.
+- **Impact**: Pipelining improves instruction throughput, not the execution time of individual instructions. Designed for efficient pipelining with uniform instruction lengths and limited formats.
+- [1 3 4 Structural Hazards&Data Hazards - YouTube](https://www.youtube.com/watch?v=8yxrT1isnpE)
+- [L8 5 control hazards - YouTube](https://www.youtube.com/watch?v=JNvVlygiLcg)
+![[single cycke vs pipelined performance.png|200]]![[forwarding.png|200]]
+## Pipelined Datapath and Control
+![[single cycle data path.png|400]]
+![[Computation II - 5EIB0.png|100]]![[Computation II - 5EIB0-1.png|100]]![[Computation II.png|100]]![[sw instruction flow.png|100]]![[store word instruction flow.png|100]]![[dweqwefr.png|100]]
+- **Data Flow Exceptions**: Write-back to register file and PC selection for branch instructions occur in reverse direction but don't affect current instruction execution. First right-to-left flow of data can lead to data hazards and the second leads to control hazards.
+- **Pipeline Registers**: Named after stages they separate (e.g., IF/ID).
+- **Control Lines Grouped**: By stages. Key ones are `RegDst`, `ALUOp`, `ALUSrc` for EX; `Branch`, `MemRead`, `MemWrite` for MEM; `MemtoReg`, `RegWrite` for WB.
+- **Control Implementation**: Set during ID, passed down with extended pipeline registers.
+## Data Hazards: Forwarding versus Stalling
+- **Data Hazards**: Instructions depend on the results of previous instructions.
+- **Forwarding**: Directly passes results to dependent instructions, reducing wait times.
+- **Stalling**: Inserts NOPs(no operation instructions) to wait for necessary data, used when forwarding is not feasible.
+- **Hazard Detection**: Identifies need for forwarding or stalling.
+	- Added multiplexors select between normal data flow and forwarded data.
+	- Control logic determines when and where to forward data or insert stalls.
+- **Load-Use Hazard**: Requires stalling due to immediate data dependency on load instruction.
+- **Branch Prediction**: Dynamically guesses the outcome of branches to maintain pipeline flow, significantly reducing stalls caused by control hazards.
+![[Pasted image 20240330202903.png|200]]![[branch prediction dynamic and static.png|200]]![[dynamic branch prediction.png|200]]
+## Exceptions
+![[exception handling data path.png|100]]![[exceptions and interrupts.png|100]]![[handling excpetions summery.png|100]]![[mips additions to hande exceptions.png|100]]![[handler actions.png|100]]![[exception in pipeline.png|100]]
+- **Exceptions in Pipelining**: Use EPC(Exception Program Counter) to save the offending instruction's address; transfer control to OS. Interrupt the flow.
+- **MIPS Handling**: Single entry point for exceptions at `8000 0180hex`. EPC and Cause register are key.
+- **Pipelined Handling**: Flush following instructions, treat them as nops, ensure correct flow with EPC and Cause register.
+- **Types**: Include arithmetic overflow, undefined instructions (internal), and I/O requests (external).
+- **Vectored Interrupts**: Handler address determined by the cause (instead of a fixed address for every exception)
+![[example of vectored interrupts.png|200]]![[multiple exceptions.png|200]]
+- **Implementation**: Flush pipeline on exceptions, save instruction address in EPC, record cause, OS takes action.
+- **Precise vs. Imprecise Interrupts(Just stop pipeline and save state, handler workout)**: MIPS supports precise, associating each interrupt with its instruction.
+- Exceptions: internal in processor, Interrupt: External
+## Parallelism via Instructions
+[What Is Instruction Level Parallelism (ILP)? - YouTube](https://www.youtube.com/watch?v=BWmljynuhYo)
+![[ILP.png|200]]![[vliw and superscalar.png|200]]![[vliw example.png|200]]
+![[risc vs vliw.png|200]]![[scheduling example.png|200]]![[superscalar example.png|200]]![[superscalar vs risc.png|200]]![[dynamic scheduling example.png|200]]![[dynamic scheduling flow.png|200]]
+- **ILP (Instruction-Level Parallelism)**
+- **Multiple Issue**: Execute multiple instructions per clock cycle; requires duplicating internal components.
+- **Static vs. Dynamic Issue**: Static (compiler decides which instructions issue together), dynamic (processor decides during execution).
+- **Speculation**: Guess the outcome of instructions to execute others that depend on them. Must handle wrong guesses.
+- **VLIW (Very Long Instruction Word)**: Compiler groups instructions into large "issue packets" for execution. (Fill instruction issue slots with NOPs if necessary)
+- **Dynamic Scheduling**: Processor reorders instruction execution to avoid stalls, using buffers like reservation stations and reorder buffers.
+	- **In a statically scheduled processor instructions start execution in program order while in a dynamically scheduled processor instructions can start execution out of order**.
+- **Superscalar Processors**: Issue multiple instructions per cycle dynamically; manage hazards and instruction flow in hardware.
+![[summary of ilp.png|200]]
+## Putting It All Together: The Intel Core i7 6700 and ARM Cortex-A53
+![[5 architecture types stack, accumulator register register memory and memory memory.png|200]]![[5 architectures example.png|200]]
+- **ARM Cortex-A53**: Dual-issue, 8-stage pipeline, uses branch prediction, ideal CPI of 0.5, stalls from hazards and cache misses.
+- **Intel Core i7 6700**: 14-stage pipeline, translates x86 to micro-ops, register renaming, aggressive branch prediction, six execution units, average CPI of 0.71, performance affected by branch mispredicts and cache misses.
+- arm v7 addressing modes checkout.
+## Going Faster: Instruction-Level Parallelism and Matrix Multiply
+- **DGEMM Optimization**: Loop unrolling and C intrinsics significantly boost DGEMM performance, leveraging AVX instructions for enhanced parallelism.
+- **Unrolling Impact**: Unrolling exposes more operations for parallel execution, nearly doubling DGEMM performance.
+- **Performance Gains**: Optimizations yield a 4.4x speedup over basic DGEMM, 4600x faster than Python.
+# Operating Systems, Multi-Issue,  Other Architectures
+- instruction can consist of multiple operation for instance for VLIW, one operation can be 32 bits -> an instruction has to be done fully.
+- reduce frequency -> operation takes longer -> good for power -> usually tend to increase. For energy doesn't change unless voltage changes.
+![[code logic recap.png|300]]
+## Parallelism and Computer Arithmetic: Subword Parallelism, Real Stuff: Streaming SIMD Extensions and Advanced Vector Extensions in x86, Going Faster: Subword Parallelism and Matrix Multiply
+- **Subword Parallelism**: Enhances performance by operating on multiple data elements within a single instruction, leveraging SIMD (Single Instruction, Multiple Data) capabilities for multimedia applications.
+- **NEON in ARM**: Offers over 100 instructions for subword parallelism, supporting various data sizes from 8-bit to 64-bit integers and 32-bit floating-point numbers, excluding 64-bit floating point.
+- **SSE/SSE2 in x86**: Introduced to handle multimedia tasks with operations on 128-bit data, later expanded with AVX to 256-bit and AVX512 to 512-bit registers, increasing parallelism for floating-point operations.
+- **DGEMM Optimization with AVX512**: Utilizes subword parallelism for significant speedup in matrix multiplication, showcasing the impact of SIMD extensions on computational efficiency.
+- **Performance Boost**: AVX implementation of DGEMM achieves a 7.5x speedup, closely approaching the theoretical 8x improvement expected from using parallel operations.
+## Introduction to Operating Systems
+- **Computer System Levels**:
+	- **Level 0**: Digital Logic/Gate Level
+	- **Level 1**: Microarchitecture (registers, ALU, datapath, control)
+	- **Level 2**: Instruction Set Architecture (ISA) - Hardware/software interface
+	- **Level 3**: Operating System - Adds system calls for easier programming
+	- **Level 4**: Assembly Language - Can make system calls; questionably a separate level
+	- **Level 5**: Problem-Oriented Language - High-level languages for application programming
+- **Key Concepts**:
+  - **OS Level**: Adds user-friendly system calls for tasks like file I/O.
+  - **Virtual Memory**: Extends with paging and segmentation.
+  - **Concurrent Processing**: Manages multiple processes simultaneously.
+  - **Process Synchronization**: Coordinates processes sharing data.
+  - **Threads**: Implements lightweight processes for efficient task management.
+## Virtual Memory
+[Difference Between Paging and Segmentation - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-paging-and-segmentation/)
+![[paging vs segmentation.png|200]]
+### Virtual Memory
+- **Paging**: Splits memory into fixed-size pages.
+- **Issue**: Can't easily handle growing/shrinking data.
+### Segmentation
+![[problem with segmentation.png|300]]
+- Allows dynamic growth/shrinkage of program parts.
+- **Segments**: Independent address spaces prevent overlap.
+- **Addressing**: Requires segment number + internal address.
+- **Benefits**:
+  - Supports dynamic data structures.
+  - Enables detailed access protection.
+  - Reduces memory for shared programs.
+### Implementation
+- 2 different ways to implement segmentation:
+	- **Swapping**: Entire segments stored contiguously in physical memory. Suffers from external fragmentation. 
+	-  **Paged Segmentation**: Divides segments into pages placed anywhere in memory. Combines paging benefits with segmentation flexibility.
+- **UNIX**: Uses single page table, divides space into text, data, and stack segments.
+### Key Concepts
+- Segmentation addresses paging limitations.
+- UNIX uses a simplified segmentation model.
+### Formulas
+- **Virtual Address** = Segment Number | Virtual Page Number | Page Offset
+- **Physical Address** = Physical Page Number + Page Offset
+## Concurrent Processing
+### Key Points
+- **Concurrent Processing**: Allows multiple programs to run simultaneously on a single-CPU system via time sharing.
+- OS can temporarily suspend the current process and let another process run. In this way, a higher degree of CPU utilization can be achieved. Operating systems that support this are often called **multiprogramming** systems.
+- **Linux Processes**:
+  - Created with `fork()`.
+  - New program execution via `execv()`.
+  - Communicate through pipes.
+### Process Management
+- **Scheduling**: Round Robin method assigns time quantum, cycles through processes.
+- **States**: Processes are in Running, Ready, or Waiting states.
+### Protection
+- **Mode Bit**: Separates user mode from system mode, controlling access to privileged instructions.
+- **Memory Protection**: Uses paging, restricting process access to own memory space.
+### Concepts
+- **Context Switch**: Saving and restoring process state for CPU handoff.
+- **Process Scheduler**: Algorithm that selects the next process for execution.
+## Process Synchronization
+### Concepts
+- Critical Section: Code accessing shared resources, requiring mutual exclusion.
+- Race Conditions: Unpredictable outcomes from concurrent access.
+### Solutions
+- **Disabling Interrupts**: Simple, not suitable for multi-CPU.
+- **Software Approaches**: 
+	- **Strict Alternation**: Uses `turn` variable, causing unnecessary waiting. 
+	- **Warning Flags**: Attempts to signal intent to enter critical section; can deadlock. 
+	- **Peterson's Algorithm**: Combines alternation and flags; guarantees mutual exclusion, progress, and fairness.
+- **Hardware Approaches:**
+	- **TSL (Test-And-Set Lock)**: Hardware solution for atomic access.
+### Semaphores
+[Semaphores - YouTube](https://www.youtube.com/watch?v=XDIOC2EY5JE)
+![[semaphore.png|300]]
+- Integer variable accessible only through atomic `wait` and `signal` operations.
+- **Usage**: Control access and order of process execution.
+- **Advantages**: Suitable for any number of processes, avoids busy waiting via process sleeping.
+- **mutex** a binary semaphore -> used in threads
+### Classical Problems
+- **Producer-Consumer**: Managed with semaphores for safe buffer access.
+- **Dining Philosophers**: Illustrates deadlock risk and strategies to avoid it.
+### Key Points
+- **Atomicity**: Essential for operations on shared resources.
+- **Semaphores**: Key tool for managing concurrent process interactions.
+## Threads
+![[thread example.png|300]]
+### Concepts
+- **Threads**: Execute concurrently in the same address space, enabling efficient communication and context switching.
+- switching from one thread to another can be much cheaper than switching between processes, because they do not need to be protected against each other.
+- Lightweight processes sharing the same address space.
+- Efficient context switching and inter-thread communication.
+### Key Functions
+- Creation, exit, synchronization (e.g., `pthread_create`, `pthread_exit`, `pthread_join`).
+### Features
+- Share data via global variables.
+- Use mutexes for mutual exclusion.
+### Implementation Highlights
+- Context includes program counter, stack pointer, base pointer.
+- `new_thread` initiates threads with specific function and stack size.
+- Context switching swaps stack pointers between threads.
+- Communication through channels, enabling synchronized exchanges.
+### Example: Sieve of Eratosthenes
+- Threads filter primes in a pipeline, dynamically creating new threads for new primes.
+### Efficiency
+- Threads offer a model for concurrent execution with minimal overhead, ideal for tasks requiring frequent interaction or shared data access.
