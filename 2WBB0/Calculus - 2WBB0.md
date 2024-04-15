@@ -273,7 +273,7 @@ to find an error of linear approximation: $\frac{f''(c)}{2}(x-x_{1})^2$ for cert
 
 $\sin(\arcsin(x))=x$ & $\arcsin(\sin(x))=x$ since $f(f^{-1}(x))=x$ & $f^{-1}(f(x))=x$ if -val then *answer still always positive*
 
-![[trig-inverse-stuff.png|400]]
+![[trig-inverse-stuff.png|400]]![[unit circle.png|200]]
 ![[trig funcs.png|300]]
 
 ![[inverse-rig-func-problem.png|300]]

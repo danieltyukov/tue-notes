@@ -609,6 +609,7 @@ you can bypass but at least one bubble is needed in between
 - **ARM Cortex-A53**: Dual-issue, 8-stage pipeline, uses branch prediction, ideal CPI of 0.5, stalls from hazards and cache misses.
 - **Intel Core i7 6700**: 14-stage pipeline, translates x86 to micro-ops, register renaming, aggressive branch prediction, six execution units, average CPI of 0.71, performance affected by branch mispredicts and cache misses.
 - arm v7 addressing modes checkout.
+- RISC is a load store architecture.
 ## Going Faster: Instruction-Level Parallelism and Matrix Multiply
 - **DGEMM Optimization**: Loop unrolling and C intrinsics significantly boost DGEMM performance, leveraging AVX instructions for enhanced parallelism.
 - **Unrolling Impact**: Unrolling exposes more operations for parallel execution, nearly doubling DGEMM performance.
@@ -618,12 +619,15 @@ you can bypass but at least one bubble is needed in between
 - reduce frequency -> operation takes longer -> good for power -> usually tend to increase. For energy doesn't change unless voltage changes.
 ![[code logic recap.png|300]]
 ## Parallelism and Computer Arithmetic: Subword Parallelism, Real Stuff: Streaming SIMD Extensions and Advanced Vector Extensions in x86, Going Faster: Subword Parallelism and Matrix Multiply
+![[x86 addressing modes.png|200]]![[x86 control example.png|200]]![[x86 instruction encoding.png|200]]
+x86 controll can be improved with funny loop
 - **Subword Parallelism**: Enhances performance by operating on multiple data elements within a single instruction, leveraging SIMD (Single Instruction, Multiple Data) capabilities for multimedia applications.
 - **NEON in ARM**: Offers over 100 instructions for subword parallelism, supporting various data sizes from 8-bit to 64-bit integers and 32-bit floating-point numbers, excluding 64-bit floating point.
 - **SSE/SSE2 in x86**: Introduced to handle multimedia tasks with operations on 128-bit data, later expanded with AVX to 256-bit and AVX512 to 512-bit registers, increasing parallelism for floating-point operations.
 - **DGEMM Optimization with AVX512**: Utilizes subword parallelism for significant speedup in matrix multiplication, showcasing the impact of SIMD extensions on computational efficiency.
 - **Performance Boost**: AVX implementation of DGEMM achieves a 7.5x speedup, closely approaching the theoretical 8x improvement expected from using parallel operations.
 ## Introduction to Operating Systems
+![[networking distribution systems.png|200]]![[time sharing process control block.png|200]]
 - **Computer System Levels**:
 	- **Level 0**: Digital Logic/Gate Level
 	- **Level 1**: Microarchitecture (registers, ALU, datapath, control)
@@ -637,6 +641,7 @@ you can bypass but at least one bubble is needed in between
   - **Concurrent Processing**: Manages multiple processes simultaneously.
   - **Process Synchronization**: Coordinates processes sharing data.
   - **Threads**: Implements lightweight processes for efficient task management.
+  - File management
 ## Virtual Memory
 [Difference Between Paging and Segmentation - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-paging-and-segmentation/)
 ![[paging vs segmentation.png|200]]
@@ -672,7 +677,9 @@ you can bypass but at least one bubble is needed in between
   - New program execution via `execv()`.
   - Communicate through pipes.
 ### Process Management
-- **Scheduling**: Round Robin method assigns time quantum, cycles through processes.
+![[round robin example.png|200]]
+- First come first serve, shortest job first
+- **Scheduling**: Round Robin method assigns time quantum, cycles through processes. Preemptive
 - **States**: Processes are in Running, Ready, or Waiting states.
 ### Protection
 - **Mode Bit**: Separates user mode from system mode, controlling access to privileged instructions.
@@ -682,9 +689,12 @@ you can bypass but at least one bubble is needed in between
 - **Process Scheduler**: Algorithm that selects the next process for execution.
 ## Process Synchronization
 ### Concepts
-- Critical Section: Code accessing shared resources, requiring mutual exclusion.
+- **Critical Section:** Code accessing shared resources, requiring mutual exclusion.
 - Race Conditions: Unpredictable outcomes from concurrent access.
+- `wait` for child to terminate
+![[sync process wait.png|200]]
 ### Solutions
+![[solutions to critical section problem.png|200]]
 - **Disabling Interrupts**: Simple, not suitable for multi-CPU.
 - **Software Approaches**: 
 	- **Strict Alternation**: Uses `turn` variable, causing unnecessary waiting. 
@@ -694,24 +704,28 @@ you can bypass but at least one bubble is needed in between
 	- **TSL (Test-And-Set Lock)**: Hardware solution for atomic access.
 ### Semaphores
 [Semaphores - YouTube](https://www.youtube.com/watch?v=XDIOC2EY5JE)
-![[semaphore.png|300]]
+![[semaphore.png|300]]![[example of semaphore.png|300]]
 - Integer variable accessible only through atomic `wait` and `signal` operations.
 - **Usage**: Control access and order of process execution.
 - **Advantages**: Suitable for any number of processes, avoids busy waiting via process sleeping.
 - **mutex** a binary semaphore -> used in threads
 ### Classical Problems
+![[producer consumer.png|200]]![[dining philosophers problem solution.png|200]]
 - **Producer-Consumer**: Managed with semaphores for safe buffer access.
-- **Dining Philosophers**: Illustrates deadlock risk and strategies to avoid it.
+- **Dining Philosophers**: Illustrates deadlock risk and strategies to avoid it. Avoid by picking up the fork **in increasing order**
 ### Key Points
 - **Atomicity**: Essential for operations on shared resources.
 - **Semaphores**: Key tool for managing concurrent process interactions.
 ## Threads
+[Difference between Process and Thread - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-process-and-thread/)
 ![[thread example.png|300]]
 ### Concepts
 - **Threads**: Execute concurrently in the same address space, enabling efficient communication and context switching.
 - switching from one thread to another can be much cheaper than switching between processes, because they do not need to be protected against each other.
 - Lightweight processes sharing the same address space.
 - Efficient context switching and inter-thread communication.
+  
+- **process vs thread:** **different processes cannot share the same memory space (code, variables, etc) whereas different threads in the same process share the same memory space**. Threads are lightweight whereas Processes are heavyweight.
 ### Key Functions
 - Creation, exit, synchronization (e.g., `pthread_create`, `pthread_exit`, `pthread_join`).
 ### Features
@@ -726,3 +740,283 @@ you can bypass but at least one bubble is needed in between
 - Threads filter primes in a pipeline, dynamically creating new threads for new primes.
 ### Efficiency
 - Threads offer a model for concurrent execution with minimal overhead, ideal for tasks requiring frequent interaction or shared data access.
+# Memory/JVM, Cache, I/O, Virtual Memory and SIMD (Memory Hierarchy)
+![[associative block example.png|300]]![[cache memory performance equation.png|300]]
+## Introduction to Large and Fast: Exploiting Memory Hierarchy
+![[memory hierarchy.png|200]]![[cache memory performance improvement.png|200]]
+### Principles of Locality
+- **Temporal**: Recently accessed data likely needed soon.
+- **Spatial**: Data near recently accessed data likely needed soon.
+### Memory Hierarchy Structure
+- Layers of memory vary by speed, size, cost.
+- Goal: Combine speed of fast memory with capacity and cost of slow memory.
+### Key Terms
+- **Block/Line**: Smallest data unit managed in hierarchy.
+- **Hit**: Data found in upper memory level.
+- **Miss**: Data not found, requiring lower level access.
+### Performance Measures
+- **Hit Time**: Time to access data in upper level.
+- **Miss Penalty**: Time to retrieve and place data from lower to upper level.
+### Impact
+- Memory hierarchies create the illusion of a large, fast memory system.
+- Efficient hierarchy usage demands understanding data locality principles.
+## Memory Technologies
+### Technologies
+- **SRAM**: Fast, expensive, used for caches. Access: 0.5-2.5 ns, Cost: $500-$1000/GiB.
+- **DRAM**: Slower, cheaper, main memory. Access: 50-70 ns, Cost: $3-$6/GiB.
+- **Flash**: Nonvolatile, secondary storage in devices. Access: 5-50 µs, Cost: $0.06-$0.12/GiB.
+- **Magnetic Disk**: High capacity, slowest. Access: 5-20 ms, Cost: $0.01-$0.02/GiB.
+### Key Points
+- SRAM and DRAM differ in speed, cost, and density.
+- Flash memory, nonvolatile with wear leveling, bridges gap between DRAM and disks.
+- Magnetic disks offer highest capacity at lowest cost but slowest access.
+### Performance vs. Cost
+- Faster memory = higher cost.
+- Hierarchies balance access speed with storage cost.
+## The Basics of Caches
+![[direct cache mapping.png|200]]![[cache memory behaviour.png|200]]![[cache operation flow.png|200]]
+![[cache size calculation.png|200]]![[mapping an address to a multiword cache block.png|200]]![[block organization.png|200]]
+
+![[set associative mapping example.png|400]]
+![[associative mapping example.png|400]]
+![[direct mapping example.png|400]]
+
+- **Cache**: Middleman between processor and main memory.
+- $\text{(Block address)modulo (Number of blocks in the cache)}$
+- **Direct Mapped**: One memory spot maps to one cache spot.
+- **Tags & Valid Bit**: Identify if data in cache matches request.
+- **Write Strategies**:
+  - **Write-Through**: Updates cache and memory simultaneously.
+  - **Write-Back**: Updates memory only when cache block replaced.
+### Access Steps
+1. **Address to Cache**: Checks if data is in cache.
+2. **Hit or Miss**: If miss, fetch from memory and refill cache.
+### Accessing a Cache 
+1. **Read Requests**: Simple; involve checking tag and valid bit. 
+2. **Write Requests**: More complex due to maintaining cache and memory consistency. Options include write-through and write-back strategies.
+### Intrinsity FastMATH Example
+- **16 KiB Instruction and Data Caches**: 16 words/block.
+- **Writes**: Can choose between write-through and write-back.
+- **Miss Rates**: Show how often data isn't found in cache.
+### Key Points
+- Larger cache blocks exploit spatial locality but increase miss penalty.
+- **Cache Blocks**: Larger blocks reduce miss rate but increase miss penalty.
+- **Memory Bandwidth**: Crucial for transferring large blocks efficiently.
+- **Write Buffer**: Mitigates stall times in write-through caches. (A queue that holds data while the data is waiting to be written to memory.)
+## Measuring and Improving Cache Performance
+- **CPU Time** = (CPU execution clock cycles + Memory - stall clock cycles) * Clock cycle time
+![[stall clock cycles.png|200]]![[cache performance.png|200]]
+### Multilevel Caches
+![[multilevel cache example.png|300]]![[multilevel cache example-1.png|300]]
+- **Secondary Cache**: Lowers miss penalty, improving speed significantly.
+- Multilevel caches create several complications. First, there are now several different types of misses and corresponding miss rates.
+### Associativity
+[Direct Memory Mapping - YouTube](https://www.youtube.com/watch?v=V_QS1HzJ8Bc)
+[Set Associative Mapping - YouTube](https://www.youtube.com/watch?v=KhAh6thw_TI)
+[Associative Mapping - YouTube](https://www.youtube.com/watch?v=uwnsMaH-iV0)
+![[associative vs direct mapping.png|300]]![[mapping comparison.png|300]]
+![[associative mapping.png|200]]![[associativity example.png|200]]
+- **Direct Mapped**: Single location per block.
+- **Fully Associative**: Any location per block. (searched in parallel - hardware cost)
+- **Set Associative**: n locations in a set per block.
+- Increases associativity → decreases miss rate but may increase hit time.
+### Replacement Policies
+- **LRU (Least Recently Used)**: Replaces oldest unused block.
+### Software Optimization
+- **Blocking**: Enhances cache efficiency by operating on submatrices fitting in cache.
+### Performance Measures
+- **AMAT** = Hit Time + (Miss Rate × Miss Penalty).
+- **Key**: Balance between reducing miss rate and penalty while considering hit time for overall performance.
+## Virtual Memory
+![[virtual memory flow.png|200]]![[virtual memory table behaviour.png|200]]![[page table calculations.png|200]]
+- **Virtual Memory (VM)**: Uses main memory as a cache for secondary storage, supporting process sharing and protection.
+- **Page**: Virtual memory block.
+- **Page Fault**: When an accessed page isn't in main memory.
+- **Page Table**: Maps virtual addresses to physical, stored in memory.
+- **TLB (Translation Lookaside Buffer)**: Cache for page table entries, speeds up address translation.
+- **Write-Back**: Used because disk writes are costly. Dirty bit tracks modified pages.
+- most important function of virtual memory today is to allow sharing of a single main memory by multiple processes, while providing memory protection among these processes and the operating system.
+### Operations
+![[TLB flow.png|200]]![[size of page table.png|200]]
+1. **Address Mapping**: Translates virtual to physical addresses via page table.
+2. **Page Fault Handling**: OS chooses a physical page to replace, writes it to disk if dirty, loads the requested page.
+3. **TLB Miss**: Handled by loading the missing translation from the page table.
+4. **Page Replacement**: OS uses strategies like LRU based on access patterns.
+### Protection
+- Ensured via page tables and TLB with permissions.
+- Separate page tables per process for isolation.
+### Performance
+- **Large Pages**: Can reduce faults but increase miss penalty. Variable sizes help optimize access.
+- **TLB Size/Miss Rate**: Critical for performance. High TLB miss rates can significantly impact performance.
+### Check Yourself Answers
+1. L1 cache - d. A cache for page table entries
+2. L2 cache - a. A cache for a cache
+3. Main memory - b. A cache for disks
+4. TLB - c. A cache for main memory
+![[SIMD concept.png|200]]
+[What is SIMD ? - YouTube](https://www.youtube.com/watch?v=YuUMCVX3UVE)
+vector processing
+## A Common Framework for Memory Hierarchy
+![[associativity summary.png|300]]
+- **Block Placement**: Direct-mapped, set-associative, fully associative. More associativity = lower miss rate but higher cost/time.
+- **Finding Blocks**: 
+  - Direct Mapped: 1 comp.
+  - Set Associative: Search within set.
+  - Fully Associative: Search all.
+- **Block Replacement**: Random or LRU. LRU is hard with high associativity, leading to approximations or random choice.
+- **Writes**: 
+  - **Write-Through**: Updates all levels, increases traffic.
+  - **Write-Back**: Updates on replacement, reduces traffic but complicates design.
+
+- **Three Cs Model**: 
+	- **Compulsory Misses**: First access, can't be in cache. 
+	- **Capacity Misses**: Cache too small to hold all data needed. 
+	- **Conflict Misses**: Multiple data compete for cache space; reduced by increasing associativity.
+### Key Points:
+- Trade-offs in every design choice: associativity vs. speed, capacity vs. access time.
+- Fully associative caches eliminate conflict misses.
+- Balance between associativity and capacity depends on use case.
+## Parallelism and Memory Hierarchy: Cache Coherence
+- **Cache Coherence Issue**: Simultaneous access to shared data can lead to inconsistencies across individual processor caches.
+- **Cache Coherence**: Ensures all processors see the same value for shared data to prevent inconsistencies.
+- **Coherence Definition**: 
+	1. **Reads after a write** by the same processor return the written value (preserves program order). 
+	2. **Reads after a write** by another processor return the written value if sufficiently separated in time and no other writes to the data occur between the accesses. 
+	3. **Writes serialization**: Writes to the same location by any processors are seen in the same order by all processors.
+- **Snooping**: Monitors shared medium to maintain coherence; invalidates or updates caches on writes.
+- **False Sharing**: Unrelated variables in the same cache block increase coherence traffic.
+- **Directory-Based Coherence**: Tracks shared data in a central directory for scalability.
+- **Consistency Models**: Dictate when updates to shared data become visible across processors.
+# MIMD/GPU, Deep Learning and Neural Processing Units, Operating Systems
+**A process is an instance of a program that is being executed or processed.** **Thread is a segment of a process or a lightweight process that is managed by the scheduler independently**.
+[Difference between Process and Thread - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-process-and-thread/)
+Check how to create an IPC and understand the code.
+condition code register: difference between x86 and amd.
+latency hiding.
+![[c to mips ex1.png|200]]![[gcd common divisor translate to mips.png|200]]![[answer to gcd 1.png|200]]![[answer to gcd 2.png|200]]![[answer to gcd 3.png|200]]![[summary.png|200]]
+## Introduction to Parallel Processors from Client to Cloud
+- Multiprocessors improve performance and efficiency.
+- Task-Level Parallelism: Different tasks on separate processors.
+- Parallel Processing Program: One program, multiple processors.
+- Clusters for high-demand tasks, (set of computers connected over a local area network that function as a single large multiprocessor.).
+- Multicore: Chips with multiple processors.
+- SMP(Shared Memory Processors): Processors share one memory space.
+- Goal: Easy, efficient parallel programming.
+- Software: Can be sequential or concurrent.
+- Hardware: Can be serial or parallel.
+- Efficiency critical for multicore use.
+## The Difficulty of Creating Parallel Processing Programs
+[Amdahl's Law - Georgia Tech - HPCA: Part 1 - YouTube](https://www.youtube.com/watch?v=BxH93LTSOFo)
+- **Parallel programming is harder** with more processors.
+- **Efficiency**: Must use multiple processors effectively.
+- **Challenges**: Task splitting, load balancing, sync, communication.
+- **Amdahl's Law**: Small sequential sections limit speed-up.
+### Strong vs. Weak Scaling
+![[strong vs weak scaling.png|300]]
+- **Strong Scaling**: Fixed problem size, harder.(Speed-up achieved on a multiprocessor without increasing the size of the problem)
+- **Weak Scaling**: Problem size grows with processors, easier but depends on memory fit.
+### Importance of Load Balancing
+- Unbalanced load drastically reduces speed-up.
+### Summary
+- Parallelism aims for high performance and energy efficiency.
+- **Strong scaling** limited by Amdahl's Law.
+- **Load balancing** crucial for utilization and speed-up.
+## SISD, MIMD, SIMD, SPMD, and Vector
+![[amdahl law.png|200]]![[amdahl example.png|200]]![[amdahl scaling example.png|200]]
+![[flynn model.png|200]]
+- **SISD**: Single Instruction stream, Single Data stream. Classic uniprocessor.
+- **MIMD**: Multiple Instruction streams, Multiple Data streams. Standard multiprocessor.
+- **SPMD**: Single Program, Multiple Data streams. Common MIMD programming model.
+- **SIMD**: Single Instruction stream, Multiple Data streams. Operations on vectors, like x86 AVX instructions. -> a vector architecture.
+- **Vector**: Uses pipelines or parallel units for vector operations, efficient for data-level parallelism.
+
+- SIMD and Vector are suited for data parallel tasks.
+- Vector architectures reduce instruction count and improve memory efficiency compared to scalar architectures.
+- Vector operations can handle different data sizes, supporting both contiguous and non-contiguous data access.
+- Modern processors incorporate SIMD for parallel data processing, but vector architectures offer broader capabilities with less instruction overhead.
+## Hardware Multithreading
+- **Hardware Multithreading**: Enhances processor use by running multiple threads on shared resources.
+- Multithreading types aim to maximize processor resource use.
+- **Thread includes the program counter, the register state, and the stack. It is a lightweight process; whereas threads commonly share a single address space, processes don’t.**
+- **Process includes one or more threads, the address space, and the operating system state. Hence, a process switch usually invokes the operating system, but not a thread switch.
+### Types
+![[multi threading types.png|300]]
+- **Fine-Grained**: Swaps threads each cycle to hide stalls.
+- **Coarse-Grained**: Switches threads on major stalls like cache misses.
+- **Simultaneous (SMT)**: Runs multiple threads per cycle, leveraging instruction-level parallelism for higher throughput.
+### Benefits
+![[smt.png|200]]
+- SMT notably improves performance and energy efficiency by filling idle slots with instructions from various threads, making it highly effective on modern processors. (effective in out of order execution OOT)
+## Multicore and Other Shared Memory Multiprocessors (SMP)
+![[shared memory.png|300]]![[sum reduction example.png|300]]
+- **SMP**: Offers a single physical address space for all processors, easing data access in parallel programming.
+- **SMP Types**:
+  - **UMA**: Uniform Memory Access.
+  - **NUMA**: Nonuniform Memory Access, variable access times based on processor-memory proximity.
+- **Synchronization**: Essential for parallel data access; typically managed via locks.
+- **Example**: Summing 64,000 numbers with 64 processors involves data partitioning and a reduction phase for the final sum.
+- **OpenMP**: An API for simplified parallel programming in shared memory environments. Use `cc –fopenmp foo.c` for C compilation.
+- **Key Points**:
+  - SMPs share a physical address space for easier parallel programming.
+  - Proper synchronization ensures data consistency across processors.
+  - OpenMP aids in loop parallelization and data reduction in SMPs.
+## Introduction to Graphics Processing Units
+![[gpu vs cpu.png|200]]![[gpu summary.png|200]]![[gpu warps.png|200]]
+![[thread diverge in warp.png|200]]
+- **GPUs vs CPUs**: GPUs focus on parallel processing for graphics; CPUs handle diverse tasks. GPUs use multithreading and high-bandwidth memory; CPUs use caches for memory efficiency.
+- PE - processing elements
+- **Memory**: GPUs optimize for bandwidth, relying on hardware multithreading to manage memory latency. CPUs use hierarchical caching for latency management.
+- **Architecture**: GPUs are built for massive parallelism with many threads and processors. CPUs balance between core performance and multitasking efficiency.
+- **Programming**: CUDA and OpenCL enable GPGPU, allowing GPUs to perform general computing tasks beyond graphics.
+- **Differences**:
+  - GPUs use hardware multithreading extensively.
+  - GPUs' memory system is designed for high throughput over low latency.
+  - Architecturally, GPUs are MIMD with multithreaded SIMD processors.
+- **Use Cases**: GPUs are preferred for tasks requiring high parallelism like graphics, gaming, and some computing tasks. CPUs are versatile, suitable for a wide range of applications.
+Biggest difference is that GPUs do not rely on multilevel caches to overcome the long latency to memory, as do CPUs. Instead, GPUs rely on hardware multithreading to hide the latency to memory.
+## Introduction to Multiprocessor Network Topologies
+![[network characteristics.png|200]]
+- **Costs**: Determined by switches, links, and their lengths.
+- **Performance**: Measured by latency, throughput, and how contention affects traffic.
+### Key Topologies
+- **Ring**: Connects nodes in a loop. Efficient for simultaneous transfers but requires message hopping.
+- **Fully Connected**: Direct connection between all nodes. Offers high performance but is expensive.
+### Bandwidth Concepts
+- **Total Bandwidth**: Product of link bandwidth and the number of links.
+- **Bisection Bandwidth**: Minimum bandwidth when the network is split into two equal parts. Indicates worst-case performance.
+### Popular Designs
+- **Multistage**: Uses switches at nodes for denser, more efficient communication.
+- **Boolean n-cube & Crossbar**: Support efficient, though potentially costly, direct communication paths between nodes.
+- **Omega**: Lower hardware need but susceptible to message contention.
+### Practical Aspects
+- **Link Distance**: Longer links increase costs and reduce performance.
+- **Physical Mapping & Energy**: Real-world constraints and energy efficiency critically influence topology choice.
+## Real Stuff: Benchmarking the Google TPUv3 Supercomputer and an NVIDIA Volta GPU Cluster
+![[roofline diagram.png|200]]
+optimixation depends on arithmetic intensity.
+- **DNN Phases**: Forward propagation, back-propagation, weight updates.
+- **TPUv3 Features**:
+  - **Inter-Core Interconnect (ICI)** for chip communication.
+  - **High Bandwidth Memory (HBM)** for faster data access.
+  - **Dual-Core with Matrix Multiply Unit (MXU)** for DNN calculations.
+  - **bf16 Arithmetic Format** optimized for DNN precision and performance.
+- **Architecture Comparison**:
+  - TPUv3: Multichip parallelization, bf16 arithmetic, software-controlled memories.
+  - NVIDIA Volta: fp16 arithmetic, hardware-managed memory, requires software for loss scaling.
+- **Costs**: TPUv3 shows lower costs and higher energy efficiency than NVIDIA Volta.
+- **Performance**:
+  - Comparable on benchmarks; TPUv3 excels in Google's production DNN applications.
+  - TPUv3 achieves near-linear scaling and superior energy efficiency in supercomputing tasks.
+### Summary
+- TPUv3 is tailored for DNN training, offering efficient computation, scalability, and energy use. It stands out in handling complex DNN models, showing cost and performance advantages over traditional GPUs.
+## Going Faster: Multiple Processors and Matrix Multiply
+- **Optimization**: Added OpenMP pragma to parallelize DGEMM.
+- **Core Usage**: Utilized 48 cores.
+- **Performance**:
+  - Small matrices: Performance decreases with more threads.
+  - Large matrices: Up to 17x speedup with 48 threads.
+- **Improvements**:
+  - Original C version: 2 GFLOPS.
+  - Optimized version (960x960): 308 GFLOPS.
+  - Speedup from C to optimized: ~150x.
+  - Speedup from Python to optimized C: ~50,000x.
