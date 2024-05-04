@@ -1,4 +1,8 @@
 ![[course perspective.png]]
+POWERS ALWAYS IN DBM
+CONVERSIONS BETWEEN W AND DB ALWAYS NOT DBM
+ADDITION IN DB = MULTIPLICATION IN W -> same for div/sub
+snr = dB
 # Orthogonal basis and the Fourier transform/series
 ## Orthogonal Basis
 $orthogonal:u \cdot v=0$; if each vector in set $length:|v|=1\implies orthonormal$
@@ -24,16 +28,7 @@ $a_n = \frac{1}{L} \int_{-L}^{L} f(t) \cdot \cos\left(\frac{n\pi t}{L}\right) dt
 
 $b_n = \frac{1}{L} \int_{-L}^{L} f(t) \cdot \sin\left(\frac{n\pi t}{L}\right) dt$
 
-- Time Shift (time): $x(t - t_0) \xleftrightarrow{\mathcal{F}} e^{-j2\pi f t_0}X(f)$
-- Frequency Shift (time): $e^{j2\pi f_0t}x(t) \xleftrightarrow{\mathcal{F}} X(f - f_0)$
-- Time Scaling (time): $x(at) \xleftrightarrow{\mathcal{F}} \frac{1}{|a|}X\left(\frac{f}{a}\right)$
-- Frequency Scaling (freq): $x\left(\frac{t}{a}\right) \xleftrightarrow{\mathcal{F}} |a|X(af)$
-- Time Reversal (time): $x(-t) \xleftrightarrow{\mathcal{F}} X^*(-f)$
-- Frequency Reversal (freq): $X(-f) \xleftrightarrow{\mathcal{F}} x(-t)$
-- Convolution Theorem (time): $x(t) * y(t) \xleftrightarrow{\mathcal{F}} X(f) \cdot Y(f)$
-- Multiplication in Time (time): $x(t) \cdot h(t) \xleftrightarrow{\mathcal{F}} X(f) * H(f)$
-- Differentiation in Time (time): $\frac{d}{dt}x(t) \xleftrightarrow{\mathcal{F}} (j2\pi f)X(f)$
-- Integration in Time (time): $\int_{-\infty}^{t} x(\tau)d\tau \xleftrightarrow{\mathcal{F}} \frac{X(f)}{j2\pi f} + \pi X(0)\delta(f)$
+![[Fourier Transformations.png|300]]![[5ETA0/attachments/fourier transform pairs.png|300]]
 
 - Gibbs phenomenon: Overshoot constant with increased bandwidth.
 - Fourier coefficients: Represent magnitude and phase of sine/cosine components in a Fourier series.
@@ -78,6 +73,7 @@ $s(t)$-->LPF(low-pass-filter) $H(\omega)$![[low pass filter signal.png|100]]-->$
 ![[low pass filter applied on the sample signal.png|400]]
 $\omega_{m}\leq \omega_{c}\leq \omega_{s}-\omega_{m}$
 $m(t)=\sum^\infty_{n=-\infty}m_{n} \frac{\sin\left( \pi f_{s}\left[ \frac{n}{f_{s}} \right] \right)}{\pi f_{s}\left[ t-\left( \frac{n}{f_{s}} \right) \right]}$
+$\omega_{m}=\text{always }B_{analog}$
 # Sampling Methods (Pulse Amplitude Modulation)
 ## Gating (natural sampling)
 - **Natural Sampling Summary**:
@@ -86,7 +82,7 @@ $m(t)=\sum^\infty_{n=-\infty}m_{n} \frac{\sin\left( \pi f_{s}\left[ \frac{n}{f_{
   - **Clock**: Duty cycle $d=f_{s}\tau$.
   - **Signal Representation**: $w_{s}(t)=h(t) * [w(t) \sum \delta(t - kT_s)]$; $h(t)=\Pi(\frac{t}{\tau})$.
   - **Fourier Series**: $W_{s}(f)=d\sum\sin c(nd)W(f-nf_{s})$.
-  - **Absolute Null Bandwidth**: First zero at $f=1/\tau$. (first position at which spectrum not repeated).
+  - **Absolute Null Bandwidth**: First zero at $f=1/\tau$. (first position at which spectrum not repeated). $B_{null}=\frac{1}{lT_{b}}=\frac{R}{l}$
   - **Key Metrics**: Bandwidth $f=1/\tau$; Sampling frequency $f_{s}=1/T_{s}$; Duty cycle $d=\tau/T_{s}$.
   - $\sin(nd)=\sin c(n\tau f)=\sin c\left( n\tau  \frac{1}{T_{s}} \right)=\sin\left( \frac{n}{3} \right)$
 $sinc(x)=\frac{\sin(x)}{x}\implies \text{ limit ratio as both approach 0 l'hopital the ratio is one. (keep in mind sinc pulse)}$
@@ -125,7 +121,7 @@ PCM involves converting an analog signal into a digital one through sampling, qu
 not mentioned in the reader: $SNR_{input}=\frac{P_{signal}}{P_{noise}}=\frac{P}{N_{O}\cdot n\cdot f_{s}}=\frac{SNR_{analog}}{\text{Bandwidth ratio}}=Q=\sqrt{ SNR_{in} }=SNR_{old} \cdot n_{ratio}$
 $n \uparrow\to SNR_{in}\downarrow\to P_{e}\uparrow\to SNR_{out}\downarrow\left( \text{only when }P_{e} \approx \frac{M^2}{10} \right)$
 
-- $P_{noise}=P_{noise/khz}[W] \cdot f_{s}[KHz,2*B_{ana\log}]$ 
+- $P_{noise}=P_{noise/khz}[W] \cdot f_{s}[KHz,2*B_{ana\log}]$ same but addition in in dBm and dB
 - $SNR_{in}=P_{Rx[\text{include KE}]}[dBm]-P_{noise[from quantizing]}[dB]$
 
 - **Quantization Noise**: Caused by rounding errors in M-step quantizer.
@@ -183,7 +179,9 @@ Multi-level signaling sends more than one bit per symbol, enabling higher data r
     - Bits per level ($l$) refer to the line coding stage, indicating how many bits are represented by each level in a multi-level signaling scheme.
     ![[bits per sample vs bits per level.png|300]]
 ## Baud-rate (or Symbol rate)
-- **Baud Rate ($D$)**: $D(\text{symbols/sec}) = \frac{N}{T_0}=B \cdot \eta \text{ null bandwidth}$, where $N$ is dimensions, $T_0$ is time per dimension. Number of symbols transmitted per second. $D\leq 2B \text{ it can only become worse, higher bandwidth, (2 is sinc) nyquest criteria}$
+- **Baud Rate ($D$)**: $D(\text{symbols/sec}) = \frac{N}{T_0}=B \cdot \eta \text{ null bandwidth}=\frac{1}{T_{s}}=\frac{R}{l}$, where $N$ is dimensions, $T_0$ is time per dimension. Number of symbols transmitted per second.
+- $T_{s}=lT_{b}$ also $R=\frac{n}{T_{s}}=\frac{l}{T_{s}}$
+$D\leq 2B \text{ it can only become worse, higher bandwidth, (2 is sinc) nyquest criteria}$
 - Each symbol can represent or convey one or several bits of data.
 - $\eta=\frac{R}{B}$ or $\eta=\frac{D}{B}$
 
@@ -193,11 +191,12 @@ Multi-level signaling sends more than one bit per symbol, enabling higher data r
 - **Channel Capacity (bps):** $C=2B\log_{2}(L)$
 ![[multilevel transmission.png|300]]
 - **Bandwidth ($B$)**: $B \geq \frac{1}{2}D$. Minimum bandwidth achieved with sinc pulses.
-- Dimensionality theorem states the number of orthogonal dimensions $N_D = 2BT_0$, with $B$ as bandwidth and $T_0$ as time period.
+- Dimensionality theorem states the number of orthogonal dimensions $N_D = 2BT_0$, with $B$ as bandwidth and $T_0$ as time period.`
 - Relationship between bandwidth $B$ and baud rate $D$: $D = \frac{N}{T_0} \leq \frac{N_D}{T_0} = 2B$.
 - **Baseline wander:** occurs when the signal has a strong Low Frequency component, together with AC coupling in the system.
 # Linecodes and their spectras
 ## Power spectral density (PSD)
+![[direct method for power spectral density.png|200]]![[autocorrelation function and PSD.png|200]]![[wiener khintchine.png|200]]![[autocorrelation psd example.png|200]]![[psd multilevel signals.png|200]]
 https://www.youtube.com/watch?v=DoSLMEEo1Y0
 - **PSD** analyzes signal power across frequencies, akin to an audio EQ.
 - **Autocorrelation Function**: Correlation of a signal with its delayed version. Crucial for PSD.
@@ -206,6 +205,7 @@ https://www.youtube.com/watch?v=DoSLMEEo1Y0
 - **sharp peak in PSD -> DC component**
 ## Linecode Types
 The RZ (Return to Zero) signal transmission of a logic "1" will always begin at zero and end at zero. Whereas NRZ (Non Return to Zero) signal transmission of a logic "1" may or may not begin at zero and end at zero.
+![[nrz vs rz.png|400]]
 ### Unipolar NRZ
 - Uses one power level for "1" and ground for "0".
 - **PSD**: Includes a DC component. Formula: $P_{\text{unipolarNRZ}}(f) = \frac{A^2}{T_b} \sin c^2(fT_b) \left[1 + \frac{1}{T_b}\delta(f)\right]$.
@@ -325,7 +325,7 @@ SEE INSTRUCTION 8 AND 9
 - Double-sideband suppressed-carrier transmission (DSB-SC) is transmission in which frequencies produced by amplitude modulation (AM) are symmetrically spaced above and below the carrier frequency and the carrier level is reduced to the lowest practical level, ideally being completely suppressed.
 ![[dsbsc advantage.png|200]]![[dsbsc modulator.png|200]]![[signal modulation.png|200]]
 ## Detector circuits
-![[product detector.png|200]]![[modulation appendix.png|200]]![[dsb-sc summary.png|200]]
+![[product detector.png|200]]![[modulation appendix.png|200]]![[dsb-sc summary.png|200]]![[detector types.png|200]]
 - **Detector Circuits:** Decode information from waveform; crucial for demodulation.
 - **Envelope Detector:** Simple, passive devices; ideal for AM signals with positive modulation under 100%.
 - **Drawbacks:** Fails with negative modulation >100%; not suitable for all modulation types.
@@ -374,6 +374,7 @@ Represents signal in the frequency domain, where the spectrum is a sum of Bessel
 - **AM Modulation:** Uses carrier signal amplitude to encode information, extracted by an envelope detector for modulation percentages < 100%.
 - **DSB-SC:** Lacks a carrier, encoding information in the amplitude variations around the carrier frequency, requiring a product detector for demodulation.
 ![[product detector-2.png|200]]![[modulated signal.png|200]]
+![[5ETA0/attachments/noncoherent detection.png|200]]![[coherent product detector.png|200]]
 # The Physical channel
 ## Wired and wireless comparison
 - radio frequency (RF) wireless channel, wired optical fiber channel

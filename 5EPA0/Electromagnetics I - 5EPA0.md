@@ -1,14 +1,23 @@
 Gauss Divergence Theorem: https://www.youtube.com/watch?v=zZqxbwl3Dno | https://www.youtube.com/watch?v=pY4t-ikhzhU
 Stokes Theorem: https://www.youtube.com/watch?v=0UvNF_cfBJ4
-Boundary Conditions (normal and tangential components): https://www.youtube.com/watch?v=_FS6csrxBPU
-									https://www.youtube.com/watch?v=vlNUGyDzJ90
-									https://www.youtube.com/watch?app=desktop&v=MPzdh9ZshLI
+
+Boundary Conditions (normal and tangential components): 
+https://www.youtube.com/watch?v=_FS6csrxBPU
+https://www.youtube.com/watch?v=vlNUGyDzJ90
+[Tangential Magnetic Field Boundary Conditions](https://www.youtube.com/watch?v=BMUz8AjYzOc)
+[Normal Magnetic Field Boundary Conditions](https://www.youtube.com/watch?v=7NdMcBmjpuo)
+
+https://www.youtube.com/watch?app=desktop&v=MPzdh9ZshLI
+
 Lorentz Force: https://www.youtube.com/watch?v=grgNdIYP6zI
 Hall Effect: https://www.youtube.com/watch?v=1OZCWetFCps
 Lenz Law: https://www.youtube.com/watch?v=u7Rg0TcHQ4Y
 Maxwell Equations: https://www.youtube.com/watch?v=hJD8ywGrXks
 Motional & Transformer EMF: https://www.youtube.com/watch?v=Xi_wZ1IYLo8
 flux: https://www.youtube.com/watch?v=m1PPujngqAw
+[Electromagnetic Wave Equation in Free Space](https://www.youtube.com/watch?v=GMmhSext9Q8&t=1s)
+[What Is a Plane Wave?](https://www.youtube.com/watch?v=ES2WFevGM0g)
+[Here's What Maxwell's Equations ACTUALLY Mean.](https://www.youtube.com/watch?v=XAKAlNH9dDw)
 # Course Material
 
 >**Mathematical tools:** 
@@ -17,7 +26,7 @@ flux: https://www.youtube.com/watch?v=m1PPujngqAw
 >	– Gradient, divergence, Gauss’s theorem 
 >	– Coordinate systems (cartesian, cylindrical, spherical)
 >	 
->**Electrostatics:** 
+>**Electrostaticsf:** 
 >	– Electrostatic fields, Coulomb, Superposition, Gauss’s law 
 >	– Work and electric (scalar) potential 
 >	– Capacitance, dielectric materials 
@@ -44,6 +53,20 @@ flux: https://www.youtube.com/watch?v=m1PPujngqAw
 >	– Poynting’s theorem
 
 # Mathematical Tools
+
+![[phasor form.png|200]]![[polar to phasor.png|150]]
+![[fourier transform properties.png|200]]![[5EPB0/attachments/fourier transform pairs.png|200]]
+![[unit vector cross product.png|200]]
+
+### Vector calculations for EM shapes
+- Dot product: cos
+- Cross product: sin
+- So think if things are parallel or perpendicular to each other in the plane, if its 0 or 1
+- take into account the direction for negative/positive
+- For angles clockwise -> positive
+- $a \times b$ means a is thumb and b is point finger, middle finger is the output vector you get the + or -
+
+![[some examples for vector cals.png|400]]
 
 >[!NOTE] GEOMETRY
 >Cylinder: Area: $2\pi (r+h)$ Volume: $\pi r^2h$
@@ -90,13 +113,14 @@ $\mid A \times B \mid=\mid A\mid\mid B\mid \sin(\psi)$
 $E=\frac{V}{length}$
 
 $Q=\int_{-x}^{x} \rho(x) \, dx$
-$F=\frac{Qq}{4\epsilon_{0}r^2 }a_{r}\implies E=\frac{F}{Q}$
+$\text{COULOMB LAW: }F=\frac{Qq}{4\epsilon_{0}r^2 }a_{r}\implies E=\frac{F}{Q}$
 ![[electro-field.png|300]]
 $\int \frac{1}{(x^2+d^2)^{3/2}} \, dx=\frac{x}{d^2\sqrt{ x^2+d^2 }}+C$
 $\int_{0}^{2\pi} a_{\rho}(\phi) \, d\phi=\int_{0}^{2\pi} \cos \phi a_{x}+\sin \phi a_{y} \, d\phi=0$
 
 - Total flux going through a closed surface = total charge inside that surface
 - Gauss's law for electricity states that **the electric flux Φ across any closed surface is proportional to the net electric charge Q enclosed by the surface**
+- $Q=\rho V$
 
 Electric flux density $D=\epsilon_{0}E=\frac{Q}{4\pi r^2}a_{r}$
 
@@ -117,7 +141,7 @@ $dS=a_ndA$
 >	For $\nabla \cdot A=0$ flux in= flux out of volume -> if not enclosing any charge
 >	$\int \int D \, \, dS=Q_{encl}=\int \int \int \rho_{V} \,  \,  \, dV=\int \int \int \nabla \cdot D \,  \,  \, dV$
 >	
->$\nabla A$ Gradient
+>$\nabla \cdot A$ Gradient
 >$\nabla \times A$ Curl
 
 >[!NOTE] Work Done
@@ -150,9 +174,27 @@ $W=-Q\int_{P_{1}}^{P_{2}} E(r) \, dl=-Q\int_{t_{1}}^{t_{2}} E(r(t)) \, \frac{dr(
 field in return. Beware that the definition of the gradient operator is dependent
 on the coordinate system. A common mistake is to forget the additional constants $\frac{1}{\rho}$ in cylindrical or $\frac{1}{r}$ and $\frac{1}{r\sin \theta}$ in spherical coordinate systems!**
 
+
+How are Kirchhoff's current law (KCL) and Ampère-Maxwell's law (AML) related?
+**AML reduces to KCL when quasi-static conditions are assumed.**
+
+**Under quasi-static conditions, the assumption is that the fields and currents change sufficiently slowly so that the dynamic effects (like displacement currents) are negligible, thereby simplifying AML to essentially KCL.**
+
 ![[electrostatic-potential-energy.png|300]]
 
-![[boundary-conditions.png|300]]
+cross product: tangential
+dot product: normal
+**Electric flux density for dielectrics**: $D=\epsilon E$ $\epsilon=\epsilon_{r}\epsilon_{0}\implies B=\mu H$
+$\text{electric|magnetic flux densities}=D|B$
+$\nabla \times E=-\frac{\delta B}{\delta t}-K$ Faraday-Henry Law
+$\nabla \times H=\frac{\delta D}{\delta t}+J$ Ampere-Maxwell Law
+$E:\text{electric field}$
+$H:\text{magnetic fieldz}$
+$F=q(E+v \times B)$
+**Uniform electric field accelerates a charge, while a uniform magnetic field makes keeps charge constant**
+![[lorentz law-1.png|400]]
+![[maxwell summary.png|400]]
+![[electromagnetic wave.png|400]]
 
 >[!NOTE] Capacitance
 >capacitance for point charge: $C=\frac{Q}{V}=4\pi \epsilon_{0}r$ self capacitance
@@ -161,11 +203,8 @@ on the coordinate system. A common mistake is to forget the additional constants
 >$C=\frac{\epsilon_{0}\epsilon_{r}A}{d}$
 
 ![[parallel-plate-capacitor.png|300]]
-- **If an exercise mentions a (perfect) conductor, you should immediately remember two things: (1) there cannot exist an electric field inside the conductor, and (2) all free charges accumulate at the boundary of the conductor.**
->PEC MATERIAL: $D-inside=E-inside=0$ => Gaussian Surface outside object
-- **If an exercise mentions a (perfect) dielectric, you should remember that (1) there cannot exist free charges inside the dielectric and that (2) the surface charge density at the border of the dielectric $\rho_{S}=0$**
 
-![[boundary-conditions.jpg|500]]
+
 ![[dielctric-capacitance.png|400]]
 
 >[!NOTE] Poisson/Laplace
@@ -189,13 +228,13 @@ on the coordinate system. A common mistake is to forget the additional constants
 $q \cdot \vec{v}=I$
 # Magnetostatics
 
-**The magnetic field H might be thought of as the magnetic field produced by the flow of current in wires and the magnetic field B as the total magnetic field including also the contribution M made by the magnetic properties of the materials in the field.**
+**The magnetic field H might be thought of as the magnetic field produced by the flow of current in wires and the magnetic field B as the total magnetic field including also the contribution M made b OP for Live Preview. You can also use Minimal Theme which includes the snippet bundled in, and is kept up to date for new versions of Obsidian.y the magnetic properties of the materials in the field.**
 
 ![[biot-savart-law.png|300]]
 ![[Screenshot from 2023-10-17 22-00-53.png|300]]
 
 Ampere law easier: use when symmetry | like Gauss Law
-Biot-Savart law: general | like Coloumb law
+Biot-Savart law: general | like Coulomb law
 
 $\vec{r}$ observation point $\vec{r'}$ source of field
 
@@ -219,15 +258,29 @@ $\vec{r}$ observation point $\vec{r'}$ source of field
 ![[magnetic-force-on-charge-distribution.png|300]]
 ![[polar-magn.png|300]]
 
+The magnetic field H might be thought of as the magnetic field produced by the flow of current in wires and the magnetic field B as the total magnetic field including also the contribution M made by the magnetic properties of the materials in the field.
+
+Magnetic permeability is the realitive strength of a magnetic field that a material can achieve. Electric permittivity is the realitive ease with which an electric field propagates through a material.
+**permittivity: opposition** against electric field
+**permeability: easiness** magnetic flux to pass when applied by external magnetic field
+![[electric permiativity.png|300]]
+
+- **If an exercise mentions a (perfect) conductor, you should immediately remember two things: (1) there cannot exist an electric field inside the conductor, and (2) all free charges accumulate at the boundary of the conductor.**
+>PEC MATERIAL: $D-inside=E-inside=0$ => Gaussian Surface outside object
+- **If an exercise mentions a (perfect) dielectric, you should remember that (1) there cannot exist free charges inside the dielectric and that (2) the surface charge density at the border of the dielectric $\rho_{S}=0$**
+![[boundary-conditions.jpg|500]]
+
 - **When an electrical conductor carrying a current is located in a magnetic field perpendicular to that current, a voltage difference will be generated across the conductor in a direction perpendicular to both the current and the magnetic field. This is called the Hall effect.**
 
+![[boundary-conditions.png|300]]
 ![[boundary-cond-magn.png|300]]
 
+![[dielectrical boundary conditions.png|300]]
+![[boundary conditions adjacent to perfect conductor.png|400]]
+[Boundary conditions for electromagnetic fields](https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_and_Applications_(Staelin)/02%3A_Introduction_to_Electrodynamics/2.06%3A_Boundary_conditions_for_electromagnetic_fields)
 The dot product boundary condition: Normal, while the cross product is the tangential fox exmaple:
 ![[tangential-component.png|800]]
 ![[normal-component.png|800]]
-
-
 >[!NOTE] Magnetic Flux Density
 >$\phi=\int \int \vec{B} \cdot \, \, d\vec{S}$
 >if normal component of flux density is constant across surface: $\phi=BS$
@@ -242,6 +295,7 @@ The dot product boundary condition: Normal, while the cross product is the tange
 
 **Lenz's Law: The direction of the induced current is such as to oppose the very cause producing it**
 
+$J$ and $K$ electric and magnetic current densities
 ![[maxwell-1.png|400]]
 ![[maxwell-vaccum.png|400]]
 ![[maxwell-2.png|400]]
@@ -264,7 +318,10 @@ The dot product boundary condition: Normal, while the cross product is the tange
 > $\vec{J}=\frac{\vec{I}}{A}$
 > $Iencl=J\times \pi \rho^2$
 
-**Electric flux density for dielectrics**: $D=\epsilon E$ $\epsilon=\epsilon_{r}\epsilon_{0}$
+**Electric flux density for dielectrics**: $D=\epsilon E$ $\epsilon=\epsilon_{r}\epsilon_{0}\implies B=\mu H$
+$\text{electric|magnetic flux densities}=D|B$
+$\nabla \times E=-\frac{\delta B}{\delta t}-K$ Fraday-Hnery Law
+$\nabla \times H=\frac{\delta D}{\delta t}+J$ Apere-Maxwell Law
 
 ![[faraday-staionary-loop.png|290]] ![[waves-maxwell.png|290]]
 
@@ -285,3 +342,24 @@ $I_{encl}=IN$ N number of turns in coil
 $J=\frac{I}{A}$
 
 **Example, if you wanted to find the volume of a cylindrical shell with inner radius R1​ and outer radius R2​, you might integrate dr from R1​ to R2​, and then integrate dz for the height of the shell.**
+
+# Extra notes due to EM2
+- hollow metal sphere; neutral; small negative charge on surface; -> will distribute veenly over surface. if out of insulating material charge stays where it is.
+![[newton laws.png|200]]
+- negative positive attraction
+- there is equal magnitude where 2 things act on each other
+- positive charge; uniform electric field; -> constant acceleration
+- electric potential energy: energy of opposition
+- in uniform field force on particles is same but not zero, same for work done
+- $f=qvb\sin(\theta)=q(\vec{v}\times \vec{B})$ force by magnetic field on a charge 
+![[fleming hand rule.png|300]]![[right hand rule.png|300]]![[right hand rule motion.png|300]]![[electromagnetic induces current.png|200]]
+
+- [Electromagnetic wave equation](https://en.wikipedia.org/wiki/Electromagnetic_wave_equation)
+![[electromagnetic wave equation.png|200]]
+
+Kirchoff and Maxwell law relation:
+![[maxwell laws.png|200]]![[kirchoff maxwell relation.png|300]]
+$\mu_{0}\text{ and }\epsilon_{0}\to0$ then $\text{faraday law: }\nabla \times E=0$ and $\text{ampere law: }\nabla \times H=J$
+as long as $l\ll \lambda$
+
+An electric field 'points' from a high to a lower voltage. So, if the potential voltage difference is positive, and the distance is as well, the field is negative, and thus points in the direction of the lower voltage (to the left in our case).
