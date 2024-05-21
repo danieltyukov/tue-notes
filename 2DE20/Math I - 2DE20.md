@@ -2,6 +2,7 @@ Recommended: [3b1b](https://www.3blue1brown.com/topics/linear-algebra)
 
 ## 2DE20
 $(ABC)^T = C^T B^T A^T$
+![[matrix inverse.png]]
 ![[Pasted image 20230213220426.png]]
 ![[rref.jpg|500]]
 

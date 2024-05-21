@@ -82,7 +82,11 @@ $\omega_{m}=\text{always }B_{analog}$
   - **Clock**: Duty cycle $d=f_{s}\tau$.
   - **Signal Representation**: $w_{s}(t)=h(t) * [w(t) \sum \delta(t - kT_s)]$; $h(t)=\Pi(\frac{t}{\tau})$.
   - **Fourier Series**: $W_{s}(f)=d\sum\sin c(nd)W(f-nf_{s})$.
-  - **Absolute Null Bandwidth**: First zero at $f=1/\tau$. (first position at which spectrum not repeated). $B_{null}=\frac{1}{lT_{b}}=\frac{R}{l}$
+  - **Absolute Null Bandwidth**: First zero at $f=1/\tau$. (first position at which spectrum not repeated). $B_{nulltonull}={2R}$
+
+The Fourier transform of a PN code produces a line spectrum for which the magnitude is confined by a sinc function. The first null of the sinc function occurs at frequency equivalent to the bit rate of the PN code. For example, a bit rate of 10 MBits/s translates to a frequency at the first null of 10 Mhz. Since the magnitude of the spectrum is symmetrical around DC, the null-to-null bandwidth is twice the bit rate - 20 MHz.
+[Definitions - ITS](https://its.ntia.gov/research-topics/radio-propagation-data/rcirms/definitions)
+
   - **Key Metrics**: Bandwidth $f=1/\tau$; Sampling frequency $f_{s}=1/T_{s}$; Duty cycle $d=\tau/T_{s}$.
   - $\sin(nd)=\sin c(n\tau f)=\sin c\left( n\tau  \frac{1}{T_{s}} \right)=\sin\left( \frac{n}{3} \right)$
 $sinc(x)=\frac{\sin(x)}{x}\implies \text{ limit ratio as both approach 0 l'hopital the ratio is one. (keep in mind sinc pulse)}$
@@ -182,7 +186,7 @@ Multi-level signaling sends more than one bit per symbol, enabling higher data r
 - **Baud Rate ($D$)**: $D(\text{symbols/sec}) = \frac{N}{T_0}=B \cdot \eta \text{ null bandwidth}=\frac{1}{T_{s}}=\frac{R}{l}$, where $N$ is dimensions, $T_0$ is time per dimension. Number of symbols transmitted per second.
 - $T_{s}=lT_{b}$ also $R=\frac{n}{T_{s}}=\frac{l}{T_{s}}$
 $D\leq 2B \text{ it can only become worse, higher bandwidth, (2 is sinc) nyquest criteria}$
-- Each symbol can represent or convey one or several bits of data.
+- Each symbol can represent or/ convey one or several bits of data.
 - $\eta=\frac{R}{B}$ or $\eta=\frac{D}{B}$
 
 - **Bit Rate ($R$)**: $R = lD = D\log_2(L) = \frac{N}{T_0}\log_2(L) = \frac{n}{T_0}$ [bits/s], with $L$ levels, $D$ baud rate. One symbol can represent multiple bits.
@@ -314,6 +318,7 @@ SEE INSTRUCTION 8 AND 9
 ## DSB-SC - Double-Sideband Supressed Carrier - type of AM modulation
 [Introduction to Amplitude Modulation | Double Side Band Suppressed (DSB-SC) Carrier Explained - YouTube](https://www.youtube.com/watch?v=3wBlB-TFwkQ)
 [Double-sideband suppressed-carrier transmission - Wikipedia](https://en.wikipedia.org/wiki/Double-sideband_suppressed-carrier_transmission#:~:text=Double-sideband%20suppressed-carrier%20transmission%20(DSB-SC),level%2C%20ideally%20being%20completely%20suppressed.)
+[Sideband - Wikipedia](https://en.wikipedia.org/wiki/Sideband)
 ![[dsbsc.png|200]]
 - **Signal Representation:** $s(t) = A_{c} \cdot m(t) \cdot cos(\omega_ct)=\frac{A_{c}}{2}m(t)(e^{j\omega_{c}t}+e^{-j\omega_{c}t})$.
 - **Envelope and Carrier:** $g(t) = A_{c} \cdot m(t)$.

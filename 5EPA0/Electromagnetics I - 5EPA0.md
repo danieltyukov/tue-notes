@@ -18,40 +18,6 @@ flux: https://www.youtube.com/watch?v=m1PPujngqAw
 [Electromagnetic Wave Equation in Free Space](https://www.youtube.com/watch?v=GMmhSext9Q8&t=1s)
 [What Is a Plane Wave?](https://www.youtube.com/watch?v=ES2WFevGM0g)
 [Here's What Maxwell's Equations ACTUALLY Mean.](https://www.youtube.com/watch?v=XAKAlNH9dDw)
-# Course Material
-
->**Mathematical tools:** 
->	– Vector calculus 
->	– Line integrals, surface and volume integrals 
->	– Gradient, divergence, Gauss’s theorem 
->	– Coordinate systems (cartesian, cylindrical, spherical)
->	 
->**Electrostaticsf:** 
->	– Electrostatic fields, Coulomb, Superposition, Gauss’s law 
->	– Work and electric (scalar) potential 
->	– Capacitance, dielectric materials 
->	– Laplace and Poisson equations 
->	– Energy 
->	– Finite difference method for electrostatics (Poisson, Laplace) 
->
->**Magnetostatics:** 
->	– Rotation (curl), Stokes’ theorem 
->	– Current, current density, magnetic flux density and Ampére’s law 
->	– Vector potential and Biot-Savart 
->	– Lorentz force – Magnetic fields and magnetic materials 
->	– Inductance (self, mutual) 
->	– Boundary conditions 
->
->**Time-dependent fields and waves:** 
->	– Faraday
->	– Lenz’s law 
->	– Continuity equation, displacement current 
->	– Maxwell’s equations in differential and integral form 
->	– Maxwell’s equations in frequency domain, phasors 
->	– One-dimensional waves, plane waves (time domain and time harmonic), free space impedance 
->	– Skin effect 
->	– Poynting’s theorem
-
 # Mathematical Tools
 
 ![[phasor form.png|200]]![[polar to phasor.png|150]]
