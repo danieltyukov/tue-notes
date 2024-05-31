@@ -189,3 +189,5 @@ $V_{0}^+=f(t)\cos(\omega_{0}t)$ where $\omega_{0}$ carrier wave angular frequenc
 ![[14lambda transformer.png|400]]
 
 # Stuff Missed During Midterm
+# Plane waves in arbitrary directions - reflection and refraction at planar interfaces
+$kx-\omega t$

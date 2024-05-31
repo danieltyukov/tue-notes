@@ -7,6 +7,9 @@
 [[Intro to Telecommunication - 5ETA0#Linecodes and their spectras]]
 ### Bandpass Systems
 #### Binary Modulation
+[On–off keying - Wikipedia](https://en.wikipedia.org/wiki/On%E2%80%93off_keying)
+[Phase-shift keying - Wikipedia](https://en.wikipedia.org/wiki/Phase-shift_keying)
+[Frequency-shift keying - Wikipedia](https://en.wikipedia.org/wiki/Frequency-shift_keying)
 [Passband Modulation](https://en.wikipedia.org/wiki/Passband)
 [Understanding Amplitude Shift Keying - YouTube](https://www.youtube.com/watch?v=eJ5m0Sbr2qw)
 [Understanding Frequency Shift Keying - YouTube](https://www.youtube.com/watch?v=ogJB5fiQ9kM)
@@ -44,6 +47,8 @@ $\beta=\frac{\Delta F}{B}\to B=R\text{ so }B_{T}=2(\beta+1)B$
 cosine roll-off: $r=\frac{f_{\Delta}}{f_{0}}\text{ so }B=f_{0}(1+r)\text{ where there is zeros at: }t=\frac{n}{2f_{0}}\text{ for no ISI }D_{max}=2f_{0}$
 $\text{envelope decay: }\frac{1}{|t|^3}$ and $\text{sinc pulse: }r=0\text{ where } \frac{1}{2}f_{0}$
 $f_{0}=\frac{R}{2}$
+
+![[raised cosine roll off filtering.png|300]]
 
 ![[fsk signal-1.png|200]]![[fsk signal-2.png|200]]![[fsk spectra.png|200]]
 ##### Binary Modulation
@@ -85,7 +90,10 @@ QPSK: More bandwidth efficient than BPSK but requires more decision points than 
 #### Orthogonal Frequency Division Multiplexing (OFDM)
 [OFDM Waveforms - YouTube](https://www.youtube.com/watch?v=F6B4Kyj2rLw&list=PLx7-Q20A1VYIvtMUWX3yd_sQGbQx1qPGP)
 [Orthogonal frequency-division multiplexing - Wikipedia](https://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing)
+[OFDM Network Optimization Using a QPSK Based on a Wind-Driven Genetic Algorithm - PMC](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9415329/#:~:text=QPSK%20is%20one%20of%20the,can%20undergo%20numerous%20phase%20changes.)
 higher spectral efficiency than spread spectrum (other double sideband modulation schemes).
+OFDM uses QPSK as a modulation scheme
+used for wideband transmission
 [Sideband - Wikipedia](https://en.wikipedia.org/wiki/Sideband)
 ![[OFDM waveforms.png|400]]
 to fill more channels in the bandwidth
@@ -102,10 +110,100 @@ null to null oduble that
 > In adaptive Bit-loading **the number of bits that can be transmitted in each subcarrier is determined by the SNR on the subcarrier**. According to Shannon's theorem we should be able to get more bps/Hz using subcarriers that have higher SNR. Data rate can be varied per carrier.
 
 ![[OFDM digital signal processing.png|300]]
+
+$\text{relation between carrier specing, bandwidth, num of carriers: }B=N\Delta f=N \frac{1}{T}$
+$T=NT_{s}\text{where T is OFDM symbol duration and }T_{s}\text{is the input signal duration}$
+$IFFT:\text{each subarrier needs IFFT sample: }N_{IFFT}\geq N$
+
+![[OFDM example.png|400]]
+$\text{actual usable BW: }95MHz\to30kHz\text{ spacing}\to30kHz \cdot3168=95.04MHz$
+$\text{12 subarriers per PRB that can fit in available spectrum: }12 \cdot 30kHz=360kHz/PRB$
+$95MHz/360kHz/PRB=263.888PRBs\to263\text{ active PRBs}$
+![[OFDM max data rate.png|300]]
 #### Spread Spectrum Systems
 [Spread spectrum - Wikipedia](https://en.wikipedia.org/wiki/Spread_spectrum)
+spreading the signal over a large frequency band.
+use bandwidth maintaining signal power: good for military low signal transmission.
+![[principle idea of narrowband.png|300]]
+
+**Spread spectrum systems:** 
+**Direct sequence (DSSS):** rapid phase transition to the data to make it larger in bandwidth. (noise like signal masking).
+[DSSS - Direct Sequence Spread Spectrum - YouTube](https://www.youtube.com/watch?v=-1mxYWvfVWQ)
+**Frequency Hopping (FHSS):** narrow band signal jump in random narrow bands within a larger bandwidth. (doesn't spread spectrum). Hops around the band to avoid jammers(random noise targeted to specific band).
+[FHSS - Frequency Hopping Spread Spectrum - YouTube](https://www.youtube.com/watch?v=CkhA7s5GIGc)
+![[DSSS circuits.png|300]]![[FSSS.png|300]]
+$FSK:m(t)=\cos\{\omega_{c}t+\theta(t)\}$
+### Bit Error Rate performance (BER)
+![[receiving signals.png|300]]![[q and error functions.png|300]]
+$N(0,\sigma^2)+jN(0,\sigma^2)\text{ with }\sigma^2=\frac{N_{0}}{2}$
+Gaussian probability of error occurring.
+![[BER.png|400]]
+![[BER Threshold.png|200]]![[BER matched filter.png|200]]![[example of binary signaling ber.png|200]]
+**matched filter reception:** $P_{e}=Q\left( \sqrt{ \frac{E_{d}}{2N_{0}} } \right)$ used to evaluate binary signaling schemes where matched filter reception is used.
+![[coherent detection of bandpass digital signals.png|300]]![[coherent detection QPSK.png|300]]
+
+
+**NON-COHERENT DETECTION**
+![[OOK non coherent error detction.png|200]]![[FSK non coherent detection FSK.png|200]]![[non coherent detection PSK.png|200]]
+
+**Union Bounds:** serves as upper bound to error probability with complex modulation with multiple alternatives, since we cant calculate the exact symbol error rate.
+![[BER union bound.png|200]]![[BER multilevel signals.png|200]]
+![[BER for sifferent signaling methods.png|400]]
 
 ## Wireless networks
+#### 1. Introduction to Wireless Networks
+- Wireless networks are crucial for mobile communication, which is integral to daily life.
+- Mobile applications dominate internet usage, requiring efficient wireless networks to support large numbers of subscribers.
+#### 2. Antennas
+- **Isotropic Radiator:** Theoretical antenna radiating equally in all directions.
+- **Radiation Pattern:** Graphical representation of antenna radiation, measured as a two-dimensional cross-section.
+- **Beam Width:** Measure of directivity of an antenna.
+- **Sidelobes and Nulls:** Extra energy outside the main lobe and very low energy between the main lobe and sidelobes respectively.
+- **Antenna Power Density (Isotropic)**: $P_{density}=\frac{P_{tx}}{4\pi d^2}\text{ where }P_{tx}\text{ is the transmitted power, and }d\text{ is the distance from the antenna}$
+- $G=\frac{4\pi A}{\lambda^2}$ Antenna Gain multiply it $P_{density}$ for directional antennas.
+- **MIMO**: Utilizes multiple antennas at both transmitter and receiver to enhance data rates, spectral efficiency, and link robustness, implemented in standards like IEEE 802.11n, LTE, and 5G through techniques like beamforming, spatial multiplexing, and diversity coding​​.
+#### 3. Wireless Signal Propagation
+- **Propagation in Free Space:** Similar to light, follows a straight line.
+- **Path Loss in Vacuum:** $Power \propto \frac{1}{d^2}$
+- **Factors Affecting Propagation:**
+    - **Fading:** Frequency-dependent variation in signal strength.
+    - **Shadowing:** Signal blockage by large obstacles.
+    - **Reflection, Refraction, Scattering, Diffraction:** Various interactions with obstacles.
+#### 4. Multipath Propagation
+- **Multipath Effects:** Signal takes multiple paths due to reflection, scattering, diffraction, leading to temporal dispersion and inter-symbol interference (ISI).
+#### 5. Modulation Techniques
+- **Digital Modulation Formats:** Techniques like QAM, PSK used to transmit data over wireless channels.
+- **Adaptive Modulation and Coding (AMC):** Dynamically adjusts to channel conditions for optimal performance.
+#### 6. Multiple Access Methods
+- **Frequency Division Multiplexing (FDM):** Division of the frequency spectrum into channels.
+- **Time Division Multiplexing (TDM):** Allocation of time slots to users.
+- **Code Division Multiple Access (CDMA):** Spreading signal across a wide frequency range using unique codes. (implemented using DSSS).
+- **Space Division Multiple Access (SDMA):** Segments space into sectors using directed antennas and a cell structure to enhance capacity per square kilometer by allowing only one terminal to be active in each cell or sector at a time​​.
+- **Time and Frequency Division Multiplexing (TFDM)**: A combination of Time Division Multiplexing (TDM) and Frequency Division Multiplexing (FDM), where a channel gets a certain frequency band for a certain amount of time, providing better protection against tapping and frequency-selective interference, but requires precise coordination (e.g., used in GSM, Bluetooth).
+- **Polarization Division Multiplexing (PDM)**: Each channel has a unique polarization (e.g., vertical vs. horizontal, right vs. left circular). It increases bandwidth by doubling it in systems like satellite TV and microwave links, but can suffer from cross-polarization interference where one polarization leaks into another.
+![[antenna received power.png|300]]![[cooper law.png|300]]
+![[cellular principle.png|300]]![[capacity increase strategies.png|300]]
+- High frequency for capacity 
+- Low frequency for IoT and ultrareliable communications
+
+cellular networks: LTE(4G), eMBB(5G)
+
+Multiple access & scheduling - ALOHA protocol
+[ALOHAnet - Wikipedia](https://en.wikipedia.org/wiki/ALOHAnet)
+![[aloha example.png|200]]
+
+Distributed Coordination Function (DCF) • Also known as CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance)
+
+![[pico and scatternets.png|300]]
+
+Local and Personal Area Networks • WLAN (IEEE 802.11x) • Bluetooth, Zigbee, etc.
+
+Advanced wireless techniques and networks • Radio-over-fibre • Optical wireless communication
+
+![[centralized radio access networks.png|300]]
+analog and digital beamforming
+
+
 # MAC Technologies and Fixed Networks
 ## Medium Access
 ### Basics of MAC Strategies
@@ -149,13 +247,74 @@ $\text{probability user wait more than t sec: } Pr(\text{wait time >t})=Pr(\text
 $\text{channels per cell: } \frac{channels}{cells}$
 $\text{direct formula erlang-b}=\rho_{b}=\frac{\rho}{\text{total channels N}}=\text{eg: } \frac{\ln 0.03}{250}$
 ![[application of erlanf-b.png|300]]
+
+Total Call Duration (hours): Traffic Load: $\frac{\text{Total call duration (seconds)}}{\text{Duration of Observation period (seconds)}}=Erlangs$
+
+$\text{percentage of calls dropped}=\left( \frac{\text{Num of rejected calls (no channels)}}{\text{Total num of call requests}} \right) \cdot100$
 ### FDMA (/ SCMA and WDMA in fibre networks)
 [Frequency Division Multiple Access (FDMA) Techniques](https://www.geeksforgeeks.org/frequency-division-multiple-access-fdma-techniques/)
 [Channelization Protocols](https://www.youtube.com/watch?v=KviHyRss-dE)
+[Frequency-division multiple access - Wikipedia](https://en.wikipedia.org/wiki/Frequency-division_multiple_access)
 ![[fdma summary.png|300]]![[uplink downlink exmaple.png|300]]
 Frequency Division Duplex: FDD: to communicate between stations
 **The communication going from a satellite to ground is called downlink, and when it is going from ground to a satellite it is called uplink**
 $\text{reuse frequencies: }M(\text{min dist freq reuse})=\frac{N(\text{chan avail})}{k(\text{group of chan to cell})}$
+
+**cellular concept:** divide coverage areas into many subareas
+![[example of cellular division.png|300]]![[visual show of cluster size to coverage.png|150]]
+total area is inversely proportional to the size of the cluster.
+
+![[channel calculation.png|200]]![[channel calculation-2.png|200]]![[channel grapphing.png|200]]
+$\text{Frequency reuse factor} = \frac{1}{M}$
+**Hexagonal cell network formula:**  $M = i^2 + ij + j^2$
+$\text{Total system capacity} = \left( \frac{\text{Total area}}{\text{Cluster area}} \right) \times \text{Total channels}$
+$\text{Cluster area} = k \times \text{Area per cell}$
+$\text{Number of clusters} = \frac{\text{Total area}}{\text{Cluster area}}$
+$\text{System capacity} = \left( \frac{2100 \, \text{km}^2}{42 \, \text{km}^2} \right) \times 1001$
+**Cluster size and channels per cell:** $k = \frac{N}{M}$
+**Co-channel reuse ratio (Q):** $Q = (3M)^{\frac{1}{2}}$
+$P_{rx}=P_{tx}(d/d_{0})^{-n}$
+
+
+![[cluster size and signal quality.png|200]]![[cell capacity.png|200]]![[CI ratio vs cluster size.png|200]]
+![[traffic load and call blocking probability.png|300]]![[traffic load and call blocking probability-1.png|300]]
+
+$E=\lambda_{total} \cdot h\text{ where }\lambda \text{ arrival rate (num calls per hour) and }h\text{ avg call duration in hours}$
+$\lambda=\frac{\text{requests per hour }(\lambda_{total})}{users}$
+
+![[TDMA vs MAC technique.png|200]]![[adv disadv fdma.png|200]]![[improve fdma for higher data rates.png|200]]
+### TDMA
+[Time-division multiple access - Wikipedia](https://en.wikipedia.org/wiki/Time-division_multiple_access)
+Shares single carrier frequency with multiple users
+Less power control than CDMA, but more flexible than FDMA
+Time-division multiple access (TDMA) is a channel access method for shared-medium networks. It allows several users to share the same frequency channel by dividing the signal into different time slots. The users transmit in rapid succession, one after the other, each using its own time slot.
+![[TDMA sharing medium.png|300]]
+required Time Division Duplex TDD.
+$\text{number of carriers in a cell cluster}=\frac{B_{system}-B_{guard}}{B_{channel}}\to carriers$
+$\text{users/cell}=\frac{carriers}{\text{cells in cluster}}$
+$\text{trunking efficiency}=\eta_{T}=\frac{\text{Traffic in Erlang}}{Number of Channels} \cdot100\text{ TE increases as num of channel per cell increase, num of cells per cluster determine TE}$
+![[trunking effiency.png|200]]
+$\text{num of simultaneous users each call cluster}=\text{duplex carriers} \cdot \text{slots fit in channel}$
+$\text{num cells}=\text{covered area} / \text{area per cell}$
+$\text{num carriers per cell}=\text{total num carriers}/\text{num cells per cluster}$
+$\text{num channels per cell}=\text{num of time slots per carrier} \cdot \text{num carriers per cells}$
+now we can calculate trunking efficiency
+
+$\text{avg user density}=\text{num users per cell}/\text{cell area}$
+### CDMA
+[Code-division multiple access - Wikipedia](https://en.wikipedia.org/wiki/Code-division_multiple_access)
+allows several users to share a band of frequencies.
+it uses spread spectrum mentioned before. Using spread spectrum or spectrum hopping
+$\text{spreading factor}\to G=\frac{W}{R}\text{ transmission bandwidth W and information bandwidth R(data rate)}$
+faster hopping -> less probability jammer would interact with your frequency
+![[direct sequence.png|300]]![[direct sequence against interferer.png|300]]
+and vice versa if the jammer is spread
+interference power of jamming signal reduced with processing gain: $G=\frac{R_{c}}{R_{b}}$
+![[slow and fast FHSS multiple access.png|300]]
+
+$\text{to accomodate max certain amount of users: } \frac{E_{b}}{I_{0}}=\frac{NP}{N_{0}+(K-1)P}=\dots dB$
+$\text{max num of users: }K=\frac{N}{E_{b}/I_{0}}-\frac{1}{P/N_{0}}+1$
+where power per chip: $P$ and bandwidth: $N$
 ## Wired networks
 # Internetworking and Transport Reliability
 ## Networking
@@ -187,4 +346,6 @@ The link layer, built upon the physical layer, specifies the protocols for sendi
 [Difference Datagram Switching & Virtual Circuit](https://www.geeksforgeeks.org/difference-between-datagram-switching-virtual-circuit/#:~:text=Datagram%20packet%20switching%20is%20a,no%20need%20to%20reserve%20resources.)
 [Network bridge](https://en.wikipedia.org/wiki/Network_bridge)
 See GE.1C for bridging flow (Ethernet Briding and Bridging with Loops)
+
 ## Reliable communications
+### Spanning Trees
