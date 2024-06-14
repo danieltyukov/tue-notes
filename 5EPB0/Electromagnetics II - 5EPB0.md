@@ -188,6 +188,217 @@ $V_{0}^+=f(t)\cos(\omega_{0}t)$ where $\omega_{0}$ carrier wave angular frequenc
 ![[deriving impedance based on transfer func.png|300]]![[solving the impedance matching.png|300]]
 ![[14lambda transformer.png|400]]
 
-# Stuff Missed During Midterm
 # Plane waves in arbitrary directions - reflection and refraction at planar interfaces
-$kx-\omega t$
+## Plane Waves II
+[Wavenumber - Wikipedia](https://en.wikipedia.org/wiki/Wavenumber)
+$(\nabla ^2+k^2)\vec{E}=\vec{0} \text{ Wave Equation}$
+wavenumber, refers to **the spatial frequency of a wave over a specific unit distance**.
+A wave number is related to but different from frequency, which is temporal in nature.
+
+Elementary plane wave (EPW): General Solution:
+$E=A\exp(-jkz)+B\exp(jkz)$
+$H=\frac{1}{Z}[(a_{z} \times A)\exp(-jkz)-(a_{z} \times B)\exp(jkz)]$
+**wave number:** $k=\omega \sqrt{ \epsilon \mu }=\frac{2\pi}{\lambda}=\frac{\omega}{c}$ where $c$ is **speed of propagation**
+**wave impedance:** $Z=\sqrt{ \mu /\epsilon}$
+
+![[helmholtz equation.png|300]]
+
+**$\vec{E}=\vec{A} e^{-jkz}e^{-j\omega t}$ propagation in space and time... !!!**
+$\omega=\frac{2\pi}{T}$ and $\lambda f=c=\frac{1}{\sqrt{ \epsilon \mu }}$ and $\text{ dispersion relation: }\omega=ck$ !!!
+dispersion diagram but here we only use the real propagation coefficient so $\lambda=\frac{2\pi}{\beta}\text{ not complex, no attenuation}$
+$k_{0}=\frac{\omega}{c}\text{rad/s}\to k_{0}z=k_{0}\lambda=2\pi\to \lambda =\frac{2\pi}{k_{0}}\text{(free space)}$
+![[relation between frequency and k.png|300]]
+
+**three types of waves:**
+the wave number $k$ is, in general, a complex number: $k=-j\alpha+\beta$
+1. $\alpha=0,k=\beta:\text{ }E^+=A\exp(-j\beta z)\text{ travelling wave(normal)}$
+2. $k=-j\alpha+\beta: \text{ }E^+=A\exp(-\alpha z-j\beta z)\text{ attenuating travelling wave(amplitude decays)}$
+3. $\beta=0,k=-j\alpha: \text{ }E^+=A\exp(-\alpha z)\text{ evanescent wave(energy stored not transfered)}$
+
+**wave polarization:**
+- Wave polarization: time-dependent orientation of the E-field vector at a fixed point in space.
+- For instance, in case of a travelling wave in the (**depends on direction**) $+z-\text{direction}: E=A\exp(-jkz)\text{ with }A=E_{x}a_{x}+E_{y}a_{y}=E_{x0}e^{j\phi x}a_{x}+E_{y0}e^{j\phi y}a_{y}$
+- $E\text{ is magnitude}$
+![[linear polarization.png|200]]![[circular polarization.png|200]]![[elliptical polarization.png|200]]
+if the the phase difference is not $\frac{\pi}{2}$ between 2 components then elliptical
+![[eliptical example.png|300]]
+$\text{positive z propagation linear polarization eg: }E_{s}=(E_{x0}a_{x}+E_{y0}a_{y})e^{-az}e^{-j\beta z}$
+
+
+$\text{1d wave: Plane Wave: }\vec{E}=\vec{A}e^{-jkz}$
+$\text{plane: }\vec{n} \cdot(\vec{r}-\vec{r_{0}})=0\text{ so }kz+\omega t=0\text{ is a plane}$
+$\text{plane: } a_{x}+b_{y}+c_{z}+d=0$
+what is plane in a plane wave: surface of constant amplitude, surface of constant phase... (for most common plane waves these 2 are the same plane).
+![[plane defintion.png|200]]![[plane in any direction.png|200]]![[definition of k.png|200]]
+
+
+**plane waves in arbitrary directions:**
+EPW with arbitrary direction:
+$\text{General expression for an EPW: }E=A\exp(-j\vec{k} \cdot \vec{r})$
+$\text{with wave vector: }\vec{k}=k_{x}a_{x}+k_{y}a_{y}+k_{z}a_{z}$
+!!! WAVE VECTOR AND WAVENUMBER DIFFERENT
+
+$\nabla \times(VA)\equiv \nabla V \times A+V\nabla \times A$ **curl identity applied below:**
+$\text{curl: }rotE=\nabla \exp(-j\vec{k}z \cdot \vec{r}) \times A+\exp(-j\vec{k} \cdot \vec{r})\nabla \times A=-j\vec{k} \times E=-j\omega \mu H\implies \text{faraday law}$
+$\text{maxwell equations become algebraic: }\vec{k} \times E=\omega \mu H\text{ and }\vec{k} \times H=-\omega \epsilon E$
+![[summary of H and E.png|300]]
+
+**EPW: conditions for A and k**
+$\text{first condition: }\vec{k} \cdot E=-\frac{1}{\omega \epsilon}\vec{k} \cdot(\vec{k} \times H)=0\to \vec{k} \cdot A=0$
+$\text{second condition: }\vec{k} \times(\vec{k} \times E)=$$$ \begin{cases} \omega \mu(\vec{k} \times H)=-\omega^2\epsilon \mu E\\ (\vec{k} \cdot E)\vec{k}-(\vec{k} \cdot \vec{k})E=-(\vec{k} \cdot \vec{k})E \end{cases} $$
+$\text{this leads to dispersion relation: }\vec{k} \cdot \vec{k}=\omega^2\epsilon \mu=k^2$
+![[A and k conditions.png|300]]
+
+for the 2nd one in the array this identity was used: $A \times(B \times C)\equiv(A \cdot C)B-(A \cdot B)C$
+
+### Converting From E to H
+$E(r,t)=10\exp(j(4\pi \times10^6t-4\pi \times10^{-2}z))a_{x}$
+Based on format: **$\vec{E}=\vec{A} e^{-jkz}e^{-j\omega t}$
+$\mu=\mu_{0}=4\pi \times10^{-7}$
+$\vec{k}\times \vec{E}=\omega \mu \vec{H}$
+$\vec{H}(\vec{r},t)=\vec{H}(\vec{z},t)\to \text{ omit } e^{j\omega t}$
+$\vec{H}=\frac{1}{\omega \mu}\vec{k}\times \vec{E}\text{ where }\vec{k}=k\vec{a_{z}}$
+$\vec{H}=\frac{10}{\omega \mu}ke^{-jkz}(\vec{a_{z}}\times \vec{a_{x}})=\frac{10}{\omega \mu}ke^{-jkz}\vec{a_{y}}$
+$\text{time avgd power density: }\vec{S_{h}}=\frac{1}{2}Re\{\vec{E} \times \vec{H^*}\}=\frac{10^2}{2} \frac{k}{\mu \omega}\vec{a_{z}}$
+
+## Reflection and Refraction
+**only flat discontinuity is considered...**
+**boundary conditions essential... are solutions to integral form Maxwell equations**
+**Boundary Conditions:**
+$\rho_{s}\text{ and } \vec{J_{s}}\text{ are accumulations on infinetly thin surface}$
+![[difference between J and Js.png|300]]
+$\vec{0}\text{ because square }0\text{ because cylinder}$
+![[boundary conditions-3.png|400]]
+- only tangential component of electric field at the surface...
+- while magnetic tangential field can be discontinuous as it can induce current at the surface which compensates for it...
+- normal of electric field can be discontinuous as charges that accumulate at the surface can compensate for it...
+- while normal for the magnetic field is continuous: magnetic field in = magnetic field out... one of the Maxwell definitions...
+- **for BC keep in mind sign change based on how you choose normal...**
+
+
+![[normal incidence.png|300]]![[configuration of boundary conditions at an angle.png|300]]
+
+
+**oblique incidence medium 1:**
+![[visual understanding of oblique incidence.png|300]]![[no x component in this situation.png|300]]
+- **no fields in PEC(metallic surface)...**
+- tangential components near metals vanish...
+- $E^+\text{ incident }E^-\text{ reflective wave}$
+- $\vec{k}\text{ wave vector while }k\text{ is wave number}$
+- the reason we dont use the 2 boundary condition which equal $\rho \text{ or }\vec{J}$ is because we dont know those components on PEC...
+- For $x$ component since its normal to surface compared to $y\text{ and }z$ its conditions are the opposite...
+- **normal** component of **wave vector** **reflects** (not tangential), **tangential** component of **electric field** **reflects** not the normal one...
+![[oblique incidence.png|300]]![[oblique incidence medium 1.png|300]]
+![[proof of boundary functions.png|400]]
+
+
+![[s polarization visual.png|300]]![[s polarization.png|300]]
+![[analysis of the plane wave reflections.png|300]]
+$E_{1}=a_{y}E_{y10}^+[\exp(-jk_{x1}^+x-jk_{z1}z)\text{(incident)}-\exp(jk_{x1}^\pm -jkz_{z1}^+z)\text{(reflection)}]$
+$E_{1}=E^++E^-$
+**for H think of right hand rule: middle: k, thumb: E, pointing: H**
+>[!NOTE] Deriving Polar Formulas
+>$e^{ix}=\cos(x)+i\sin(x)$ : Euler Formula
+>$e^{-ix}=\cos(x)-i\sin (x)$
+>$-$ for sine: $\sin(x)=\frac{e^{ix}-e^{-ix}}{2i}$
+>$+$ for cosine: $\cos(x)=\frac{e^{ix}+e^{-ix}}{2}$
+
+
+- standing waves are obtained by superposition of plane waves when they are in certain shape...
+- **fourth type of wave:**
+4. $\alpha=0,k=\beta:\text{ }E=A\sin(\beta z)\text{ Waves of the type sin(kz), cos(kz) are known as standing waves and do not propagate energy.}$
+
+
+![[power flow density.png|300]]![[power density visual.png|300]]
+- traveling power wave everywhere in the x direction...
+- at boundary power is 0 then it grows and then again 0
+- the circled thing is distructive interference example if you are near car that could impact your fm radio...
+
+
+**Wave guide:** Conducting plates at $x = 0 \text{ and } x = −d$, lossless medium
+Additional **boundary condition:** $a_{x}\times E_{1}|_{x=-d}=0$
+this requires: $\sin(k_{x}^+d)=0\to \frac{\omega d}{c_{1}}\cos \theta_{1}=n\pi$
+[Waveguide - Wikipedia](https://en.wikipedia.org/wiki/Waveguide)
+
+
+![[type of medium types.png|200]]![[medium 2 penetrable.png|300]]
+![[polarization p and s.png|300]]![[field components of 2 sided wave propagation.png|300]]
+- p polarized(right diagram) E field parallel to plane of incidents, while s(right diagram) is perpendicular
+- x component vanishses in field component since itsn ormal to the surface and equal 0 when we apply boundary conditions...
+- $E_{1y}=E_{2y}\text{ boundary condition for E field (orthogonal)}$
+- $H_{1z}=H_{2z}\text{ boundary condntion for H field (orthogoal) since }\vec{J}=0\text{ at Dielectric}$
+
+
+![[boundary conditions step.png|200]]![[snells law.png|200]]![[calc of kx.png|200]]
+- z component only at surface continuous...
+- $n_{i}=\frac{c_{0}}{c_{i}}=\sqrt{ \epsilon_{r}\mu_{r} }\text{ratio of speed of light in medium}$
+
+
+![[reflections and transmission coefficients.png|300]]
+**reflection and transmission coefficients:**
+$T=1+\Gamma$
+**s-polarization:**
+if both mediums are dielectric materials ($\mu_{1}=\mu_{2}=\mu_{0}$)
+we use $k/\mu=\omega/Z$ for both mediums
+$\Gamma^s=\frac{Z_{2}\cos \theta_{1}-Z_{1}\cos \theta_{2}}{Z_{2}\cos \theta_{1}+Z_{1}\cos \theta_{2}}$
+$\tau^s=\frac{2Z_{2}\cos \theta_{1}}{Z_{2}\cos \theta_{1}+Z_{1}\cos \theta_{2}}=1+\Gamma$
+**p-polarization:**
+by exchanging $\epsilon$ for $\mu$ and $E$ for $-H$
+$\text{since }k_{x1}^+=k_{1}\cos \theta_{1},k_{x2}=k_{2}\cos \theta_{2},k_{i}/\epsilon_{i}=\omega Z_{i}$
+$\Gamma^p=\frac{\epsilon_{1}k_{x2}-\epsilon_{2}k_{x1}^+}{\epsilon_{1}k_{x2}+\epsilon_{2}k_{x1}^+}=\frac{Z_{2}\cos \theta_{2}-Z_{1}\cos \theta_{1}}{Z_{2}\cos \theta_{2}+Z_{1}\cos \theta_{1}}$
+$\tau^p=\frac{{2\epsilon_{2}Z_{2}k_{x1}^+}}{\epsilon_{1}Z_{1}k_{x2}+\epsilon_{2}Z_{1}k_{x1}^+}=\frac{2Z_{2}\cos \theta_{1}}{Z_{2}\cos \theta_{2}+Z_{1}\cos \theta_{1}}=1+\Gamma$
+
+### Brewster angle and Critical angle
+$\theta _B$ angle at which reflection and refraction are at $90 \degree$ angle means reflected light is polarized to a certain polarization
+[Physics 53 Polarization (5 of 5) Brewster's Angle - YouTube](https://www.youtube.com/watch?v=ExVbUdDzEKg)
+$\Gamma^p=0\text{ then: }Z_{2}\cos \theta_{2}=Z_{1}\cos \theta_{1}\to \frac{\mu_{2}}{\epsilon_{2}}(1-\sin^2\theta_{2})=\frac{\mu_{1}}{\epsilon_{1}}(1-\sin^2\theta_{1})$
+$\text{snells second law: } \frac{\sin \theta_{2}}{\sin \theta_{1}}=\frac{n_{1}}{n_{2}}=\sqrt{ \frac{\mu_{1}\epsilon_{1}}{\mu_{2}\epsilon_{2}} }\to \sin^2\theta_{2}=\frac{\mu_{1}\epsilon_{1}}{\mu_{2}\epsilon_{2}}\sin^2\theta_{1}$
+Substitution leads to a linear equation for $\sin^2\theta_{1}$
+Solving the equation, it gives:
+$\sin^2\theta_{B}=\frac{1-\frac{\epsilon_{1}\mu_{2}}{\epsilon_{2}\mu_{1}}}{1-\left( \frac{\epsilon_{1}}{\epsilon_{2}} \right)^2}$
+![[if material not magnetic.png|400]]
+$\tan^2\theta_{B}=\frac{\epsilon_{2}}{\epsilon_{1}}=\frac{n_{2}^2}{n_{1}^2}$
+
+
+![[5EPB0/attachments/TIR.png|300]]![[inhomogeneous plane wave.png|300]]
+5. $E=A\exp(-ax)\exp(-j\beta z) \text{ Waves that travel in one direction and decay (evanesce) in another direction Inhomogeneous wave}$
+# Guided waves
+## Parallel-Plate Waveguide
+- ampere, faraday law, $\gamma$ must be imaginary otherwise wave decays wont work.
+- $\kappa_{m}^2=\omega^2\epsilon \mu+\gamma ^2$
+![[basic assumption.png|200]]![[decoupling.png|200]]
+
+- polarisation in terms of wave guides
+- fundamental unknwon: able to find all other of the total 6 components
+- $\text{TE Waves: Take }\vec{E}_{y}\text{ as fundamental unknown}$
+- $\delta^2_{x}\vec{E_{y}}=-\kappa_{m}^2\vec{E_{y}}\to \vec{E}_{y(x)}=A\sin(\kappa_{m}x)+B\cos(\kappa_{m}x)$
+- $\text{Based on boundary conditions: }\vec{E}_{y|x=0}=0\text{ and }\vec{E}_{y|x=a}=0$
+- $\text{B has to be 0 }\vec{E}_{y(0)}=B=0\text{ and }\vec{E}_{y(a)}=A\sin(\kappa_{m}a)=0$
+- $\text{the second part can only be 0 if: }\kappa_{m}=\frac{m\pi}{a}$
+- $\vec{E}_{y}=E_{0}\sin\left( \frac{m\pi}a{x} \right)$
+- Since TE waves... $E_{z}\text{ and }E_{x}=0$
+- $m\neq 0\text{ TE waves}$
+- $\text{TE wave: }E_{y},H_{z},H_{x}$
+- decoupling:
+- $\vec{H_{z}}=-\frac{1}{j\omega \mu}\delta_{x}\vec{E_{y}}=-\frac{m\pi}{j\omega \mu a}E_{0}\cos\left( \frac{m\pi}a{x} \right)$
+- $\vec{H_{x}}=-\frac{\gamma}{j\omega \mu} \vec{E_{y}}=-\frac{\gamma}{j\omega \mu}E_{0}\sin\left( \frac{m\pi}{a}x \right)$
+![[field distribution.png|200]]
+
+- TM Waves: 
+- $\vec{H_{y}}=H_{0}\cos\left( \frac{m\pi}{a}x \right)$
+- $\vec{E_{x}}=\frac{\gamma}{j\omega \epsilon}H_{0}\cos\left( \frac{m\pi}{a}x \right)$
+- $\vec{E_{z}}=\frac{jm\pi}{\omega \epsilon a}H_{0}\sin\left( \frac{m\pi}{a}x \right)$
+![[field distribution tm.png|200]]
+
+- TEM Waves:
+- $\vec{H_{y}}=E_{0}$
+- $\vec{E_{x}}=\frac{\gamma}{j\omega \epsilon}E_{0}$
+- $\vec{E_{z}}=0$
+![[field distribution tem.png|200]]
+## Rectangular Waveguides
+
+## Resonant Cavities and Dielectric Slab Waveguides
+# Radiation
+## The Electric Point Dipole
+## Magnetic point dipole & Antenna Specifications
+## Dipole Arrays

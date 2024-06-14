@@ -334,8 +334,7 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 >generalized PDF: $f_{X}(x)=\sum_{x_{i} \in S_{X}}P_{X}(x_{i})\delta(x-x_{i})$
 
 ![[random-variable-function.png|500]]
-
-# Summery
+# Summary
 
 ![[cdf-pdf-pmf.png|700]]
 
@@ -412,12 +411,6 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 >[!NOTE] Conditioning of Independent Random Variables
 >$P_{X|Y}(x|y)=P_{X}(x)$ or $f_{X|Y}(x|y)=f_{X}(x)$
 >$E(X|Y=y)=E(x)$ for all $y \in S_{Y}$
-
-
-
-
-
-
 
 # MGF & Sums of Random Variables
 

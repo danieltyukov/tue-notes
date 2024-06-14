@@ -74,10 +74,6 @@ conversion between expressions and NFA-$\epsilon$, NFA is subset of NFA-$\epsilo
 basically repeat until only initial and final state remain
 ![[nfa-e to nfa.png|300]]![[nfa to dfa.png|300]]
 ![[nfa-e to nfa big example.png|300]]![[nfa to dfa-1.png|300]]
-
-
-
-
 ## Expressiveness A.2.3
 [What is the Pumping Lemma - YouTube](https://www.youtube.com/watch?v=qtnNyUlO6vU)
 [Nonregular languages: How to use the Pumping Lemma - YouTube](https://www.youtube.com/watch?v=Ph7Z9YttM0Q)
@@ -112,4 +108,84 @@ complement -> invert normal states to final states and final states to normal st
 use logic to the determine the fact that final system is empty language, the one below is not empty since it has final states so does not satisfy $S=P$
 ![[example of a a full property checking system.png]]
 must not have final states...
-## $\omega$-Regular Languages A4.1
+## $\omega$-Regular Languages A.4.1
+- a set of **infinite** words over some alphabet $\Sigma$ $L \subseteq \Sigma^\omega$.
+- one infinite word abstracts infinitely many finite behaviors.
+- useful when behavior is unbounded.
+![[operations of omega languages.png|400]]
+![[omega languages expressions.png|400]]
+$\omega$-regular expressions pattern: $(+i:0\leq i<n:a_{i}\cdot \beta_{i}^\omega)$
+legend: $a_{i},\beta_{i}$ regular expressions
+![[example of omega languages.png|400]]
+the * is all finite repetitions, while $\omega$ infinite repetitions, they are complementary.
+![[iterations undersatding.png|200]]
+## Büchi Automata A.4.2
+- indefinite automata...
+- **Büchi** automaton is an **NFA** but with **different acceptance** conditions
+- $\omega$-regular expressions and **NBA** both define precisely the class of $\omega$-regular languages
+![[nfa-b.png|300]]![[nba.png|300]]
+![[example of infinite automata.png|300]]![[buchi automata example.png|300]]
+infinity happens in finite states...
+complete means all symbols used...
+![[buch auomata another example.png|300]]![[final state changed showcase.png|300]]
+ending on a different final state makes a difference as shown above...
+## Week 3: A.4
+## Expressiveness A.4.3 & A.4.4
+**DBA:** deterministic Buchi Automaton.
+an $\omega$-language is **deterministically Büchi‐recognizable** if and only if there is a **DBA** accepting the language.
+![[nbda dba complements.png|400]]
+$L^\omega(D)\neq L^\omega(C)$ since $L^\omega(C)$ is not deterministically Büchi-recognizable.
+**expressiveness of DBA:**
+- **DBA** are strictly **less expressive than NBA**
+- deterministically Büchi-recognizable languages are **not closed under development**
+![[expressiveness of DBA.png|300]]![[example of expressiveness DBA.png|300]]
+$L^\omega(D)=lim(L(D))$
+The above proves that **DBA** can only exists if there is limit of a regular language...
+
+class of $\omega$-regular languages is **closed under complement** and hence under intersection $(L_{0}\cap L_{1}=\overline{\overline{L_{0}} \cup \overline{L_{1}}})$
+
+non-regular $\omega$-languages are possible
+![[non regular omega language example.png|300]]
+
+
+![[automation limits.png|300]]![[automata and limits-1.png|300]]
+![[automata and limits that are equal.png|300]]
+we can see that if languages are each others complements in infinite context **IT DOESNT** imply they are in finite context
+
+!!! unbounded chain of finite words converges to an infinity allowing to say that $\omega=lim$, **this is always true for deterministic but not always true for non-deterministic automata**.
+## Conversions A.4.5
+similar to finite word language conversions...
+split into 3 parts, make sure they are epsilon included, and then start elimination.
+![[expressions to nba to nba epsilon.png|400]]
+![[from nba to expressions.png|400]]
+![[nba-e to expression 1.png|300]]![[nba-e to expression 2.png|300]]
+
+![[nba to expression 1.png|200]]![[nba to expression 2.png|200]]![[nba to expression 3.png|200]]
+![[nba to expression 4.png|200]]![[nba to expression 5.png|200]]
+$a_{11}^\omega+a_{12}a_{22}^\omega$ pattern
+## Property Checking A.4.7
+- similar to finite language property checking...
+- emptiness of a regular language can be checked by checking  for the reachability of a final state in an automaton.
+- **But** emptiness of an ω‐regular language can be checked by a  nested depth‐first search on the automaton checking for the reachability of a final state and a cycle back to that final state.
+- but complement of ω‐regular languages is not practical.
+![[property checking omega regular properties.png|400]]
+a GNBA is an NBA but with multiple sets of final states...
+**GNBA vs NBA:**
+![[nba-1.png|300]]![[gnba.png|300]]
+![[generalized nba.png|300]]![[henerized nba conversion.png|300]]
+
+empty language means that there is at least one state which is not visited infinite amount of times...
+![[property checking-1.png|200]]![[property checking-2.png|200]]![[property checking-3.png|200]]
+## Week 4: A.5
+## Logic and Property Checking A.5.1 & A.5.3
+![[propositional logic.png|400]]
+![[evaluations and satisfaction.png|400]]
+**propositions over an alphabet of symbols $\Sigma$**
+- atomic propositions Π are sets of symbols from Σ characterizing those symbols that satisfy the proposition
+- $s \models p \text{ iff } s \in p \text{ }(s \in \Sigma,p \in \Pi)$
+![[arbiter example.png]]
+
+![[mealy to dba.png|300]]![[mealy to dba-1.png|300]]
+
+
+# Module B: Markov Modeling, Discrete-Event Simulation

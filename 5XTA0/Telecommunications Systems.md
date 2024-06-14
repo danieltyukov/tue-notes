@@ -1,10 +1,11 @@
-# Modulation Formats and Wireless Networks
+# Modulation Formats and Wireless Networks (Simon)
 ## Digital modulation formats
 ### Baseband Systems
 **Baseband:** no signal modulation; **Bandpass:** modulation.
 ![[digital modulation.png|179]]![[bandpass vs baseband.png|200]]
 **Baseband Signaling (fibre optic):** Binary Modulation, Multi-level modulation (multi-level PAM) : Just PSD stuff.
-[[Intro to Telecommunication - 5ETA0#Linecodes and their spectras]]
+[[Intro to 
+Telecommunication - 5ETA0#Linecodes and their spectras]]
 ### Bandpass Systems
 #### Binary Modulation
 [On–off keying - Wikipedia](https://en.wikipedia.org/wiki/On%E2%80%93off_keying)
@@ -149,62 +150,46 @@ Gaussian probability of error occurring.
 **Union Bounds:** serves as upper bound to error probability with complex modulation with multiple alternatives, since we cant calculate the exact symbol error rate.
 ![[BER union bound.png|200]]![[BER multilevel signals.png|200]]
 ![[BER for sifferent signaling methods.png|400]]
-
 ## Wireless networks
-#### 1. Introduction to Wireless Networks
-- Wireless networks are crucial for mobile communication, which is integral to daily life.
-- Mobile applications dominate internet usage, requiring efficient wireless networks to support large numbers of subscribers.
-#### 2. Antennas
+### Introduction to Wireless Networks
+![[wireless disadv.png|300]]![[wirelesswired networks.png|300]]
+### Antennas, Link power budget, Atmospheric losses
 - **Isotropic Radiator:** Theoretical antenna radiating equally in all directions.
-- **Radiation Pattern:** Graphical representation of antenna radiation, measured as a two-dimensional cross-section.
 - **Beam Width:** Measure of directivity of an antenna.
 - **Sidelobes and Nulls:** Extra energy outside the main lobe and very low energy between the main lobe and sidelobes respectively.
 - **Antenna Power Density (Isotropic)**: $P_{density}=\frac{P_{tx}}{4\pi d^2}\text{ where }P_{tx}\text{ is the transmitted power, and }d\text{ is the distance from the antenna}$
 - $G=\frac{4\pi A}{\lambda^2}$ Antenna Gain multiply it $P_{density}$ for directional antennas.
-- **MIMO**: Utilizes multiple antennas at both transmitter and receiver to enhance data rates, spectral efficiency, and link robustness, implemented in standards like IEEE 802.11n, LTE, and 5G through techniques like beamforming, spatial multiplexing, and diversity coding​​.
-#### 3. Wireless Signal Propagation
-- **Propagation in Free Space:** Similar to light, follows a straight line.
-- **Path Loss in Vacuum:** $Power \propto \frac{1}{d^2}$
-- **Factors Affecting Propagation:**
-    - **Fading:** Frequency-dependent variation in signal strength.
-    - **Shadowing:** Signal blockage by large obstacles.
-    - **Reflection, Refraction, Scattering, Diffraction:** Various interactions with obstacles.
-#### 4. Multipath Propagation
-- **Multipath Effects:** Signal takes multiple paths due to reflection, scattering, diffraction, leading to temporal dispersion and inter-symbol interference (ISI).
-#### 5. Modulation Techniques
-- **Digital Modulation Formats:** Techniques like QAM, PSK used to transmit data over wireless channels.
-- **Adaptive Modulation and Coding (AMC):** Dynamically adjusts to channel conditions for optimal performance.
-#### 6. Multiple Access Methods
-- **Frequency Division Multiplexing (FDM):** Division of the frequency spectrum into channels.
-- **Time Division Multiplexing (TDM):** Allocation of time slots to users.
-- **Code Division Multiple Access (CDMA):** Spreading signal across a wide frequency range using unique codes. (implemented using DSSS).
-- **Space Division Multiple Access (SDMA):** Segments space into sectors using directed antennas and a cell structure to enhance capacity per square kilometer by allowing only one terminal to be active in each cell or sector at a time​​.
-- **Time and Frequency Division Multiplexing (TFDM)**: A combination of Time Division Multiplexing (TDM) and Frequency Division Multiplexing (FDM), where a channel gets a certain frequency band for a certain amount of time, providing better protection against tapping and frequency-selective interference, but requires precise coordination (e.g., used in GSM, Bluetooth).
-- **Polarization Division Multiplexing (PDM)**: Each channel has a unique polarization (e.g., vertical vs. horizontal, right vs. left circular). It increases bandwidth by doubling it in systems like satellite TV and microwave links, but can suffer from cross-polarization interference where one polarization leaks into another.
-![[antenna received power.png|300]]![[cooper law.png|300]]
+![[antenna radiiated power density.png|300]]![[antenna received power-1.png|300]]
+- $\text{Frii's transmission equation: } \frac{P_{Rx}}{P_{Tx}}=G_{AT}G_{FS}G_{AR}=G_{AT}\left( \frac{\lambda}{4\pi d} \right)^2G_{AR}$
+![[antenna gain exercise.png|300]]![[antenna diversity.png|300]]
+
+![[mimo.png|200]]
+$\text{Receiving power proportional: } \frac{1}{d^2}\text{ if attenaution: }d^{3.5}\text{ for example}$
+
+- Wireless channel ALWAYS shared channel, needs sharing protocol.
+- multiplexing to optimize the channel capacity.
+- **space,time,frequency,code,polarization** multiplexing
+- **OFDM** is time AND frequency multiplexing for example...
+- **DSSS** code multiplexing where one spectrum used (spread spectrum)
+- 
+### Cellular Networks 1G, 2G, 3G, 4G (LTE), 5G
 ![[cellular principle.png|300]]![[capacity increase strategies.png|300]]
 - High frequency for capacity 
 - Low frequency for IoT and ultrareliable communications
-
-cellular networks: LTE(4G), eMBB(5G)
-
+### Local and Personal Area Networks
 Multiple access & scheduling - ALOHA protocol
 [ALOHAnet - Wikipedia](https://en.wikipedia.org/wiki/ALOHAnet)
-![[aloha example.png|200]]
+![[aloha example.png|200]]![[wireless networks classification.png|200]]
+$\text{aloha throughput: }\lambda_{P}T_{P}\exp(-2\lambda_{P}T_{P})\text{ max throughput } \frac{1}{2e}$
+$\text{slotted aloha (transmission allowed only at specific times...) max throughput: } \frac{1}{e}$
+- Distributed Coordination Function (DCF) • Also known as CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance)
+- Local and Personal Area Networks • WLAN (IEEE 802.11x) • Bluetooth, Zigbee, etc.
 
-Distributed Coordination Function (DCF) • Also known as CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance)
+![[pico and scatternets.png|400]]
+[Scatternet - Wikipedia](https://en.wikipedia.org/wiki/Scatternet)
+[Wireless ad hoc network - Wikipedia](https://en.wikipedia.org/wiki/Wireless_ad_hoc_network)
 
-![[pico and scatternets.png|300]]
-
-Local and Personal Area Networks • WLAN (IEEE 802.11x) • Bluetooth, Zigbee, etc.
-
-Advanced wireless techniques and networks • Radio-over-fibre • Optical wireless communication
-
-![[centralized radio access networks.png|300]]
-analog and digital beamforming
-
-
-# MAC Technologies and Fixed Networks
+# MAC Technologies and Fixed Networks (Eduward)
 ## Medium Access
 ### Basics of MAC Strategies
 media access (MAC) protocol for multi user communication.
@@ -315,11 +300,61 @@ interference power of jamming signal reduced with processing gain: $G=\frac{R_{c
 $\text{to accomodate max certain amount of users: } \frac{E_{b}}{I_{0}}=\frac{NP}{N_{0}+(K-1)P}=\dots dB$
 $\text{max num of users: }K=\frac{N}{E_{b}/I_{0}}-\frac{1}{P/N_{0}}+1$
 where power per chip: $P$ and bandwidth: $N$
-## Wired networks
-# Internetworking and Transport Reliability
+### NOMA
+**Non Orthogonal Multiple Access**
+uses power domain to separate signals.
+![[oma vs noma.png|300]]![[oma vs noma-1.png|300]]
+
+- users with better channel conditions, like a closer channel are allocated less power...
+- Successive interference cancellation (SIC) is used at receivers.
+![[nima beamforming.png|300]]
+### Transmission Media
+![[transmission media.png|300]]![[optical fiber transmission system.png|300]]
+**attenuation:** signal get smaller.
+**dispersion:** signals get mis-shaped.
+**Numerical aperture** (a measure for the coupling efficiency of light into the fiber).
+**numerical aperture** (**NA**) of an optical system is a dimensionless number that characterizes the range of angles over which the system can accept or emit light.
+![[5XTA0/attachments/TIR.png|300]]![[ray propagation.png|300]]
+![[numerical aperture.png|300]]![[light guiding capacity.png|300]]
+![[modal dispersion.png|300]]![[modal dispersion example.png|300]]
+![[modal dispersion step index fiber.png|300]]![[refractive index profiles.png|300]]
+![[chromatic dispersion of signle mode fibre.png|300]]![[attenuation in silica single mode fiber.png|300]]
+
+- Polymer is ductile → POF easier to handle than silica fibre 
+- Large core diameter → eases fibre coupling; small dust particles and scratches on fibre end face have less impact.
+
+![[twister pair cable.png|300]]![[coaxial vable properties.png|300]]
+## Wired Networks
+[Wavelength-division multiplexing (fiber optic)(WDM) - Wikipedia](https://en.wikipedia.org/wiki/Wavelength-division_multiplexing)
+-  capacity upgrade
+- different transmission formats
+- scalability
+- wavelength routing/switching
+- Wavelength spacing practically depends on
+	- modulation bandwidth
+	- optical filter bandwidth
+	- $\Delta v=\left( \frac{c}{\lambda^2} \right)\Delta \lambda$
+### Optical Networking
+bus, ring, star, mesh network topologies...
+![[passive linear bus coupler.png|300]]![[simplex linear bus.png|300]]
+![[simplex linear bus 2.png|300]]![[star network.png|300]]
+- star topology is more power efficient, while linear grows linearly, star network levels off.
+- Single hop broadcast-and-select.
+- Multi-hop broadcast-and-select.
+- [Single-Hop vs. Multi-Hop Networks | Advanced PCB Design Blog | Cadence](https://resources.pcb.cadence.com/blog/2023-single-hop-vs-multi-hop-networks)
+![[single hop vs multi hop.png|300]]![[wavelength routing.png|300]]
+
+- **A scalable optical network can be constructed by taking several WDM links and connecting them at a node by a switching subsystem**. Using such nodes (also called wavelength routers) interconnected by fibers.
+- Avoiding λ-collision by λ-conversion
+### Passive Optical Networks
+![[ex1.png|300]]![[sol1.png|300]]
+![[ex2.png|300]]![[sol2.png|300]]
+![[ex3.png|300]]![[sol3.png|300]]
+![[ex4.png|300]]![[sol4.png|300]]
+![[ex5.png|200]]![[sol5.png|200]]![[sol5-1.png|200]]
+# Internetworking and Transport Reliability (Georgios)
 ## Networking
-### L2 (Layer 2) forwarding and routing (spanning trees)
-#### OSI model
+### OSI model
 [OSI Model - Text](https://en.wikipedia.org/wiki/OSI_model)
 [OSI Explained - Video](https://www.youtube.com/watch?v=vv4y_uOneC0&list=WL&index=90)
 ![[OSI Layering.png|150]]![[OSI Layering 2.png|143]]![[OSI Layering 3-1.png|104]]![[OSI Layering 4.png|155]]
@@ -333,19 +368,154 @@ where power per chip: $P$ and bandwidth: $N$
 	- physical addressing:  frame (mac1/mac2/ip1,ip2/segment/tail).
 - **Physical:** Bits to Physical signal and Transfer.
 ![[OSI Model Flow.png|300]]
-#### Internet Structure (Interconnection, Datagram Switching & Networks)
- **hosts** connected over **communication links** which do **packet switching and routing**
+### Interconnected World, Datagram Switching, Datagram Networks
+[Switching Techniques in Computer Networks - YouTube](https://www.youtube.com/watch?v=-HlJ4psu5aU)
+[Basics of Bridge - YouTube](https://www.youtube.com/watch?v=NSDAYnixdgc)
+![[internet consists of.png|300]]
+ **hosts** connected over **communication links** which do **packet switching and routing.**
+ **packet-switching:** hosts break application-layer messages into packets. Packets go from router to router, to connect ISPs (internet service providers).
  ![[packet switching.png|200]]![[two key network core.png|200]]
 - packet switching has queueing and delays.
-- Circuit switching reserves a dedicated physical path for the entire connection duration.
+- Circuit switching reserves a dedicated physical path for the entire connection duration. (can be TDM or FDM based).
 - It is connection-oriented; a path must be established before data transmission.
 - Packet switching, a connectionless method, sends data packets independently without a dedicated path.
-- ISPs communicate between IXPs
-![[types of switches.png|200]]![[types of switched internetworks.png|200]]
-The link layer, built upon the physical layer, specifies the protocols for sending and receiving bit packets, with Ethernet being the protocol used.
-[Difference Datagram Switching & Virtual Circuit](https://www.geeksforgeeks.org/difference-between-datagram-switching-virtual-circuit/#:~:text=Datagram%20packet%20switching%20is%20a,no%20need%20to%20reserve%20resources.)
-[Network bridge](https://en.wikipedia.org/wiki/Network_bridge)
-See GE.1C for bridging flow (Ethernet Briding and Bridging with Loops)
+- ISPs communicate between IXPs (Internet exchange point)
+- Regional networks may arise to connect access nets to ISPS
+- content provider networks  (e.g., Google, Microsoft,   Akamai ) may run their own network, to bring services, content close to end users.
+![[network structure.png|300]]
 
+**datagram is a transfer unit associated with packet switching network**
+- header and payload sections...
+![[datagram switching.png|300]]
+![[types of switches.png|200]]![[types of switched internetworks.png|200]]
+In the datagram-forwarding model of packet delivery, packet headers contain a destination address. It is up to the intervening switches or routers to look at this address and get the packet to the correct destination.
+[1.4: Datagram Forwarding - Engineering LibreTexts](https://eng.libretexts.org/Bookshelves/Computer_Science/Networks/Book%3A_An_Introduction_to_Computer_Networks_(Dordal)/01%3A_An_Overview_of_Networks/1.04%3A_Datagram_Forwarding)
+
+
+- A datagram network is **a computer network system that transmits and receives individual data packets**. It has a header that defines its source and destination addresses, in addition to additional data needed to transmit the packet.
+- reordering is done by the receiver.
+- The link layer, built upon the physical layer, specifies the protocols for sending and receiving bit packets, with Ethernet being the protocol used
+- [Difference Datagram Switching & Virtual Circuit](https://www.geeksforgeeks.org/difference-between-datagram-switching-virtual-circuit/#:~:text=Datagram%20packet%20switching%20is%20a,no%20need%20to%20reserve%20resources.)
+- [Network bridge](https://en.wikipedia.org/wiki/Network_bridge)
+- See GE.1C for bridging flow (Ethernet Briding and Bridging with Loops)
+
+[Switching Loops | Switch Networking Loop - ManageEngine OpManager](https://www.manageengine.com/network-monitoring/tech-topics/switching-loops.html#:~:text=A%20switching%20loop%2C%20or%20bridge,and%20creating%20a%20broadcast%20storm.)
+A switching loop, or bridge loop, **occurs when more than one path exists between the source and destination devices**.
+![[bridging with loops.png|300]]
+loops are not something we want to end up with as it fills the routing tables with redundancy.
 ## Reliable communications
 ### Spanning Trees
+The need for the Spanning Tree Protocol (STP) arose because switches in local area networks (LANs) are often interconnected using redundant links to improve resilience should one connection fail.  However, this connection configuration creates a switching loop resulting in broadcast radiations and MAC table instability.  If redundant links are used to connect switches, then switching loops need to be avoided.
+
+
+[Spanning Tree Protocol - Wikipedia](https://en.wikipedia.org/wiki/Spanning_Tree_Protocol)
+[Switching loop - Wikipedia](https://en.wikipedia.org/wiki/Switching_loop)
+Hubs are L1, which form connection to devices, and are interconnected through bridges forming a network.
+![[interconnected ethernets.png|400]]
+**circles: switches(bridges), squares: hubs(terminal,node)**
+- One bridge is the root Union of shortest paths to root = spanning tree.
+- Many spanning trees possible Bridge B2 out of tree Ports in B7, B4 deactivated.
+- Rule 1: Root = bridge with smallest ID. **B1**
+- Rule 2: Each network has one designated bridge closest to the root. Each bridge selects the port that gives best path to root. **why B3 eliminated**
+- Rule 3: If two bridges tie in distance from the root, the smallest ID wins **Distance = # hops**. **why loop to B7 disconnected**. $dist=bridge-bridge$
+![[perlman spanning tree.png|300]]![[perlman STP.png|300]]
+**numbers in image below are ports**
+![[5XTA0/attachments/STP example.png|300]]![[stp example 2.png|300]]
+![[stp 3.png|300]]
+**limitations of bridges:**
+- Forwarding tables can get huge: one entry per node!
+- Too much flooding until forwarding tables converge
+- Trees can be misbalanced
+	- Bridges can become hotspots
+
+![[stp p2.png|300]]![[stp p2 2.png|300]]
+
+### Address Resolution Protocol & L2 to L3 traversal (Link Layer Routing & ARP)
+**Address Resolution Protocol**
+Table of IP <-> physical address bindings: entries expire after 15min
+
+Step 1: broadcast request if IP not in table
+Step 2: target machine responds with its physical address
+Step 3: table refresh at receiver machines
+	If requestor already in table, restart expiration timer
+	Else if receiver=target machine, add entry for requestor
+	Else, do not update
+Physical address could be an extra column of routing table
+![[addr res protocol.png|400]]
+
+**hub: L1**
+**router: L3**
+**left part is L2**
+![[l2 to l3 traversal.png|400]]
+- Assume that every device has empty forwarding tables.
+- Show all the steps taken by the network so that HTTP request from A reaches S.
+1. ARP request with target address 200.0.0.11
+	1. Router rejects the request as target is in same domain as requestor
+	2. S replies with own MAC address
+2. Frame composed and sent to MAC 8A:53
+3. Switch checks on forwarding table and forwards directly to S
+4. IP identifies target address 156.64.199.21 is out of local domain. Go to gateway 200.0.1.1
+5. ARP request with target address 200.0.1.1
+	1. Router replies with own MAC address 71:D4
+6. Frame composed and sent to MAC 71:D4
+7. Router checks on routing table and forwards directly through eth1 to 156.64.199.21
+### Traversal Exercise
+**Forwarding (link layer):** select an output port based on destination address and routing table.
+**Routing (network layer):** process by which routing table is built.
+![[fowarding table.png|300]]![[routing table.png|300]]
+**routing tables:**
+![[traversal and router table.png|400]]
+router: L3
+everything before the router to the right: L2
+hub: L1 so we skip it since A is L2
+![[address resolution protocol-1.png|300]]
+
+**Assume that every edge device has empty forwarding tables. Show all the steps taken by the**
+**network so that HTTP request from A reaches S and another one reaches W.**
+![[telecom structure.png|400]]
+**S:**
+1. ARP request with target address **200.0.0.11**
+	1. Router rejects the request as target is in same domain as requestor
+	2. S replies with own MAC address
+2. Frame composed and sent to MAC **8A:53**
+3. Switch checks on forwarding table and forwards directly to S
+![[more indepth view.png|400]]
+**W:**
+1. IP identifies target address **156.64.199.21** is out of local domain. Go to gateway **200.0.1.1**
+2. ARP request with target address **200.0.1.1**
+	1. Router replies with own MAC address **71:D4**
+3. Frame composed and sent to MAC **71:D4**
+4. Router checks on routing table and forwards directly through **eth1** to **156.64.199.21**
+![[routing to W detailed.png|400]]
+###  Internetworking & Reliable Transport
+#### Internet Protocol Packets
+![[ip packet format.png|400]]
+![[router data transmission packets.png|300]]![[packet fragmentation.png|300]]
+**IP Packet Fragmentation**
+- One IP packet split into multiple link-layer packets
+- One IP packet split into multiple link-layer packets
+- **Indent** (Identifier of fragment sequence), **Flags**(More fragments to follow?), **Offset** (pointer to the first byte from original IP packet this payload corresponds to measured in 8-byte blocks)
+#### IP Datagram Forwarding
+[IP address classes explained | class A , B ,C ,D ,E | Free CCNA 200-301 - YouTube](https://www.youtube.com/watch?v=0dFNpNgiTAA)
+![[datagram forwarding.png|400]]![[example of datagram forwarding.png|200]]
+#### IP Subnets
+[Classless Inter-Domain Routing - Wikipedia](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+- Physical networks with same Network ID
+- Network IDs from class A or B addresses
+- IP split: $\text{network-num.subnet-id.host-id}$
+- Network IDs from class A or B addresses
+- subnet_mask AND ip_address = subnet_number
+- subnet_number = $\text{network-num.subnet-id}$
+![[ip subnet example.png|300]]![[i subnet forwarding.png|300]]
+![[ip subnet forwarding.png|300]]![[classless adressing CIDR.png|300]]
+
+![[CIDR.png|400]]
+- Group addresses under common prefixes
+- Instead of subnet masks use /X notation
+- Assumed subnet masks of X first bits equal to 1
+- 192.4.16/20 represents all addresses from 192.4.16 to 192.4.31
+
+If ethernet address known, route to IP router...
+IP characteristics, packet structure & fragmentation...
+IP addresses, subnetting, forwarding tables...
+Classless Addressing...
