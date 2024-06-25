@@ -363,9 +363,13 @@ $\tan^2\theta_{B}=\frac{\epsilon_{2}}{\epsilon_{1}}=\frac{n_{2}^2}{n_{1}^2}$
 ![[5EPB0/attachments/TIR.png|300]]![[inhomogeneous plane wave.png|300]]
 5. $E=A\exp(-ax)\exp(-j\beta z) \text{ Waves that travel in one direction and decay (evanesce) in another direction Inhomogeneous wave}$
 # Guided waves
+[Waveguides Explained - YouTube](https://www.youtube.com/watch?v=r9-m17IPOco)
 ## Parallel-Plate Waveguide
+[Slab Waveguide Explained - YouTube](https://www.youtube.com/watch?v=YwsBo36XYc0)
+[Origin of TE and TM Modes - YouTube](https://www.youtube.com/watch?v=dYKGsJGPsDo)
 - ampere, faraday law, $\gamma$ must be imaginary otherwise wave decays wont work.
 - $\kappa_{m}^2=\omega^2\epsilon \mu+\gamma ^2$
+- $\text{model index: }\kappa_{m}=\frac{m\pi}{d}$
 ![[basic assumption.png|200]]![[decoupling.png|200]]
 
 - polarisation in terms of wave guides
@@ -382,7 +386,7 @@ $\tan^2\theta_{B}=\frac{\epsilon_{2}}{\epsilon_{1}}=\frac{n_{2}^2}{n_{1}^2}$
 - decoupling:
 - $\vec{H_{z}}=-\frac{1}{j\omega \mu}\delta_{x}\vec{E_{y}}=-\frac{m\pi}{j\omega \mu a}E_{0}\cos\left( \frac{m\pi}a{x} \right)$
 - $\vec{H_{x}}=-\frac{\gamma}{j\omega \mu} \vec{E_{y}}=-\frac{\gamma}{j\omega \mu}E_{0}\sin\left( \frac{m\pi}{a}x \right)$
-![[field distribution.png|200]]
+![[field distribution.png|200]]![[solution of Hx and Hz from book.png|200]]
 
 - TM Waves: 
 - $\vec{H_{y}}=H_{0}\cos\left( \frac{m\pi}{a}x \right)$
@@ -396,7 +400,50 @@ $\tan^2\theta_{B}=\frac{\epsilon_{2}}{\epsilon_{1}}=\frac{n_{2}^2}{n_{1}^2}$
 - $\vec{E_{z}}=0$
 ![[field distribution tem.png|200]]
 ## Rectangular Waveguides
+- **The rectangular guide will support the TE and TM modes, but it will not support a TEM mode.**
+- $\text{propagation coefficient: }j\gamma \text{ free space: }\beta$
+- so the graph $\omega,(j\gamma/\beta)\text{ has straight line if }j\gamma \text{ since plane wave, otherwise if }\beta=\frac{\omega}{c}\text{ not straight...}$
+- $j\gamma=\sqrt{ k^2 -\frac{m^2\pi^2}{a^2}}$
+- $\kappa=\sqrt{ k^2-\beta^2 }\text{ and }\kappa_{mp}=\sqrt{ k^2 -\beta_{mp}^2}\text{ where }k=\omega \sqrt{ \mu \epsilon }$
+- $\text{phase constant: }\beta_{mp}=\sqrt{ k^2-\kappa^2_{mp} }$
+- before only plates on top bottoms, now on left and right...
+- $\kappa^2_{mp}=\omega^2\epsilon \mu+\gamma^2$
+- $x=a\text{ and }y=b\text{ so }\kappa_{m}=\frac{m\pi}{a}\text{ and }\kappa_{p}=\frac{p\pi}{b}$
+- certain combination of $m\text{ and }p$ there is a certain frequency ($\gamma \text{ must be negative}$)...
+- $\text{propagation coefficient TM/TE: }\gamma=\sqrt{ \kappa_{mp}^2-\omega^2\epsilon \mu }=\sqrt{ \kappa_{m}^2+\kappa_{p}^2-\omega^2\epsilon \mu }=\sqrt{ \left( \frac{m\pi}{\alpha} \right)^2+\left( \frac{p\pi}{b} \right)^2-\omega^2\epsilon \mu }$
+- $\text{cutoff frequency where: }\alpha=\beta=0\implies \frac{\omega_{mp}}{c}=\sqrt{ \left( \frac{m\pi}{\alpha} \right)^2+\left( \frac{p\pi}{b} \right)^2 }$
+- $\text{if } \frac{\omega^2}{c^2}<\left( \frac{m\pi}{a} \right)^2+\left( \frac{p\pi}{b} \right)^2\text{ then }\alpha>0\text{ and }\beta=0\text{ then the wave attenuates}$
+- $\text{if } \frac{\omega^2}{c^2}>\left( \frac{m\pi}{a} \right)^2+\left( \frac{p\pi}{b} \right)^2\text{ then }\alpha=0\text{ and }\beta>0\text{ then the wave propagates}$
+![[definition of propagation and cutoff frequency.png|200]]
+- when TE/TM have same cutoff frequency: degenerate mode
+- $TE_{10}\to a=2b\text{ waveguide dimensions...}$
 
+
+
+![[TM wave components.png|TM Wave Components|400]]
+![[TE Wave components.png|TE Wave Components|400]]
+![[TEm0 modes.png|TEm0 Wave Components|400]]
+![[TE0p wave components.png|TE0p Wave Components|400]]
+
+
+- $\text{phase constant: }\beta_{mp}=\sqrt{ k^2 -\kappa^2_{mp}}=\sqrt{k^2- \left( \frac{m\pi}{a} \right)^2- \left( \frac{p\pi}{b} \right)^2 }$
+- $\text{ if }k=\omega \sqrt{ \mu \epsilon }\text{ and radian cutoff frequency: }\omega_{Cmp}\text{ then }\beta_{mp}=\omega \sqrt{ \mu \epsilon }\sqrt{ 1-\left( \frac{\omega_{Cmp}}{\omega} \right)^2 }$
+- must exceed $\omega_{Cmp}$ to achieve real value for $\beta_{mp}$ so mp propagates...
+- $a,b,\epsilon_{r},\mu_{r}\text{ determine number of modes}$
+- $\omega_{Cmp}=\frac{1}{\sqrt{ \mu \epsilon }}\left[ \left( \frac{m\pi}{a} \right)^2+(\frac{p\pi}{b})^2 \right]^{1/2}$
+- $\text{if }\mu_{r}=1\text{ and }n=\sqrt{ \epsilon_{r} }\text{ and }c=1/\sqrt{ \mu_{0}\epsilon_{0} }\to \omega_{Cmp}=\frac{c}{n}\left[ \left( \frac{m\pi}{a} \right)^2+\left( \frac{p\pi}{b} \right)^2 \right]^{-1/2}$
+- $\text{this leads to free space cutoff wavelength }\lambda=\frac{2\pi c}{\omega_{Cmp}}=2n\left[ \left( \frac{m}{a} \right)^2+\left( \frac{p}{b} \right)^2 \right]^{-1/2}$
+- $\text{so as long as }TE_{mp}\text{ and }TM_{mp}\text{ wavelength }\lambda<\lambda_{Cmp}\text{ then can propagate }\beta=\frac{2\pi n}{\lambda}\sqrt{ 1-\frac{\lambda}{\lambda_{Cmp}} }$
+- $\text{cutoff wavelength }TE_{m0}\to \lambda_{Cm0}=2na$
+- $\text{cutoff frequency }TE_{0p}\to \omega_{C0p}=\frac{p\pi c}{nb}$
+- cutoff for both is same frequency and wavelength...
+
+
+![[field equations 1.png|200]]![[field euqations 2.png|200 ]]![[decoupling the field.png|200]]
+![[TETM modes.png|200]]![[TM modes.png|200]]![[TE modes.png|200]]
+![[TE modes-1.png|200]]![[propagation coefficient.png|200]]![[cutoff frequency.png|200]]
+![[TM modes 2.png|400]]
+![[proof of propagation and evanescence.png|400]]
 ## Resonant Cavities and Dielectric Slab Waveguides
 # Radiation
 ## The Electric Point Dipole

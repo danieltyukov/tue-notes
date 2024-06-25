@@ -4,9 +4,6 @@ CONVERSIONS BETWEEN W AND DB ALWAYS NOT DBM
 ADDITION IN DB = MULTIPLICATION IN W -> same for div/sub
 snr = dB
 # Orthogonal basis and the Fourier transform/series
-## Orthogonal Basis
-$orthogonal:u \cdot v=0$; if each vector in set $length:|v|=1\implies orthonormal$
-gram shcmidt: $\mathbf{u}_1 = \mathbf{v}_1, \quad \mathbf{u}_k = \mathbf{v}_k - \sum_{j=1}^{k-1} \frac{\langle \mathbf{v}_k, \mathbf{u}_j \rangle}{\langle \mathbf{u}_j, \mathbf{u}_j \rangle} \mathbf{u}_j \quad \text{for } k = 2, \ldots, n.$
 ## Fourier series
 - $\omega=\frac{2\pi}{T}$
 - $f=\frac{1}{T}$
@@ -41,8 +38,9 @@ power attenuation: $L=\frac{1}{G}=\frac{P_{in}}{P_{out}}$
 $L_{dB}=10\log_{10}L=10\log_{10} \frac{P_{in}}{P_{out}}$
 $L=10^{L_{dB}/10}$
 ![[convert between dB.png|200]]
-$dBm=dB+30$
+$dBm(\text{absolute})=dB(\text{ratio})+30$
 # Sampling theory
+![[sampling visualized.png|400]]
 ![[sampling-1.png|200]]
 ![[sampling transforms.png|400]]
 (t) dirac pulse --> (f) Constant amplitude full spectrum (can also be seen as infinitely wide sinc)
@@ -75,6 +73,8 @@ $\omega_{m}\leq \omega_{c}\leq \omega_{s}-\omega_{m}$
 $m(t)=\sum^\infty_{n=-\infty}m_{n} \frac{\sin\left( \pi f_{s}\left[ \frac{n}{f_{s}} \right] \right)}{\pi f_{s}\left[ t-\left( \frac{n}{f_{s}} \right) \right]}$
 $\omega_{m}=\text{always }B_{analog}$
 # Sampling Methods (Pulse Amplitude Modulation)
+![[graph analysis.png|400]]
+[Signals Sampling Techniques](https://www.tutorialspoint.com/signals_and_systems/signals_sampling_techniques.htm)
 ## Gating (natural sampling)
 - **Natural Sampling Summary**:
 - Analog signal $w(t)$ passes for certain time $\tau$ only
@@ -89,6 +89,8 @@ The Fourier transform of a PN code produces a line spectrum for which the magnit
 
   - **Key Metrics**: Bandwidth $f=1/\tau$; Sampling frequency $f_{s}=1/T_{s}$; Duty cycle $d=\tau/T_{s}$.
   - $\sin(nd)=\sin c(n\tau f)=\sin c\left( n\tau  \frac{1}{T_{s}} \right)=\sin\left( \frac{n}{3} \right)$
+  - $d\sin c(\tau f)=\frac{d\sin(\tau f\pi)}{\tau f\pi}$
+  - $\text{ for gating: }f=\frac{n}{T_{s}}\text{ and flat top (continuous spectrum): }f=(\text{actual freqency at that point})$
 $sinc(x)=\frac{\sin(x)}{x}\implies \text{ limit ratio as both approach 0 l'hopital the ratio is one. (keep in mind sinc pulse)}$
   - **can reconstruct the original signal since we obtain frequency copies of the original analog waveform that are undistorted just may differ in magnitude scaling**
 ![[gating.png|300]]![[gating sampling spectrum.png|300]]
@@ -108,8 +110,41 @@ $sinc(x)=\frac{\sin(x)}{x}\implies \text{ limit ratio as both approach 0 l'hopit
   - Equalization: $\frac{1}{H(f)}$ filter.
 # Digitization
 ## Pulse Code Modulation (PCM)
+$\text{RZ: }B_{PCM}=\frac{1}{2}R=\frac{1}{2}nf_{s}$
+$\text{NRZ: }B_{PCM}=R=nf_{s}$
+
+Bandwidth of PCM signal depends on the bit rate and the pulse shape.
+
+Let the bit rate be R (of the PCM signal generated), then
+
+R = n*fs
+
+n = number of bits on the PCM word (M= 2^n …. M is no. of levels of quantization)
+
+fs = sampling rate to which analog signal is sampled
+
+For no aliasing i.e. the Nyquist rate : fs= 2B,
+
+where B is the bandwidth of the analog signal that is to be converted.
+
+Bandwidth of the PCM (BPCM) waveform is bounded by
+
+BPCM>= R/2
+
+BPCM>= n*B
+
+(so R/2 is the minimum bandwidth of the PCM signal)
+
+For one using a rectangular pulse with polar NRZ (Non return to zero) line code:
+
+BPCM = R = n*fs = n*2*B
+
+This means the bandwidth of PCM is greater than the bandwidth of the analog signal.
+
+![[bit rate.png|400]]
+
 ![[quantization.png|200]]
-PCM involves converting an analog signal into a digital one through sampling, quantization, and binary encoding. The process starts by sampling the analog signal at or above the Nyquist rate, then quantizing these samples into discrete levels, and finally encoding these levels into binary digits. 
+PCM involves converting an analog signal into a digital one through santizmpling, quaation, and binary encoding. The process starts by sampling the analog signal at or above the Nyquist rate, then quantizing these samples into discrete levels, and finally encoding these levels into binary digits. 
 
 - digital: better snr
 - time to send independent of amount/time of duration of info sent
@@ -122,7 +157,9 @@ PCM involves converting an analog signal into a digital one through sampling, qu
 ![[example of b_pcm.png|300]]![[quantization and encoding.png|300]]
 ![[bpcm.png|300]]![[5ETA0/attachments/Untitled.png|300]]
 ## Signal-to-noise ratio
-not mentioned in the reader: $SNR_{input}=\frac{P_{signal}}{P_{noise}}=\frac{P}{N_{O}\cdot n\cdot f_{s}}=\frac{SNR_{analog}}{\text{Bandwidth ratio}}=Q=\sqrt{ SNR_{in} }=SNR_{old} \cdot n_{ratio}$
+[Signal-to-noise ratio - Wikipedia](https://en.wikipedia.org/wiki/Signal-to-noise_ratio#:~:text=SNR%20is%20defined%20as%20the,indicates%20more%20signal%20than%20noise.)
+[Noise spectral density - Wikipedia](https://en.wikipedia.org/wiki/Noise_spectral_density)
+not mentioned in the reader: $SNR_{input}=\frac{P_{signal}}{P_{noise}}=\frac{P}{N_{O}\cdot n\cdot f_{s}}=\frac{SNR_{analog}}{\text{Bandwidth ratio}}=Q=\sqrt{ SNR_{in} }=SNR_{old} \cdot n_{ratio}\left( \frac{old}{new} \right)$
 $n \uparrow\to SNR_{in}\downarrow\to P_{e}\uparrow\to SNR_{out}\downarrow\left( \text{only when }P_{e} \approx \frac{M^2}{10} \right)$
 
 - $P_{noise}=P_{noise/khz}[W] \cdot f_{s}[KHz,2*B_{ana\log}]$ same but addition in in dBm and dB
@@ -161,6 +198,7 @@ $\text{attenuation: } \frac{1}{P_{signal}}$
 6. $SNR_{out}$ Lower
 7. **MORE M Levels -> HIGHER CHANCE OF OVERLAP OVER THOSE LEVELS -> $P_{e}$**
 # Digital signaling
+[Line code - Wikipedia](https://en.wikipedia.org/wiki/Line_code#:~:text=In%20telecommunication%2C%20a%20line%20code,code%20in%20data%20storage%20systems.)
 ## Vectorial representation of digital signaling
 ![[pcm signaling.png|200]]
 - **Orthogonality Condition**: $\int_a^b \phi_n(t)\phi_m^*(t) dt = 0$ for $n \neq m$.
@@ -187,8 +225,7 @@ Multi-level signaling sends more than one bit per symbol, enabling higher data r
 - $T_{s}=lT_{b}$ also $R=\frac{n}{T_{s}}=\frac{l}{T_{s}}$
 $D\leq 2B \text{ it can only become worse, higher bandwidth, (2 is sinc) nyquest criteria}$
 - Each symbol can represent or/ convey one or several bits of data.
-- $\eta=\frac{R}{B}$ or $\eta=\frac{D}{B}$
-
+- $\$\eta=\frac{D}{B}$
 - **Bit Rate ($R$)**: $R = lD = D\log_2(L) = \frac{N}{T_0}\log_2(L) = \frac{n}{T_0}$ [bits/s], with $L$ levels, $D$ baud rate. One symbol can represent multiple bits.
 - **Binary Signaling**: For $L=2$, $R = D$.
 - **Channel Capacity:** $C=B\log_{2}(1+SNR)\to \frac{bits}{sec}\to \eta_{max}=\frac{C}{B}=\log_{2}\left( 1+SNR \right)$
@@ -236,8 +273,11 @@ The RZ (Return to Zero) signal transmission of a logic "1" will always begin a
 - **Spectral Efficiency**: Varies with duty cycle and levels used. 
 $\text{Unipolar RZ (50\%): }\eta=\frac{1}{2}\text{ if 25\% then }\eta=\frac{1}{4}\text{ if multilevel eg: 64 : }l=\log_{2}(64)=6\implies \eta=\eta \cdot l=6 \cdot \frac{1}{4}=\frac{6}{4}$
 **any signal can be multilevel and in that case their spectral effiency is multiplied by $l$**
+$\frac{D}{B}\text{cant be }>2\text{ but } \frac{R}{B}\text{ can}$
+$\frac{R}{B}=2.5\to l=2\to \frac{D}{B}=1.25\to \text{cosine rolloff}$
 ![[spectral eff linecodes.png|300]]![[Binary signalling waveforms.png|300]]![[pcm transmission example so far.png|500]]
 # Inter-symbol interference
+[Intersymbol interference - Wikipedia](https://en.wikipedia.org/wiki/Intersymbol_interference)
 ![[isi topic map.png|300]]
 ## What is inter-symbol interference?
 - **Inter-Symbol Interference (ISI):** Overlapping of signals in a communication channel, corrupting information. (smearing into other timeslots).
@@ -278,6 +318,7 @@ Nyquist's First Criterion for zero ISI suggests that ideal sinc pulses, which ar
 - **Bandwidth-Limited Region:** High SNR ($\text{SNR} >> 1$), capacity constrained by bandwidth, not SNR.
 ![[shannon hartley channel capacity.png|300]]
 ## Error detection and correction schemes
+[Hamming code - Wikipedia](https://en.wikipedia.org/wiki/Hamming_code)
 [But what are Hamming codes? The origin of error correction - YouTube](https://www.youtube.com/watch?v=X8jsijhllIA)
 - **Parity Bit Checking:** Fails with multiple bit flips, only detects odd number of errors.
 - **Hamming Codes:** Enables both error detection and correction.
@@ -288,6 +329,15 @@ Nyquist's First Criterion for zero ISI suggests that ideal sinc pulses, which ar
 - **Advanced Schemes:** Modern systems use LDPC, polar codes for better error correction.
 ![[parity bit example.png|200]]![[parity bit example-1.png|200]]
 # Amplitude, Frequency and Phase Modulation
+[Pulse-code modulation - Wikipedia](https://en.wikipedia.org/wiki/Pulse-code_modulation)
+[Amplitude modulation - Wikipedia](https://en.wikipedia.org/wiki/Amplitude_modulation)
+[Frequency modulation - Wikipedia](https://en.wikipedia.org/wiki/Frequency_modulation)
+
+![[amplitude modulation-3.png|300]]![[frequency modulation.png|300]]
+
+
+
+
 SEE INSTRUCTION 8 AND 9
 ## Main
 [What is Modulation ? Why Modulation is Required ? Types of Modulation Explained. - YouTube](https://www.youtube.com/watch?v=mHvV_Tv8HDQ)
@@ -330,6 +380,8 @@ SEE INSTRUCTION 8 AND 9
 - Double-sideband suppressed-carrier transmission (DSB-SC) is transmission in which frequencies produced by amplitude modulation (AM) are symmetrically spaced above and below the carrier frequency and the carrier level is reduced to the lowest practical level, ideally being completely suppressed.
 ![[dsbsc advantage.png|200]]![[dsbsc modulator.png|200]]![[signal modulation.png|200]]
 ## Detector circuits
+[AM Demodulation - Envelope Detector Explained (with Simulation) - YouTube](https://www.youtube.com/watch?v=4JrryefRNFk)
+$\frac{1}{f_{c}}\ll RC\ll \frac{1}{f_{m}}$
 ![[product detector.png|200]]![[modulation appendix.png|200]]![[dsb-sc summary.png|200]]![[detector types.png|200]]
 - **Detector Circuits:** Decode information from waveform; crucial for demodulation.
 - **Envelope Detector:** Simple, passive devices; ideal for AM signals with positive modulation under 100%.
@@ -405,8 +457,12 @@ multi path
 
 - **Knife Edge:** Diffraction causes additional power loss; $A(v) = P_{loss} = 6.9 + 20\log_{10}(\sqrt{v^2 + 1} + v - 0.1)$ for object blocking path. for $v>-0.7$
 - $v=a\sqrt{ \frac{2d_{1}d_{2}}{\lambda(d_{1}+d_{2})} }$
-- $P_{RX}=P_{Rx}(d)-P_{loss}$
+- $P_{RX}(dB)=P_{Rx}(d)(dB)-P_{loss}(dB)\to P_{RX}(dB)+30\to \text{convert this to final power since thats how you get absolute value...}$
 - $a=\beta+\gamma\implies \beta=\tan^{-1}\left( \frac{h_{obs}-h_{TX}}{d_{1}} \right)\cap \gamma=\tan^{-1}\left( \frac{h_{obs}-h_{RX}}{d_{2}} \right)$
+- knife edge is worse when you are closer to the obstacle...
+
+![[diffraction loss graph reading.png|400]]
+when positive it means loss = $-loss\to P_{RX}(d)--P_{loss}$
 ![[rms delay.png|300]]![[narrowband wideband.png|300]]
 ![[baseband bandwidth.png|100]]![[received power of narrowband.png|100]]![[received power of narrowband-1.png|100]]![[doppler shift.png|100]]![[wideband received power.png|100]]![[wideband received power-1.png|100]]![[coherence bandwidth.png|100]]![[coherence bandwidth-1.png|100]]
 wideband: power constant over time;
