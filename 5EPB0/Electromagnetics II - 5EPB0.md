@@ -1,3 +1,11 @@
+[Plane wave - Wikipedia](https://en.wikipedia.org/wiki/Plane_wave)
+**result of a gradient is a vector field, while the result of a divergence is a scalar field.**
+![[gradient divergence and curl.png|300]]![[divergence gradien and curl.png|300]]
+
+**decoupling:** express transverse components in longitudinal. (4 transverse components based on 2 longitudinal...)
+**fundamental unknown** usually: $E_{z}\text{(for TM modes)}\text{ or }H_{z}\text{(for TE modes)}$ basically one of 6 variables
+**solve W.E->for fundamental unknown...**
+![[summary of EM solutions.png|400]]![[note.png]]
 # Waves in time and one spatial dimension
 **DON'T FORGET THE MINUS SIGN WHEN DECOMPOSING FOR CURRENT I-**
 **LEARN CIRCUIT ANALYSIS BETTER**
@@ -81,6 +89,7 @@ time domain reflection (TDR): used for cable testing: quick pulse with switch.
 ![[detailed bounce diagram.png|bounce diagram detailed|600]]
 ![[example of wave additions.png|300]]
 # Transmission lines reflection and transmission
+
 ## Boundary conditions for penetrable media & Reflection and Transmission & Bounce diagrams
 incident, reflected, transmitted field
 ![[boundary conditions.png|300]]![[transient signal transfer.png|265]]
@@ -136,7 +145,7 @@ $LC=\mu \epsilon$
 
 for electromagnetic power balance: $F=qE+q\mu_{0}v \times H$ coulomb force + lorentz force
 
-**!!!** **moment in time just after the switch has been activated, but before possible reflections from the end of the line have returned: **$\frac{V_{comp}}{Z}+I_{steady}=0\text{ since }I_{total}|_{z=0,t>0}$
+**!!!** **moment in time just after the switch has been activated, but before possible reflections from the end of the line have returned:**$\frac{V_{comp}}{Z}+I_{steady}=0\text{ since }I_{total}|_{z=0,t>0}$
 # Time-harmonic waves
 $E=Re[E_{s}(\omega)e^{j\omega t}]$
 ![[transfer and scatter matrix.png]]
@@ -364,6 +373,7 @@ $\tan^2\theta_{B}=\frac{\epsilon_{2}}{\epsilon_{1}}=\frac{n_{2}^2}{n_{1}^2}$
 5. $E=A\exp(-ax)\exp(-j\beta z) \text{ Waves that travel in one direction and decay (evanesce) in another direction Inhomogeneous wave}$
 # Guided waves
 [Waveguides Explained - YouTube](https://www.youtube.com/watch?v=r9-m17IPOco)
+![[mode propagation.png|200]]
 ## Parallel-Plate Waveguide
 [Slab Waveguide Explained - YouTube](https://www.youtube.com/watch?v=YwsBo36XYc0)
 [Origin of TE and TM Modes - YouTube](https://www.youtube.com/watch?v=dYKGsJGPsDo)
@@ -445,7 +455,139 @@ $\tan^2\theta_{B}=\frac{\epsilon_{2}}{\epsilon_{1}}=\frac{n_{2}^2}{n_{1}^2}$
 ![[TM modes 2.png|400]]
 ![[proof of propagation and evanescence.png|400]]
 ## Resonant Cavities and Dielectric Slab Waveguides
+- for decoupling, only cavity formulas given (closed book) look and remember how those equations for parallel and rectangular those look like...
+- $n_{1}>n_{2}\text{ then we have TIR, reasoning behind dielectric slab...}$
+- [Evanescent field - Wikipedia](https://en.wikipedia.org/wiki/Evanescent_field#:~:text=In%20electromagnetics%2C%20an%20evanescent%20field,(oscillating%20charges%20and%20currents).)
+![[dielectric slab propagation.png|300]]![[odd and even electromagnetic propagation refreaction.png|200]]
+- so modes of TE, TM also split into (odd/even)
+- standing wave inside, and 2 evanescent waves outside
+
+### Resonant Cavities
+fully enclosed space... producing standing waves inside... no direction of propagation
+![[maxwell equations-1.png|200]]![[decoupling for cavity space.png|300]]
+$\text{for TE modes }H_{z}\text{ is the fundamental unknown }\nabla^2H_{z}+\kappa^2_{mnp}H_{z}=0\to H_{z}=\cos(\kappa_{m}x)\cos(\kappa_{n}y)[A\cos(\kappa_{p}z)+B\sin(\kappa_{p}z)]$
+$\text{boundary conditions applied: }H_{z|z=0,z=c}=0\to H_{z}=C\cos(\kappa_{m}x)\cos(\kappa_{n}y)\sin(\kappa_{p}z)$
+$\kappa_{p}=\frac{p\pi}{c}$
+even though now no propagation in (z) we still state it (**standard**).
+![[complete field components for TE modes.png|300]]
+$\kappa_{mnp}=\sqrt{ \kappa_{m}^2 +\kappa^2_{n}+\kappa_{p}^2}\to \text{cutoff frequencies: }f_{mnp}=\frac{1}{2\pi \sqrt{ \epsilon \mu }}\sqrt{ \left( \frac{m\pi}{a} \right)^2+\left( \frac{n\pi}{b} \right)^2 +\left( \frac{p\pi}{c} \right)^2}$
+### Dielectric Slab
+- not using metal but plastic, with $n_{1}(internal)>n_{2}(external)$
+- assume no $y$ dependence for each homogeneous region $i$ : $\{E,H\}(x,z)=\{\vec{E},\vec{H}\}(z)\exp(-j\beta_{i}z)$
+![[decoupling of field components of dielectric slab.png|300]]![[field description for tm modes.png|200]]
+for outside $n_{1}\to \text{where }x=\pm \frac{d}{2}\text{ }E\text{ and }H\text{ are continuous... }\text{for all z: }\beta_{1}=\beta_{2}=\beta \text{ but }\kappa_{1}\neq \kappa_{2}\text{ since different mterial properties...}$
+**solutions expressed in TM/TE modes below is analysis for TM:**
+$E_{z}(x,z)=\vec{E}_{z}(x)\exp(-j\beta z)$ where $\delta^2_{x}\vec{E_{z_{i}}}(x)+\kappa_{i}^2\vec{E_{z_{i}}}(x)=0\text{ where }\kappa_{i}^2=\omega^2\epsilon_{i}\mu_{i}-\beta^2$
+![[field description of TM modes inside and outside.png|inside and outside|300]]![[field tm modes look.png|200]]![[odd tm modes.png|200]]
+$\text{continuity of }\vec{H_{y}}(x)\text{ at }x=\pm \frac{d}{2}\text{ result in: }$ 
+$\vec{E_{z}}(x)=E_{0o}\sin(\kappa_{1}x)\text{ results in } \gamma_{2}=\frac{\epsilon_{0}}{\epsilon_{1}}\kappa_{1}\tan\left( \frac{\kappa_{1}d}{2} \right)$**ODD**
+$\vec{E_{z}}(x)=E_{0e}\cos(\kappa_{1}x)\text{ results in } \gamma_{2}=-\frac{\epsilon_{0}}{\epsilon_{1}}\kappa_{1}\cot\left( \frac{\kappa_{1}d}{2} \right)$**EVEN**
+$\text{since we know: }\kappa_{1}=\sqrt{ \omega^2\epsilon_{1}\mu_{1}-\beta^2 }>0$
+$\gamma_{2}^2+\kappa_{1}^2=(\beta^2-\omega^2\epsilon_{0}\mu_{0})+(\omega^2\epsilon_{1}\mu_{1}-\beta^2)=\omega^2(\epsilon_{1}\mu_{1}-\epsilon_{0}\mu_{0})$
+![[tm modes in general.png|200]]![[cutoff frequnecies.png|200]]![[cutoff frequnecies-1.png|200]]
+
+**FINALLY FOR TE MODE SIMILAR:**
+![[TE MODES IN DIELECTRIC SLAB.png|200]]![[interpretation of dielctric slab inside.png|200]]![[interpreation of dielectric slab outside.png|200]]
+
+$\sin \theta_c = \frac{n_2}{n_1}$
+
+$\Gamma_s = \frac{\eta_{2s} - \eta_{1s}}{\eta_{2s} + \eta_{1s}}$
+
+$\Gamma_p = \frac{\eta_{2p} - \eta_{1p}}{\eta_{2p} + \eta_{1p}}$
+
+$\eta_{2s} = \eta_2 \cos \theta_2$
+
+$\eta_{2p} = \eta_2 / \cos \theta_2$
+
+$\cos \theta_2 = \sqrt{1 - \left( \frac{n_1}{n_2} \sin \theta_1 \right)^2}$
+-------------------------------------------------------------
+$E_{y1s} = 2E_0 \cos(\kappa_1 x) e^{-j\beta z} \quad \left( -\frac{d}{2} < x < \frac{d}{2} \right)$
+
+$E_{y2s} = E_0 \cos\left( \kappa_1 \frac{d}{2} \right) e^{-\gamma_2 (x - d/2)} e^{-j\beta z} \quad (x > d/2)$
+
+$E_{y1s} = 2j E_0 \sin(\kappa_1 x) e^{-j\beta z} \quad \left( -\frac{d}{2} < x < \frac{d}{2} \right)$
+
+$E_{y2s} = E_0 e^{\gamma_2 (x + d/2)} e^{-j\beta z} \quad (x < -d/2)$
+![[final even and odd formulation.png|300]]
+--------------------------------------------------------------
+$\gamma_2 = n_2 k_0 \left( \left( \frac{n_1}{n_2} \right)^2 \sin^2 \theta_1 - 1 \right)^{1/2}$
+
+$\kappa_1 d + \phi_{TE} + \kappa_1 d + \phi_{TE} = 2m\pi$
+
+$\kappa_1 d + \phi_{TM} + \kappa_1 d + \phi_{TM} = 2m\pi$
+
+$k_0 d \sqrt{n_1^2 - n_2^2} \geq (m - 1)\pi \quad (m = 1, 2, 3, \ldots)$
+
+$k_0 d \sqrt{n_1^2 - n_2^2} < \pi$ single mode condition
+
+$\lambda > 2d\sqrt{n_1^2 - n_2^2}\text{ since }k=\frac{2\pi}{\lambda}$ wavelength range of single mode operation
 # Radiation
 ## The Electric Point Dipole
+![[deriving the dipole field equation.png|200]]![[expressing magnetic field.png|200]]![[expressing electric field.png|200]]
+![[inhomogeneous helmholtz equation p1.png|300]]![[p2.png|300]]
+
+![[field equations of dipole.png|200]]
+we can eliminate **E** $E=\frac{1}{j\omega \epsilon}[\nabla \times H-J_{0}]\to \text{sub into faraday law: }\nabla \times \left[ \frac{1}{j\omega \epsilon}\nabla \times H-\frac{1}{j\omega \epsilon}J_{0} \right]+j\omega \mu H=0$
+$\text{with }\nabla \cdot H=0\text{ and }k^2=\omega^2\epsilon \mu \text{ we get inhomogeneous helmholtz eq: }\nabla ^2H+k^2H=-\nabla \times J_{0}$
+$\nabla \cdot B=0\to B=\mu H=\nabla \times A\text{ sub into faraday law: }\nabla \times E+j\omega \mu H=0\to \nabla \times(E+j\omega A)=0\to E=-\nabla \Psi-j\omega A$
+$\text{vector potential: }A(r)\text{ Scalar potential: }\Psi(r)$
+![[inhomogeneous helmholtz equation lorenz gauge.png|300]]
+### Point Dipole
+![[point dipole electric density.png|200]]![[point dipole potential.png|200]]![[vector potential amplitude.png|200]]
+$\text{potential: }rA_{z}=C^+\exp(-jkr)+C^-\exp(jkr)$
+$A=\frac{\mu I_{0}d}{4\pi r}\exp(-jkr)a_{z}$
+![[magnetic field calculation.png|200]]![[magnetic field calculation-1.png|200]]
+$H=I_{0}d\left( jk+\frac{1}{r} \right) \frac{\exp(-jkr)}{4\pi r}\sin(\theta)a_{\phi}$
+![[electric field calculation.png|200]]![[electric field calculation-1.png|200]]![[electric field calculation-2.png|200]]
+$E=\frac{1}{j\omega \epsilon \mu}[\nabla \nabla \cdot A+k^2A]$
+- The solution is a spherical, two-dimensional wave: the fields only depend on r and θ. 
+- The solution is a TM-wave: there is no magnetic field component in the direction of propagation. 
+- The wave propagates radially in all directions.
+
+![[radiated power calculation.png|300]]
+$\beta=\omega \sqrt{ \mu \epsilon } \text{ and } Z=\sqrt{ \frac{\mu}{\epsilon} } \to \vec{S_{h}}=|I_{0}|^2(\beta d)^2Z \frac{\sin^2(\theta)}{32\pi^2r^2}$
 ## Magnetic point dipole & Antenna Specifications
+[Near and far field - Wikipedia](https://en.wikipedia.org/wiki/Near_and_far_field)
+where antenna radiates: radiation pattern...
+![[radiation pattern.png|300]]![[antenna load application.png|300]]
+![[magnetic dipole antenna.png|200]]
+solving magnetic dipole:
+- working out fields
+- using duality
+- using potentials
+### duality
+pick solutions for electric dipole and replace:
+- $E\text{ with }H$
+- $H\text{ with }-E$
+- $\epsilon \text{ with }\mu$
+- $\mu \text{ with }\epsilon$
+- $d\text{ with }j\omega \epsilon(\pi a^2)$
+![[solutions become.png|200]]
+### potentials
+![[magnetic dipole potentials.png|300]]
+### antennas
+**far field, radiation pattern, radiation resistance, directive gain**
+#### far field
+![[far field how the parameters change.png|300]]
+#### radiation pattern
+as shown on the picture of the board its a polar diagram $\vec{S_{h}}(\theta,\phi)\text{ as function of }\theta \text{ and }\phi \text{ with }\vec{S_{h}}\text{ at large length from antenna}$
+![[radiation patten-1.png|200]]
+#### radiation resistance
+![[radiation resistance.png|300]]![[power from a point dipole.png|300]]
+as derived on the board, its needed to have a proper antenna circuit, we only care about the real part...
+$\text{avg power: }P_{r}=40\pi^2\left( \frac{I_{0}d}{\lambda} \right)^2W=\frac{1}{2}I_{0}^2R_{rad}\text{ since radiation resistance: }R_{rad}=\frac{2P_{r}}{I_{0}^2}=80\pi^2\left( \frac{d}{\lambda} \right)^2$
+#### directive gain
+$\text{for point dipole }G_{d}=1.5\to G_{d}=\frac{\vec{S_{h}}(\theta,\phi)_{max}}{\vec{P_{h}}/(4\pi r^2)}$
+The directive gain of an antenna is the ratio of the maximum power flux in the far field, and total power divided by $4\pi r^2$ (i.e. the power radiated by an isotropic radiator).
+$\eta_{r}=\frac{P_{r}}{P_{in}}=\frac{G(\theta,\phi)}{D(\theta,\phi)}=\frac{G_{max}}{D_{max}}$
+$D(\theta,\phi)=\frac{1}{\eta_{r}}G(\theta,\phi)$
 ## Dipole Arrays
+controlling distance and phase...
+![[example of controlling the dipole antenna.png|300]]![[2 dipoles analysis.png|300]]
+![[dipole array control.png|200]]![[pair of dipoles.png|200]]![[pair of dipoles assumptions.png|200]]
+![[pair of dipoles total field.png|200]]![[pair of dipoles radiated power.png|200]]![[array factor.png|200]]
+![[n element linear arrays.png|200]]
+$\vec{E_{total}}=jZ \frac{I_{0}L\beta}{4\pi} \frac{e^{-j\beta r}}{r}\left[ 2e^{j a/2}\cos\left( \beta  \frac{d}{2} \right)\cos \phi+\frac{a}{2} \right]a_{\theta}$
+$\text{array factor }\vec{S_{h}}=F_{unit}F_{array}a_{r}$
+
+![[three dipoles example.png|300]]

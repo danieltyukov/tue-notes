@@ -2,10 +2,9 @@
 ## Digital modulation formats
 ### Baseband Systems
 **Baseband:** no signal modulation; **Bandpass:** modulation.
-![[digital modulation.png|179]]![[bandpass vs baseband.png|200]]
+![[digital modulation.png|300]]![[bandpass vs baseband.png|300]]
 **Baseband Signaling (fibre optic):** Binary Modulation, Multi-level modulation (multi-level PAM) : Just PSD stuff.
-[[Intro to 
-Telecommunication - 5ETA0#Linecodes and their spectras]]
+[[Intro to Telecommunication - 5ETA0#Linecodes and their spectras]]
 ### Bandpass Systems
 #### Binary Modulation
 [On–off keying - Wikipedia](https://en.wikipedia.org/wiki/On%E2%80%93off_keying)
@@ -171,7 +170,6 @@ $\text{Receiving power proportional: } \frac{1}{d^2}\text{ if attenaution: }d^{3
 - **space,time,frequency,code,polarization** multiplexing
 - **OFDM** is time AND frequency multiplexing for example...
 - **DSSS** code multiplexing where one spectrum used (spread spectrum)
-- 
 ### Cellular Networks 1G, 2G, 3G, 4G (LTE), 5G
 ![[cellular principle.png|300]]![[capacity increase strategies.png|300]]
 - High frequency for capacity 
@@ -188,7 +186,6 @@ $\text{slotted aloha (transmission allowed only at specific times...) max throug
 ![[pico and scatternets.png|400]]
 [Scatternet - Wikipedia](https://en.wikipedia.org/wiki/Scatternet)
 [Wireless ad hoc network - Wikipedia](https://en.wikipedia.org/wiki/Wireless_ad_hoc_network)
-
 # MAC Technologies and Fixed Networks (Eduward)
 ## Medium Access
 ### Basics of MAC Strategies
@@ -368,6 +365,13 @@ bus, ring, star, mesh network topologies...
 	- physical addressing:  frame (mac1/mac2/ip1,ip2/segment/tail).
 - **Physical:** Bits to Physical signal and Transfer.
 ![[OSI Model Flow.png|300]]
+
+[User Datagram Protocol - Wikipedia](https://en.wikipedia.org/wiki/User_Datagram_Protocol)
+![[UDP vs TCP.png|300]]
+- UDP being a connectionless protocol, them messages are forwarded without establishing a connection between the two communicators...
+- A UDP datagram consists of a datagram _header_ followed by a _data_ section (the payload data for the application). The UDP datagram header consists of 4 fields, each of which is 2 bytes (16 bits)
+
+
 ### Interconnected World, Datagram Switching, Datagram Networks
 [Switching Techniques in Computer Networks - YouTube](https://www.youtube.com/watch?v=-HlJ4psu5aU)
 [Basics of Bridge - YouTube](https://www.youtube.com/watch?v=NSDAYnixdgc)
@@ -405,6 +409,26 @@ A switching loop, or bridge loop, **occurs when more than one path exists betwe
 loops are not something we want to end up with as it fills the routing tables with redundancy.
 ## Reliable communications
 ### Spanning Trees
+[Spanning Tree Protocol Explained | Step by Step - YouTube](https://www.youtube.com/watch?v=japdEY1UKe4)
+#### STP Analysis Summary
+**Problems without STP:**
+- Communication loops formed
+- Unstable MAC address tables
+- Duplicate Frames
+
+**Solution with STP:**
+- Just mark one port in a switch to be ignored
+
+**How to do STP:**
+- Elect root bridge
+- Place root interfaces into forwarding state
+- Each non-root switch selects its root port
+- Remaining links choose a designated port
+- All other ports are put in to a blocking state
+
+![[STP basic setup.png|300]]
+#### other
+
 The need for the Spanning Tree Protocol (STP) arose because switches in local area networks (LANs) are often interconnected using redundant links to improve resilience should one connection fail.  However, this connection configuration creates a switching loop resulting in broadcast radiations and MAC table instability.  If redundant links are used to connect switches, then switching loops need to be avoided.
 
 
@@ -519,3 +543,7 @@ If ethernet address known, route to IP router...
 IP characteristics, packet structure & fragmentation...
 IP addresses, subnetting, forwarding tables...
 Classless Addressing...
+### Distance Vector Routing
+[Distance-vector routing protocol - Wikipedia](https://en.wikipedia.org/wiki/Distance-vector_routing_protocol#:~:text=A%20distance%2Dvector%20routing%20protocol,router%20counts%20as%20one%20hop.)
+![[starting spot.png|300]]
+### Link State Routing
