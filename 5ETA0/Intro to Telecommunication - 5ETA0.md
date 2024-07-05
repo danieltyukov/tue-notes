@@ -225,7 +225,7 @@ Multi-level signaling sends more than one bit per symbol, enabling higher data r
 - $T_{s}=lT_{b}$ also $R=\frac{n}{T_{s}}=\frac{l}{T_{s}}$
 $D\leq 2B \text{ it can only become worse, higher bandwidth, (2 is sinc) nyquest criteria}$
 - Each symbol can represent or/ convey one or several bits of data.
-- $\$\eta=\frac{D}{B}$
+- $\eta=\frac{D}{B}$
 - **Bit Rate ($R$)**: $R = lD = D\log_2(L) = \frac{N}{T_0}\log_2(L) = \frac{n}{T_0}$ [bits/s], with $L$ levels, $D$ baud rate. One symbol can represent multiple bits.
 - **Binary Signaling**: For $L=2$, $R = D$.
 - **Channel Capacity:** $C=B\log_{2}(1+SNR)\to \frac{bits}{sec}\to \eta_{max}=\frac{C}{B}=\log_{2}\left( 1+SNR \right)$
@@ -334,9 +334,6 @@ Nyquist's First Criterion for zero ISI suggests that ideal sinc pulses, which ar
 [Frequency modulation - Wikipedia](https://en.wikipedia.org/wiki/Frequency_modulation)
 
 ![[amplitude modulation-3.png|300]]![[frequency modulation.png|300]]
-
-
-
 
 SEE INSTRUCTION 8 AND 9
 ## Main

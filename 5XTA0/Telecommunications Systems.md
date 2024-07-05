@@ -1,13 +1,121 @@
 # Modulation Formats and Wireless Networks (Simon)
+![[ee-1.png|300]]
 ## Digital modulation formats
+![[digital transmission baseband vs passband.png|300]]
+#### why linecoding for baseband
+Linecoding generally doesn't work well on bandpass signals for a few key reasons:
+
+1. Spectral mismatch: Linecodes are designed for baseband transmission, while bandpass signals occupy a specific frequency band away from DC. This fundamental mismatch in spectral characteristics makes direct application of linecoding ineffective.
+
+2. Loss of low-frequency components: Bandpass signals inherently lack the low-frequency components that many linecodes rely on for proper decoding and clock recovery.
+
+3. Interference with carrier: Applying linecoding directly to a bandpass signal would interfere with the carrier frequency, potentially distorting the signal and making recovery difficult.
+
+4. Modulation incompatibility: Bandpass signals often use specific modulation schemes (like QAM or PSK) that are incompatible with traditional linecoding techniques.
+
+5. Increased bandwidth requirements: Attempting to apply linecoding to a bandpass signal would likely increase the bandwidth requirements beyond what's typically allocated for bandpass transmission.
+
+Instead of linecoding, bandpass signals typically use modulation techniques specifically designed for their frequency characteristics. These methods allow for efficient use of the available bandwidth while maintaining signal integrity.
+
+Would you like me to elaborate on any of these points or discuss alternative techniques used for bandpass signals?
+
+#### baseband vs bandpass example
+I understand this can be confusing, and I'll try to explain it in a simple way. Don't worry, you're not stupid - these concepts can be tricky! Let's break it down with an analogy and then a more technical example.
+
+Analogy: Radio Stations
+
+Think of baseband and bandpass like different types of radio stations:
+
+1. Baseband (AM radio):
+   - Broadcasts at a low frequency
+   - Takes up a small range of frequencies near zero
+   - Can only fit one station in this space
+
+2. Bandpass (FM radio):
+   - Broadcasts at higher frequencies
+   - Each station occupies a specific "band" of frequencies
+   - Multiple stations can exist side by side at different frequency bands
+
+Technical Example: Sending a Simple Message
+
+Let's say we want to send the binary message "1010" (representing some data).
+
+Baseband Modulation:
+1. We might represent this directly:
+   - '1' as a high voltage
+   - '0' as a low voltage
+2. The signal would look like: high, low, high, low
+3. This signal contains frequencies starting from 0 Hz (DC) up to some maximum
+
+Bandpass Modulation:
+1. We start with a carrier wave (let's say at 100 MHz)
+2. We modify this carrier based on our data:
+   - For '1', we might increase the amplitude
+   - For '0', we might decrease the amplitude
+3. The resulting signal is centered around 100 MHz, not at 0 Hz
+
+Key Differences:
+
+1. Frequency range:
+   - Baseband: Starts at 0 Hz
+   - Bandpass: Centered around a specific frequency (like 100 MHz)
+
+2. Signal shape:
+   - Baseband: Directly represents the data
+   - Bandpass: Data modifies a carrier wave
+
+3. Multiple channels:
+   - Baseband: Typically one channel in the available spectrum
+   - Bandpass: Can have multiple channels at different frequencies
+
+4. Applications:
+   - Baseband: Often used in wired communications (like Ethernet)
+   - Bandpass: Common in wireless communications (like Wi-Fi, cellular)
+
+Does this help clarify the differences? Would you like me to expand on any part of this explanation?
 ### Baseband Systems
+[Line code - Wikipedia](https://en.wikipedia.org/wiki/Line_code)
+Baseband uses lincoding for modulation
+which results in PAM
+[Pulse-amplitude modulation - Wikipedia](https://en.wikipedia.org/wiki/Pulse-amplitude_modulation)
+Baseband is used in wire transmission
+
+
+Baseband modulation techniques **encode information directly as the amplitude, width, or position of a pulse**. They do not utilize a sinusoidal carrier. Some of these modulation schemes are known by the acronyms PWM ( pulse width modulation), PPM ( pulse position modulation), and PAM ( pulse amplitude modulation).
+
+[theory - Baseband vs Passband modulation - Signal Processing Stack Exchange](https://dsp.stackexchange.com/questions/26214/baseband-vs-passband-modulation)
+
+
+low frequency signal...
+**A modulated baseband signal is called a passband signal**.
+Baseband is just a message signal...
+[What is a Baseband Equivalent Signal in Communications? - YouTube](https://www.youtube.com/watch?v=etZARaMNN2s)
+[Baseband - Wikipedia](https://en.wikipedia.org/wiki/Baseband)
+- passband signal in frequency domain centered at $f_{c(carrier)}$
+- to sample it we need nyquist criteria: $f_{s(sample)}\geq2B(f_{max})$
+- which may be too large frequency...
+- where baseband comes in so we only reconstruct around that signal
+- frequency domain has duplicity in negative domain, we ignore it and take only the positive through Fourier transfer $x(t)\to F.T\to shift$ and shift to 0... $X_{+}(f+f_{c})$
+- now when we sample at nyquest criteria its a much lower frequency range (beauty of baseband).
+- **we moved passband to baseband**
+
 **Baseband:** no signal modulation; **Bandpass:** modulation.
+
 ![[digital modulation.png|300]]![[bandpass vs baseband.png|300]]
-**Baseband Signaling (fibre optic):** Binary Modulation, Multi-level modulation (multi-level PAM) : Just PSD stuff.
+**Baseband Signaling (fibre optic):** Binary Modulation, Multi-level modulation (multi-level PAM) : Just PSD stuff line coding so multilevel is like intro telecom.
 [[Intro to Telecommunication - 5ETA0#Linecodes and their spectras]]
+
+[What is Baseband and Passband? Baseband and Passband in Digital & Analog Modulation Tutorial - YouTube](https://www.youtube.com/watch?v=Wo8qeDD6H0M)
+![[passband after baseband modulation.png|300]]
 ### Bandpass Systems
+[Band-pass filter - Wikipedia](https://en.wikipedia.org/wiki/Band-pass_filter)
+[Passband - Wikipedia](https://en.wikipedia.org/wiki/Passband)
+[Modulation - Wikipedia](https://en.wikipedia.org/wiki/Modulation#Digital_modulation_methods)
+Bandpass being at a lot higher frequencies due to carry signal applied to the message signal(the baseband signal). Making it a lot higher frequency for the purpose of antenna practicality.
+
 #### Binary Modulation
 [On–off keying - Wikipedia](https://en.wikipedia.org/wiki/On%E2%80%93off_keying)
+[Amplitude-shift keying - Wikipedia](https://en.wikipedia.org/wiki/Amplitude-shift_keying)
 [Phase-shift keying - Wikipedia](https://en.wikipedia.org/wiki/Phase-shift_keying)
 [Frequency-shift keying - Wikipedia](https://en.wikipedia.org/wiki/Frequency-shift_keying)
 [Passband Modulation](https://en.wikipedia.org/wiki/Passband)
@@ -16,6 +124,9 @@
 
 Coherent detection (OOK, BPSK(sync detection), FSK) 
 Non-coherent detection (OOK, FSK, DPSK)
+**In coherent detection, the receiver has precise knowledge of the carrier signal's phase and frequency.**
+
+![[Telecommunications Systems.png|200]]
 $\text{bandpass waveform: }s(t)=R\{g(t)e^{j\omega_{c}t}\}\implies \text{Avg normalized power: }P_{S} \frac{<s^2(t)>}{R}=\frac{1}{2}<|g(t)|^2> \implies \text{Peak envelope power (PEP): }P_{PEP}=\frac{1}{2R}[max|g(t)|]^2\implies \text{Normalized PEP: }P_{PEP,norm}=\frac{1}{2}[max|g(T)|]^2$
 $T=\frac{1}{R}$ 
 $T_{0}=lT$ 
@@ -88,6 +199,10 @@ QPSK: More bandwidth efficient than BPSK but requires more decision points than 
 ##### Transmitter
 ![[generalized quadrature transmitter.png|200]]![[QAM transmitter in action.png|200]]![[qam receiver.png|200]]
 #### Orthogonal Frequency Division Multiplexing (OFDM)
+- **Principle**: OFDM divides the available bandwidth into multiple orthogonal subcarriers, each modulated with a low bit rate signal.
+- **Orthogonality**: Ensures that subcarriers do not interfere with each other, allowing for efficient spectrum usage.
+
+**type of digital transmission used in digital modulation for encoding digital (binary) data on multiple carrier frequencies.**
 [OFDM Waveforms - YouTube](https://www.youtube.com/watch?v=F6B4Kyj2rLw&list=PLx7-Q20A1VYIvtMUWX3yd_sQGbQx1qPGP)
 [Orthogonal frequency-division multiplexing - Wikipedia](https://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing)
 [OFDM Network Optimization Using a QPSK Based on a Wind-Driven Genetic Algorithm - PMC](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9415329/#:~:text=QPSK%20is%20one%20of%20the,can%20undergo%20numerous%20phase%20changes.)
@@ -134,6 +249,7 @@ use bandwidth maintaining signal power: good for military low signal transmissio
 ![[DSSS circuits.png|300]]![[FSSS.png|300]]
 $FSK:m(t)=\cos\{\omega_{c}t+\theta(t)\}$
 ### Bit Error Rate performance (BER)
+[Bit error rate - Wikipedia](https://en.wikipedia.org/wiki/Bit_error_rate)
 ![[receiving signals.png|300]]![[q and error functions.png|300]]
 $N(0,\sigma^2)+jN(0,\sigma^2)\text{ with }\sigma^2=\frac{N_{0}}{2}$
 Gaussian probability of error occurring.
@@ -145,6 +261,7 @@ Gaussian probability of error occurring.
 
 **NON-COHERENT DETECTION**
 ![[OOK non coherent error detction.png|200]]![[FSK non coherent detection FSK.png|200]]![[non coherent detection PSK.png|200]]
+$\text{DPSK prefered over BPSK doesn't need carrier recovery}$
 
 **Union Bounds:** serves as upper bound to error probability with complex modulation with multiple alternatives, since we cant calculate the exact symbol error rate.
 ![[BER union bound.png|200]]![[BER multilevel signals.png|200]]
@@ -153,10 +270,20 @@ Gaussian probability of error occurring.
 ### Introduction to Wireless Networks
 ![[wireless disadv.png|300]]![[wirelesswired networks.png|300]]
 ### Antennas, Link power budget, Atmospheric losses
+[Link budget - Wikipedia](https://en.wikipedia.org/wiki/Link_budget)
+
+
+[Inside Wireless: Antenna Gain - YouTube](https://www.youtube.com/watch?v=errdGMyQF6k)
+[What are Antenna Gain, EIRP, and Friis Equation? - YouTube](https://www.youtube.com/watch?v=mHo2-f5V8V4)
+![[antenna summary.png|400]]
+$\text{isotropic receiver/transmitter: }P_{o}=\frac{P_{t}}{4\pi d^2}$
+- Friis equation for gain: $P_{Rx}(d) = P_{Tx} \times G_{Tx} \times G_{Rx} \times (\frac{\lambda}{4\pi d})^2$.
+- isotropic gain if at receiver or transmitter is = 1
+
 - **Isotropic Radiator:** Theoretical antenna radiating equally in all directions.
 - **Beam Width:** Measure of directivity of an antenna.
 - **Sidelobes and Nulls:** Extra energy outside the main lobe and very low energy between the main lobe and sidelobes respectively.
-- **Antenna Power Density (Isotropic)**: $P_{density}=\frac{P_{tx}}{4\pi d^2}\text{ where }P_{tx}\text{ is the transmitted power, and }d\text{ is the distance from the antenna}$
+- **Antenna Power Density (Isotropic)**: $P_{density}=\frac{P_{tx}}{4\pi d^2}\text{ where }P_{tx}\text{ is the transmitted power, and }d\text{ is the distance from the antenna (power per unit area)}$
 - $G=\frac{4\pi A}{\lambda^2}$ Antenna Gain multiply it $P_{density}$ for directional antennas.
 ![[antenna radiiated power density.png|300]]![[antenna received power-1.png|300]]
 - $\text{Frii's transmission equation: } \frac{P_{Rx}}{P_{Tx}}=G_{AT}G_{FS}G_{AR}=G_{AT}\left( \frac{\lambda}{4\pi d} \right)^2G_{AR}$
@@ -170,11 +297,53 @@ $\text{Receiving power proportional: } \frac{1}{d^2}\text{ if attenaution: }d^{3
 - **space,time,frequency,code,polarization** multiplexing
 - **OFDM** is time AND frequency multiplexing for example...
 - **DSSS** code multiplexing where one spectrum used (spread spectrum)
+
+$\text{antenna gain: }10\log_{10}\left( \frac{\text{new dist}^2}{\text{old dist}^2} \right)$
+
+#### multipath propagation
+**Multipath Propagation:**
+
+- Occurs when transmitted signals take multiple paths to reach the receiver due to reflections, diffractions, and scattering from obstacles like buildings, trees, and other structures.
+**Impact on Quality:**
+
+- Causes constructive and destructive interference, leading to signal fading, distortion, and inter-symbol interference.
+- Can result in poor signal quality, reduced data rates, and increased error rates.
+
+**Reducing the Impact:**
+
+1. **Diversity Techniques:** Use of multiple antennas (spatial diversity) or multiple frequencies (frequency diversity) to combine multiple received signals and mitigate fading.
+2. **Equalization:** Signal processing techniques that compensate for the time dispersion caused by multipath propagation.
+3. **Error Correction:** Implementing error correction codes to detect and correct errors caused by multipath effects.
+4. **Adaptive Modulation and Coding (AMC):** Adjusts the modulation scheme and coding rate based on the channel conditions to optimize data transmission.
 ### Cellular Networks 1G, 2G, 3G, 4G (LTE), 5G
+![[lte better.png|300]]
+When a user requests for access to a LTE network, mutual authentication between the user and the network is conducted using EPS AKA procedure. An MME, upon receipt of such request, identifies the user using his/her IMSI and requests authentication vector(s) (AVs) from an HSS
+
+[What are the advantages and disadvantages of cellular systems comprised of small cells? - Quora](https://www.quora.com/What-are-the-advantages-and-disadvantages-of-cellular-systems-comprised-of-small-cells#:~:text=Advantages%3A,-%E2%80%A2&text=Increased%20capacity%3A%20Small%20cells%20provide,existing%20networks%2C%20improving%20user%20experience.&text=Improved%20coverage%3A%20They%20fill%20in,in%20areas%20with%20weak%20signal.&text=Lower%20cost%3A%20Small%20cells%20are,than%20traditional%20macro%20cell%20towers.)
+[Beamforming - Wikipedia](https://en.wikipedia.org/wiki/Beamforming)
+increased capacity, better coverage, enhanced data rates
+increased interference, costs, complex
+
+
+**Impact of Mobility:**
+
+1. **Signal Fading**: Rapid changes in signal strength due to movement, causing fluctuations in connection quality.
+2. **Handover Issues**: Frequent handovers can lead to dropped connections or temporary loss of service.
+3. **Doppler Shift**: Movement at high speeds can cause frequency shifts, affecting communication quality.
+4. **Latency Variations**: Variations in latency as the user moves can impact real-time applications like voice or video calls.
+
+[LTE (telecommunication) - Wikipedia](https://en.wikipedia.org/wiki/LTE_(telecommunication))
+[Cellular network - Wikipedia](https://en.wikipedia.org/wiki/Cellular_network)
 ![[cellular principle.png|300]]![[capacity increase strategies.png|300]]
 - High frequency for capacity 
 - Low frequency for IoT and ultrareliable communications
 ### Local and Personal Area Networks
+Radio over fiber (RoF) or RF over fiber (RFoF) refers to **a technology whereby light is modulated by a radio frequency signal and transmitted over an optical fiber link**.
+[Radio over fiber - Wikipedia](https://en.wikipedia.org/wiki/Radio_over_fiber#:~:text=Radio%20over%20fiber%20(RoF)%20or,over%20an%20optical%20fiber%20link.)
+[Wireless LAN - Wikipedia](https://en.wikipedia.org/wiki/Wireless_LAN)
+[Bluetooth - Wikipedia](https://en.wikipedia.org/wiki/Bluetooth)
+[Carrier-sense multiple access with collision avoidance - Wikipedia](https://en.wikipedia.org/wiki/Carrier-sense_multiple_access_with_collision_avoidance)
+
 Multiple access & scheduling - ALOHA protocol
 [ALOHAnet - Wikipedia](https://en.wikipedia.org/wiki/ALOHAnet)
 ![[aloha example.png|200]]![[wireless networks classification.png|200]]
@@ -187,6 +356,7 @@ $\text{slotted aloha (transmission allowed only at specific times...) max throug
 [Scatternet - Wikipedia](https://en.wikipedia.org/wiki/Scatternet)
 [Wireless ad hoc network - Wikipedia](https://en.wikipedia.org/wiki/Wireless_ad_hoc_network)
 # MAC Technologies and Fixed Networks (Eduward)
+![[ee-2.png|400]]
 ## Medium Access
 ### Basics of MAC Strategies
 media access (MAC) protocol for multi user communication.
@@ -224,6 +394,7 @@ you can increase channels or decrease the size of network (coverage)
 $\lambda=\text{call arrival intensity } \frac{1}{\mu}=\text{call duration } \rho_{u}=\frac{\lambda}{\mu}=Erl\text{ and }\rho=\text{total Erl}$
 ![[using the erlang b model.png|500]]
 Erlang-C instead of block -> on hold
+he see here that we get $\text{traffic load}=2 \cdot10^0=2\to 10\log_{10}(2)=3\to \text{ so }3Erl$
 $\text{probability "on hold" has to wait more than t seconds: }Pr(\text{wait time>1|wait time>0})=\exp\left( -\frac{t(N-\rho)}{1/\mu} \right)$
 $\text{probability user wait more than t sec: } Pr(\text{wait time >t})=Pr(\text{wait time>0}) \cdot \exp\left( -\frac{t(N-\rho)}{1/\mu} \right)$
 $\text{channels per cell: } \frac{channels}{cells}$
@@ -234,6 +405,10 @@ Total Call Duration (hours): Traffic Load: $\frac{\text{Total call duration (sec
 
 $\text{percentage of calls dropped}=\left( \frac{\text{Num of rejected calls (no channels)}}{\text{Total num of call requests}} \right) \cdot100$
 ### FDMA (/ SCMA and WDMA in fibre networks)
+[Subcarrier multiplexing - Wikipedia](https://en.wikipedia.org/wiki/Subcarrier_multiplexing)
+[Wavelength-division multiplexing - Wikipedia](https://en.wikipedia.org/wiki/Wavelength-division_multiplexing)
+
+
 [Frequency Division Multiple Access (FDMA) Techniques](https://www.geeksforgeeks.org/frequency-division-multiple-access-fdma-techniques/)
 [Channelization Protocols](https://www.youtube.com/watch?v=KviHyRss-dE)
 [Frequency-division multiple access - Wikipedia](https://en.wikipedia.org/wiki/Frequency-division_multiple_access)
@@ -242,9 +417,30 @@ Frequency Division Duplex: FDD: to communicate between stations
 **The communication going from a satellite to ground is called downlink, and when it is going from ground to a satellite it is called uplink**
 $\text{reuse frequencies: }M(\text{min dist freq reuse})=\frac{N(\text{chan avail})}{k(\text{group of chan to cell})}$
 
+**Frequency-Division Duplex (FDD):**
+
+- FDD uses separate frequency bands for upstream and downstream communications.
+- Each direction has its own dedicated frequency band, allowing simultaneous bi-directional communication.
+
+**Time-Division Duplex (TDD):**
+
+- TDD uses a single frequency band but divides the time into slots.
+- Communication alternates between upstream and downstream in different time slots.
+
+![[problem downstream upstream.png|300]]
+
 **cellular concept:** divide coverage areas into many subareas
 ![[example of cellular division.png|300]]![[visual show of cluster size to coverage.png|150]]
-total area is inversely proportional to the size of the cluster.
+**decreasing** cluster size **increases** system capacity.
+num of times cluster repeated in area inversely proportional to size of cluster.
+
+clust size = 7
+channels = 1001
+area = $7\times 6=42km^2$
+clusters in system = $\frac{2100}{42}=50$ -> smaller area more clusters -> more channels 
+channels in system = $50 \times 1001=50050$
+
+
 
 ![[channel calculation.png|200]]![[channel calculation-2.png|200]]![[channel grapphing.png|200]]
 $\text{Frequency reuse factor} = \frac{1}{M}$
@@ -266,6 +462,9 @@ $\lambda=\frac{\text{requests per hour }(\lambda_{total})}{users}$
 
 ![[TDMA vs MAC technique.png|200]]![[adv disadv fdma.png|200]]![[improve fdma for higher data rates.png|200]]
 ### TDMA
+[Passive optical network - Wikipedia](https://en.wikipedia.org/wiki/Passive_optical_network)
+[Carrier-sense multiple access - Wikipedia](https://en.wikipedia.org/wiki/Carrier-sense_multiple_access)
+
 [Time-division multiple access - Wikipedia](https://en.wikipedia.org/wiki/Time-division_multiple_access)
 Shares single carrier frequency with multiple users
 Less power control than CDMA, but more flexible than FDMA
@@ -284,7 +483,9 @@ now we can calculate trunking efficiency
 
 $\text{avg user density}=\text{num users per cell}/\text{cell area}$
 ### CDMA
+[Difference between FDMA and CDMA - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-fdma-and-cdma/)
 [Code-division multiple access - Wikipedia](https://en.wikipedia.org/wiki/Code-division_multiple_access)
+![[CDMA vs fdma.png|300]]
 allows several users to share a band of frequencies.
 it uses spread spectrum mentioned before. Using spread spectrum or spectrum hopping
 $\text{spreading factor}\to G=\frac{W}{R}\text{ transmission bandwidth W and information bandwidth R(data rate)}$
@@ -298,6 +499,10 @@ $\text{to accomodate max certain amount of users: } \frac{E_{b}}{I_{0}}=\frac{NP
 $\text{max num of users: }K=\frac{N}{E_{b}/I_{0}}-\frac{1}{P/N_{0}}+1$
 where power per chip: $P$ and bandwidth: $N$
 ### NOMA
+coordinated multiuser access method that transmits different data streams over the same radio resources and employs detection algorithms such as SIC to decode the multiplexed data streams at the receiver.
+
+SIC: allows decoding of two or more packets that arrived simultaneously
+
 **Non Orthogonal Multiple Access**
 uses power domain to separate signals.
 ![[oma vs noma.png|300]]![[oma vs noma-1.png|300]]
@@ -305,12 +510,36 @@ uses power domain to separate signals.
 - users with better channel conditions, like a closer channel are allocated less power...
 - Successive interference cancellation (SIC) is used at receivers.
 ![[nima beamforming.png|300]]
+
+## Wired Networks
+[Peer-to-peer - Wikipedia](https://en.wikipedia.org/wiki/Peer-to-peer)
+[Point-to-multipoint communication - Wikipedia](https://en.wikipedia.org/wiki/Point-to-multipoint_communication)
+[Network topology - Wikipedia](https://en.wikipedia.org/wiki/Network_topology)
+[Digital subscriber line - Wikipedia](https://en.wikipedia.org/wiki/Digital_subscriber_line)
+[DOCSIS - Wikipedia](https://en.wikipedia.org/wiki/DOCSIS#:~:text=Data%20Over%20Cable%20Service%20Interface,cable%20television%20(CATV)%20system.)
+
+- Channel bonding **combines multiple network connections into a single, high-speed “superhighway” for your data**.
+- **Optical code division multiple access** (OCDMA) is a type of multiplexing technology that is utilized in optical communication systems. It enables the simultaneous transmission of several signals over a single optical fiber, with each signal being identified by a distinct code.
+
+
+
+[Wavelength-division multiplexing (fiber optic)(WDM) - Wikipedia](https://en.wikipedia.org/wiki/Wavelength-division_multiplexing)
+-  capacity upgrade
+- different transmission formats
+- scalability
+- wavelength routing/switching
+- Wavelength spacing practically depends on
+	- modulation bandwidth
+	- optical filter bandwidth
+	- $\Delta v=\left( \frac{c}{\lambda^2} \right)\Delta \lambda$
 ### Transmission Media
+[Numerical aperture - Wikipedia](https://en.wikipedia.org/wiki/Numerical_aperture)
 ![[transmission media.png|300]]![[optical fiber transmission system.png|300]]
 **attenuation:** signal get smaller.
 **dispersion:** signals get mis-shaped.
 **Numerical aperture** (a measure for the coupling efficiency of light into the fiber).
 **numerical aperture** (**NA**) of an optical system is a dimensionless number that characterizes the range of angles over which the system can accept or emit light.
+$n_{0}\sin(\theta_{0})=NA=\sqrt{ n_{1}^2-n_{2}^2 }$
 ![[5XTA0/attachments/TIR.png|300]]![[ray propagation.png|300]]
 ![[numerical aperture.png|300]]![[light guiding capacity.png|300]]
 ![[modal dispersion.png|300]]![[modal dispersion example.png|300]]
@@ -321,17 +550,23 @@ uses power domain to separate signals.
 - Large core diameter → eases fibre coupling; small dust particles and scratches on fibre end face have less impact.
 
 ![[twister pair cable.png|300]]![[coaxial vable properties.png|300]]
-## Wired Networks
-[Wavelength-division multiplexing (fiber optic)(WDM) - Wikipedia](https://en.wikipedia.org/wiki/Wavelength-division_multiplexing)
--  capacity upgrade
-- different transmission formats
-- scalability
-- wavelength routing/switching
-- Wavelength spacing practically depends on
-	- modulation bandwidth
-	- optical filter bandwidth
-	- $\Delta v=\left( \frac{c}{\lambda^2} \right)\Delta \lambda$
+
+
+Graded-index multimode fibers have a core in which the refractive index gradually decreases from the center towards the cladding. This design reduces modal dispersion compared to step-index multimode fibers, where the refractive index changes abruptly at the core-cladding boundary. The advantages are:
+
+1. **Reduced Modal Dispersion**: The gradual change in refractive index helps to equalize the travel times of different light modes, reducing modal dispersion and allowing higher bandwidth over longer distances.
+2. **Higher Bandwidth**: Because of reduced modal dispersion, graded-index fibers can support higher data rates compared to step-index fibers.
+3. **Improved Signal Quality**: The reduction in dispersion leads to a cleaner signal with less inter-symbol interference, improving overall data integrity and reducing error rates.
+
+
 ### Optical Networking
+For a star coupler with N outputs, the power loss due to splitting is: Loss (dB)=$10log⁡10(N)\text{Loss (dB)} = 10 \log_{10}(N)Loss (dB)=10log10​(N)$
+
+Thus, the loss introduced by the star coupler increases logarithmically with the number of rooms connected.
+
+Total allowable loss = Transmitter power - Receiver sensitivity - Link margin
+
+
 bus, ring, star, mesh network topologies...
 ![[passive linear bus coupler.png|300]]![[simplex linear bus.png|300]]
 ![[simplex linear bus 2.png|300]]![[star network.png|300]]
@@ -344,19 +579,36 @@ bus, ring, star, mesh network topologies...
 - **A scalable optical network can be constructed by taking several WDM links and connecting them at a node by a switching subsystem**. Using such nodes (also called wavelength routers) interconnected by fibers.
 - Avoiding λ-collision by λ-conversion
 ### Passive Optical Networks
+[Passive optical network - Wikipedia](https://en.wikipedia.org/wiki/Passive_optical_network)
+fiber-optic telecommunications network that uses only unpowered devices to carry signals, as opposed to electronic equipment. In practice, PONs are typically used for the last mile between Internet service providers and their customers.
 ![[ex1.png|300]]![[sol1.png|300]]
 ![[ex2.png|300]]![[sol2.png|300]]
 ![[ex3.png|300]]![[sol3.png|300]]
 ![[ex4.png|300]]![[sol4.png|300]]
 ![[ex5.png|200]]![[sol5.png|200]]![[sol5-1.png|200]]
 # Internetworking and Transport Reliability (Georgios)
+![[ee.png|300]]
+[Border Gateway Protocol - Wikipedia](https://en.wikipedia.org/wiki/Border_Gateway_Protocol)
+[Autonomous system (Internet) - Wikipedia](https://en.wikipedia.org/wiki/Autonomous_system_(Internet))
+[Internet Control Message Protocol - Wikipedia](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol)
+[Hierarchical routing - Wikipedia](https://en.wikipedia.org/wiki/Hierarchical_routing#:~:text=Most%20Transmission%20Control%20Protocol%2FInternet,that%20can%20deliver%20it%20directly.)
+[Reliability (computer networking) - Wikipedia](https://en.wikipedia.org/wiki/Reliability_(computer_networking))
 ## Networking
+[Difference between Hub, Switch and Router - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-hub-switch-and-router/)
+**Hub:** A L1 physical device which forwards all signals to all connected devices.
+**Swicth:** A L2 data device which can determine to whom the data needs to be sent. (MAC)
+**Router:** A L3 network device uses a routing table, several paths for a source.(IP)
+
+0.0.0.0/0 default route to internet
 ### OSI model
+**IP is L3 while MAC is L2**
 [OSI Model - Text](https://en.wikipedia.org/wiki/OSI_model)
 [OSI Explained - Video](https://www.youtube.com/watch?v=vv4y_uOneC0&list=WL&index=90)
 ![[OSI Layering.png|150]]![[OSI Layering 2.png|143]]![[OSI Layering 3-1.png|104]]![[OSI Layering 4.png|155]]
-- **Application:** Protocols network apps use (HTTP,FTP).
-- **Presentation:** Data modulation (SSL).
+![[visual of osi model.png|400]]
+**APSTNDP (All People Seem To Need Data Processing)**
+- **Application:** Protocols network apps use (HTTP,FTP)(host communication).
+- **Presentation:** Data modulation.
 - **Session:** Manage connection (API).
 - **Transport:** Data flow control (TCP(slower,feedback)/UDP).
 - **Network:** Routers communication (IP(packet)/ROUTING/Pathing).
@@ -364,17 +616,17 @@ bus, ring, star, mesh network topologies...
 - **Data Link:** Access media, access control.
 	- physical addressing:  frame (mac1/mac2/ip1,ip2/segment/tail).
 - **Physical:** Bits to Physical signal and Transfer.
-![[OSI Model Flow.png|300]]
+![[OSI Model Flow.png|300]]![[routing.png|300]]
 
 [User Datagram Protocol - Wikipedia](https://en.wikipedia.org/wiki/User_Datagram_Protocol)
+[Transmission Control Protocol - Wikipedia](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
 ![[UDP vs TCP.png|300]]
 - UDP being a connectionless protocol, them messages are forwarded without establishing a connection between the two communicators...
 - A UDP datagram consists of a datagram _header_ followed by a _data_ section (the payload data for the application). The UDP datagram header consists of 4 fields, each of which is 2 bytes (16 bits)
-
-
 ### Interconnected World, Datagram Switching, Datagram Networks
 [Switching Techniques in Computer Networks - YouTube](https://www.youtube.com/watch?v=-HlJ4psu5aU)
 [Basics of Bridge - YouTube](https://www.youtube.com/watch?v=NSDAYnixdgc)
+[Datagram - Wikipedia](https://en.wikipedia.org/wiki/Datagram)
 ![[internet consists of.png|300]]
  **hosts** connected over **communication links** which do **packet switching and routing.**
  **packet-switching:** hosts break application-layer messages into packets. Packets go from router to router, to connect ISPs (internet service providers).
@@ -385,7 +637,7 @@ bus, ring, star, mesh network topologies...
 - Packet switching, a connectionless method, sends data packets independently without a dedicated path.
 - ISPs communicate between IXPs (Internet exchange point)
 - Regional networks may arise to connect access nets to ISPS
-- content provider networks  (e.g., Google, Microsoft,   Akamai ) may run their own network, to bring services, content close to end users.
+- content provider networks  (e.g., Google, Microsoft, Akamai) may run their own network, to bring services, content close to end users.
 ![[network structure.png|300]]
 
 **datagram is a transfer unit associated with packet switching network**
@@ -394,7 +646,6 @@ bus, ring, star, mesh network topologies...
 ![[types of switches.png|200]]![[types of switched internetworks.png|200]]
 In the datagram-forwarding model of packet delivery, packet headers contain a destination address. It is up to the intervening switches or routers to look at this address and get the packet to the correct destination.
 [1.4: Datagram Forwarding - Engineering LibreTexts](https://eng.libretexts.org/Bookshelves/Computer_Science/Networks/Book%3A_An_Introduction_to_Computer_Networks_(Dordal)/01%3A_An_Overview_of_Networks/1.04%3A_Datagram_Forwarding)
-
 
 - A datagram network is **a computer network system that transmits and receives individual data packets**. It has a header that defines its source and destination addresses, in addition to additional data needed to transmit the packet.
 - reordering is done by the receiver.
@@ -410,14 +661,19 @@ loops are not something we want to end up with as it fills the routing tables wi
 ## Reliable communications
 ### Spanning Trees
 [Spanning Tree Protocol Explained | Step by Step - YouTube](https://www.youtube.com/watch?v=japdEY1UKe4)
+[What is Spanning Tree Protocol (STP)? - YouTube](https://www.youtube.com/watch?v=Sq18I90zuHQ)
+[Spanning Tree Protocol (STP) - YouTube](https://www.youtube.com/watch?v=GSKoQ8ZR8rw)
 #### STP Analysis Summary
+Caused due to layer 2 redundancy in the first place
+
 **Problems without STP:**
 - Communication loops formed
 - Unstable MAC address tables
 - Duplicate Frames
 
 **Solution with STP:**
-- Just mark one port in a switch to be ignored
+- Just mark one port in a switch to be ignored (ignored because we still want redundancy in case other link goes down)
+- BPDU(bridge protocol date unit) probe messages to discover loops (if it receives it within 2 sec)
 
 **How to do STP:**
 - Elect root bridge
@@ -426,7 +682,13 @@ loops are not something we want to end up with as it fills the routing tables wi
 - Remaining links choose a designated port
 - All other ports are put in to a blocking state
 
-![[STP basic setup.png|300]]
+**Some info:**
+- **ports**(root(best to root), designated(best route to root on link), undesignated(blocking state))
+- **port states**(disabled, blocking(traffic), listening(not forwarding, not learning), learning(mac addresses), forwarding(sending, receiving traffic))
+- **Lowest BID**(bridge priority/mac address) -> root bridge (determined after one communicated (BPDU) between all switches, since initially all bridges list themselves as root)
+- 
+
+![[STP basic setup.png|200]]![[election of root bridge.png|200]]
 #### other
 
 The need for the Spanning Tree Protocol (STP) arose because switches in local area networks (LANs) are often interconnected using redundant links to improve resilience should one connection fail.  However, this connection configuration creates a switching loop resulting in broadcast radiations and MAC table instability.  If redundant links are used to connect switches, then switching loops need to be avoided.
@@ -455,6 +717,12 @@ Hubs are L1, which form connection to devices, and are interconnected through br
 ![[stp p2.png|300]]![[stp p2 2.png|300]]
 
 ### Address Resolution Protocol & L2 to L3 traversal (Link Layer Routing & ARP)
+**Address Resolution Protocol (ARP) is a protocol or procedure that connects an ever-changing Internet Protocol (IP) address to a fixed physical machine address, also known as a media access control (MAC) address, in a local-area network (LAN).**
+
+[Address Resolution Protocol - Wikipedia](https://en.wikipedia.org/wiki/Address_Resolution_Protocol)
+[What Is Address Resolution Protocol (ARP)? | Fortinet](https://www.fortinet.com/resources/cyberglossary/what-is-arp#:~:text=Address%20Resolution%20Protocol%20(ARP)%20is,%2Darea%20network%20(LAN).)
+![[address resolution protocol ARP.png|300]]
+
 **Address Resolution Protocol**
 Table of IP <-> physical address bindings: entries expire after 15min
 
@@ -524,6 +792,9 @@ hub: L1 so we skip it since A is L2
 ![[datagram forwarding.png|400]]![[example of datagram forwarding.png|200]]
 #### IP Subnets
 [Classless Inter-Domain Routing - Wikipedia](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+[Subnet - Wikipedia](https://en.wikipedia.org/wiki/Subnet)
+split the last part of IP from host id to subnetid.hostid
+
 - Physical networks with same Network ID
 - Network IDs from class A or B addresses
 - IP split: $\text{network-num.subnet-id.host-id}$
@@ -543,7 +814,67 @@ If ethernet address known, route to IP router...
 IP characteristics, packet structure & fragmentation...
 IP addresses, subnetting, forwarding tables...
 Classless Addressing...
+
+![[ip addressing-1.png|300]]
+/24 subnet indicating that the first 24 bits are common. since **8bits.8bits.8bits.8bits**
+[IP addressing and Subnetting | CIDR | Subnet | TechTerms - YouTube](https://www.youtube.com/watch?v=OqsXzkXfwRw)
 ### Distance Vector Routing
+- **determines the best route for data packets based on distance**.
+- find lowerst cost path between nodes
+- **dynamic approach:** distance vector path built during...
 [Distance-vector routing protocol - Wikipedia](https://en.wikipedia.org/wiki/Distance-vector_routing_protocol#:~:text=A%20distance%2Dvector%20routing%20protocol,router%20counts%20as%20one%20hop.)
+[Routing Information Protocol - Wikipedia](https://en.wikipedia.org/wiki/Routing_Information_Protocol)
+[Bellman–Ford algorithm - Wikipedia](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm)
 ![[starting spot.png|300]]
+
+each node(**router**) has a cost, and it is shared with neighboring nodes.
+![[init state DV.png|300]]![[dv node init state.png|300]]
+![[final state DV.png|300]]![[DV final state.png|300]]
+**Bellman ford:**
+- each router had original vector of costs to all other routers
+- every (T sec) each router sends its routing table to neighbour
+- each router updates its table based on info
+- can deal with node failures/instability
+
+[Route Poisoning and Count to infinity problem in Routing - GeeksforGeeks](https://www.geeksforgeeks.org/route-poisoning-and-count-to-infinity-problem-in-routing/)
+![[count to infinity problem.png|300]]![[split horizon poison reverse.png|300]]
+- connection to E cut so A gets stuck in a loop with (B,C) in cost distance to E...
+- sol1: small num to approx infinity eg: 16
+- sol2: split horizon, no routesl earned from neighbour back to neighbour
+- sol3: split horizon poison reverse
+[Split horizon route advertisement - Wikipedia](https://en.wikipedia.org/wiki/Split_horizon_route_advertisement)
+
+
+[Routing Information Protocol - Wikipedia](https://en.wikipedia.org/wiki/Routing_Information_Protocol)
+To prevent routing loops, RIP imposes a limitation on the number of hops allowed in a path from the source to the destination.
+![[RIP table.png|300]]
 ### Link State Routing
+![[link state example.png|300]]
+[Link-state routing protocol - Wikipedia](https://en.wikipedia.org/wiki/Link-state_routing_protocol)
+[Open Shortest Path First - Wikipedia](https://en.wikipedia.org/wiki/Open_Shortest_Path_First)
+[Dijkstra's algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+- This contrasts with distance-vector routing protocols, which work by having each node share its routing table with its neighbors, in a link-state protocol the only information passed between nodes is _connectivity related_.
+- OSPF uses Djikstra
+- The cost factors may be the distance of a router (round-trip time), data throughput of a link, or link availability and reliability, expressed as simple unitless numbers.
+- **TTL (Time to Live)** determines how far a Link State Packet (LSP) can travel within the network. It limits the number of hops an LSP can make starting from its originator.
+
+- **static approach:** pre calculate path.
+- sends info to all nodes not only neighbors.
+![[link state packet.png|300]]![[reliable flooding.png|300]]
+![[djikstra example.png|300]]![[in practice.png|300]]
+![[forward search algorithm.png|300]]
+## Practice
+![[table.png|300]]![[the network 2017.png|300]]
+![[2017.png|300]]![[2017 R1 interactive.png|300]]
+![[2017 R2.png|300]]
+- terminal routing table is always a default gateway
+- routing table of a router will always have a default gateway at e0
+- the connecting route TO R1 (copy) of actual
+- the connecting route FROM R1 changed to (/32) to specify unique network
+- S1 is root since it has the smallest cost
+
+
+![[2018.png|300]]![[2018 quiz.png|300]]
+...
+
+
