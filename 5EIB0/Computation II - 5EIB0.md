@@ -893,7 +893,7 @@ vector processing
 Check how to create an IPC and understand the code.
 condition code register: difference between x86 and amd.
 latency hiding.
-![[c to mips ex1.png|200]]![[gcd common divisor translate to mips.png|200]]![[answer to gcd 1.png|200]]![[answer to gcd 2.png|200]]![[answer to gcd 3.png|200]]![[summary.png|200]]
+![[c to mips ex1.png|200]]![[gcd common divisor translate to mips.png|200]]![[answer to gcd 1.png|200]]![[answer to gcd 2.png|200]]![[answer to gcd 3.png|200]]![[5EIB0/attachments/summary.png|200]]
 ## Introduction to Parallel Processors from Client to Cloud
 - Multiprocessors improve performance and efficiency.
 - Task-Level Parallelism: Different tasks on separate processors.

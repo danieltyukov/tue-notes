@@ -286,9 +286,88 @@ $\frac{f_{ij}^r}{f_{ij}}$ **expected cumulative reward** until **state** $j$ is 
 
 ![[cumulative weighted probability.png|400]]
 
+**set of states:** $H$
 **probability to hit a set of states** $h_{iH}=\sum \{P(i,i_{1},\dots,i_{n}) \mid i,i_{1},\dots,i_{n} \text{ is a path of length } n\geq 0 \text{ s.t. }i \in H\text{ implies }n=0\text{ and }i \notin H \text{ implies } n\geq 1,i_{n} \in H \text{ and } i_{k} \notin H\text{ for all }k=1\dots n-1 \}$
+$\frac{h^r_{iH}}{h_{iH}}$ is **expected cumulative reward** until **state set** $H$ is hit, starting from $i$
 
+![[hitting a state vs hitting a set of states.png|400]]
 
+![[probability of H.png|300]]![[reward probability H.png|300]]
+
+![[gamblers ruin set of states markov.png|400]]
 ## Long-run Analysis B.6
+$n\to \infty$
+- **converge in distribution: ergodic unichain** $\lim_{ n \to \infty }\pi^{(n)}=\pi^{(\infty)}$
+- $\lim_{ n \to \infty }E(r(X_{n}))=\lim_{ n \to \infty }\pi^{(n)} \cdot r^T=\pi^{(\infty)} \cdot r^T$
+- **balance equation** $\pi=\pi \cdot P,\sum_{i \in S}\pi_{i}=1$ which have **stationary solution** which exist **iff** chain is **unichain**
+- $\pi^{(\infty)}=\pi^{(0)} \cdot P^\infty \text{ where }P^\infty \text{ exists for every ergodic unichain where each row equals }\pi^{(\infty)}$
+![[ergodic unichain infinity recurrent vs transient.png|300]]![[ergodic unichain example.png|300]]
+- We can see that first 2 are transient and are zero in long run... 4 units in markov chain average reward...
+
+
+- **non-ergodic unichain** those limits dont exist, still has a unique stationary solution: **cezaro limit**
+- **cezaro limit:** $\pi^{(\propto)}=\lim_{ n \to \infty } \frac{1}{n} \sum^{n-1}_{k=0}\pi^{(k)}$ long-run expected fraction of **time** the chain spends in state $i$
+- $\pi^{(\propto)}=\pi^{(0)} \cdot P^\propto \text{ where }P^\propto=\lim_{ n \to \infty } \frac{1}{n}\sum^{n-1}_{k=0}P^k$  long-run expected fraction of **time** the chains spends in state $j$, given that it started in $i$
+- each row $P^\propto=\pi^{(\propto)}$
+- $\pi^{(\propto)} \cdot r^T=\lim_{ n \to \infty }E\left( \frac{1}{n} \sum^{n-1}_{k=0} r(X_{k}) \right)$ long run expected average reward
+![[non ergodic unichain example limit.png|400]]
+
+
+![[overall long run analysis.png|400]]
+![[5XIE0/attachments/summary.png|400]]
 ## Week 6: B.7
 ## Discrete-event Simulation B.7
+[Discrete-event simulation - Wikipedia](https://en.wikipedia.org/wiki/Discrete-event_simulation)
+### estimaiton theory
+$Y_{n}\text{ where }n \in N$ identically distributed independent random variable.
+$E(Y_{n})=\mu \text{ and }Var(Y_{n})=E((Y_{n}-\mu)^2)=\sigma^2$.
+
+$\sigma=\sqrt{ E(r(X_{10})^2)-E(r(X_{10}))^2 }$ $r\text{ is reward}$
+
+**goal:** estimate $\mu$ based on simulation sequence $y_{n}$ of length $M$.
+**approach:** estimate $\mu$ by $\hat{\mu}=\frac{1}{M}\sum^{M-1}_{n=0}y_{n}$
+![[strong law of large numbers.png|400]]
+### errors
+$\mid \mu-\hat{\mu}\mid$ **absolute estimation error**
+$\frac{\mid \mu-\hat{\mu}\mid}{\mid \mu\mid}$ **relative estimation error**
+
+**How big M(simulation sequence so acceptable error):**
+![[central limit theorem.png|400]]
+$\sigma$ standard deviation and point estimator $S_{M}$ are equivalent when $M\to \infty$
+$\sigma=\sqrt{ \mu(1-\mu) }=\sqrt{ \frac{\sum(x_{i}-\mu)^2}{N} }$
+![[confidece level.png|400]]
+![[sochastic interval.png|400]]
+**also called the confidence interval...**
+$\mid \mu-\hat{\mu}\mid\leq \frac{cS_{M}}{\sqrt{ M }}$ success confidence bound
+$\frac{\mid \mu-\hat{\mu}\mid}{\mid \mu\mid}\leq \frac{cS_{M}/\sqrt{ M }}{\hat{\mu}-cS_{M}/\sqrt{ M }}$ relative success confidence bound if doesn't contain 
+
+### negative values
+![[estimation error bounds.png|400]]
+![[ethernet simultation to understand sochestic.png|400]]
+### Transient Markov application
+**markov chain application - transient properties:**
+![[expected transient reward.png|400]]
+![[application to markov chains transient properties.png|400]]
+### long-run properties
+![[how to setup long run properties for markov chain.png|400]]
+**point estimation, interval estimation, generate estimation**
+
+based on **strong law of large numbers**
+![[point estimation.png|400]]
+$E(L_{n})=\frac{1}{\pi^{(\propto)}_{i_{r}}}$ converges
+$E(R_{n})=f_{i_{r}i_{r}}^r=\frac{\mu}{\pi_{i_{r}}^{(\propto)}}$ converges
+
+based on **central limit theorem**
+![[interval estimation.png|400]]
+$Y_{n}=R_{n}-\mu L_{n}$
+![[generate observations.png|400]]
+
+### exercises
+![[hitting probability.png|400]]
+#  Module C: Dataflow, Max-Plus Linear Systems, Performance Analysis
+[Module C Slides](https://es-courses.pages.tue.nl/5xie0/reader/module-c/)
+## Week 6: C.1 & C.2 & C.3
+## C.1 Timed Dataflow Models
+
+## Week 7: C.6 & C.7 & C.8
+## Week 8: C.9 & C.10 & C.11 & C.12
