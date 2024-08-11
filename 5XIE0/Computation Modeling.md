@@ -368,6 +368,118 @@ $Y_{n}=R_{n}-\mu L_{n}$
 [Module C Slides](https://es-courses.pages.tue.nl/5xie0/reader/module-c/)
 ## Week 6: C.1 & C.2 & C.3
 ## C.1 Timed Dataflow Models
+**MULTI RATE DATAFLOW CHART OUTSIDE OF SCOPE (CAN BE DESCRIBED IN VECTOR) can be converted to single rate**
+![[CONSUMPTION PRODUCTION MULTIPLE.png|200]]
 
-## Week 7: C.6 & C.7 & C.8
+- finite set of actors $A$
+- firing durations $e:A\to\mathbb{R}_{\geq 0};$ (time units)
+- finite set $C \subseteq A \times \mathbb{N} \times A$ of channels
+- finite set $I$ of inputs with input dependencies $d_{I}:I\to A;$
+- finite set $O$ of outputs with output dependencies $d_{O}:O\to A;$
+![[dataflow ooperational view.png|400]]
+![[dataflow exmaple.png|400]]
+- BT actor models the transport of the top on the belt to the pick-and-place unit, where it is combined with a bottom.
+- BB models its transport to the indexing table.
+- initial token on the cycle ensures that the first object admitted is a top.
+- initial token on the channel from Rot to PaP represents the bottom part that is initially placed in the system.
+- dependency from PaP to Rot ensures that the indexing table does not rotate until the pick-and-place operation is complete.
+
+![[grantt chart by hand.png|500]]
+multi token production $n=2$:
+![[n equal 2 grantt chart.png|500]]
+Given the input sequence and the duration of the Sh actor, the decoder cannot decode symbols faster than 1 symbol per 4 time units. With two tokens on the channel from CE to DM, it operates at this maximum rate; with only one token, it does not. So the most recent channel-estimation information that DM can use is two symbols old.
+
+- to have **synchronous** operation one after the other the actor should have a self referencing channel  dependency with a token.
+- **hot to determine maximal operation:** squash the **synchronous** operation time units as close as possible and then determine the tokens required for that
+- 2 units at A trigger I
+![[2 units at A.png|400]]
+- 4 units at A to trigger I
+![[4 units at A.png|400]]
+
+How to ensure order of operation:
+![[order between 2 actors.png|200]]
+F1 fires first in this case.
+
+Reducing the number of processors:
+![[before and after reducing the processors.png|400]]
+## C.2 Schedules & Performance
+schedule partial function: $\sigma:A \times \mathbb{N} \hookrightarrow \mathbb{R}$ that assigns starting times to the firings of actors of $A$, such that $\sigma(a,k)$ is the starting time of firing number $k$ of actor $a$.
+
+schedule $\sigma$ is $valid$ for given input arrivals $a:I \times \mathbb{N} \hookrightarrow \mathbb{R}$ iff satisfies channel and input constraints:
+![[constrants so that schedule is valid.png|500]]
+![[schedule example.png|500]]
+
+- **self-timed schedule: as soon as possible asap**
+- **as late as possible alap**
+- **complete** all actor firings assigned starting time
+- **periodic** $\text{period }\mu \text{, if for all }a \in A,k>0\text{, such that }\sigma(a,k)=t\text{, then }\sigma(a,k-1)=t-\mu$
+- **finite** if $\sigma(a,k)\text{ defined only finitely many }(a,k)$
+- **live** if $\sigma(a,k)$ is defined for infinitely many $k$ for all actors $a \in A$
+- example above: periodic: $\mu=3$
+
+![[deadlock.png|400]]
+
+**_Throughput_** intuitively refers to the amount of processing that a system can perform, on average, in the long run, per unit of time. It is relevant for indefinite operation. **_Makespan_**, in contrast, is a performance metric that can be associated with finite behaviors. It refers to the total amount of time that it takes to complete a job. Finally, **_latency_** is a metric that characterizes the time span between the start and the completion of the processing of individual elements.
+![[throughput and makespan-1.png|300]]![[latency.png|300]]
+
+**non periodic throughput example:**
+![[grantt chart for throughput example.png|400]]
+Actor C fires 2 times per 5 time units, so the throughput is $\frac{2}{5}$
+## C.3 Max-plus Algebra
+_time stamp_ os value from set $\mathbb{R} \cup \{ -\infty \}$ and set of time stamps: $\mathbb{T}=^{def} \mathbb{R} \cup \{ -\infty \}$
+
+- compute time stamp: $x_{o}=x_{i}+d\text{ where }d=e(a)$
+- assume self-timed firing of $a$ with 2 inputs: $x_{a}=max(x_{i_{1}},x_{i_{2}})$
+- $x_{o}=x_{a}+d=max(x_{i_{1},x_{i_{2}}})+d=max(x_{i_{1}}+d,x_{i_{2}}+d)$
+
+![[max plus algebra.png|500]]
+- $\otimes\to \times$
+- $\oplus\to +$
+- $-\infty \in \mathbb{T}\to 0 \in \mathbb{R}$
+- $0 \in \mathbb{T}\to 1 \in \mathbb{R}$
+
+![[example of conveyor belt.png|400]] 
+## Week 7: C.4 & C.5 & C.6 & C.7 & C.8
+## C.4 Max-plus-linear Systems
+**event sequence:** $s: \mathbb{I}\to \mathbb{T}\text{ where }\mathbb{I}=\{ 0,\dots,n-1 \}\text{ for a finite sequence of length }n\text{ and }\mathbb{I}=\mathbb{N}\text{ for infinite sequence}$
+**note** event sequence does not require order: $s(k)\leq s(k+1)$
+
+![[delayed event sequence.png|300]]![[maximum of event sequence.png|300]]
+![[scaled event sequence.png|300]]![[zero and periodic event sequence.png|300]]
+
+$\text{if }s\text{ infinite event sequence, then the throughput of }s\text{ is given by following limit: }\tau(s)=\lim_{ k \to \infty } \frac{k}{s(k)} \text{ and if periodic: } \frac{1}{\mu}$
+![[max plus linear system definition.png|400]]
+we operate always with index invariant systems since we have single rate dataflows...
+
+![[additivity example.png|300]]![[homogeneity example.png|300]]
+
+### superposition
+- a linear system has the superposition property
+- if a complex stimulus (input) can be described as the maximum (⊕, superposition) of two or more simpler stimuli, then
+	- analyze the responses to the simpler stimuli separately
+	- determine the superposition (max) of the separate responses
+- **divide-and-conquer strategy**
+	- typically among different inputs of the system
+
+![[superposition example.png|300]]![[superposition example-1.png|300]]
+## C.5 Impulse Response
+- **impulse sequence:** is an event sequence $\delta: \mathbb{N}\to \mathbb{T}$ such that $\delta(0)=0$ and $\delta(k)=-\infty$ for $k>0$
+- **impulse response:** of event system $S$ is the event sequence $h$ such that $\delta\to^Sh$ and multiple inputs and/or outputs $\epsilon,\dots,\epsilon,\delta,\epsilon,\dots,\epsilon,\to^Sh_{1},\dots,h_{m}$
+- an impulse is the smallest part of an event sequence
+- every event sequence is the maximum of scaled and delayed impulses
+- linear and index-invariant event systems are completely characterized by their impulse response
+
+![[impulse convolution.png|300]]![[impulse convolution-1.png|300]]
+If $S$ is a max-plus-linear and index-invariant system with impulse response $h$, then for any input event sequence $i,i\to^s i \otimes h$
+
+![[best convolution example.png|500]]
+## C.6 Max-plus Linear Algebra
+$v \in \mathbb{T}^n$
+![[vector notations.png|300]]![[vectors.png|300]]
+![[matrices.png|300]]![[matrix operations.png|300]]
+![[normal vector.png|300]]![[linearity.png|300]]
+
+![[example of matrix operations.png|500]]
+## C.7 From Dataflow to Max-plus
+
 ## Week 8: C.9 & C.10 & C.11 & C.12
