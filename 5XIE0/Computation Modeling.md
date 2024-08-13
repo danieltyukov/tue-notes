@@ -481,5 +481,90 @@ $v \in \mathbb{T}^n$
 
 ![[example of matrix operations.png|500]]
 ## C.7 From Dataflow to Max-plus
-
+![[symbolic time stamps.png|300]]![[symbolic time stamp example.png|300]]
+![[symbolic time stamp vector.png|300]]![[symbolic time stamp vector example.png|300]]
+![[symbolic time stamp operations.png|300]]![[symbolic time stamp example-1.png|300]]
+## C.8 Monotonicity
+[Monotonic function - Wikipedia](https://en.wikipedia.org/wiki/Monotonic_function)
+max-plus algebra is **monotone**
+if $x\leq y\text{ then }x\oplus z\leq y\oplus z\text{ and }z\oplus x\leq z\oplus y$
+if $x\leq y\text{ then }x\otimes z\leq y\otimes z\text{ and }z\otimes x\leq z\otimes y$
+![[monotonicity.png|400]]
+**ordering event sequences:** $\text{let }s_{1}\text{ and }s_{2}\text{ be event sequences. }s_{1}\leq s_{2}\text{ iff for all }k \in \mathbb{N}\text{ such that }s_{2}(k)\text{ is defined, }s_{1}(k)\text{ is also defined and }s_{1}(k)\leq s_{2}(k)$
+**convolution is monotone:** if $s,s',t,t'$ are event sequences such that $s\leq s'$ and $t\leq t'$ then $s\otimes t\leq s'\otimes t'$
+![[max plus linear and index invariant event systems are monotone.png|400]]
+![[worst case abstraction example.png|400]]
 ## Week 8: C.9 & C.10 & C.11 & C.12
+## C.9 The Eigenvalue Equation
+![[eigenvalue equation.png|400]]
+- $Ax=\lambda \otimes x$
+![[eigenvector example.png|300]]![[precedence graph.png|300]]
+![[precedence graph example.png|500]]
+**precedence graph** take the longest channel length: example for $x_{2}\text{ we have 2 options }8+1\text{ and }7+3\text{ since }10>9\text{ we take }10\to x_{2}$
+
+![[finding largest eigenvalue.png|400]]
+![[finding eigenvector.png|300]]
+![[finding eigenvector example.png|400 ]]
+**normalized eigenvector:** $(-\mid x\mid) \otimes x$
+![[normalized eigenvector.png|300]]
+if it was 0 then it would already be normal
+
+- eigenvector for the largest eigenvalue can be constructed using the precedence graph
+- **choose one of the puncts for the eigenvector and then choose its longest paths to the other puncts**
+
+![[eigenvector example-1.png|500]]
+
+![[throughput based on eigenvalue.png|500]]
+
+### example
+![[5XIE0/attachments/1.png]]
+![[2.png|400]]
+eigenvalue and normalized eigenvector obtained:
+![[3.png|400]]
+![[4.png|400]]
+c is 6 to make it non negative:
+starting $I$ at 2 because it receives tokens from $x_{1}\text{ and }x_{2}\text{ the max of the 2 }\{ 0,2 \}\text{ is }2$
+![[5.png|400]]
+## C.10 State Space Equations
+![[state space equations.png|500]]
+![[symbolic simulation of dataflow graph.png|500]]
+![[initial and final state example.png|500]]
+![[initialization and state calculation.png|500]]
+![[output state calculation.png|500]]
+![[scheduling.png|500]]
+## C.11 Throughput
+$\delta\to \text{impulse}\text{ and }y\to \text{output}$
+**maximal throughput** $\tau$ of max-plus-linear system $S$ on output $k$ is $\tau(s,K)=\tau(y_{k})=\lim_{ n \to \infty } \frac{n}{y_{k}(n)}$
+where $\delta,\dots,\delta\to^S y_{1},\dots,y_{m}$
+the throughput $\tau$ of a max-plus-linear system $S$ is $\tau(S)=min_{1\leq k\leq m}\tau(S,k)$
+
+**example:** 1 time unit delay per box; 5 time units to reach the end of the belt: so output: $a(k)=5+k$ so the **maximal throughput:** $\tau=\lim_{ k \to \infty } \frac{k}{a(k)}=\lim_{ k \to \infty } \frac{k}{5+k}=1[box/\text{time unit}]$
+
+![[outputs with different throughput.png|400]]
+
+$S$ max-plus-linear system with $A$ state matrix with largest eigenvalue $\lambda$
+if for every element of the state vector there is an output that depends on it, then the maximal throughput of $S$ is $\frac{1}{\lambda}$
+
+$S$ max-plus linear system with matrix $A$ with largest eigenvalue $\lambda$ and has input sequence $u_{1},\dots,u_{k}$ have respective average rates of $\frac{1}{\mu_{1}},\dots, \frac{1}{\mu_{k}}$ then the average rate of the output sequence $y$ is $\frac{1}{\lambda \oplus \mu_{1}\oplus\dots \oplus \mu_{k}}$
+![[eg.png|300]]
+
+**self-timed throughput:** let matrices $A,B,C,D$ be state-space representations of timed dataflow graph $G$. Let $A$ have largest eigenvalue $\lambda$. Then max throughput of $G$ is $\frac{1}{\lambda}$. If $G$ provided with input event sequence with rates $\frac{1}{\mu_{1}},, \frac{1}{\mu_{k}},$ then throughput of self-timed execution $\frac{1}{\lambda \oplus \mu_{1}\oplus\dots \oplus \mu_{k}}$
+
+![[compositional computation.png|400]]
+## C.12 Latency
+![[latency of max plus linear system.png|300]]![[latency example.png|300]]
+$L(S,i,o)=L(y_{o},\mu)=max_{k \in \mathbb{N}}(y_{o}(k)-\mu \cdot k)$
+![[max plus latency.png|300]]![[max plus latency example.png|300]]
+observing from graph the latency: row 1 eg: $y_{o}(k)=11\text{ then }\mu=3(\text{given})\text{ and }k=0,1,2=2\to 11-3 \cdot2=5$
+![[latency through graph example.png|400]]
+
+**best to do latency mathematically:**
+![[latency equation.png|400]]
+![[latency equation example.png|400]]
+
+**max-plus-linear algebra operations are monotone:**
+The ∗-closure is monotone. I.e., let $A\leq B$ such that $B^*$ exists, then $A^*$ exists and $A^*\leq B^*$
+
+![[composition computation.png|400]]
+## (EXCLUDED) C.13
+[Dataflow and Max-Plus Algebra](https://es-courses.pages.tue.nl/5xie0/reader/module-c/section13.html#sec:13:stability)
