@@ -137,6 +137,10 @@ the * is all finite repetitions, while $\omega$ infinite repetitions, they are c
 ![[iterations undersatding.png|200]]
 ## Büchi Automata A.4.2
 [Büchi automaton - Wikipedia](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
+
+either accepts or rejects some infinite inputs:
+![[eg-1.png|200]]
+
 - indefinite automata...
 - **Büchi** automaton is an **NFA** but with **different acceptance** conditions
 - $\omega$-regular expressions and **NB(Buchi)A** both define precisely the class of $\omega$-regular languages
@@ -361,7 +365,6 @@ based on **central limit theorem**
 ![[interval estimation.png|400]]
 $Y_{n}=R_{n}-\mu L_{n}$
 ![[generate observations.png|400]]
-
 ### exercises
 ![[hitting probability.png|400]]
 #  Module C: Dataflow, Max-Plus Linear Systems, Performance Analysis
@@ -506,8 +509,7 @@ if $x\leq y\text{ then }x\otimes z\leq y\otimes z\text{ and }z\otimes x\leq z\ot
 ![[finding eigenvector.png|300]]
 ![[finding eigenvector example.png|400 ]]
 **normalized eigenvector:** $(-\mid x\mid) \otimes x$
-![[normalized eigenvector.png|300]]
-if it was 0 then it would already be normal
+max(0, 4, -1) = 4 [0-4, 4-4, -1-4] = [-4, 0, -5]
 
 - eigenvector for the largest eigenvalue can be constructed using the precedence graph
 - **choose one of the puncts for the eigenvector and then choose its longest paths to the other puncts**

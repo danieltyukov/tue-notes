@@ -198,7 +198,55 @@ $V_{0}^+=f(t)\cos(\omega_{0}t)$ where $\omega_{0}$ carrier wave angular frequenc
 ![[14lambda transformer.png|400]]
 
 # Plane waves in arbitrary directions - reflection and refraction at planar interfaces
+## Summary
+**wavenumber:** $k=\frac{2\pi}{\lambda}=\frac{2\pi f}{c}=\frac{\omega}{c}\implies \text{if not in vaccum speed changes }c=\frac{c_{0}}{n_{1}}\implies \frac{2\pi f}{c_{0}}n_{1}\left\{  \frac{1}{m}\text{ units}  \right\}$
+
+$\text{with wave vector: }\vec{k}=k_{x}a_{x}+k_{y}a_{y}+k_{z}a_{z}$
+determine p or s polarization if p polarized then **secondary conditions satisfied**
+
+$k_{2}^2=\frac{k_{1}^2}{n_{1}^2}$
+
+![[polarization p and s.png|300]]![[oblique incidence.png|300]]
+![[perpendicular parallel.png|300]]
+
+$\text{positive z propagation linear polarization eg: }E_{s}=(E_{x0}a_{x}+E_{y0}a_{y})e^{-az}e^{-j\beta z}$
+if the the phase difference is not $\frac{\pi}{2}$ between 2 components then elliptical
+$E_{y_{0}}=0\text{ x polarized eg}\text{ }\phi_{x}=\phi_{y}\text{ diagonally polarized wave}\text{ if }Ex_{0}=E_{y_{0}}\text{ and }\phi_{y}-\phi_{x}=\phi=\pm \frac{\pi}{2}\text{ then circular if } \frac{\pi}{2}\text{ clockwise and }-\frac{\pi}{2}\text{ anti-clockwise if }E_{x_{0}} \neq E_{y_{0}}\text{ and }\phi=\pm \frac{\pi}{2}\text{ and }\phi\neq n \frac{\pi}{2}\text{ then eliptical}$
+
+$\vec{k} \times \vec{E}=\omega \mu \vec{H}$
+$\vec{k} \times \vec{H}=-\omega \epsilon \vec{E}$
+$\vec{H}=\vec{H_{0}}\exp[-j \vec{k} \vec{r}]$
+$\vec{E}=\vec{E_{0}} \exp[-j \vec{k} \vec{r}]$
+
+![[snells law.png|300]]
+
+$\tan\theta_{B}=\frac{\epsilon_{2}}{\epsilon_{1}}=\frac{n_{2}}{n_{1}}$
+The brewster's angle is the angle of incidence where light will be perfectly transmitted through a surface with no reflection. The critical angle of internal reflection is when a wave is completely reflected 100% at a certain angle.
+![[5EPB0/attachments/Untitled.png|300]]
+
+**reflection and transmission coefficients:**
+**s-polarized**
+$\Gamma^s=\frac{Z_{2}\cos \theta_{1}-Z_{1}\cos \theta_{2}}{Z_{2}\cos \theta_{1}+Z_{1}\cos \theta_{2}}$
+$\tau^s=\frac{2Z_{2}\cos \theta_{1}}{Z_{2}\cos \theta_{1}+Z_{1}\cos \theta_{2}}=1+\Gamma$
+**p-polarization:**
+$\Gamma^p=\frac{Z_{2}\cos \theta_{2}-Z_{1}\cos \theta_{1}}{Z_{2}\cos \theta_{2}+Z_{1}\cos \theta_{1}}$
+$\tau^p=\frac{2Z_{2}\cos \theta_{1}}{Z_{2}\cos \theta_{2}+Z_{1}\cos \theta_{1}}=1+\Gamma$'
+$E_{10}^{-}=\frac{Z_{2}-Z_{1}}{Z_{2}+Z_{1}}E_{10}^+=\Gamma E_{10}^+$
+$E_{20}^+=\frac{2Z_{2}}{Z_{2}+Z_{1}}E_{10}^+=\tau E_{10}^+$
+
+$\cos \theta_{2}=j\sqrt{ \frac{n_{1}^2}{n_{2}^2}\sin^2\theta_{1} -1}$
+**snells law:** $\frac{\sin\theta_{1}}{\sin \theta_{2}}=\frac{n_{2}}{n_{1}}$
+
+$\vec{E_{10}^-}=\vec{E_{1}^+}+\vec{E_{1}^-}=\vec{E_{10}^+}\exp[-j \vec{k_{1}^+} \vec{r}]+\vec{E_{10}^-}\exp[-j \vec{k_{1}^-} \vec{r}]$
+
+1. $\alpha=0,k=\beta:\text{ }E^+=A\exp(-j\beta z)\text{ travelling wave(normal)}$
+2. $k=-j\alpha+\beta: \text{ }E^+=A\exp(-\alpha z-j\beta z)\text{ attenuating travelling wave(amplitude decays)}$
+3. $\beta=0,k=-j\alpha: \text{ }E^+=A\exp(-\alpha z)\text{ evanescent wave(energy stored not transfered)}$
+4. $\alpha=0,k=\beta:\text{ }E=A\sin(\beta z)\text{ Waves of the type sin(kz), cos(kz) are known as standing waves and do not propagate energy.}$
+5. $E=A\exp(-ax)\exp(-j\beta z) \text{ Waves that travel in one direction and decay (evanesce) in another direction Inhomogeneous wave}$
+
 ## Plane Waves II
+### other
 [Wavenumber - Wikipedia](https://en.wikipedia.org/wiki/Wavenumber)
 $(\nabla ^2+k^2)\vec{E}=\vec{0} \text{ Wave Equation}$
 wavenumber, refers to **the spatial frequency of a wave over a specific unit distance**.
@@ -229,8 +277,11 @@ the wave number $k$ is, in general, a complex number: $k=-j\alpha+\beta$
 - For instance, in case of a travelling wave in the (**depends on direction**) $+z-\text{direction}: E=A\exp(-jkz)\text{ with }A=E_{x}a_{x}+E_{y}a_{y}=E_{x0}e^{j\phi x}a_{x}+E_{y0}e^{j\phi y}a_{y}$
 - $E\text{ is magnitude}$
 ![[linear polarization.png|200]]![[circular polarization.png|200]]![[elliptical polarization.png|200]]
+
 if the the phase difference is not $\frac{\pi}{2}$ between 2 components then elliptical
 ![[eliptical example.png|300]]
+
+
 $\text{positive z propagation linear polarization eg: }E_{s}=(E_{x0}a_{x}+E_{y0}a_{y})e^{-az}e^{-j\beta z}$
 
 
@@ -268,6 +319,7 @@ $\vec{k}\times \vec{E}=\omega \mu \vec{H}$
 $\vec{H}(\vec{r},t)=\vec{H}(\vec{z},t)\to \text{ omit } e^{j\omega t}$
 $\vec{H}=\frac{1}{\omega \mu}\vec{k}\times \vec{E}\text{ where }\vec{k}=k\vec{a_{z}}$
 $\vec{H}=\frac{10}{\omega \mu}ke^{-jkz}(\vec{a_{z}}\times \vec{a_{x}})=\frac{10}{\omega \mu}ke^{-jkz}\vec{a_{y}}$
+
 $\text{time avgd power density: }\vec{S_{h}}=\frac{1}{2}Re\{\vec{E} \times \vec{H^*}\}=\frac{10^2}{2} \frac{k}{\mu \omega}\vec{a_{z}}$
 
 ## Reflection and Refraction
@@ -372,15 +424,68 @@ $\tan^2\theta_{B}=\frac{\epsilon_{2}}{\epsilon_{1}}=\frac{n_{2}^2}{n_{1}^2}$
 ![[5EPB0/attachments/TIR.png|300]]![[inhomogeneous plane wave.png|300]]
 5. $E=A\exp(-ax)\exp(-j\beta z) \text{ Waves that travel in one direction and decay (evanesce) in another direction Inhomogeneous wave}$
 # Guided waves
+## Summary
+ $n_{1}>n_{2}\text{ then we have TIR, reasoning behind dielectric slab...}$
+ ![[field description of TM modes inside and outside.png|300]]
+
+![[TETM modes.png|300]]![[TM modes.png|300]]![[TE modes.png|300]]![[decoupling.png|300]]
+
+### Resonant Cavities
+- **TE Modes:**
+  - Fundamental equation:
+    $\nabla^2 H_{z} + \kappa^2_{mnp} H_{z} = 0$
+    IF TM $\nabla^2 E_{z} + \kappa^2_{mnp} E_{z} = 0$
+  - Solution with boundary conditions:
+    $H_{z} = C\cos(\kappa_{m}x)\cos(\kappa_{n}y)\sin(\kappa_{p}z)$
+    $\kappa_{p} = \frac{p\pi}{c}$
+  - Cutoff frequencies:
+    $f_{mnp} = \frac{1}{2\pi \sqrt{\epsilon \mu}} \sqrt{\left(\frac{m\pi}{a}\right)^2 + \left(\frac{n\pi}{b}\right)^2 + \left(\frac{p\pi}{c}\right)^2}$
+    **cutoff frequency**, **corner frequency**, or **break frequency** is a boundary in a system's frequency response at which energy flowing through the system begins to be reduced (attenuated or reflected) rather than passing through.
+    n=2 means two half-wavelengths fit along the y-axis.
+
+The indices m, n, and p in the context of resonant cavities represent the mode numbers, which correspond to the number of half-wavelengths of the standing wave pattern along each of the three spatial dimensions (x, y, and z) inside the cavity.
+### Dielectric Slab Waveguides
+- **Waveguide Structure:**
+  - For $n_{1} > n_{2}$, Total Internal Reflection (TIR) occurs.
+  - Fields in each region:
+    $\{E,H\}(x,z) = \{\vec{E},\vec{H}\}(z)\exp(-j\beta_{i}z)$
+  
+- **TM Modes:**
+  - Inside the slab:
+    $E_{z}(x,z) = \vec{E}_{z}(x)\exp(-j\beta z)$
+    $\delta^2_{x}\vec{E_{z_{i}}}(x) + \kappa_{i}^2\vec{E_{z_{i}}}(x) = 0$
+    $\kappa_{i}^2 = \omega^2\epsilon_{i}\mu_{i} - \beta^2$
+  - ODD modes:
+    $\vec{E_{z}}(x) = E_{0o}\sin(\kappa_{1}x)$
+    $\gamma_{2} = \frac{\epsilon_{0}}{\epsilon_{1}}\kappa_{1}\tan\left(\frac{\kappa_{1}d}{2}\right)$
+  - EVEN modes:
+    $\vec{E_{z}}(x) = E_{0e}\cos(\kappa_{1}x)$
+    $\gamma_{2} = -\frac{\epsilon_{0}}{\epsilon_{1}}\kappa_{1}\cot\left(\frac{\kappa_{1}d}{2}\right)$
+
+- **TE Mode Summary:**
+  - Similar expressions for TE modes can be derived by replacing $E_z$ with $H_z$ and adjusting boundary conditions.
+  
+- **Key Relationships:**
+  - Evanescent field decay constant:
+    $\gamma_2 = n_2 k_0 \left(\left(\frac{n_1}{n_2}\right)^2 \sin^2 \theta_1 - 1\right)^{1/2}$
+  - Phase condition for modes:
+    $\kappa_1 d + \phi_{TE} + \kappa_1 d + \phi_{TE} = 2m\pi$
+    $\kappa_1 d + \phi_{TM} + \kappa_1 d + \phi_{TM} = 2m\pi$
+  - Single mode condition:
+    $k_0 d \sqrt{n_1^2 - n_2^2} \geq (m - 1)\pi \quad (m = 1, 2, 3, \ldots)$
+    $\lambda > 2d\sqrt{n_1^2 - n_2^2} \quad \text{since } k=\frac{2\pi}{\lambda}$
+
+
+## Parallel-Plate Waveguide
 [Waveguides Explained - YouTube](https://www.youtube.com/watch?v=r9-m17IPOco)
 ![[mode propagation.png|200]]
-## Parallel-Plate Waveguide
+
 [Slab Waveguide Explained - YouTube](https://www.youtube.com/watch?v=YwsBo36XYc0)
 [Origin of TE and TM Modes - YouTube](https://www.youtube.com/watch?v=dYKGsJGPsDo)
 - ampere, faraday law, $\gamma$ must be imaginary otherwise wave decays wont work.
 - $\kappa_{m}^2=\omega^2\epsilon \mu+\gamma ^2$
 - $\text{model index: }\kappa_{m}=\frac{m\pi}{d}$
-![[basic assumption.png|200]]![[decoupling.png|200]]
+![[basic assumption.png|300]]![[decoupling.png|300]]
 
 - polarisation in terms of wave guides
 - fundamental unknwon: able to find all other of the total 6 components
@@ -522,6 +627,12 @@ $k_0 d \sqrt{n_1^2 - n_2^2} < \pi$ single mode condition
 
 $\lambda > 2d\sqrt{n_1^2 - n_2^2}\text{ since }k=\frac{2\pi}{\lambda}$ wavelength range of single mode operation
 # Radiation
+## Summary
+see behavior of far field and how dipole electric properties behave ($r$)
+
+$S_{h,max}=\frac{G_{d}P_{rad}}{4\pi r^2}$ **Radiated Power**
+$S_{h}=\frac{1}{2}R\{ E \times H^* \}=\frac{\mid E_{\theta}\mid^2}{2Z_{0}(377 \Omega)}$ **Electric Field Calculation**
+
 ## The Electric Point Dipole
 ![[deriving the dipole field equation.png|200]]![[expressing magnetic field.png|200]]![[expressing electric field.png|200]]
 ![[inhomogeneous helmholtz equation p1.png|300]]![[p2.png|300]]
