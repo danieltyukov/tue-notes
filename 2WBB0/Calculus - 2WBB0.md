@@ -13,7 +13,6 @@
 >Functions and their graphs
 >Trigonometric Functions
 >Trigonometric Equations
-
 ## Some Notes
 domain of f(g) = g domain
 range of f(g) = f range
@@ -25,7 +24,7 @@ injective = one to one
 
 - You can keep dividing function until denom>num => if remainder => $sol+\frac{remainder}{div}$
 
-$D=b^2-4ac$ $DISCRIMINANT$
+$D=b^2-4ac \text{ DISCRIMINANT}$
 $D>0$ $2\to sol$ use quad formula
 $D=0$ $1\to sol$
 $D<0\to no$

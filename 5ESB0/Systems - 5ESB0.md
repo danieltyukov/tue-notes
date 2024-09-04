@@ -59,7 +59,6 @@ polar coord: $(r,\phi):s=r\cos\phi+jr\sin\phi$
 
 # Laplace Transform
 Relation between $H(s)$ and $h(t)$
-
 >[!NOTE] Laplace Derivation
 > Substitute $u(t)=e^{st}$
 > $y(t)=\int_{-\infty}^{\infty} h(\tau)e^{s(t-\tau)} \, d\tau$
@@ -75,6 +74,7 @@ Relation between $H(s)$ and $h(t)$
 >[!NOTE] Laplace Differentiation Property
 > $L\left( \frac{df}{dt}\right)=sF(s)-f(0)$ --> Basic
 > $L\left( \frac{f^{(m)}(t)}{dt} \right) = s^mF(s)-s^{m-1}f(0)-s^{m-2}\dot{f}(0)-\dots-f^{m-1}(0)$ --> General
+> $L(\delta(t))=1$
 
 ![[trig-ident.png|500]]
 ![[trig-ident-other.jpg|500]]
