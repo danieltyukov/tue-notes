@@ -11,5 +11,9 @@
 - CHECK QUESTION 3 SLIDES.
 # Introduction
 [[Systems - 5ESB0]]
-![[laplace transform.png|300]]![[laplace transform table.png|300]]
-![[laplace transform table-1.png|300]]
+[[Laplace Transform]]
+[[Fourier Transform]]
+[[Systems - 5ESB0]]
+![[laplace transform.png|300]]![[laplace transform table.png|207]]
+![[laplace transform table-1.png|300]]![[example of a transfer function.png|300]]
+

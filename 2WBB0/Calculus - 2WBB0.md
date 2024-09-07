@@ -14,8 +14,22 @@
 >Trigonometric Functions
 >Trigonometric Equations
 ## Some Notes
-domain of f(g) = g domain
-range of f(g) = f range
+[How to Convert Repeating Decimals to Fractions: 9 Steps](https://www.wikihow.com/Convert-Repeating-Decimals-to-Fractions)
+$\text{perpendicular slope: }m_{1}=\frac{1}{m_{2}}$
+$m=\frac{\Delta y}{\Delta x}$
+$\Delta y=m(\Delta x)$
+$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\text{ ellipse and } \frac{x^2}{a^2}-\frac{y^2}{b^2}=1$
+![[scaling and shifting.png|400]]
+![[refletion visual.png|400]]
+![[reciprocal.png|300]]![[odd even.png|300]]
+![[symmetry.png|300]]![[function combo domains.png|300]]
+
+composition: $f(g(x))=\frac{1}{x^2}\text{ where }g(x)=x-1\text{ what is }f(x)\to f(g(x)=x-1)\to f(x=y+1)=\frac{1}{(y+1)^2}$
+
+**To determine the domain of a rational function, we need to find the values of $x$ that make the denominator zero, as these values are excluded from the domain.**
+
+domain of $f(g) = g$ domain
+range of $f(g) = f$ range
 $arg(xy)=arg(x)+arg(y)$
 $(a-b)(a+b)=a^2-b^2$
 numerator to zero = how many solutions in equation
@@ -27,8 +41,9 @@ injective = one to one
 $D=b^2-4ac \text{ DISCRIMINANT}$
 $D>0$ $2\to sol$ use quad formula
 $D=0$ $1\to sol$
-$D<0\to no$
+$D<0\to no(\text{ }2\text{ imaginary sol})$
 $x=-\frac{b\pm \sqrt{ b^2-4ac }}{2a}$
+
 
 - **completion of squares => square to vertex form**
 - https://www.youtube.com/watch?v=EBbtoFMJvFc
@@ -39,7 +54,7 @@ $x^2=a\implies x=\pm \sqrt{ a }$ where $a\geq 0$
 $x^3=a\implies x=\sqrt[3]{ a }$ where $a=any$
 
 $(x-a)^2+(y-b)^2=r^2$ equation of a circle
-$D=\sqrt{ (x_{1}+x_{2})^2+(y_{1}+y_{2})^2 }$
+$D=\sqrt{ (x_{2}-x_{1})^2+(y_{2}-y_{1})^2 }$
 
 domain: x possible input vals, range: y possible output vals
 $y=f(x)$
@@ -90,11 +105,14 @@ $\sin(x)=\cos\left( \frac{\pi}{2}-x \right)$ and $\cos(x)=\sin\left( \frac{\pi}{
 >
 >$\sin\left( \frac{7}{6}\pi \right)=\frac{3}{2}-\frac{7}{6}=\frac{1}{3}\implies \sin\left( \frac{\pi}{3} \right)=\frac{1}{2}$ since Q3 -> $-\frac{1}{2}$
 
+![[inequality domain-1.png|300]]
+
 $y=mx+c$, $y-y_{1}=m(x-x_{1})$, $m=\frac{y_{2}-y_{1}}{x_{2}-x_{1}}$, $\perp\implies m_{1}=-\frac{1}{m_{2}}$
 slope=gradient, derivative of a function is its slope.
 
 ![[inequality.png|500]]
 $-2\leq x\leq 3$
+ALWAYS CHECK INEQUALITY VALUES!!!
 
 >[!NOTE] Logarithms
 $\frac{d}{dx}(a^x)=a^x\ln(a)$
@@ -106,7 +124,10 @@ $\log(a^x)=x\log(a)$
 
 - $\log_{a}(x)=\frac{1}{x\ln(a)}$ derivative https://www.youtube.com/watch?v=2A1xgHtTOCk
 
-![[ln-e-graph.png|300]]
+![[ln-e-graph.png|300]]![[trig.png|300]]
+![[more trig.png|300]]![[derivative.png|300]]
+![[integral types.png|300]]![[integral.png|300]]
+![[differentation rule.png|300]]
 
 ![[final-electronics-close-up.jpg|400]]
 # Complex Numbers

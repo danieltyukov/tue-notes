@@ -17,7 +17,7 @@ $iff\text{ } \text{ then convergence }|z_{0}|<1\text{ }\sum^\infty_{n=0}(z_{0})^
 $\sum^{M-1}_{n=0}(z_{0})^n=\frac{1-z_{0}^M}{1-z_{0}}\text{ another geometic serie type???}$
 $\text{zeros of a complex equation: }a\text{ being complex number find zeros: }z^N-a=0\to z^N=a=ae^{jk \cdot_{2}\pi}\to z_{k}=a^{1/N} \cdot e^{jk \cdot 2\pi/N}\text{ for }k=0,1,\dots,N-1$
 $z_{0}=r_{0}e^{j\theta_{0}}\to \text{conjugate: }z_{0}^*=r_{0}e^{-j\theta_{0}}\to \text{mirroring: } z_{0,mirr}=\left( \frac{1}{z_{0}} \right)^*=\frac{1}{r_{0}}e^{j\theta_{0}}\to \text{reversing }z_{0,rev}=z^*_{0,mirr}=\frac{1}{r_{0}}e^{-j\theta_{0}}=\frac{1}{z_{0}}$
-
+![[convolution.jpg]]
 
 ![[mirroring and conjugation.png|400]]
 

@@ -11,6 +11,7 @@ tags:
 ![[transform_fourier_properties.png]]
 
 # Fourier Series to Fourier Transform
+[Fourier series - Wikipedia](https://en.wikipedia.org/wiki/Fourier_series)
  Generalize Fourier series to Fourier transform (discrete to continuous spectrum): $$
 \begin{flalign}
 &\tilde{x}(t)\,=\,\sum_{k\,=\,-\infty}^{+\infty}a_{k}e^{j k\omega_{0}t} \\
@@ -72,6 +73,7 @@ Increase spectral resolution without new information (simply do more calculation
 ![[signals_zero_padding_after.png| After zero padding]]
 
 ## Windowing
+[Window function - Wikipedia](https://en.wikipedia.org/wiki/Window_function)
 Taking smaller samples of long signals -> spectral leakage due to windowing
 ![[signals_window_rect.png|Rectangular window of $x[n]=\cos(0.28\pi n)$]]
 
@@ -83,6 +85,7 @@ Relations between signal transformations:
 ![[transform_fourier_transformations.png]]
 
 # Condition of Convergence
+[Dirichlet Invented this Function to Prove a Point - YouTube](https://www.youtube.com/watch?v=uRluS4KwXu8)
 > [!important] [Dirichlet](<https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Signal_Processing_and_Modeling/Signals_and_Systems_(Baraniuk_et_al.)/06%3A_Continuous_Time_Fourier_Series_(CTFS)/6.06%3A_Convergence_of_Fourier_Series>)
 > Weak: $\displaystyle \int_{0}^{T} |f(x)| \, dx < \infty$
 > Strong: in 1 period

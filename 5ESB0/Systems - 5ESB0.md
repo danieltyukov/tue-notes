@@ -55,7 +55,7 @@ cartesian coord: $(\sigma,\omega):s=\sigma+j\omega$
 polar coord: $(r,\phi):s=r\cos\phi+jr\sin\phi$
 
 ### Block Diagrams
-![[block-diagrams.png|500]]
+![[block-diagrams.png]]
 
 # Laplace Transform
 Relation between $H(s)$ and $h(t)$
@@ -90,6 +90,7 @@ Poles and zeros of $H$ come in complex conjugate pairs damping and (undamped) na
 > Zeros determine the input signals that do not reach through to the output
 > $m=zeros,n=poles$ If $n>m$ then $H(s)$ has zeros in infinity -> unstable
 
+real part of the poles introduces damping...
 ![[dynamic-response-graph.png|500]]
 ![[dynamic-response-eg.png|500]]
 
@@ -98,6 +99,9 @@ Poles and zeros of $H$ come in complex conjugate pairs damping and (undamped) na
 ![[dynamic-response.png|500]]
 
 >[!NOTE] Final Value Theorem -> Steady State Gain
+>Final value exists when it a system converges to a value for example an exponential system diverges and oscillating system without damping does not converge. Meaning only with poles in LHP and Origin
+>$\lim_{ t \to \infty }f(t)=\lim_{ s \to 0 }s \cdot F(s)$
+>
 >Let $y(t)$ <-> $Y(s)$ be a $L$-transform pair.
 >If all poles of $sY(s)$ are in the left-plane, then:
 >$\lim_{ t \to \infty }y(t)=\lim_{ s \to 0 }sY(s)=\lim_{ s \to 0 }G(s)\cdot s \cdot \frac{1}{s^{k+1}}$
@@ -107,6 +111,8 @@ Poles and zeros of $H$ come in complex conjugate pairs damping and (undamped) na
 >$\lim_{ t \to \infty }y(t)=\lim_{ s \to 0 }s \cdot G(s) \cdot \frac{1}{s}$
 >$= \lim_{ s \to 0 }G(s)$ 
 >is the DC-gain (steady state value of step response) of G
+
+![[final value theorem.png|500]]
 
 ![[step-response-characterizaton.png|500]]
 ![[desired-behaviour.png|500]]
@@ -162,7 +168,11 @@ Analytic Express for Step Response: $y(t)=1-e^{-\sigma t}\left( \cos w_{d}t+\fra
 
 - Closed Loop Sensitivity: $S_{G}^T=\frac{G}{T}\cdot \frac{dT}{dG}=\frac{\frac{\delta T}{T}}{\frac{\delta G}{G}}$
 - If not a closed-loop system -> Routh Stability Check Performed -> Before Final Value Theorem
-
+[Types of Systems - YouTube](https://www.youtube.com/watch?v=IRdDcSO_fQw)
+System Type based on the amount of poles at the origin... Only based for the left hand side poles for stable systems.
+any system of type 2 and higher diverge to infinity for the final value theorem.
+$\text{Type 0: }FU=0\text{ Type 1: }FU=\text{real value Type>=2: }FU=\infty$
+![[based on final value theorem.png|400]]
 > [!NOTE] System Types
 > **Reference Tracking:**
 > $R\to Y$
@@ -180,12 +190,16 @@ Analytic Express for Step Response: $y(t)=1-e^{-\sigma t}\left( \cos w_{d}t+\fra
 ![[disturbance-rejection.png|500]]
 
 ## When Reference Tracking - Consider Steady State Errors (R(s))
+Role of a closed loop control system is to drive the error(difference between input and output) to zero.
 ![[steady-state-error-1.png|500]]
 ![[steady-state-error-2.png|500]]
 ![[system-type.png|500]]
 
 # Feedback Controllers (PID)
-
+[Pid Control Basics In Detail](https://theautomization.com/pid-control-basics-in-detail-part-2/)
+[Simple Examples of PID Control - YouTube](https://www.youtube.com/watch?v=XfAt6hNV8XM)
+[Proportional–integral–derivative controller - Wikipedia](https://en.wikipedia.org/wiki/Proportional%E2%80%93integral%E2%80%93derivative_controller#:~:text=An%20everyday%20example%20is%20the,engine%20in%20a%20controlled%20manner.)
+![[PID graph.png|400]]
 - P used for "speed"
 - I used for steady state response
 - D used for damping
