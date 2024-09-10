@@ -13,4 +13,4 @@ tags:
 [[Stochastic signals processing]]
 
 # Important
-[[Fourier Transform#Sampling]]
+[[Fourier Analysis - Transform(Series)#Sampling]]

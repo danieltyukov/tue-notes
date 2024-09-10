@@ -3,7 +3,7 @@ modified: Tuesday, June 25th 2024, 00:26:23
 created: Tuesday, May 7th 2024, 11:42:43
 tags:
 ---
-[[Fourier Transform]]
+[[Fourier Analysis - Transform(Series)]]
 [[Laplace Transform]]
 [[Z transform]]
 # Properties

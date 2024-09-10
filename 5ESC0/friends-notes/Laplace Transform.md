@@ -5,8 +5,9 @@ tags:
   - "#concept"
   - "#transform"
 ---
+![[laplace transform table.png|400]]
 Definition:
-Generalization of [[Fourier Transform]]
+Generalization of [[Fourier Analysis - Transform(Series)]]
 $$
 \mathcal{L}(s) = \int_{-\infty}^{\infty} f(t)e^{ -st } \, dt
 $$
@@ -16,7 +17,7 @@ $$
 
 Properties:
 - Discrete counterpart: [[Z transform]]
-- Relation to [[Fourier Transform]]:
+- Relation to [[Fourier Analysis - Transform(Series)]]:
 $$
 \mathcal{L}(\sigma+j\omega)=\int_{-\infty}^{\infty} f(t)e^{ -\sigma t }e^{ -j\omega t } \, dt = \mathcal{F}(f(t)e^{ -\sigma t })(\omega)
 $$

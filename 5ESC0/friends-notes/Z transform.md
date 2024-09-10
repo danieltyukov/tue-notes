@@ -6,13 +6,13 @@ tags:
   - "#transform"
 ---
 Definition:
-Generalization of Discrete [[Fourier Transform]]
+Generalization of Discrete [[Fourier Analysis - Transform(Series)]]
 $$
 \mathcal{Z}(z) = \sum_{n=-\infty}^{\infty} x[n]z^{ -n },\, (z = r e^{ j\Omega })
 $$
 Properties:
 - Continuous counterpart: [[Laplace Transform]]
-- Relation to Discrete [[Fourier Transform]]:
+- Relation to Discrete [[Fourier Analysis - Transform(Series)]]:
 $$
 \mathcal{Z}(r e^{ j\Omega })=\sum_{-\infty}^{\infty} x[n]r^{ -n }e^{ -j\Omega n } \, dt = \mathcal{F}(x[n]r^{ -n })(\Omega)
 $$

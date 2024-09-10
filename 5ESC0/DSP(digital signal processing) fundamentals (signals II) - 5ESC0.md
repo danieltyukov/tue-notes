@@ -24,6 +24,9 @@ $z_{0}=r_{0}e^{j\theta_{0}}\to \text{conjugate: }z_{0}^*=r_{0}e^{-j\theta_{0}}\t
 # Signals and System
 $x(t)\text{ continuous(analog) }x[n]\text{ discrete(digital)}$
 **MONDAY NOTES**
+# Fourier Analysis
+$\omega \cdot T_{s}=2\pi f \cdot \frac{1}{f_{s}}\text{ where normalized frequency: }\theta=2\pi\left( \frac{f}{f_{s}} \right)\text{ as }f,\omega=\text{ absolute frequency}$
+[[Fourier Analysis - Transform(Series)]]
 # Sampling
 # Mathematical analysis tools, Transformers
 

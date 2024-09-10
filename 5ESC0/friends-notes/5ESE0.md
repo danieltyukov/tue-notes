@@ -12,4 +12,4 @@ Frequency response: $\displaystyle y[n] =  {\sum_{k=-\infty}^{\infty}} \, h[n]Ae
 $\displaystyle \to H(e^{ j\theta })=\sum_{k=-\infty}^{\infty} \, h[k]e^{ -j\theta k }$
 
 # Important
-[[Fourier Transform]]
+[[Fourier Analysis - Transform(Series)]]
