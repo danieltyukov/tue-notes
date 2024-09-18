@@ -60,6 +60,7 @@ cartesian coord: $(\sigma,\omega):s=\sigma+j\omega$
 polar coord: $(r,\phi):s=r\cos\phi+jr\sin\phi$
 
 ### Block Diagrams
+[e1a7408acfaa5b79f0b3147e84d93bdd\_MIT2\_04AS13\_Lecture10.pdf](https://ocw.mit.edu/courses/2-04a-systems-and-controls-spring-2013/e1a7408acfaa5b79f0b3147e84d93bdd_MIT2_04AS13_Lecture10.pdf)
 ![[block-diagrams.png]]
 ![[example block diagram.png|300]]![[example solution to block diagram.png|300]]
 ![[disturbance rejection.png|300]]![[example of final value theorem.png|300]]

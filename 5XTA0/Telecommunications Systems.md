@@ -541,7 +541,7 @@ uses power domain to separate signals.
 **numerical aperture** (**NA**) of an optical system is a dimensionless number that characterizes the range of angles over which the system can accept or emit light.
 $n_{0}\sin(\theta_{0})=NA=\sqrt{ n_{1}^2-n_{2}^2 }$
 ![[5XTA0/attachments/TIR.png|300]]![[ray propagation.png|300]]
-![[numerical aperture.png|300]]![[light guiding capacity.png|300]]
+![[5XTA0/attachments/numerical aperture.png|300]]![[light guiding capacity.png|300]]
 ![[modal dispersion.png|300]]![[modal dispersion example.png|300]]
 ![[modal dispersion step index fiber.png|300]]![[refractive index profiles.png|300]]
 ![[chromatic dispersion of signle mode fibre.png|300]]![[attenuation in silica single mode fiber.png|300]]
