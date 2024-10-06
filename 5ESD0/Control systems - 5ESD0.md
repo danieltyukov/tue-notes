@@ -22,11 +22,88 @@ $\text{if } (m)num_{zeros}-(n)num_{poles}\text{ num of zeros>poles loci come fro
 > *same just without $180 \degree$*
 # Frequency Response Functions / Bode Diagrams (Understanding the relevance of frequency-domain control-design methods and frequency-responses on Bode plots)
 [Bode Plots by hand](https://web.mit.edu/2.010/www_f00/psets/hw2_dir/tutor2_dir/tut2_e.html)
-![[steady state behaviour.png]]
-![[representations for bode.png]]
+[Bode Plots Explained - YouTube](https://www.youtube.com/watch?v=PF4fSRwPk5I)
+$\text{gain: }M=|G(j\omega_{o})|=|G(s)|_{s=j\omega_{o}}=\sqrt{ \{Re[G(j\omega_{o})]\}^2+\{Im[G(j\omega_{o})]\}^2 }$
+$\text{phase: }\tan^{-1}\left[ \frac{Im[G(j\omega_{o})]}{Re[G(j\omega_{o})]} \right]=\angle G(j\omega_{o})$
+$\text{polar form: }G(j\omega_{o}=Me^{j\phi})$
+$G(j\omega)=\frac{\vec{s_{1}} \vec{s_{2}}}{\vec{s_{3}}\vec{s_{4}}\vec{s_{5}}}=\frac{r_{1}e^{j\theta_{1}}r_{2}e^{j\theta_{2}}}{r_{3}e^{j\theta_{3}}r_{4}e^{j\theta_{4}}r_{5}e^{j\theta_{5}}}=\left( \frac{r_{1}r_{2}}{r_{3}r_{4}r_{5}} \right)e^{j\theta_{1}+\theta_{2}-\theta_{3}-\theta_{4}-\theta_{5}}\text{ where }\vec{}\text{ means phasor}$
 
-$A_{P(dB)}=20\log A_{P(ratio)}\text{ then }A_{P(ratio)}=10^{A_{P(dB)}/20}$
-![[bode plot sketching.png]]
-$\text{class 1: }K_{0}(j\omega)^n$
+$|G(j\omega)|=\frac{r_{1}r_{2}}{r_{3}r_{4}r_{5}}$
+$\log_{10}|G(j\omega)|=\log_{10}r_{1}+\log_{10}r_{2}-\log_{10}r_{3}-\log_{10}r_{4}-\log_{10}r_{5}$
+$\angle G(j\omega)=\theta_{1}+\theta_{2}-\theta_{3}-\theta_{4}-\theta_{5}$
+
+$\log_{10}Me^{j\phi}=\log_{10} M+j\phi \log_{10}e$
+$A_{P(dB)}=20\log_{10} A_{P(ratio)}\text{ then }A_{P(ratio)}=10^{A_{P(dB)}/20}$
+$$\text{example: }|KG(j\omega)|_{db}=20\log|K_{o}|+20\log|j\omega \tau_{1}+1|-20\log|(j\omega)^2|-20\log|j\omega \tau_{a}+1|\text{ based from }KG(j\omega)=K_{o} \frac{j\omega \tau_{1}+1}{(j\omega)^2(j\omega \tau_{a}+1)}$$
+
+$\text{closed loop bode form: }KG(j\omega)=K_{o}(j\omega)^n \frac{(j\omega \tau_{1}+1)(j\omega \tau_{2}+1)\dots}{(j\omega \tau_{a}+1)(j\omega \tau_{b}+1)\dots}$
+
+$\text{class 1: }K_{0}(j\omega)^n\to \log K_{o}|(j\omega)^n|=\log K_{o}+n\log|j\omega|$
+
 $\text{class 2: }(j\omega \tau+1)^{\pm1}$
+	$\text{for }\omega \tau\ll 1,\text{magnitude: }|j\omega \tau+1| \approx1(0db)\text{ and phase: }\angle 1=0 \degree$
+	$\text{for }\omega \tau\gg 1,\text{magnitude: }|j\omega \tau+1|\approx |j\omega \tau|=|\omega \tau|=\pm20dB \text{ and phase: }\angle j\omega \tau=90 \degree$
+	$\omega \tau \approx 1,\text{magnitude: }|j\omega \tau+1|\approx \sqrt{ 2 }(3db) \text{ and phase: } \angle(j\omega+1)\approx45 \degree$
+	$\text{break point: }\omega=\frac{1}{\tau}$
+	$\text{magnitude asymptote deviations: }\pm3db$
+	$\text{phase asymptote deviations: }\pm11 \degree$
+	$\text{magnitude slope: }\pm20db$
+	$\text{phase slope: }\pm90 \degree$
+
 $\text{class 3: }\left( \left( \frac{j\omega}{\omega_{n}} \right)^2 + 2\zeta  \frac{j\omega}{\omega_{n}} +1 \right)^{\pm_{1}}$
+	$\text{for }\omega \ll \omega_{n},\text{magnitude: }\left| \left( \frac{j\omega}{\omega_{n}} \right)^2 + 2\zeta  \frac{j\omega}{\omega_{n}} +1 \right| \approx1(0db)\text{ and phase: }\angle 1=0 \degree$
+	$\text{for }\omega \gg \omega_{n},\text{magnitude: }\left| \left( \frac{j\omega}{\omega_{n}} \right)^2 + 2\zeta  \frac{j\omega}{\omega_{n}} +1 \right| \approx |\frac{\omega}{\omega_{n}}|^2=\pm40dB \text{ and phase: }\angle |\frac{\omega}{\omega_{n}}|^2 =180 \degree$
+	$\text{for }\omega \approx \omega_{n},\text{magnitude: }\left| \left( \frac{j\omega}{\omega_{n}} \right)^2 + 2\zeta  \frac{j\omega}{\omega_{n}} +1 \right| \approx 2\zeta\text{ and phase: }\angle 2\zeta=90 \degree$
+	
+	$\text{break point: }\omega=\omega_{n}$
+	$\text{magnitude asymptote deviations: } \frac{1}{2\zeta}\text{ so }=\pm 20\log(2 \zeta)$
+	$\text{magnitude slope: }\pm40db$
+	$\text{phase slope: }\pm180 \degree$
+
+![[bode plot sketching.png]]![[Pasted image 20240926200943.png]]
+
+![[bodep lot showcase difference between in and output.png|400]]
+[Bode Plots Explained - YouTube](https://www.youtube.com/watch?v=PF4fSRwPk5I)
+#  Nyquist Stability & Stability Margins (Assessing closed-loop stability and its robustness via Nyquist plots)
+**Cauchy’s argument principle**
+- A clockwise contour map of a complex function will encircle the origin $N = Z - P$ times, with $Z$ the number of zeros and $P$ is the number of poles of the function inside the contour.
+- Control Design: 1) Zeros of $1+KG(s)$ are closed-loop poles, 2) contour of interest is one the covers the RHP.
+- Encirclements of $1 + KG(s)$ around the origin is equal to encirclements of $KG(S)$ around -1.
+
+$\text{Nyquist stability criterion: }Z=N+P$
+- $Z$ is the number of RHP zeros of $1+KG(s)$ (i.e, the closed-loop poles).
+- $N$ is the number of (clockwise) encirclements of the point −1.
+- $P$ is the number of RHP (unstable) poles of $KG(s)$.
+![[nyquist stability criterion.png|500]]
+![[example of nyquist.png|500]]
+$\text{gain margin GM: }\omega \text{ where }\angle G(j\omega)=-180 \degree$
+$\text{exmaple GM: } \frac{1}{|G(j0)|}=\frac{1}{10}=-20dB$
+$\text{phase margin PH: }\omega \text{ where }|G(j\omega)|=1$
+$\text{example PH: }\angle G(j0)=\arctan\left( \frac{12\omega}{-\omega^2+20} \right)=0\text{ so }180\pm0=180 \degree\text{ phase margin}$
+thee amount by which the phase can be decreased before reaching instability.
+
+![[marins on nyquist.png|300]]![[margins on bode.png|300]]
+$\zeta=\frac{PM}{100}$
+[Phase and Gain Margins Example](https://chatgpt.com/c/66f98307-c858-800b-8e5a-0c97adddc9f8)
+[Final Exam Tutorial - Nyquist Plot Example - YouTube](https://www.youtube.com/watch?v=lZbUp-ywSq8)
+![[stability criteria.png|500]]
+$N_{CCW}=P_{rhp}=0\text{ so the system is stable for }K=1$
+![[margins.png|300]]![[gain phase margins.png|300]]
+![[nyquist.png|300]]![[nyquist2.png|300]]
+#  Frequency Response Controller Design (--Designing single-input-single-output feedback controllers by shaping the open-loop frequency-response function)
+## lead lag intuitive understanding
+lead lag compensators
+$\frac{\omega_{p}}{\omega_{z}}\frac{s+\omega_{z}}{s+\omega_{p}}\text{ where Gain K: } \frac{\omega_{p}}{\omega_{z}}$ 1 pole and 1 zero
+$\text{lead: }\omega_{z}<\omega_{p}\text{ and lag: }\omega_{z}>\omega_{p}$
+zeros add $90 \degree$ of phase and amplify high frequencies
+poles subtract $90 \degree$ and attenuate high frequencies
+
+example of lead (opposite for lag), cancels if pole zero at same:
+![[lead compensator.png|400]]
+![[lead compenstaor.png|400]]
+lead/lag: to amplify at lower and attenuate at higher...
+[Designing a Lead Compensator with Bode Plot - YouTube](https://www.youtube.com/watch?v=rH44ttR3G4Q)
+[Designing a Lag Compensator with Bode Plot - YouTube](https://www.youtube.com/watch?v=-4bY4W0hvFA)
+![[lead compensator1.png|400]]
+![[lead compensator2.png|400]]
+![[lag compensator.png|400]]

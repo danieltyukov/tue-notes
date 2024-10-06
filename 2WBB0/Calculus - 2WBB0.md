@@ -13,16 +13,25 @@
 >Functions and their graphs
 >Trigonometric Functions
 >Trigonometric Equations
-## Some Notes
+## Some Notes + P1-P7
 [How to Convert Repeating Decimals to Fractions: 9 Steps](https://www.wikihow.com/Convert-Repeating-Decimals-to-Fractions)
-$\text{perpendicular slope: }m_{1}=\frac{1}{m_{2}}$
-$m=\frac{\Delta y}{\Delta x}$
+![[REPEATING TO FRACTION.png|400]]
+[Decimal to Fraction](https://www.khanacademy.org/math/cc-fourth-grade-math/imp-decimals/imp-converting-decimals-to-fractions/v/converting-decimals-to-fractions-1-ex-1#:~:text=Decimals%20can%20be%20written%20in,If%20needed%2C%20simplify%20the%20fraction.)
+$3.75=\frac{3}{1}+\frac{7}{10}+\frac{5}{100}$
+![[fraction to decimal.png|300]]![[fraction to decimal-1.png|300]]
+
+$\text{perpendicular slope: }m_{1}=-\frac{1}{m_{2}}\text{ since }m_{1}m_{2}=-1$
+$m=\frac{\Delta y}{\Delta x}=\tan \phi$
 $\Delta y=m(\Delta x)$
 $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\text{ ellipse and } \frac{x^2}{a^2}-\frac{y^2}{b^2}=1$
+![[ellipse and hyperbola.png|300]]
 ![[scaling and shifting.png|400]]
 ![[refletion visual.png|400]]
 ![[reciprocal.png|300]]![[odd even.png|300]]
 ![[symmetry.png|300]]![[function combo domains.png|300]]
+$\left( \frac{x}{\sin x} \right)^{-1/2}=\left( \frac{\sin x}{x} \right)^{1/2}$
+![[piecewise functions.png|300]]![[long division.png|300]]
+![[roots example.png|300]]![[micellaneous factorings.png|300]]
 
 composition: $f(g(x))=\frac{1}{x^2}\text{ where }g(x)=x-1\text{ what is }f(x)\to f(g(x)=x-1)\to f(x=y+1)=\frac{1}{(y+1)^2}$
 
@@ -54,7 +63,7 @@ $x^2=a\implies x=\pm \sqrt{ a }$ where $a\geq 0$
 $x^3=a\implies x=\sqrt[3]{ a }$ where $a=any$
 
 $(x-a)^2+(y-b)^2=r^2$ equation of a circle
-$D=\sqrt{ (x_{2}-x_{1})^2+(y_{2}-y_{1})^2 }$
+$a,b\text{ are the center coordinates}$
 
 domain: x possible input vals, range: y possible output vals
 $y=f(x)$
@@ -83,6 +92,8 @@ $\sin(x)=\cos\left( \frac{\pi}{2}-x \right)$ and $\cos(x)=\sin\left( \frac{\pi}{
 
 ![[trig-circ.png]]
 (cos,sin)
+degree to radian: $\frac{\pi}{180}$
+![[sector area.png|150]]![[angles.png|150]]
 
 >[!NOTE] Trigonometric Rules
 >just remember the identities on formula sheet given
@@ -108,11 +119,17 @@ $\sin(x)=\cos\left( \frac{\pi}{2}-x \right)$ and $\cos(x)=\sin\left( \frac{\pi}{
 ![[inequality domain-1.png|300]]
 
 $y=mx+c$, $y-y_{1}=m(x-x_{1})$, $m=\frac{y_{2}-y_{1}}{x_{2}-x_{1}}$, $\perp\implies m_{1}=-\frac{1}{m_{2}}$
+$D=\sqrt{ (x_{2}-x_{1})^2+(y_{2}-y_{1})^2 }$
 slope=gradient, derivative of a function is its slope.
 
 ![[inequality.png|500]]
 $-2\leq x\leq 3$
 ALWAYS CHECK INEQUALITY VALUES!!!
+![[eq.png|200]]
+![[inequality-1.png|300]]
+![[solution.png|200]]
+$|a\pm b|\leq|a|+|b|$
+![[absolute value.png|400]]
 
 >[!NOTE] Logarithms
 $\frac{d}{dx}(a^x)=a^x\ln(a)$
@@ -124,12 +141,28 @@ $\log(a^x)=x\log(a)$
 
 - $\log_{a}(x)=\frac{1}{x\ln(a)}$ derivative https://www.youtube.com/watch?v=2A1xgHtTOCk
 
+
+
+
+**MOST IMPORTANT**
+$\sin^2x+\cos^2x=1$
+![[only thing you really need for trig identities.png|300]]
+
+
+
+
+
 ![[ln-e-graph.png|300]]![[trig.png|300]]
+$\cos(\pi-x)=-\cos x\text{ and }\sin(\pi-x)=\sin x$
 ![[more trig.png|300]]![[derivative.png|300]]
 ![[integral types.png|300]]![[integral.png|300]]
-![[differentation rule.png|300]]
+![[differentation rule.png|300]]![[trigonometruc identities.png|300]]
+![[other trig functions.png|300]]![[trig rules.png|300]]
+![[sine cosine rules.png|300]]
 
 ![[final-electronics-close-up.jpg|400]]
+
+$\text{period of }\cos\left( \frac{\pi x}{2} \right)\text{ when }x=4\text{ then }\cos(2\pi)\text{ which is 1 period so one period in 4}$
 # Complex Numbers
 https://medium.com/all-math-before-college/complex-numbers-4a1aeda2abb6
 
@@ -137,13 +170,15 @@ imaginary component: y
 real component: x
 
 - $\frac{1+i}{2+i}=\frac{(1+i)(2-i)}{(2+i)(2-i)}$
+- $\frac{1}{2i}=\frac{1}{2i} \cdot \frac{-i}{-i}$
 - $\sqrt{ -9 }=\sqrt{ 9 }\sqrt{ -1 }=3i$
 - conjugate: what you see in first bullet point reverse of sign in middle
 - $a+bi=r(\cos \theta+i\sin \theta)$ where $r=\sqrt{ a^2+b^2 }$, eg: $3+3i=3\sqrt{ 2 }(\cos \theta+i\sin \theta)\implies \frac{1}{\sqrt{ 2 }}+\frac{1}{\sqrt{ 2 }}i=\cos \theta+i\sin \theta \implies \frac{1}{\sqrt{ 2 }}=\cos \theta, \frac{1}{\sqrt{ 2 }}=\sin \theta \dots$
 - $a+bi=re^{a+bi}$
 
 >[!NOTE] Summery of Complex Numbers - Rectangular, Polar, Exponential Form
->$z=a+bi=r(\cos(\theta)+i\sin (\theta))=\mathrm{re}^{i\theta}$
+>$z=a+bi=r(\cos(\theta)+i\sin (\theta))=\mathrm{re}^{i\theta}=e^{a+bj}\text{ where }a=\ln (r)\text{ and }b=\theta$
+>$r=\sqrt{ a^2+b^2 }\text{ and }\theta=\arctan\left( \frac{b}{a} \right)$
 
 >[!NOTE] Geometric Operations
 >
@@ -192,6 +227,8 @@ Having root $i$ means having 2 roots $i \cap -i$
 >Standard Limits
 >Continuity
 
+![[limit theorem.png|400]]
+
 $\lim_{ x \to 0^- }\left( \frac{|x|}{x} \right)=-1$
 if limit from (-) and (+) then the general limit does not exist
 $\frac{x}{\infty}=0$
@@ -209,15 +246,22 @@ vertically it can have either of the asymptote doesn't have to have have both
 https://www.youtube.com/watch?v=WT7oxiiFYt8
 https://www.youtube.com/watch?v=NVQBZWTKygU
 ![[definition-continuity.png|300]]
+right and left continuity means from negative and positive approach...
 ![[continuity-interval.png|300]]
+[2.6: Continuity - Mathematics LibreTexts](https://math.libretexts.org/Courses/Monroe_Community_College/MTH_210_Calculus_I_(Professor_Dean)/Chapter_2_Limits/2.6%3A_Continuity)
+![[example of continuity.png|500]]
 composite functions -> continuous
+![[continuity theorems.png|500]]
 
 Intermediate Value Theorem. **If f is continuous on the interval [a,b] and N is between f(a) and f(b), where f(a)≠f(b), f ( a ) ≠ f ( b ) , then there is a number c in (a,b) such that f(c)=N**.
 
-![[min-max-theorem.png|300]]
+![[max min thoerem.png|500]]
+![[intermediate value theorem-1.png|500]]
 
 ![[squeeze-theorem.png|500]]
 taylor: https://www.youtube.com/watch?v=EYjBnnUJTP8, https://www.youtube.com/watch?v=f_NvAc4Ffbg
+![[binomial expansion.png|500]]
+![[taylor.jpg|500]]
 # Differentiation
 
 >Tangents
@@ -235,21 +279,50 @@ taylor: https://www.youtube.com/watch?v=EYjBnnUJTP8, https://www.youtube.com/wat
 >l'Hopitals Rule
 >Limits with Taylor
 
+![[quotient rule.png|500]]
+![[chain rule theorem.png|500]]
+![[trig limit.png|500]]
+![[chain rule.png|200]]
+$\frac{d}{dx}(\sin x)=\cos x\text{ and } \frac{d}{dx}(\cos x)=-\sin x$
+
+- derivative of function you find slope by plugging value ([demo](https://www.youtube.com/watch?v=7EFYoQ6H7Tw)), then in original function you can find x and y. and then write slope line
 - with the slope you can find the tangent line.
 - slope of normal to tangent: $-\frac{1}{m}$
+- ![[slopes.png|300]]
 - If f is differentiable at x, then f is continuous at x.
 ![[quotient-rule-formula.png|500]]
+![[abs val derivative.png|400]]
+![[recipricol rule.png|400]]
 $\frac{d}{dx}a^x=\frac{d}{dx}e^{\ln(a^x)}=\frac{d}{dx}e^{x\ln(a)}=a^x\ln(a)$
 
 ![[rolle-s-theorem.png|300]]
 mean value theorem: https://www.youtube.com/watch?v=Brat34fUe9o
 ![[mean-value-theorem.jpg|400]]
+![[mean value theorem.png|400]]
+![[increase decrease theorem.png|400]]
+![[300.png|300]]![[general mvt.png|300]]
 ![[20240122_155111.jpg|300]]
+
+
+### minmax
+
 >[!NOTE] Inflection Point
 >$f''(a)=0$ where it switches signs
 
 ![[second-derivative-test.png|300]]
+![[min max.png|500]]
+![[local min max.png|500]]
+![[exterme vals.png|500]]
+![[finding exterme values.png|500]]
+![[first derivative test.png|500]]
+![[testing critical points.png|500]]
+![[existance of exterme vals.png|500]]
+![[example.png|500]]
+![[ex.png|500]]
 
+
+
+### idfk
 >[!NOTE] Implicit Differentiation
 >$\frac{d}{dx}(y^4=y^2-x^2)\implies 4y^3 \frac{dy}{dx}=2y \frac{dy}{dx} -2x\implies \frac{dy}{dx}=\frac{-2x}{4y^3-2y}$
 
@@ -274,6 +347,8 @@ to find an error of linear approximation: $\frac{f''(c)}{2}(x-x_{1})^2$ for cert
 ![[taylor-limits.png|300]]
 ![[taylor-limits-2.png|400]]
 
+
+![[derivative of shit.png|500]]
 # Transcendental Functions
 
 >Inverse functions
@@ -282,6 +357,18 @@ to find an error of linear approximation: $\frac{f''(c)}{2}(x-x_{1})^2$ for cert
 >Logarithmic Equations
 >Differentiation of Exponential Functions
 
+![[inverse functions.png|500]]
+**one to one:** unique x->y pair
+![[inverse function theorem.png|500]]
+![[!!!.png|200]]
+$y=f(x)\text{ same as }x=f^{-1}(y)$
+![[inverse example.png|400]]
+![[term cancellation.png|400]]
+![[inverse rule set.png|400]]
+![[self inverse.png|400]]
+![[derivative inverse.png|400]]
+![[inverse question.png|400]]
+
 - for a function to be invertible it must be one to one. (think graphically).
 - A function is a one to one if its derivative is always positive for all x.
 - if not one to one you can restrict to domain which makes it one to one and find inverse.
@@ -289,12 +376,16 @@ to find an error of linear approximation: $\frac{f''(c)}{2}(x-x_{1})^2$ for cert
 - to prove a function is one to one you can use a derivative
 
 ![[derivatives-inverses-example.png]]
+![[d.png|300]]
 ![[inverse-trig-func.png|300]]
 
 $\sin(\arcsin(x))=x$ & $\arcsin(\sin(x))=x$ since $f(f^{-1}(x))=x$ & $f^{-1}(f(x))=x$ if -val then *answer still always positive*
+![[memorize.png|400]]
 
 ![[trig-inverse-stuff.png|400]]![[unit circle.png|200]]
 ![[trig funcs.png|300]]
+[see here how to solve](https://chatgpt.com/c/670137b6-eb2c-800b-a58e-ab931506ead2)
+![[shit.png|300]]![[shit-1.png|300]]
 
 ![[inverse-rig-func-problem.png|300]]
 ![[derivative-arc.png|300]]

@@ -147,3 +147,127 @@ $b_{0}=\frac{\pi w_{0}^2}{\lambda}\text{ Rayleigh range}$
 ## Other
 ![[telescopes.png|300]]![[m2 factor.png|300]]
 # Electromagnetic Optics (Ch 6)
+[[Electromagnetics I - 5EPA0]]
+[[Electromagnetics II - 5EPB0]]
+![[EM reflection, transmission explained.png|400]]
+**internal reflection/transmission**
+![[expalined.png|300]]![[internal reflection transmission.png|300]]
+
+
+# Photon Optics (Ch 8)
+## Photon
+standing wave: sum of two counterpropagating travelling waves.
+
+all parts of the system move sinusoidally: same frequency - fixed phase relation.
+
+$$\text{photons}\to \text{electromagnetic radiation or field mode }\to \text{standing plane waves in large cavity...}$$
+**mode density per unit volume per unit frequency - independent of shape/size cavity**
+$\nu=\text{frequency}$
+$\text{mode density: }M(\nu)d\nu=\frac{8\pi \nu^2}{c^3}d\nu$
+
+$\text{photon energy: }E=h\nu \text{ where planck const }h=6.626 \cdot 10^{-34}Js$
+- energy in frequency mode change in **discrete steps**, quantized in **photons**.
+- energy chance in EM mode: **absorption, generation.**
+- beamsplitter where one photon probability $T\text{ and other }R=1-T$
+$$\text{energy of EM mode: }E_{n}=\left( n+\frac{1}{2} \right)h\nu,n=0,1,2,\dots \text{ where } \frac{1}{2}\text{ is zero point energy}$$
+
+$\text{momentum of photon: }\vec{p}=\hbar \vec{k}\text{ where }\hbar =\frac{h}{2\pi}$
+$\text{magnitude of momentum: }|\vec{p}|=\hbar |\vec{k}|=\frac{h}{\lambda}=\frac{h\nu}{c}=\frac{E}{c}$
+when N phtons absorbed -> momentum transferred.
+$\text{radiation pressure: }P=\frac{dp}{dt}=N \frac{h}{\lambda}$
+## Photon streams
+$$\text{average phtono flux: Pwer density }[W/m^2]\to\text{average photon flux density }[photnos/s \cdot m^2]\text{ when }\lambda=200nm(UV)\text{ and }1nW=1\text{photon/}ns$$
+![[photon stream single mode.png|500]]
+# Photons & Atoms (Ch 10)
+## Energy levels in atoms and molecules
+![[particle as waves.png|500]]
+$\nu=\text{frequency}$
+$$\text{momentum: }p=m\nu=\sqrt{ E \cdot_{2} \cdot m }=\hbar k=\frac{h}{\lambda} \to \text{energy: } E=\frac{1}{2}m\nu^2=\frac{p^2}{2m}=\frac{\hbar^2k^2}{2m}=\frac{h^2}{\lambda^2 2m}$$
+$\text{well levels: }n=1,2,3,\dots$
+$\text{potential well: }n \frac{\lambda}{2}=a\text{ where well width is }a$
+$E_{n}=\frac{p^2}{2m_{e}}=\frac{h^2}{2\lambda^2m_{e}}=E_{0}n^2$
+$E_{0}=\frac{\bar{h}^2\pi^2}{2m_{e}a^2}\text{ where }\bar{h}=\frac{h}{2\pi}$
+$\lambda=\frac{hc}{E_{n}-E_{0}}$
+$v(velocity)=\sqrt{ \frac{2E_{n}}{m_{e}} }$
+![[particle in infinite well 1dim.png|300]]![[particle in infinite potential well 1dim.png|300]]
+$\text{3d potential well (cube): }E_{n_{1},n_{2},n_{3}}=E_{0}(n_{1}^2+n_{2}^2+n_{3}^2)\to E_{0}=\frac{\hbar^2\pi^2}{2ma^2}$
+- Each state of a system means that it has a specific energy, we call this: the energy level of the system.
+- Each state defined by quantum numbers: $n_{1},n_{2},n_{3}$
+- **pauli exclusion:** no two identical particles can be same state...
+- each state max 2 electrons. (spinup, spindown)
+![[density of states in potential well.png|500]]
+
+$$\text{hydrogen atom: }E_{n}=-\frac{m_{r}e^4}{2\hbar ^2n^2}=E_{1} \frac{1}{n^2}\text{ where }n=1,2,3\dots \text{ and }m_{r}=\frac{m_{e} \cdot M_{N}}{m_{e} + M_{N}}\approx m_{e}(m_{e}\ll M_{N})$$
+![[energy levels of atoms.png|300]]![[hydrogen atom electronic states.png|300]]
+![[energy levels in mocules.png|500]]
+$\text{electronic states: }E_{0}$
+$\text{vibrational states: }E_{\nu}=\left( \nu+\frac{1}{2} \right)\hbar \omega_{\text{res}}$
+$\text{rotational states: }E_{r}=r\left( r+\frac{1}{2} \right)  \frac{\hbar}{2I}$
+
+$\text{boltzman const: }1.381 \cdot10^{-23} \frac{J}{K}$
+**boltzmann distribution:** group of atoms/molecules in seperate systems, the **probability** finding atom/molecule in particular state at specific temperature.
+![[boltzmann distribution.png|500]]![[boltzman example.png|300]]
+$\sum^n_{m=0}P(E_{m})=1$
+
+![[solid state multiple atoms.png|300]]![[band occupation metals.png|300]]
+![[band occupation isolator.png|300]]![[band occupation semiconductor.png|300]]
+
+![[electrons over states in solid.png|300]]![[fermi dirac distribution.png|300]]
+$\text{fermi firac distribution }f(e)=\frac{1}{e^{E-E_{f}/k_{B}T}+1}$
+$\text{3d infinity deep quantum well density of states: }g(E)=a^3 \frac{(2m_{e})^{3/2}}{2 \bar{h}^3\pi^2}\sqrt{ E }$
+$f(E_{f}+ \Delta E,T)\text{ also num of electrons: }N_{e}=g(E_{f})f(E_{f}+\Delta E,T)$
+
+![[3d potential well model for metal.png|300]]![[e k relation.png|300]]
+## Interactions between photons and atoms
+![[emission and absorption.png|300]]![[probabilty of photon interaction.png|300]]
+$p_{sp}=p_{abs}=p_{st}=\frac{c}{V}\sigma(\nu)$
+![[spontaneous emission.png|300]]![[spontaneous emission-1.png|300]]
+$\text{ spontaneous: }P_{sp}\approx=\frac{8\pi}{\lambda_{0}^2}\int \sigma(\nu) \, d\nu$
+$\text{spontaneous lifetime: }\tau_{sp}=\frac{1}{P_{sp}}=\frac{1}{A_{21}}\text{ where }A_{21}\text{ independent coefficient of cavity volume V}$
+$B_{21}=B_{12}=\frac{\lambda^3A_{21}}{8\pi h}$
+![[stimuluated emission.png|300]]![[stimulated emission.png|300]]
+$$\text{stimulated: }P_{st}=np_{st}=n \frac{c}{V}\sigma(\nu)=\frac{\lambda_{0}^3}{8\pi h\tau_{sp}}\text{ n being num of phtonos already present: }p_{sp}+P_{st}=(n+1) \frac{c}{V} \sigma(\nu)$$
+
+![[stimulated emission-1.png|300]]![[absorption.png|300]]
+## Thermal light
+![[thermal equilibrium.png|300]]![[equilibrium between material and photons.png|300]]
+![[equilibrium between material and phtons.png|300]]![[spectrum of balckbody radiator.png|300]]
+$\rho(\nu)=\frac{8\pi h\nu^3}{c^3}=\frac{1}{\exp\left( \frac{h\nu}{k_{B}T} \right)-1}$
+![[equilibrium between material and photons-1.png|300]]
+![[properties of blackbody.png|300]]![[black body radiation neergy density.png|300]]
+$\rho(\lambda)=\frac{8\pi hc}{\lambda^5} \frac{1}{\exp\left( \frac{hc}{\lambda k_{g}T} \right)-1}$
+![[black body radaition spectral radiance.png|300]]
+$\text{flux photons per unit }\lambda \text{ interval per steradian: }N(\lambda)=\frac{2c}{\lambda^4} \frac{1}{\exp\left( \frac{hc}{\lambda k_{B}T} \right)-1}$
+## Luminescent light
+![[photoluminescence.png|400]]
+# Lasers (Ch 13)
+## Gain medium
+![[absorption or amplificaiton of field.png|300]]![[absorption amplification of a field.png|300]]
+![[amplification and attenuation in unfirom material.png|300]]![[in decibel.png|300]]![[absorption and gain.png|300]]
+![[thermal inversion.png|300]]![[pumping 2 level system.png|300]]
+## Laser rate equations (Laser Cavities)
+![[rate equations.png|300]]![[rate equations-1.png|300]]
+
+![[stationary rate equations.png|300]]![[5XTB0/attachments/1.png|300]]![[5XTB0/attachments/2.png|300]]![[5XTB0/attachments/3.png|300]]![[5XTB0/attachments/4.png|300]]![[5XTB0/attachments/5.png|300]]![[6.png|300]]
+
+### laser cavities, passive fabry-perot resonator, resonator with optical amplifier
+![[resonance analysis with plane waves.png|300]]![[transmission spectrum FP resonator.png|300]]
+$\phi=nLk_{0}\text{ where }k_{0}=\frac{2\pi}{\lambda_{0}}$
+$t(\phi)=\frac{t_{1}t_{2}e^{-j\phi}}{1-r_{1}r_{2}e^{-j2\phi}}\text{ where }\phi=\frac{2\pi nL}{\lambda_{0}}$
+$T_{max}=t_{1}t_{2}\left( \frac{|t_{1}t_{2}|}{1-r_{1}r_{2}} \right)^2\text{ where }T_{max}=1\text{ if }r_{1}=r_{2}$
+![[transmission spectrum FP etalon.png|300]]![[finesse and quality factor of cavity.png|300]]
+$\text{factor of cavity: }Q=\frac{2\pi}{\ln\left( \frac{1}{r_{1}^2r_{2}^2} \right)}$
+![[fabry-perot etalon with gain.png|300]]![[fabry perot laser threshold spectrum.png|300]]
+$\text{electric field gain is } \frac{1}{2}\text{ the power gain}$
+$E_{2}=\frac{SE}{r_{1}r_{2}\exp\left( gL+i \frac{2\pi n}{\lambda}2L \right)-1}$
+### cavity design using mirrors, transverse modes
+![[cavity system matrix.png|300]]![[cavity system matrix-1.png|300]]
+spherical mirror: see notes prior...
+![[cavity system matrix-2.png|300]]![[cavity stability.png|300]]
+$\text{satbility codntion: }0\leq\left( 1-\frac{P_{1}L}{2} \right)\left( 1- \frac{P_{2}L}{2}\leq 1 \right)$
+![[gaussian beam in cavity.png|300]]![[gaussian beam cavity.png|300]]
+![[transversal modes.png|300]]
+## Characteristics of laser beams
+$\text{coherence: }E(x,y,t)=A\sin(ky-\omega t+\phi)$
+$\text{modelocking: laser spectrum has equally spaced laser modes: }\Delta u=\frac{c_{0}}{2nL}=\text{ and }T=\frac{1}{\Delta \nu}$
+The wider the laser spectrum, the shorter the pulses.

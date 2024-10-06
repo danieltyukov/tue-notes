@@ -520,13 +520,13 @@ max(0, 4, -1) = 4 [0-4, 4-4, -1-4] = [-4, 0, -5]
 
 ### example
 ![[5XIE0/attachments/1.png]]
-![[2.png|400]]
+![[5XIE0/attachments/2.png|400]]
 eigenvalue and normalized eigenvector obtained:
-![[3.png|400]]
-![[4.png|400]]
+![[5XIE0/attachments/3.png|400]]
+![[5XIE0/attachments/4.png|400]]
 c is 6 to make it non negative:
 starting $I$ at 2 because it receives tokens from $x_{1}\text{ and }x_{2}\text{ the max of the 2 }\{ 0,2 \}\text{ is }2$
-![[5.png|400]]
+![[5XIE0/attachments/5.png|400]]
 ## C.10 State Space Equations
 ![[state space equations.png|500]]
 ![[symbolic simulation of dataflow graph.png|500]]
