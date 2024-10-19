@@ -92,7 +92,7 @@ time domain reflection (TDR): used for cable testing: quick pulse with switch.
 
 ## Boundary conditions for penetrable media & Reflection and Transmission & Bounce diagrams
 incident, reflected, transmitted field
-![[boundary conditions.png|300]]![[transient signal transfer.png|265]]
+![[5EPB0/attachments/boundary conditions.png|300]]![[transient signal transfer.png|265]]
 on the boundary of plane dielectric layers: $[\lim_{ z \downarrow 0 }V(z,t)-\lim_{ z \uparrow 0 }V(z,t)]a_{z} \times e_{t}=0$
 $[\lim_{ z \downarrow 0 }I(z,t)-\lim_{ z \uparrow 0 }I(z,t)]a_{z} \times h_{t}=0$
 therefor: $V^r(t)=\Gamma V^i(t)\text{ and }V^t(t)=TV^i(t)$
@@ -276,7 +276,7 @@ the wave number $k$ is, in general, a complex number: $k=-j\alpha+\beta$
 - Wave polarization: time-dependent orientation of the E-field vector at a fixed point in space.
 - For instance, in case of a travelling wave in the (**depends on direction**) $+z-\text{direction}: E=A\exp(-jkz)\text{ with }A=E_{x}a_{x}+E_{y}a_{y}=E_{x0}e^{j\phi x}a_{x}+E_{y0}e^{j\phi y}a_{y}$
 - $E\text{ is magnitude}$
-![[linear polarization.png|200]]![[circular polarization.png|200]]![[elliptical polarization.png|200]]
+![[5EPB0/attachments/linear polarization.png|200]]![[circular polarization.png|200]]![[elliptical polarization.png|200]]
 
 if the the phase difference is not $\frac{\pi}{2}$ between 2 components then elliptical
 ![[eliptical example.png|300]]

@@ -1,5 +1,9 @@
+![[5ESD0/attachments/5esd0-summary-samenvatting-control-systems.pdf]]
+# Notes
+![[control-systems-summery.pdf]]
 # Course Introduction (Modifying open-loop transfer function properties using feedback)
 [[Systems - 5ESB0]]
+![[find poles zeros.png|500]]
 # Root Locus (Modifying closed-loop transfer functions using Feedback)
 [The Root Locus Rules](https://www.mit.edu/people/klund/weblatex/node8.html)
 [(VERY USEFUL) How To Sketch a Root Locus](https://www.youtube.com/watch?v=vckPtXDrEsw)
@@ -25,6 +29,11 @@ $\text{if } (m)num_{zeros}-(n)num_{poles}\text{ num of zeros>poles loci come fro
 [Bode Plots Explained - YouTube](https://www.youtube.com/watch?v=PF4fSRwPk5I)
 $\text{gain: }M=|G(j\omega_{o})|=|G(s)|_{s=j\omega_{o}}=\sqrt{ \{Re[G(j\omega_{o})]\}^2+\{Im[G(j\omega_{o})]\}^2 }$
 $\text{phase: }\tan^{-1}\left[ \frac{Im[G(j\omega_{o})]}{Re[G(j\omega_{o})]} \right]=\angle G(j\omega_{o})$
+$|G(j\omega)|=\frac{|Numerator|}{|Denominator|}$
+$\angle G(j\omega)=\angle Numerator - \angle Denominator$
+
+
+
 $\text{polar form: }G(j\omega_{o}=Me^{j\phi})$
 $G(j\omega)=\frac{\vec{s_{1}} \vec{s_{2}}}{\vec{s_{3}}\vec{s_{4}}\vec{s_{5}}}=\frac{r_{1}e^{j\theta_{1}}r_{2}e^{j\theta_{2}}}{r_{3}e^{j\theta_{3}}r_{4}e^{j\theta_{4}}r_{5}e^{j\theta_{5}}}=\left( \frac{r_{1}r_{2}}{r_{3}r_{4}r_{5}} \right)e^{j\theta_{1}+\theta_{2}-\theta_{3}-\theta_{4}-\theta_{5}}\text{ where }\vec{}\text{ means phasor}$
 
@@ -90,8 +99,48 @@ $\zeta=\frac{PM}{100}$
 $N_{CCW}=P_{rhp}=0\text{ so the system is stable for }K=1$
 ![[margins.png|300]]![[gain phase margins.png|300]]
 ![[nyquist.png|300]]![[nyquist2.png|300]]
-#  Frequency Response Controller Design (--Designing single-input-single-output feedback controllers by shaping the open-loop frequency-response function)
+# Frequency Response Controller Design (Designing single-input-single-output feedback controllers by shaping the open-loop frequency-response function)
+## performance specifications
+$L(s)=D(s)G(s)$
+how to tune D for L.
+Design feedback controller using open loop response functions.
+
+gain margin is a margin of gain that can be applied to a system since systems IRL can vary a margin is good to have since some have stronger or weaker gain due to mechanical wear-outs.
+
+adding more than needed amount of integrator poles effects the phase margin and puts more requirements on the lead/lag compensator.
+### stability margins
+Nyquist plot, having a certain PM and GM
+![[closed loop stability.png|400]]
+### steady state error tracking
+controlled by system type.
+steady state error -> 0 if slope of the bode diagram of L(s) is steep.
+![[fvt.png|400]]
+### overshoot
+enough phase margin
+![[overshoot-1.png|400]]
+![[damping to limit overshoot.png|400]]
+### closed loop bandwidth
+crossover frequency $\omega_{c}$ of $L(j\omega)$
+$\omega_{c}\leq \omega_{BW}\leq 2\omega_{c}$
+![[bandwidth.png|400]]
+![[uncertainty bound.png|400]]
+![[bandwidth response.png|400]]
+## compensators
+![[compensators.png]]
+![[lead filter.png]]
+![[lag filter.png]]
+$T_{I}=\frac{1}{\omega_{Z}}=\frac{1}{0.1\cdot \omega_{c}}\text{ to avoid problems of phase lag we take the phase a decade after it}$
+
 ## lead lag intuitive understanding
+**lead:** adds phase lead to the system increasing gain (between zero -> pole)
+(typical goal to provide gain in high frequency range).
+
+**lag:** adds phase lag to the system decreasing gain (between pole -> zero) 
+(typical goal to provide gain in low frequency range).
+
+(max $55 \degree$ phase margin)
+![[pid vs compensators.png|400]]
+
 lead lag compensators
 $\frac{\omega_{p}}{\omega_{z}}\frac{s+\omega_{z}}{s+\omega_{p}}\text{ where Gain K: } \frac{\omega_{p}}{\omega_{z}}$ 1 pole and 1 zero
 $\text{lead: }\omega_{z}<\omega_{p}\text{ and lag: }\omega_{z}>\omega_{p}$
@@ -104,6 +153,89 @@ example of lead (opposite for lag), cancels if pole zero at same:
 lead/lag: to amplify at lower and attenuate at higher...
 [Designing a Lead Compensator with Bode Plot - YouTube](https://www.youtube.com/watch?v=rH44ttR3G4Q)
 [Designing a Lag Compensator with Bode Plot - YouTube](https://www.youtube.com/watch?v=-4bY4W0hvFA)
+![[20241012_231149.jpg]]
+![[20241014_135139.jpg]]
+![[further.png]]
+$lead:\omega_{c}>lag:\omega_{c}$ which means natural frequency in lead is higher which implies faster response and therefor shorter rise and settling times. which we can see above.
+usually lead filter have higher cross over frequency...
+![[interpretation.png]]
+$\omega_{BW}=2\omega_{c}\to \omega_{n}=0.5\omega_{BW}\to t_{s}\approx \frac{4.6}{\zeta \omega_{n}}\to t_{r}= \frac{1.8}{\omega_{n}}$
+### other compensator pics
+![[Control systems - 5ESD0.png|300]]![[la.png|300]]
 ![[lead compensator1.png|400]]
 ![[lead compensator2.png|400]]
 ![[lag compensator.png|400]]
+
+# Module 6: Fundamental Limitations in Control Design (Identifying the limitations of linear control design, and the trade-off between disturbance rejection and sensor noise amplification)
+### General knowledge
+$\text{disturbance: }w\text{ reference: }r\text{ measure noise: }n$
+$y=\frac{1}{1+L}w+\frac{L}{1+L}(r-n)\text{ where }S=\frac{1}{1+L}\text{ and }T=\frac{L}{1+L}\text{ and the goal is to have both low}$
+$S(\text{sensetivity})+T(\text{complementary sensetivity})=1$
+
+By analyzing the sensitivity function in the logarithmic bode scale we have derive robustness and performance limitations.
+
+If I want to reduce sensitivity with regards to tracking references, then I can make system susceptible to measurement noise.
+### Peak of sensitivity and how it relates to nyquist
+![[pak of sensetivity function.png|400]]
+The **peak of the sensitivity** function represents how much the system amplifies disturbances. It is the reciprocal of the smallest distance from the Nyquist plot to the critical point $-1$, which indicates the system's proximity to instability. If the plot gets close to $-1$, the system becomes sensitive to disturbances, meaning a higher peak value.
+### Bode sensitivity integral
+![[bode sensitivity integral.png|400]]
+![[bode sensitivity integral-1.png|400]]
+improving characteristics in one range make them worse in the other range...
+**Cauchy's integral**:
+$\int_{-j\infty}^{j\infty} \ln \left| S(s) \right| ds + \int_{\Gamma_{\infty}} \ln \left| S(s) \right| ds$
+numeric effects when placing poles or zeros in specific spots based on waterbed effect...
+### Control system types
+![[sensetivity-1.png|400]]
+![[closed loop transfer functions.png|400]]
+$\text{disturbance: }w\text{ reference: }r\text{ measure noise: }n$
+$w\to y:3:\text{see RHP Poles below to improve}:D \uparrow$
+$n\to y:2:D \downarrow$
+
+sensitivity is looked at when asked about maximal disturbance $w$ amplification.
+complemetary sensitivity is looked at when asked about maximal disturbance $n$ amplification.
+
+overall: 
+fight disturbances $w,v$ D controller should be large...
+fight measurement noise $n$ D controller should be small...
+### Performance Limitations of Right Half Plane (RHP) Zeros
+![[performance of limitations of RHP zeros.png|400]]
+![[sensetivity constraint.png|400]]
+- **Explanation:** When there are RHP zeros, closed-loop poles eventually approach these zeros as the loop gain increases. This causes limitations in control performance, especially at higher frequencies.
+- **Math:**
+  $$
+  u = \frac{D}{1 + DG} r \approx 
+  \begin{cases} 
+  \frac{1}{G} r & \text{for} \ \omega > \omega_c \ (\text{undesirable as } G \text{ is unstable}) \\
+  D r & \text{for} \ \omega < \omega_c \ (\text{desired region})
+  \end{cases}
+  $$
+
+### Performance Limitations of Right Half Plane (RHP) Poles
+![[performance limitations of RHP poles.png|400]]
+![[complementary sensetivity.png|400]]
+- **Explanation:** RHP poles require a minimal gain for stability. As frequency approaches the RHP pole, the system needs higher bandwidth to maintain stability.
+- **Math:**
+  $$
+  y = \frac{G}{1 + DG} w \approx 
+  \begin{cases} 
+  G w & \text{for} \ \omega > \omega_c \ (\text{undesirable as system becomes unstable}) \\
+  \frac{1}{D} w & \text{for} \ \omega < \omega_c \ (\text{desired region})
+  \end{cases}
+  $$
+### exercise
+![[20241019_185055.pdf]]
+![[analyzing sensitivity.png|300]]![[5ESD0/attachments/sensitivity.png|300]]
+# Module 7: State-Space Models (--Understanding the relevance of state-space control design, and the analysis of the state-space equations)
+[State-space representation - Wikipedia](https://en.wikipedia.org/wiki/State-space_representation)
+### deriving state space models
+Simulation Diagram, Modal Decomposition, Control Canonical Form.
+$\dot{x}=Ax+Bu\text{ and }y=Cx+Du$
+$x\text{ state vector }x(t) \in R^n\text{ and }\dot{x}(t):= \frac{d}{dt}x(t)$
+$y\text{ output vector }y(t)\in R^q$
+$u\text{ input vector }u(t)\in R^p$
+$A\text{ state matrix }dim[A]=n \times n$
+$B\text{ input matrix }dim[B]=n \times p$
+$C\text{ output matrix }dim[C]=q \times n$
+$D\text{ feedforward matrix }dim[D]=q \times p$
+![[control cononical form.png]]

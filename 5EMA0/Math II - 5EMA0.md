@@ -67,7 +67,7 @@ If $f(x^*)=min_{x}f(x)$ then $\nabla f(x^*)=(0,\dots,0)$ -> only for convex
 >If $x^*, u^*$ are both feasable, then both $x^*, u^*$ are optimal. 
 
 ![[dual-analysis-theorem.png|500]]
-![[sensitivity.png|500]]
+![[5EMA0/attachments/sensitivity.png|500]]
 
 # Convex Optimization
 ![[convex-definition.png|500]]

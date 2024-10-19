@@ -1,3 +1,4 @@
+![[Calculus_2.pdf]]
 # Preliminaries
 
 >Real Numbers
@@ -140,6 +141,13 @@ $\log(a^x)=x\log(a)$
 >$\log_{a}(x)=\frac{\log_{e}(x)}{\log_{e}(a)}=\frac{\ln(x)}{\ln(a)}$
 
 - $\log_{a}(x)=\frac{1}{x\ln(a)}$ derivative https://www.youtube.com/watch?v=2A1xgHtTOCk
+![[logarithms.png|300]]![[change of base formula.png|300]]
+$\ln(x)=y\to e^y=x$
+$\ln(1)=0\text{ and }e^0=1$
+$\ln(e)=1$
+![[natural log.png|300]]![[thorem ln.png|300]]
+![[exponential theorem.png|300]]![[exponential theorem p2.png|300]]
+![[general expinential and log.png|300]]![[logarithmic derivative.png|300]]
 
 
 
@@ -200,6 +208,7 @@ real component: x
 
 ![[complex-operation.jpg]]
 ![[complex-operation-2.jpg]]
+![[20241019_130209.jpg]]
 - always plot on IM/RE axis
 
 **conjugate root theorem polynomial: if it has a complex root it also has a conjugate of that complex as root**
@@ -239,6 +248,7 @@ $\frac{\infty}{x}=undefined \mid \infty$
 - https://en.wikipedia.org/wiki/Squeeze_theorem
 ![[squeeze-theorem-example.png|500]]
 ![[limit.jpg|500]]
+![[recipricol applied with no denominator.png|500]]
 
 asymptotes  are limits to infinity.
 horizontally it must have both ($-\infty \cap \infty$) asymptote
@@ -260,8 +270,15 @@ Intermediate Value Theorem. **If f is continuous on the interval [a,b] and N is
 
 ![[squeeze-theorem.png|500]]
 taylor: https://www.youtube.com/watch?v=EYjBnnUJTP8, https://www.youtube.com/watch?v=f_NvAc4Ffbg
+![[taylor theorem.png]]
+![[big o theorem.png|300]]![[big o notation.png|300]]
 ![[binomial expansion.png|500]]
 ![[taylor.jpg|500]]
+
+![[law of exponential.png|400]]
+![[logairthmic limits.png|400]]
+![[theorem 4 and 5.png|400]]![[theorem 6.png|200]]
+
 # Differentiation
 
 >Tangents
@@ -342,9 +359,14 @@ to find an error of linear approximation: $\frac{f''(c)}{2}(x-x_{1})^2$ for cert
 
 - Taylor Series you can find by looking at formula sheet and adjusting the function to be same.
 
-![[lhopitals-rule-formula.png|300]]
+![[lhopitals-rule-formula.png|300]]![[lhopital theorem.png|300]]
+![[lhopital 2nd theorem.png|400]]
+
+$\lim_{ x \to \infty }x\sin \frac{1}{x}\to y=\frac{1}{x}\text{ as x goes to }\infty \text{ y goes to 0 so } \lim_{ x \to 0 } \frac{\sin y}{y}\to 1$
+
 
 ![[taylor-limits.png|300]]
+find taylor series of tan(x)
 ![[taylor-limits-2.png|400]]
 
 

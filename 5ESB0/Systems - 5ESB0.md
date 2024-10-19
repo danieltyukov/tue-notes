@@ -215,11 +215,17 @@ $\text{Type 0: }FU=0\text{ Type 1: }FU=\text{real value Type>=2: }FU=\infty$
 
 ![[reference-tracking.png|500]]
 ![[disturbance-rejection.png|500]]
-
+$E=R-Y\text{ if disturbance rejection: }R=0$
+if that circle H->- then its $-H$ so numerator $--H=H$
+if there is something after that circle lets say Z: $\frac{-ZH}{1+DGZ}$
+$\frac{1}{s^{k+1}}$
+W->E means E=...W
 ## When Reference Tracking - Consider Steady State Errors (R(s))
+[Final Value Theorem and Steady State Error - YouTube](https://www.youtube.com/watch?v=PXxveGoNRUw)
 Role of a closed loop control system is to drive the error(difference between input and output) to zero.
 ![[steady-state-error-1.png|500]]
 ![[steady-state-error-2.png|500]]
+![[error tracking.png|500]]
 $\infty \text{ means can't be tracked}$
 feed forward gain is a way of determining a steady state error when plant and compensator of the system are known.
 $\text{type N system has N poles at origin: }G(s)$
