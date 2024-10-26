@@ -431,6 +431,8 @@ $\arctan(\cos(x))\implies image\implies \cos(x)\implies [-1,1],domain\implies \a
 >but power beats logarithm, loses to exponential
 
 # Integration
+![[MUST SEE.png|300]]![[why change of limits.png|300]]
+![[proof of integral.png|300]]
 
 ![[integral-properties.png|400]]
 piecewise means not continuous functions.
@@ -468,10 +470,12 @@ $\int \ln(x) \, dx=\int 1\ln(x) \, dx$
 >3. Decompose fractions into easier ones or complete the squares
 >4. Find anti-derivatives for separate terms
 
-![[integration-by-partial-fractions.png|400]]
+![[integration-by-partial-fractions.png|400]]![[keep in mind.png|300]]
 
 ![[improper-integrals.png|500]]
-
+![[improper integrals.png|300]]![[improperi ntegral example.png|300]]
+![[improper integral 2.png|300]]![[p integrals.png|300]]
+![[estimating converages divergence.png|300]]
 >[!NOTE] Improper Integral Example
 >$\int_{0}^{1} \frac{1}{x} \, dx=[\ln\mid x\mid]^1_{0}=\ln(1)-\ln(0)$
 >$\ln(0)$ doesn't exist so:
@@ -481,8 +485,19 @@ $\int \ln(x) \, dx=\int 1\ln(x) \, dx$
 >if $\int g(x) \, dx$ converges then so does $\int f(x) \, dx$
 >if $\int f(x) \, dx$ diverges then so does $\int g(x) \, dx$
 
+![[properties og integrals.png|400]]
+![[mean value theorem-1.png|400]]![[avg value of func.png|400]]
+![[fundamental theorem.png|400]]
+![[continued.png|400]]
+![[evaluation symbol.png|400]]
+![[fundamental integrals.png|400]]
+![[substituition in definite integral.png|400]]
+![[trig integrals.png|400]]
 
+![[partial fraction decomposition-1.png|400]]
+![[partial fraction decomposition-2.png|400]]
 # Differential Equations
+![[seperable differential eq.png|300]]![[linear diff.png|300]]
 
 ![[separable-differential-equations.png|400]]
 
@@ -512,6 +527,7 @@ Integrating Factor: Multiple the equation by $e^{\mu(x)}$
 ![[variation-constant.png|400]]
 ![[vc-ex-1.png|300]]
 ![[vc-ex-2.png|300]]
+![[example-1.png|400]]
 # Examples - 2018
 ![[20240122_163125.jpg]]
 

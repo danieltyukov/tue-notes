@@ -1,3 +1,4 @@
+# Summary
 ![[5ESD0/attachments/5esd0-summary-samenvatting-control-systems.pdf]]
 # Notes
 ![[control-systems-summery.pdf]]
@@ -226,8 +227,10 @@ fight measurement noise $n$ D controller should be small...
 ### exercise
 ![[20241019_185055.pdf]]
 ![[analyzing sensitivity.png|300]]![[5ESD0/attachments/sensitivity.png|300]]
-# Module 7: State-Space Models (--Understanding the relevance of state-space control design, and the analysis of the state-space equations)
+# Module 7: State-Space Models (Understanding the relevance of state-space control design, and the analysis of the state-space equations)
 [State-space representation - Wikipedia](https://en.wikipedia.org/wiki/State-space_representation)
+[[Math I - 2DE20]]
+transpose, product, inverse, rank, eigenvalues, eigenvectors
 ### deriving state space models
 Simulation Diagram, Modal Decomposition, Control Canonical Form.
 $\dot{x}=Ax+Bu\text{ and }y=Cx+Du$
@@ -238,4 +241,60 @@ $A\text{ state matrix }dim[A]=n \times n$
 $B\text{ input matrix }dim[B]=n \times p$
 $C\text{ output matrix }dim[C]=q \times n$
 $D\text{ feedforward matrix }dim[D]=q \times p$
-![[control cononical form.png]]
+
+![[state space analysis-2.png|400]]
+![[state space analysis diagram.png|400]]
+### state space analysis
+TF from SS: $x=Ax+Bu\to sIx-Ax=Bu \leftrightarrow(sI-A)x=Bu$
+$y=Cx+Du\to y=(C(sI-A)^{-1}B+D)u$
+$\text{Transfer functon from State Space: }G(s)=C(sI-A)^{-1}B+D$
+
+- poles of the transfer function are the eigenvalues of the system matrix 
+![[state space analysis-3.png|500]]
+![[controllability matrix.png|400]]
+![[controllable observable.png|500]]
+![[controllable observanble.png|500]]
+controllability: reach a specific state (not maintain)
+observability: core states in A matrix
+
+
+$$
+T = [t_1 \ ... \ t_n]
+$$
+
+$$
+t_n = [0 \ ... \ 0 \ 1] [B \ AB \ ... \ A^{n-1}B]^{-1}
+$$
+
+$$
+T^{-1} = \begin{bmatrix} 
+t_n A^{n-1} \\
+... \\
+t_n A \\
+t_n
+\end{bmatrix}
+$$
+
+$$
+\text{Poles:} \quad s \text{ for which } \det(sI - A) = 0
+$$
+
+$$
+\text{Zeros:} \quad s \text{ for which } \det\begin{bmatrix} sI - A & -B \\ C & D \end{bmatrix} = 0
+$$
+
+
+$T=[B_{c}\text{ }A_{c}B_{c}][B_{m}\text{ }A_{m}B_{m}]^{-1}$
+**if you look above $A_{m}=\bar{A}\text{ etc...}$**
+
+**we mainly work with control canonical form but there is also observer canonical form**
+### linearisation of SS models
+- $\text{linearisation of nonlinear models: }\dot{x}=f(x,u)$
+- Write $x=x_{0}+x_{\delta}\text{ and }u=u_{0}+u_{\delta}\text{ and define equilibrium point }0=f(x_{0},u_{0})$
+- Use taylor series to obtain: $\dot{x_{\delta}}=Ax_{\delta}+Bu_{\delta}$
+	- $A=\frac{\delta f(x,u)}{\delta x}|_{x_{0},u_{0}}\text{ and }B=\frac{\delta f(x,u)}{\delta u}|_{x_{0},u_{0}}$
+### extra
+![[state space.png|300]]![[example of finding transfer function.png|300]]
+![[exercise in T symmtery matrix.png|300]]![[poles and zeros.png|300]]
+# Module 8: State-Space Control Design (Designing state-space controllers via the pole-placement)
+ 

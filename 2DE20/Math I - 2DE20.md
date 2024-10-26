@@ -66,12 +66,14 @@ $$
 >Theorem:
 > $rank(A) + \dim(null(A)) = size(A) \leftarrow \text{pivot cols + non-pivot cols = cols}$
 
+[Matrix Rank](https://stattrek.com/matrix-algebra/matrix-rank#:~:text=The%20maximum%20number%20of%20linearly%20independent%20vectors%20in%20a%20matrix,number%20of%20non%2Dzero%20rows.)
 ### Eigenvalue, eigenvector
 $Av=\lambda v \to \det(A-\lambda I_{n}) = 0$
 > $\det(A-\lambda I_{n})$: characteristic polynomial
 
 Eigenspace $E_{\lambda} = nul(A-\lambda I)$: containing all eigenvectors corresponding to $\lambda$
 
+![[eigenvalues.png|400]]
 ### Orthogonality
 - If $\{w_{1}, w_{2},\dots, w_{m}\}$ is an orthogonal basis for subspace W in $\mathbb{R}^{n}$ then: $proj_{w}v = \displaystyle{\sum_{i=1}^{m}} \, \frac{v\cdot w_{i}}{w_{i}^{2}}w_{i}=UU^{T}v,\ U=[w_{1}, w_{2},\dots, w_{m}]$
 - Spectral decomposition: Eigenvectors ${w_{1},w_{2},\dots,w_{n}}$ forming orthonormal basis of $\mathbb{R}^{n}$ corresponding to eigenvalues $\lambda_{1}, \lambda_{2},\dots, \lambda_{n}$: $A\to \displaystyle{\sum_{i=1}^{n}} \, \lambda_{i}w_{i}w_{i}^{T}$
