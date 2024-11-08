@@ -353,3 +353,309 @@ where $( \text{sinc}(x) = \frac{\sin(\pi x)}{\pi x} ).$
 - The Z-transform provides a method for analyzing discrete-time signals and systems, particularly useful for characterizing stability and frequency response.
 - The ROC determines the stability and applicability of the Z-transform for different signals.
 - Common Z-transform pairs and properties allow quick transformations between time and z-domains.
+# System function
+![[System_function.pdf]]
+### System Function Definition
+1. System Function (Z-transform of impulse response):
+   $$
+   H(z) = \sum_{n=-\infty}^{\infty} h[n] z^{-n}
+   $$
+
+2. Frequency Response:
+   $$
+   H(e^{j\theta}) = \sum_{n=-\infty}^{\infty} h[n] e^{-j n \theta}
+   $$
+
+### LTI System Properties
+1. Convolution Property:
+   - Output $( y[n] )$ as a convolution of input $( x[n] )$ with impulse response $( h[n] )$:
+     $$
+     y[n] = x[n] * h[n]
+     $$
+   - In the Z-domain, this corresponds to multiplication:
+     $$
+     Y(z) = H(z) X(z)
+     $$
+
+2. System Function Expression:
+   $$
+   H(z) = \frac{Y(z)}{X(z)}
+   $$
+
+### Example System Function
+1. For a system with difference equation:
+   $$
+   Y(z) = b_0 X(z) + b_1 z^{-1} X(z) + b_2 z^{-2} X(z) - a_1 z^{-1} Y(z) - a_2 z^{-2} Y(z)
+   $$
+   - Rearrange to find $( H(z) )$:
+     $$
+     H(z) = \frac{b_0 + b_1 z^{-1} + b_2 z^{-2}}{1 + a_1 z^{-1} + a_2 z^{-2}}
+     $$
+
+### Poles and Zeros
+- Zeros $( \beta_k )$ are the roots of the numerator polynomial.
+- Poles $( \alpha_k )$ are the roots of the denominator polynomial.
+  
+### Stability and Causality
+1. Stability (Bounded Input, Bounded Output - BIBO):
+   - System is stable if the sum of impulse response values is finite.
+   - ROC (Region of Convergence) must include the unit circle for stability.
+
+2. Causality:
+   - A causal system has a right-sided impulse response.
+   - For a causal system, ROC is outside the outermost pole:
+     $$
+     |z| > \text{largest pole magnitude}
+     $$
+
+### Example: FIR and IIR Filters
+1. FIR (Finite Impulse Response) Filter:
+   - Poles are located at $( z = 0 )$.
+
+2. IIR (Infinite Impulse Response) Filter:
+   - Poles are within the ROC, but not limited to $( z = 0 )$.
+
+### All-Pass System
+1. Pole-Zero Relationship for All-Pass Filters:
+   - Zeros are reflected across the unit circle to obtain poles.
+   - If $( z_0 = r_0 e^{j \theta_0} )$, then the mirrored pole $( z_{0,\text{mirr}} )$ is:
+     $$
+     z_{0,\text{mirr}} = \frac{1}{r_0} e^{j \theta_0}
+     $$
+
+### Minimum and Maximum Phase
+- Minimum-phase system: All zeros are inside or on the unit circle.
+- Maximum-phase system: Zeros are outside the unit circle.
+# Filter structure
+![[8 - Filter_structure.pdf]]
+### FIR Filter Structure
+1. FIR Filter:
+   - Finite Impulse Response (FIR) filter has no feedback loops, meaning it has no poles except at $( z = 0 )$ and $( z = \infty )$.
+   - The FIR filter output can be expressed as:
+     $$
+     y[n] = \sum_{k=0}^{N} h[k] x[n - k]
+     $$
+   - Can be implemented using a delay line and multiply-add structure:
+     - Each delayed signal $( x[n - k] $) is multiplied by $( h[k] )$ and summed to produce $( y[n] )$.
+
+### Linear Phase Filters
+1. Linear Phase Condition:
+   - A filter has linear phase if its impulse response satisfies:
+     $$
+     h[n] = \pm h[N - n]
+     $$
+     where \( N \) is the filter order.
+   - The phase shift $( \phi = \alpha \omega - \beta )$ is linearly dependent on frequency $( \omega )$, ensuring that all frequencies are delayed by the same amount.
+
+2. Impulse Response Symmetry:
+   - For odd \( N \): symmetry axis coincides with a sample $( h[N/2] )$.
+   - For even \( N \): symmetry axis lies between two samples.
+
+### Types of Linear Phase FIR Filters
+1. **Type I**: Symmetric impulse response, odd length.
+   - No restrictions on filter type (can be used as low-pass, high-pass, band-pass, or band-stop).
+
+2. **Type II**: Symmetric impulse response, even length.
+   - Has a zero at \( z = -1 \) (cannot be used as a high-pass filter).
+
+3. **Type III**: Antisymmetric impulse response, odd length.
+   - Has zeros at $( z = \pm 1 )$, suitable for band-pass but not low-pass or high-pass.
+
+4. **Type IV**: Antisymmetric impulse response, even length.
+   - Has a zero at \( z = 1 \), not suitable for low-pass filters.
+
+### Frequency Response of Linear Phase FIR Filters
+1. For Type I FIR Filter:
+   - Can be used to design any filter type without restrictions.
+
+2. For Type II FIR Filter:
+   - Cannot be used to design a high-pass filter.
+
+3. For Type III FIR Filter:
+   - Cannot be used for low-pass, high-pass, or band-stop due to zeros at $( z = \pm 1 )$.
+
+4. For Type IV FIR Filter:
+   - Not suitable for low-pass filters as it has a zero at \( z = 1 \).
+
+### Key Properties of FIR Filters
+1. FIR filters with linear phase have the advantage of maintaining the shape of signals within the passband.
+2. They are commonly implemented as non-recursive structures with a finite number of taps (coefficients \( h[n] \)).
+3. Filters are stable as they do not rely on feedback, meaning there is no risk of poles moving outside the unit circle.
+
+### Summary
+- FIR filters can be implemented in various forms (transversal, cascade, etc.) based on application requirements.
+- Linear phase is only possible with FIR filters and requires specific symmetry in the impulse response.
+- Different types of linear phase FIR filters have distinct applications based on their frequency response characteristics.
+# Filter design
+![[5ESC0/attachments/9 - Filter Design.pdf]]
+
+### Ideal Filter Examples
+1. **Ideal Low-Pass Filter**:
+   $$
+   H(e^{j\theta}) = 
+   \begin{cases} 
+      1, & |\theta| \leq \theta_c \\
+      0, & |\theta| > \theta_c 
+   \end{cases}
+   $$
+   where $( \theta_c )$ is the cutoff frequency.
+
+2. **Ideal High-Pass Filter**:
+   $$
+   H(e^{j\theta}) = 
+   \begin{cases} 
+      1, & |\theta| \geq \theta_c \\
+      0, & |\theta| < \theta_c 
+   \end{cases}
+   $$
+
+3. **Ideal Band-Pass Filter**:
+   $$
+   H(e^{j\theta}) = 
+   \begin{cases} 
+      1, & \theta_1 \leq |\theta| \leq \theta_2 \\
+      0, & \text{otherwise}
+   \end{cases}
+   $$
+
+4. **Ideal Band-Stop Filter**:
+   $$
+   H(e^{j\theta}) = 
+   \begin{cases} 
+      1, & |\theta| \leq \theta_1 \text{ or } |\theta| \geq \theta_2 \\
+      0, & \theta_1 < |\theta| < \theta_2 
+   \end{cases}
+   $$
+
+### Filter Design Specifications
+1. **Passband Ripple** $( \delta_p )$: Allows a specified maximum ripple in the passband.
+2. **Stopband Attenuation** $( \delta_s )$: Defines the minimum attenuation level in the stopband, often given in dB.
+
+### FIR Filter Design Process (Windowing Method)
+1. **Filter Length**:
+   - The filter length \( N \) is chosen to control the filter's main lobe width and transition width.
+   - As \( N \) increases, the main lobe narrows, decreasing the transition width.
+
+2. **Window Types** and Characteristics:
+   - **Rectangular Window**:
+     $$
+     w[n] = 1, \quad 0 \leq n \leq N - 1
+     $$
+     - Main lobe width $( \Delta \theta \approx \frac{4\pi}{N} )$
+     - Peak sidelobe level: -13 dB.
+   
+   - **Hanning Window**:
+     $$
+     w[n] = 0.5 - 0.5 \cos\left(\frac{2\pi n}{N}\right)
+     $$
+     - Main lobe width $( \Delta \theta \approx 3.1 \times \frac{2\pi}{N} )$
+     - Peak sidelobe level: -31 dB.
+   
+   - **Hamming Window**:
+     $$
+     w[n] = 0.54 - 0.46 \cos\left(\frac{2\pi n}{N}\right)
+     $$
+     - Main lobe width $( \Delta \theta \approx 3.3 \times \frac{2\pi}{N} )$
+     - Peak sidelobe level: -41 dB.
+   
+   - **Blackman Window**:
+     $$
+     w[n] = 0.42 - 0.5 \cos\left(\frac{2\pi n}{N}\right) + 0.08 \cos\left(\frac{4\pi n}{N}\right)
+     $$
+     - Main lobe width $( \Delta \theta \approx 5.5 \times \frac{2\pi}{N} )$
+     - Peak sidelobe level: -57 dB.
+
+3. **Filter Coefficients**:
+   - Impulse response \( h[n] \) for a low-pass filter:
+     $$
+     h[n] = \frac{\sin(\theta_c (n - \frac{N}{2}))}{\pi (n - \frac{N}{2})} \cdot w[n]
+     $$
+
+### FIR Filter Design Using Frequency Sampling
+1. Desired frequency response $( H(e^{j\omega}) )$ is sampled at uniformly spaced frequencies.
+2. FIR filter coefficients \( h[n] \) are obtained via Inverse Discrete Fourier Transform (IDFT).
+
+### Equiripple Linear Phase FIR Filter
+1. Allows ripple to be uniformly distributed across the passband and stopband, producing a smaller peak ripple than non-equiripple methods.
+# Stochastic signals
+![[5ESC0/attachments/Stochastic Signals.pdf]]
+
+### Stochastic Process Basics
+1. **Ensemble Average (Expected Value)**:
+   $$
+   E\{x[n]\} = \mu_x = \sum_k x[k] \cdot p_k
+   $$
+   where $( p_k )$ is the probability of occurrence of the random variable $( x[k] )$.
+
+2. **Mean Estimate**:
+   $$
+   \hat{\mu} = \frac{1}{N} \sum_{n=0}^{N-1} x[n]
+   $$
+
+### Second-Order Statistics
+1. **Mean**:
+   $$
+   \mu_x[n] = E\{x[n]\}
+   $$
+
+2. **Variance**:
+   $$
+   \sigma_x^2[n] = E\{(x[n] - \mu_x[n])^2\} = E\{|x[n]|^2\} - |E\{x[n]\}|^2
+   $$
+
+3. **Autocorrelation**:
+   $$
+   r_x[n_1, n_2] = E\{x[n_1] \cdot x^*[n_2]\}
+   $$
+
+4. **Autocovariance**:
+   $$
+   \gamma_x[n_1, n_2] = E\{(x[n_1] - \mu_x[n_1]) \cdot (x[n_2] - \mu_x[n_2])^*\} = r_x[n_1, n_2] - \mu_x[n_1] \cdot \mu_x^*[n_2]
+   $$
+
+5. **Cross-Correlation** (between two processes $( x[n] )$ and $( y[n] )$):
+   $$
+   r_{xy}[n_1, n_2] = E\{x[n_1] \cdot y^*[n_2]\}
+   $$
+
+6. **Cross-Covariance**:
+   $$
+   \gamma_{xy}[n_1, n_2] = r_{xy}[n_1, n_2] - \mu_x[n_1] \cdot \mu_y^*[n_2]
+   $$
+
+### Wide Sense Stationarity (WSS)
+- A process $( x[n] )$ is WSS if:
+  - Mean $( \mu_x )$ is constant over time.
+  - Autocorrelation $( r_x(l) = E\{x[n] \cdot x^*[n - l]\} )$ depends only on the lag $( l )$, not on $( n )$.
+  
+### Ergodicity
+1. **Time-Averaged Mean for Ergodic Signals**:
+   $$
+   \hat{\mu}_x = \frac{1}{N} \sum_{n=0}^{N-1} x[n]
+   $$
+
+2. **Time-Averaged Variance**:
+   $$
+   \hat{\sigma}_x^2 = \frac{1}{N} \sum_{n=0}^{N-1} (x[n] - \hat{\mu}_x)^2
+   $$
+
+3. **Autocorrelation for Ergodic Signals**:
+   $$
+   \hat{r}_x(l) = \frac{1}{N} \sum_{n=0}^{N-1-|l|} x[n] \cdot x[n + l]
+   $$
+
+### Power Spectral Density (PSD)
+- **Wiener-Khinchin Relation**:
+   $$
+   P_x(e^{j\theta}) = \sum_{l=-\infty}^{\infty} r_x[l] e^{-j\theta l} \quad \Leftrightarrow \quad r_x[l] = \frac{1}{2\pi} \int_{-\pi}^{\pi} P_x(e^{j\theta}) e^{j\theta l} \, d\theta
+   $$
+- The average power:
+   $$
+   \frac{1}{2\pi} \int_{-\pi}^{\pi} P_x(e^{j\theta}) \, d\theta = r_x[0] = E\{|x[n]|^2\} \geq 0
+   $$
+
+### Example PSD Calculation
+1. For $( r_x[l] = a^{|l|} )$ with $( |a| < 1 )$:
+   $$
+   P_x(e^{j\theta}) = \frac{1 + a^2}{1 + a^2 - 2a \cos \theta}
+   $$
