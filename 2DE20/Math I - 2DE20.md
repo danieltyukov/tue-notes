@@ -66,7 +66,7 @@ $$
 >Theorem:
 > $rank(A) + \dim(null(A)) = size(A) \leftarrow \text{pivot cols + non-pivot cols = cols}$
 
-[Matrix Rank](https://stattrek.com/matrix-algebra/matrix-rank#:~:text=The%20maximum%20number%20of%20linearly%20independent%20vectors%20in%20a%20matrix,number%20of%20non%2Dzero%20rows.)
+[Matrix Rank](https://statFranktrek.com/matrix-algebra/matrix-rank#:~:text=The%20maximum%20number%20of%20linearly%20independent%20vectors%20in%20a%20matrix,number%20of%20non%2Dzero%20rows.)
 ### Eigenvalue, eigenvector
 $Av=\lambda v \to \det(A-\lambda I_{n}) = 0$
 > $\det(A-\lambda I_{n})$: characteristic polynomial

@@ -1,6 +1,6 @@
 ![[Calculus_2.pdf]]
 # Preliminaries
-
+![[Calculus - 2WBB.png]]
 >Real Numbers
 >Intervals
 >Quadratic Equations
@@ -15,6 +15,7 @@
 >Trigonometric Functions
 >Trigonometric Equations
 ## Some Notes + P1-P7
+![[proper vs improper.png|400]]
 [How to Convert Repeating Decimals to Fractions: 9 Steps](https://www.wikihow.com/Convert-Repeating-Decimals-to-Fractions)
 ![[REPEATING TO FRACTION.png|400]]
 [Decimal to Fraction](https://www.khanacademy.org/math/cc-fourth-grade-math/imp-decimals/imp-converting-decimals-to-fractions/v/converting-decimals-to-fractions-1-ex-1#:~:text=Decimals%20can%20be%20written%20in,If%20needed%2C%20simplify%20the%20fraction.)
@@ -24,7 +25,7 @@ $3.75=\frac{3}{1}+\frac{7}{10}+\frac{5}{100}$
 $\text{perpendicular slope: }m_{1}=-\frac{1}{m_{2}}\text{ since }m_{1}m_{2}=-1$
 $m=\frac{\Delta y}{\Delta x}=\tan \phi$
 $\Delta y=m(\Delta x)$
-$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\text{ ellipse and } \frac{x^2}{a^2}-\frac{y^2}{b^2}=1$
+$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\text{ hyperbola and } \frac{x^2}{a^2}-\frac{y^2}{b^2}=1$
 ![[ellipse and hyperbola.png|300]]
 ![[scaling and shifting.png|400]]
 ![[refletion visual.png|400]]
@@ -182,10 +183,9 @@ real component: x
 - $\sqrt{ -9 }=\sqrt{ 9 }\sqrt{ -1 }=3i$
 - conjugate: what you see in first bullet point reverse of sign in middle
 - $a+bi=r(\cos \theta+i\sin \theta)$ where $r=\sqrt{ a^2+b^2 }$, eg: $3+3i=3\sqrt{ 2 }(\cos \theta+i\sin \theta)\implies \frac{1}{\sqrt{ 2 }}+\frac{1}{\sqrt{ 2 }}i=\cos \theta+i\sin \theta \implies \frac{1}{\sqrt{ 2 }}=\cos \theta, \frac{1}{\sqrt{ 2 }}=\sin \theta \dots$
-- $a+bi=re^{a+bi}$
 
 >[!NOTE] Summery of Complex Numbers - Rectangular, Polar, Exponential Form
->$z=a+bi=r(\cos(\theta)+i\sin (\theta))=\mathrm{re}^{i\theta}=e^{a+bj}\text{ where }a=\ln (r)\text{ and }b=\theta$
+>$z=a+bi=r(\cos(\theta)+i\sin (\theta))=\mathrm{re}^{i\theta}$
 >$r=\sqrt{ a^2+b^2 }\text{ and }\theta=\arctan\left( \frac{b}{a} \right)$
 
 >[!NOTE] Geometric Operations
@@ -206,10 +206,16 @@ real component: x
 >$-$ for sine: $\sin(x)=\frac{e^{ix}-e^{-ix}}{2i}$
 >$+$ for cosine: $\cos(x)=\frac{e^{ix}+e^{-ix}}{2}$
 
+$-16\to 16e^{j\pi}$
+$16\to 16e^{j0}\to 16$
+$16j\to 16e^{j \pi/2}$
+$-16j \to 16e^{-j\pi/2}$
+
 ![[complex-operation.jpg]]
 ![[complex-operation-2.jpg]]
 ![[20241019_130209.jpg]]
 - always plot on IM/RE axis
+![[2WBB0/attachments/ee.png|300]]
 
 **conjugate root theorem polynomial: if it has a complex root it also has a conjugate of that complex as root**
 
@@ -222,6 +228,10 @@ imaginary part of imaginary number is a real value: $Im\left( \frac{1}{2} + \fra
 ![[complex-polynomial.jpg|500]]
 Having root $i$ means having 2 roots $i \cap -i$
 ![[solution for interesting case.png|400]]
+
+$|modulus|\to \sqrt{ a^2 +b^2 }$
+![[very weird question.png]]
+![[anotheri nteresting comple num problem.png|400]]
 # Limits & Continuity
 
 >Limits
@@ -249,13 +259,14 @@ $\frac{\infty}{x}=undefined \mid \infty$
 ![[squeeze-theorem-example.png|500]]
 ![[limit.jpg|500]]
 ![[recipricol applied with no denominator.png|500]]
-
+![[check.png|300]]
 asymptotes  are limits to infinity.
 horizontally it must have both ($-\infty \cap \infty$) asymptote
 vertically it can have either of the asymptote doesn't have to have have both
 https://www.youtube.com/watch?v=WT7oxiiFYt8
 https://www.youtube.com/watch?v=NVQBZWTKygU
-![[definition-continuity.png|300]]
+![[definition-continuity.png|300]]![[non differentiable.png|300]]
+![[continuous but not diff.png|300]]
 right and left continuity means from negative and positive approach...
 ![[continuity-interval.png|300]]
 [2.6: Continuity - Mathematics LibreTexts](https://math.libretexts.org/Courses/Monroe_Community_College/MTH_210_Calculus_I_(Professor_Dean)/Chapter_2_Limits/2.6%3A_Continuity)
@@ -278,7 +289,7 @@ taylor: https://www.youtube.com/watch?v=EYjBnnUJTP8, https://www.youtube.com/wat
 ![[law of exponential.png|400]]
 ![[logairthmic limits.png|400]]
 ![[theorem 4 and 5.png|400]]![[theorem 6.png|200]]
-
+![[hard limit.png|200]]
 # Differentiation
 
 >Tangents
@@ -316,6 +327,7 @@ $\frac{d}{dx}a^x=\frac{d}{dx}e^{\ln(a^x)}=\frac{d}{dx}e^{x\ln(a)}=a^x\ln(a)$
 mean value theorem: https://www.youtube.com/watch?v=Brat34fUe9o
 ![[mean-value-theorem.jpg|400]]
 ![[mean value theorem.png|400]]
+![[mvt example.png|400]]
 ![[increase decrease theorem.png|400]]
 ![[300.png|300]]![[general mvt.png|300]]
 ![[20240122_155111.jpg|300]]
@@ -349,6 +361,8 @@ mean value theorem: https://www.youtube.com/watch?v=Brat34fUe9o
 to find an error of linear approximation: $\frac{f''(c)}{2}(x-x_{1})^2$ for certain $c$ between $x\cap x_{1}$
 
 ![[taylor-series.png|300]]
+![[know.png|300]]
+**for all the taylors we already have if they are of same form just plug in values**
 *with limits the denom must also go to the same or higher power compared to num.*
 
 >[!NOTE] Big O
@@ -496,6 +510,7 @@ $\int \ln(x) \, dx=\int 1\ln(x) \, dx$
 
 ![[partial fraction decomposition-1.png|400]]
 ![[partial fraction decomposition-2.png|400]]
+![[interesting integration.png|300]]
 # Differential Equations
 ![[seperable differential eq.png|300]]![[linear diff.png|300]]
 
@@ -527,12 +542,4 @@ Integrating Factor: Multiple the equation by $e^{\mu(x)}$
 ![[variation-constant.png|400]]
 ![[vc-ex-1.png|300]]
 ![[vc-ex-2.png|300]]
-![[example-1.png|400]]
-# Examples - 2018
-![[20240122_163125.jpg]]
-
-![[20240122_163221.jpg]]
-
-![[20240122_163652.jpg]]
-
-![[20240122_164250.jpg]]
+![[example-1.png|400]]![[weird question.png|400]]

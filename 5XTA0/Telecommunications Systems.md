@@ -587,7 +587,7 @@ fiber-optic telecommunications network that uses only unpowered devices to carry
 ![[ex4.png|300]]![[sol4.png|300]]
 ![[ex5.png|200]]![[sol5.png|200]]![[sol5-1.png|200]]
 # Internetworking and Transport Reliability (Georgios)
-![[ee.png|300]]
+![[5XTA0/attachments/ee.png|300]]
 [Border Gateway Protocol - Wikipedia](https://en.wikipedia.org/wiki/Border_Gateway_Protocol)
 [Autonomous system (Internet) - Wikipedia](https://en.wikipedia.org/wiki/Autonomous_system_(Internet))
 [Internet Control Message Protocol - Wikipedia](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol)

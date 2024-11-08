@@ -2,16 +2,16 @@
 ![[5ESD0/attachments/5esd0-summary-samenvatting-control-systems.pdf]]
 # Notes
 ![[control-systems-summery.pdf]]
-# Course Introduction (Modifying open-loop transfer function properties using feedback)
+# Module 1: Course Introduction (Modifying open-loop transfer function properties using feedback)
 [[Systems - 5ESB0]]
 ![[find poles zeros.png|500]]
-# Root Locus (Modifying closed-loop transfer functions using Feedback)
+# Module 2: Root Locus (Modifying closed-loop transfer functions using Feedback)
 [The Root Locus Rules](https://www.mit.edu/people/klund/weblatex/node8.html)
 [(VERY USEFUL) How To Sketch a Root Locus](https://www.youtube.com/watch?v=vckPtXDrEsw)
 [Departure Angle Example](https://www.youtube.com/watch?v=L8tqIbO5zbE)
 $\text{closed-loop poles of transfer function (k-compensator): }T(s)=\frac{kL(s)}{1+kL(s)}\text{ change when gain }k \text{ changes.}$
 ![[compensator.png|300]]![[angles og locus.png|300]]
-$1+kL(s)=0\to L(s)=\frac{z(s)\text{ or }b(s)}{p(s)\text{ or }a(s)}\implies p(s)+kz(s)=0\text{ when }k=0\text{ depend on }p(s)\text{ as increases to }\infty \text{ depend on }z(s).$
+$$1+kL(s)=0\to L(s)=\frac{z(s)\text{ or }b(s)}{p(s)\text{ or }a(s)}\implies p(s)+kz(s)=0\text{ when }k=0\text{ depend on }p(s)\text{ as increases to }\infty \text{ depend on }z(s).$$
 $k=\frac{1}{|L(s_{0})|}$
 $\angle L(s)_{k>0}=\sum\psi_{i}-\sum\phi_{i}=180 \degree+360\degree(l-1)\text{ where angle of zero: }\psi_{i}\text{ and angle of pole: }\phi_{i}$
 $\angle L(s)_{k<0}=\dots=0 \degree+360 \degree(l-1)\dots$
@@ -25,9 +25,10 @@ $\text{if } (m)num_{zeros}-(n)num_{poles}\text{ num of zeros>poles loci come fro
 > 
 > $K<0$
 > *same just without $180 \degree$*
-# Frequency Response Functions / Bode Diagrams (Understanding the relevance of frequency-domain control-design methods and frequency-responses on Bode plots)
+# Module 3: Frequency Response Functions / Bode Diagrams (Understanding the relevance of frequency-domain control-design methods and frequency-responses on Bode plots)
 [Bode Plots by hand](https://web.mit.edu/2.010/www_f00/psets/hw2_dir/tutor2_dir/tut2_e.html)
 [Bode Plots Explained - YouTube](https://www.youtube.com/watch?v=PF4fSRwPk5I)
+[ChatGPT](https://chatgpt.com/c/67253787-ac1c-800b-8435-361542271571)
 $\text{gain: }M=|G(j\omega_{o})|=|G(s)|_{s=j\omega_{o}}=\sqrt{ \{Re[G(j\omega_{o})]\}^2+\{Im[G(j\omega_{o})]\}^2 }$
 $\text{phase: }\tan^{-1}\left[ \frac{Im[G(j\omega_{o})]}{Re[G(j\omega_{o})]} \right]=\angle G(j\omega_{o})$
 $|G(j\omega)|=\frac{|Numerator|}{|Denominator|}$
@@ -74,7 +75,7 @@ $\text{class 3: }\left( \left( \frac{j\omega}{\omega_{n}} \right)^2 + 2\zeta  \f
 
 ![[bodep lot showcase difference between in and output.png|400]]
 [Bode Plots Explained - YouTube](https://www.youtube.com/watch?v=PF4fSRwPk5I)
-#  Nyquist Stability & Stability Margins (Assessing closed-loop stability and its robustness via Nyquist plots)
+# Module 4: Nyquist Stability & Stability Margins (Assessing closed-loop stability and its robustness via Nyquist plots)
 **Cauchy’s argument principle**
 - A clockwise contour map of a complex function will encircle the origin $N = Z - P$ times, with $Z$ the number of zeros and $P$ is the number of poles of the function inside the contour.
 - Control Design: 1) Zeros of $1+KG(s)$ are closed-loop poles, 2) contour of interest is one the covers the RHP.
@@ -100,7 +101,7 @@ $\zeta=\frac{PM}{100}$
 $N_{CCW}=P_{rhp}=0\text{ so the system is stable for }K=1$
 ![[margins.png|300]]![[gain phase margins.png|300]]
 ![[nyquist.png|300]]![[nyquist2.png|300]]
-# Frequency Response Controller Design (Designing single-input-single-output feedback controllers by shaping the open-loop frequency-response function)
+# Module 5: Frequency Response Controller Design (Designing single-input-single-output feedback controllers by shaping the open-loop frequency-response function)
 ## performance specifications
 $L(s)=D(s)G(s)$
 how to tune D for L.
@@ -131,7 +132,6 @@ $\omega_{c}\leq \omega_{BW}\leq 2\omega_{c}$
 ![[lead filter.png]]
 ![[lag filter.png]]
 $T_{I}=\frac{1}{\omega_{Z}}=\frac{1}{0.1\cdot \omega_{c}}\text{ to avoid problems of phase lag we take the phase a decade after it}$
-
 ## lead lag intuitive understanding
 **lead:** adds phase lead to the system increasing gain (between zero -> pole)
 (typical goal to provide gain in high frequency range).
@@ -244,6 +244,7 @@ $D\text{ feedforward matrix }dim[D]=q \times p$
 
 ![[state space analysis-2.png|400]]
 ![[state space analysis diagram.png|400]]
+[block diagram to state space - YouTube](https://www.youtube.com/watch?v=ifbAijeblKE)
 ### state space analysis
 TF from SS: $x=Ax+Bu\to sIx-Ax=Bu \leftrightarrow(sI-A)x=Bu$
 $y=Cx+Du\to y=(C(sI-A)^{-1}B+D)u$
@@ -297,4 +298,127 @@ $T=[B_{c}\text{ }A_{c}B_{c}][B_{m}\text{ }A_{m}B_{m}]^{-1}$
 ![[state space.png|300]]![[example of finding transfer function.png|300]]
 ![[exercise in T symmtery matrix.png|300]]![[poles and zeros.png|300]]
 # Module 8: State-Space Control Design (Designing state-space controllers via the pole-placement)
- 
+$\text{eigenvalues}(A)=\text{poles of the system}\to \text{location dictates stability}$
+pole placement is a fancy root locus with placement across matrix not just locus lines...
+![[system design.png|400]]
+## 8.1 Recap Eigenvalues / Eigenvectors / Determinants
+- **Eigenvector condition**: For $Ax = \lambda x$, vector $x$ is an eigenvector if it satisfies $Ax = \lambda x$.
+- **Eigenvalue computation**: $(A - \lambda I)x = 0$ (non-trivial $x$) → **solve** $\det(A - \lambda I) =\det(\lambda I-A)= 0$.
+- **Key points**:
+  - Eigenvalue $\lambda$: scalar associated with eigenvector $x$.
+  - Eigenvector $x$ is in the **nullspace** of $A - \lambda I$.
+## 8.2 State-Space Control Design
+- **Plant model**: $\dot{x} = Ax + Bu$, $y = Cx$
+- **State Feedback**: $u = -K\hat{x} + Nr$
+- **State Observer**:
+  - $\dot{\hat{x}} = (A - BK)\hat{x} + L(y - \hat{y}) + Mr$
+  - $\hat{y} = C\hat{x}$
+- **Integral Action (when $N = 0$)**:
+  - $\dot{x}_I = y - r$
+  - $u = -K_I x_I - K \hat{x}$
+## 8.3 Controllability / Observability
+- **Controllability**: Ability to control each state (actuator/sensor location).
+- **Controllability Matrix** $\Gamma$:
+  $\Gamma = [B \quad AB \quad \dots \quad A^{n-1}B]$
+- **Observability Matrix** $\Omega$:
+  $\Omega = \begin{bmatrix} C \\ CA \\ \vdots \\ CA^{n-1} \end{bmatrix}$
+- **Conditions**:
+  - **Controllable** if $\text{rank}(\Gamma) = n$
+  - **Observable** if $\text{rank}(\Omega) = n$
+## 8.4 State Feedback
+![[state feedback vs state observer.png|500]]
+![[full output feedback.png|500]]
+- **Controller Design**: $u = -Kx + Nr$ to achieve $\dot{x} = (A - BK)x + BNr$.
+- **Design of Matrix $K$**:
+  - Transform plant to **control canonical form**.
+  - Use desired characteristic polynomial $(s - \gamma_1)\dots(s - \gamma_n)$.
+  - Compute $K = \hat{K} T^{-1}$, or use MATLAB `place` command.
+- **Matrix $N$** for steady-state reference tracking:
+  $N = N_u + KN_x$
+  where $\begin{bmatrix} N_x & N_u \end{bmatrix} = \begin{bmatrix} A & B \\ C & 0 \end{bmatrix}^{-1} \begin{bmatrix} 0 \\ 1 \end{bmatrix}$
+## 8.5 Observer Design
+- **Controller Equations**:
+  - $\dot{\hat{x}} = (A - BK - LC)\hat{x} + Ly + Mr$
+  - $u = -K\hat{x} + Nr$
+- **Observation Error**: $\dot{\tilde{x}} = (A - LC)\tilde{x} + (BN - Mr)$
+
+- **Matrix $L$**: Controls transient response of observation error.
+  - **Duality** of control and estimation: closed-loop poles of $\dot{w} = (A^T - C^T L^T)w$
+  - **Separation Property**: Stable state feedback + stable estimation error = stable closed-loop.
+
+- **Matrix $M$** for tracking:
+  - If $M = BN$, estimation error is independent of reference.
+  - Set $N = 0$ and $M = -L$ for "classical control scheme".
+## 8.6 Reference Tracking
+$\text{zero steady state error: }\dot{x}=0$
+$\text{zero offset: }r=y$
+- **State Feedback**: $u = -Kx + Nr$
+  - No feedback path with $N \neq 0$; **no integral action**.
+- **Inexact Plant Model Tracking**:
+  - Augment plant with integrator:
+    $\dot{x} = \begin{bmatrix} 0 & C \\ 0 & A \end{bmatrix} x + \begin{bmatrix} 0 \\ B \end{bmatrix} u + \begin{bmatrix} 1 \\ 0 \end{bmatrix} r$
+- **Controller Structures**:
+  - **Case 1**: $N = N_u + KN_x$ and $M = BN$:
+    - $\dot{\hat{x}} = (A - BK - LC)\hat{x} + Ly + BNr$
+    - $u = -K\hat{x} + Nr$
+  - **Case 2**: $N = 0$ and $M = -L$:
+    - $\dot{\hat{x}} = (A - BK - LC)\hat{x} + L(r - y)$
+    - $u = -K\hat{x}$
+  - **Case 3**: $N = 0$, $M = 0$, add integral action:
+    - $\dot{x}_I = y - r$
+    - $\dot{\hat{x}} = (A - BK - LC)\hat{x} + Ly$
+    - $u = -K_I x_I - K\hat{x}$
+# Module 9: Digital Control (Addressing the limitations of controller design due to sampling, and the limitation of experimental platforms)
+[Discrete control #5: The bilinear transform - YouTube](https://www.youtube.com/watch?v=88tWmyBaKIQ)
+![[z transform table.png|300]]![[s and z plane comparison.png|300]]
+![[z plane control systems.png|300]]![[artifacts in dc.png|300]]
+The s-domain's left half-plane maps to the area inside the z-domain's unit circle, while the s-domain's right half-plane maps to the area outside of the z-domain's unit circle.
+## 9.1 Artifacts Introduced in Digital Control
+- **Sensor quantization**: perceived as noise.
+- **Zero-Order Hold (ZOH)** creates a delay of $T/2$.
+  - **Transfer function** of this delay: $H(s) = e^{-sT/2}$
+  - **Linear phase shift**: $\angle H(j\omega) = -\frac{180}{\pi} \frac{T}{2} \omega$
+  - **Approximation**:
+    - $H(s) = \frac{1}{e^{sT/2}} \approx \frac{2/T}{s + 2/T}$
+    - $H(s) = \frac{e^{-sT/4}}{e^{sT/4}} \approx \frac{4/T - s}{4/T + s}$
+  - **Rule of thumb**: Choose sample frequency $\omega_s = \frac{2\pi}{T} > 40\omega_c > 20\omega_{BW}$
+## 9.2 The Z-domain
+- **Stability**: Unit circle instead of Left-Hand Plane.
+- **Mapping**:
+  - $z$ represents a forward time shift, $s$ is a derivative in Laplace.
+## 9.3 Three Different Mappings
+- **Matched pole-zero**: $z = e^{sT}$ (rarely used).
+- **ZOH**: Used for discretizing plant to create discrete-time controller.
+  - Solve $G(z) = \frac{z-1}{z} Z\left(\frac{G(s)}{s}\right)$.
+  - Compute $\frac{G(s)}{s}$, then do partial fraction expansion.
+- **Tustin**: Used for discretizing controller.
+  - Replace $s \rightarrow \frac{2}{T} \frac{z-1}{z+1}$
+  - **Lead/lag filter**:
+    - $D(s) = \frac{\tau_s s + 1}{\tau_s s + 1} \Rightarrow D(z) = \frac{\left(\tau_s + T/2\right)z + T/2 - \tau_1}{\left(\tau_s + T/2\right)z + T/2 - \tau_a}$
+## 9.4 Two Different Design Approaches
+1. **Design CT controller, then discretize**:
+   - Take sampling delay into account (increases phase margin, PM).
+   - Use $\omega_s \approx 20\omega_{BW}$.
+   - Discretize controller using Tustin/Bilinear transform.
+2. **Discretize CT plant to DT, then design DT controller**:
+   - **Example**:
+     - $G(s) = \frac{1}{s+a}$, let $G(s) = \frac{1}{s(s+a)} = \frac{1}{a} \left(\frac{1}{s} - \frac{1}{s+a}\right)$ and $G(z) = \frac{z-1}{z} \left(\frac{z}{z-1} - \frac{z}{z - e^{-aT}}\right)$.
+   - Sampling delay is considered; DT is not stable for all $K$ because of sampling (in CT: RHP zero).
+   - Design controllers using standard techniques (Root locus, Nyquist, loop shaping).
+## 9.5 Compensation in Discrete-Time
+- **Proportional compensation**:
+  - CT: $D_c(s) = K_p$
+  - DT: $D_c(z) = K_p$
+  - Apply ZOH rules.
+- **Derivative compensation**:
+  - CT: $D_c(s) = K_D s$
+  - DT: $D_c(z) = K_D \frac{z-1}{z}$
+  - Apply ZOH rules.
+- **Integral compensation**:
+  - CT: $D_c(s) = \frac{K_I}{s}$
+  - DT: $D_c(z) = K_I \frac{z}{z-1}$
+  - Apply ZOH rules.
+- **Lead/lag compensation**:
+  - CT: $D_c(s) = \frac{\tau_1 s + 1}{\tau_a s + 1}$
+  - DT: $D_c(z) = K \frac{z - \alpha}{z - \beta}$
+  - The relation between $(\tau_1, \tau_b) \rightarrow (\alpha, \beta, \kappa)$ is not straightforward but not critical for design.

@@ -132,6 +132,7 @@ $\text{two wave interference: }I=I_{1}+I_{2}+2\sqrt{ I_{1}I_{2} }\cos \phi$
 $\text{interference measured with Interferometers: }I=2I_{0}\left[ 1+\cos\left( 2\pi \frac{d}{\lambda} \right) \right]$
 # Gaussian Beam Optics (Ch 5)
 Gaussian beams are close to a laser beam IRL.
+![[05-gaussian.pdf]]
 ## Diffraction of a Gaussian light beam
 **Monochromatic light beam in 2D:**
 $$\text{helmholtz eq: }\nabla ^2U+k^2U=0\text{ with solution in inhomogeneous plane wave: }U(x,z)=A(x,z)e^{-jkz}$$
@@ -304,7 +305,7 @@ $f_{v}(E)=\frac{1}{\exp\left( \frac{E-E_{Fp}}{k_{B}T} \right)+1}$
 
 **Probability finding an electron at energy $E_{2}$ in conduction band:** $f_{c}(E_{2})=\frac{1}{\exp\left( \frac{E_{2}-E_{Fn}}{k_{B}T} \right)+1}$
 Probability of finding a hole at energy $E_{1}$ in valence band: = probability of not finding an electron at $E_{1}$: $1-f_{v}(E_{1})=1-\frac{1}{\exp\left( \frac{E_{1}-E_{Fp}}{k_{B}T} \right)+1}$
-## Dioes (role of pn junctions and heterojunctions)
+## Diodes (role of pn junctions and heterojunctions)
 n-doping in equilibrium -> **fermin level up** -> **conductivity up** -> $n_{0}>p_{0}\text{ but still }n_{0} \cdot p_{0}=n_{i}^2$
 
 p-doping in equilibrium -> **fermin level down** -> **conductivity up** -> $n_{0}<p_{0}\text{ but still }n_{0} \cdot p_{0}=n_{i}^2$
