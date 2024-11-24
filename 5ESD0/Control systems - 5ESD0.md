@@ -26,6 +26,8 @@ $\text{if } (m)num_{zeros}-(n)num_{poles}\text{ num of zeros>poles loci come fro
 > $K<0$
 > *same just without $180 \degree$*
 # Module 3: Frequency Response Functions / Bode Diagrams (Understanding the relevance of frequency-domain control-design methods and frequency-responses on Bode plots)
+[Final Exam Tutorial - Bode Plot Example - YouTube](https://www.youtube.com/watch?v=FvvArII7afo&list=WL&index=261)
+
 [Bode Plots by hand](https://web.mit.edu/2.010/www_f00/psets/hw2_dir/tutor2_dir/tut2_e.html)
 [Bode Plots Explained - YouTube](https://www.youtube.com/watch?v=PF4fSRwPk5I)
 [ChatGPT](https://chatgpt.com/c/67253787-ac1c-800b-8435-361542271571)
