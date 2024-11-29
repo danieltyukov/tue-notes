@@ -114,3 +114,106 @@ Take the union, basically find a sum of points in that area we can confirm the p
 $||\vec{r}-\vec{s_{m}}||^2,\text{ for all }m \in M$
 
 $argmax\text{ }f(x)=argmin \text{ }-f(x)$
+## Important Definitions
+### MAP Decision Rule
+$\Pr\{M = f(r)\} p_R(r|M = f(r)) \geq \Pr\{M = m\} p_R(r|M = m), \forall m \in M$
+### Error Probability (Scalar System)
+$P_e = \Pr\{M = 1\} \Pr\{R < r^*|M = 1\} + \Pr\{M = 2\} \Pr\{R \geq r^*|M = 2\}$
+### Decision Variable (Gaussian Noise)
+$\Pr\{M = m\} p_R(r|M = m) = \Pr\{M = m\} \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{(r - s_m)^2}{2 \sigma^2}\right)$
+### Threshold for Decision Rule
+$r^* = \frac{s_1 + s_2}{2}$ (when equal probabilities)
+### Error Probability for AGN Channel
+$P_e = Q\left(\frac{|s_1 - s_2|}{2 \sigma}\right)$ where $Q(x)$ is the Q-function.
+### Multi-Vector Channel Decision Variables
+$\Pr\{M = m\} p_{R_1, R_2}(r_1, r_2|S = s_m), \forall m \in M$
+### Minimum Euclidean Distance Decision Rule
+$m̂ = \arg\min_m \|r - s_m\|^2$
+### Additive Gaussian Noise Channel (Vector Form)
+$r = s + n$, where $n \sim \mathcal{N}(0, \sigma^2 I)$
+
+### Optimum Receiver Decision Threshold
+- For a scalar bi-AGN channel, the threshold $r^*$ for the optimum receiver is:
+$$r^* = \frac{\sigma^2}{s_1 - s_2} \ln\left(\frac{\Pr\{M=2\}}{\Pr\{M=1\}}\right) + \frac{s_1 + s_2}{2}$$
+- When $\Pr\{M=1\} = \Pr\{M=2\}$, the threshold simplifies to:
+$$r^* = \frac{s_1 + s_2}{2}$$
+### Error Probability (Scalar System)
+- General formula:
+$$P_e = \Pr\{M=1\} \Pr\{R < r^*|M=1\} + \Pr\{M=2\} \Pr\{R \geq r^*|M=2\}$$
+### Error Probability Components
+- $\Pr\{R \geq r^*|M=2\}$:
+$$\Pr\{R \geq r^*|M=2\} = Q\left(\frac{r^* - s_2}{\sigma}\right)$$
+
+- $\Pr\{R < r^*|M=1\}$:
+$$\Pr\{R < r^*|M=1\} = Q\left(\frac{s_1 - r^*}{\sigma}\right)$$
+
+### Error Probability for AGN Channel
+- Combining the above:
+$$P_e = \Pr\{M=1\} Q\left(\frac{s_1 - r^*}{\sigma}\right) + \Pr\{M=2\} Q\left(\frac{r^* - s_2}{\sigma}\right)$$
+
+### Error Probability Using Distance
+- For vector channels:
+$$P_e \leq \sum_{m \in M} \frac{1}{|M|} \sum_{m' \neq m} Q\left(\frac{\Delta_{m'm}}{\sigma}\right)$$
+where $\Delta_{m'm} = \|s_{m'} - s_m\|/2$ is the half-distance between signal points.
+
+### Error Probability Upper Bound
+- Upper bound using union bound:
+$$P_e \leq \sum_{m \in M} \frac{1}{|M|} \sum_{m' \neq m} Q\left(\frac{\|s_{m'} - s_m\|}{2\sigma}\right)$$
+
+### Q-function and Properties
+- Q-function definition:
+$$Q(x) = \int_{x}^{\infty} \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{\alpha^2}{2}\right) d\alpha$$
+- Symmetry property:
+$$Q(x) = 1 - Q(-x)$$
+
+### Probability of Error for a Hyperplane
+- For the AGN vector channel:
+$$P_I = Q\left(\frac{\Delta}{\sigma}\right)$$
+where $\Delta$ is the perpendicular distance from the signal point to the hyperplane.
+# Waveform Channels
+![[M5.1.pdf]]
+
+![[M5.2.pdf]]
+
+### Energy of a Waveform
+$E_x = \int_{-\infty}^{\infty} x^2(t) dt$
+### Orthogonality of Waveforms
+$$\int_{-\infty}^{\infty} \phi_i(t) \phi_j(t) dt = 
+\begin{cases} 
+E_i & \text{if } i = j \\
+0 & \text{if } i \neq j 
+\end{cases}$$
+### Synthesis of Waveforms
+$sm(t) = \sum_{i=1}^{N} sm_i \phi_i(t), \quad \forall m \in \{1, 2, \dots, |M|\}$
+### Recovery of Signal Vector
+$r_i = \int_{-\infty}^{\infty} r(t) \phi_i(t) dt, \quad \forall i \in \{1, 2, \dots, N\}$
+### Additive Noise in Signal Vector
+$r_i = sm_i + n_i, \quad \text{where } n_i = \int_{-\infty}^{\infty} n_w(t) \phi_i(t) dt$
+### Vector Representation of Noise
+$n(t) = \sum_{i=1}^{N} n_i \phi_i(t)$
+### Relevant Noise Covariance
+$$E[N_i N_j] = 
+\begin{cases} 
+\frac{N_0}{2} & \text{if } i = j \\
+0 & \text{if } i \neq j 
+\end{cases}$$
+### Signal Space Projection
+$r(t) = \sum_{i=1}^{N} r_i \phi_i(t)$
+
+### **Gram-Schmidt Process** (See Question 5.1)
+### Step 1: Define the First Basis Function
+$\phi_1(t) = \frac{s_1(t)}{\sqrt{E_1}}, \quad \text{where } E_1 = \int_{-\infty}^{\infty} s_1^2(t) dt\text{ and }s_{11}=\sqrt{ E_{1} }$
+### Step 2: Define the Auxiliary Signal for Subsequent Functions
+$\theta_m(t) = s_m(t) - \sum_{i=1}^{n-1} sm_i \phi_i(t)$  
+where  
+$sm_i = \int_{-\infty}^{\infty} s_m(t) \phi_i(t) dt$
+### Step 3: Compute Energy of Auxiliary Signal
+$E_{\theta_m} = \int_{-\infty}^{\infty} \theta_m^2(t) dt$
+### Step 4: Define the New Orthogonal Basis Function
+$\phi_n(t) = \frac{\theta_m(t)}{\sqrt{E_{\theta_m}}}$
+### Step 5: Express Each Signal in Terms of Basis Functions
+$s_m(t) = \sum_{i=1}^{N} sm_i \phi_i(t)$
+
+#### **see 5.1.c for a different distance based approach**
+#### **see 5.4 and 5.7 for an intuition on gram-schmidt process**
+# Receiver Implementation, Matched Filters
