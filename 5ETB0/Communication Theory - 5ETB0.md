@@ -217,3 +217,52 @@ $s_m(t) = \sum_{i=1}^{N} sm_i \phi_i(t)$
 #### **see 5.1.c for a different distance based approach**
 #### **see 5.4 and 5.7 for an intuition on gram-schmidt process**
 # Receiver Implementation, Matched Filters
+![[M6.1.pdf]]
+
+16 messages -> 16 filters needed (needed same amount as messages)
+
+![[M6.2.pdf]]
+
+$SNR=\frac{u_{s}^2(T)}{E[U_{n}^2(T)]}=\frac{E_{s}}{\frac{N_{0}}{2}}$
+![[matched filter signal to noise ratio.png|400]]
+
+$||\vec{r}-\vec{s_{m}}||^2=||\vec{r}||^2-2(\vec{r} \cdot \vec{s_{m}})+||\vec{s_{m}}||^2$
+$\text{optimum receiver: }\hat{m}=argmax_{m \in M}\{(\vec{r} \cdot \vec{s_{m}})+c_{m} \}\text{ where }c_{m}=\frac{N_{0}}{2}\ln Pr\{ M=m \}-\frac{||\vec{s_{m}}||^2}{2}$
+![[correlation receiver.png|500]]
+![[macther filter receiver.png|500]]
+![[direct receiver.png|500]]
+# Signal Energy Considerations, Orthogonal Signals
+![[M7.1.pdf]]
+
+![[M7.2.pdf]]
+
+Translation and rotation of signal structures maintain the signal energy $E$.
+
+Average energy:
+$E_{\text{av}} \triangleq \sum_{m \in M} \Pr\{M = m\} E_{s_m} = \sum_{m \in M} \Pr\{M = m\} \|s_m\|^2 = E[\|S\|^2].$
+![[signal structure.png|400]]
+
+**Binary Orthogonal vs. Binary Antipodal Signals:** - For binary orthogonal signaling, the error probability under AWGN is $$ P_{e,\text{orthog.}} = Q\biggl(\sqrt{\tfrac{E_s}{N_0}}\biggr). $$ - For binary antipodal signaling, the error probability is $$ P_{e,\text{antipod.}} = Q\biggl(\sqrt{\tfrac{2E_s}{N_0}}\biggr). $$ To achieve the same $P_e$, orthogonal signaling requires twice the energy of antipodal signaling (a 3 dB disadvantage).
+
+Antipodal signaling is more energy-efficient than orthogonal signaling in the binary case.
+
+![[antipodal vs orthogonal vector.png|400]]
+![[optimum receiver.png|400]]
+
+$\text{energy per transmitted but of information: }E_{b}=\frac{E_{s}}{\log_{2}|M|}$
+# Message Sequences, Bandwidth
+![[M8.1.pdf]]
+
+$\mathcal{M}=\text{number of messages}$
+
+![[M8.2.pdf]]
+
+# Capacity of the Baseband and Wideband Channels
+![[M9.1.pdf]]
+
+![[M9.2.pdf]]
+# Pulse Transmission
+![[M10.1.pdf]]
+
+![[M10.2.pdf]]
+

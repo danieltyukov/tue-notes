@@ -594,7 +594,7 @@ you can bypass but at least one bubble is needed in between
 ## Parallelism via Instructions
 [What Is Instruction Level Parallelism (ILP)? - YouTube](https://www.youtube.com/watch?v=BWmljynuhYo)
 ![[ILP.png|200]]![[vliw and superscalar.png|200]]![[vliw example.png|200]]
-![[risc vs vliw.png|200]]![[scheduling example.png|200]]![[superscalar example.png|200]]![[superscalar vs risc.png|200]]![[dynamic scheduling example.png|200]]![[dynamic scheduling flow.png|200]]
+![[risc vs vliw.png|200]]![[5EIB0/attachments/scheduling example.png|200]]![[superscalar example.png|200]]![[superscalar vs risc.png|200]]![[dynamic scheduling example.png|200]]![[dynamic scheduling flow.png|200]]
 - **ILP (Instruction-Level Parallelism)**
 - **Multiple Issue**: Execute multiple instructions per clock cycle; requires duplicating internal components.
 - **Static vs. Dynamic Issue**: Static (compiler decides which instructions issue together), dynamic (processor decides during execution).
