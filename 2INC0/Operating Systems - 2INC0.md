@@ -441,6 +441,9 @@ for a non-preemptive the time is the decider or what completes first, not flexib
 ![[atomicity example.png|300]]![[threads handled in traces.png|300]]
 
 ![[stupid sync exercise.png|400]]
+
+![[atomicity exercise.png|300]]![[atomicity exercise calculation.png|300]]
+![[atomic traces.png|300]]
 ### Synchronization
 ![[purpose of sync.png|300]]![[boolean sync.png|300]]
 ![[adding guards.png|300]]![[assertions.png|300]]
@@ -449,6 +452,13 @@ for a non-preemptive the time is the decider or what completes first, not flexib
 ![[shared variable mutual exclusion.png|300]]![[requirements on synchronization solutions.png|300]]
 
 >[!NOTE] Critical Section Problem
+>- **Mutual exclusion:** If process $P_{i}$ executing in its critical section, then no other processes can be executing in their critical section.
+>- **Progress:** If no process in its critical section, but some want to enter it. then only those not in the remainder sections can participate in deciding in who is next. (selection can't be indefinite).
+>- **Bounded waiting:** There is a bound on number of times processes allowed to enter their critical section after process has made request to enter it, and before that request is granted.
+>  
+>  **preemptive kernels and nonpreemptive kernels used to handle critical sections in operating systems.**
+>  
+>  ![[general structure of process.png|200]]
 
 ### Peterson's Algorithm
 ![[peterson algorithm.png|400]]
@@ -457,10 +467,134 @@ for a non-preemptive the time is the decider or what completes first, not flexib
 ![[no deadlock proof.png|300]]![[mutual exclusion.png|300]]
 ![[mutual exclusion p2.png|300]]![[limitations of peterson algo.png|300]]
 
+overall the goal is to prove that, **mutual exclusion is preserved, progress requirements are met, bounded-waiting requirement is met.**
+
+>[!NOTE] Peterson's Solution: Overview and Key Concepts 
+>- **Purpose**: A classic software-based solution to the critical-section problem for two processes. 
+>- **Key Assumptions**: - Works for two processes, `P0` and `P1`. 
+>	- Alternates execution between critical and remainder sections. 
+>- **Shared Variables**: 
+>	- `int turn`: Indicates whose turn it is to enter the critical section. 
+>	- `boolean flag[2]`: Indicates if a process is ready to enter its critical section (`true`).
+
+>[!WARNING] Limitations on Modern Architectures 
+>- **Instruction Reordering**: 
+>- Modern CPUs and compilers may reorder instructions for optimization. 
+>- Example: - `Thread 2`: Assigns `flag = true; x = 100;` 
+>- Reordering may cause `flag` to be true **before** `x = 100`, leading to unexpected outputs (`x = 0`). 
+>- This undermines Peterson's solution and allows simultaneous critical-section execution.
+>- **Resolution**: - Use **hardware synchronization tools** or **high-level APIs** to enforce correct execution order.
+
+>[!NOTE] Correctness Proof of Peterson's Solution 
+>1. **Mutual Exclusion**: 
+>	- A process enters the critical section only if: 
+>		- `flag[j] == false` OR 
+>		- `turn == i`. 
+>	- If both processes attempt to enter, only one succeeds because `turn` cannot hold both `0` and `1`. 
+>2. **Progress**: 
+>	- A process is stuck in the `while` loop only if: 
+>		- The other process is ready (`flag[j] == true`) AND 
+>		- It is not its turn (`turn == j`). 
+>	- Ensures one process progresses if the other is not ready. 
+>3. **Bounded Waiting**: 
+>	- Once a process exits the critical section: 
+>		- It resets `flag[j] = false`, allowing the waiting process to proceed. 
+>	- A waiting process enters after at most one critical section execution by the other process.
+
+### Hardware Synchronization
+1. **Instruction Reordering and Memory Barriers** 
+	- Instruction reordering can break software solutions like Peterson's algorithm, leading to race conditions. 
+	- **Memory Barriers:** 
+		- Ensure all memory operations (loads/stores) are completed before subsequent operations. 
+		- Types of memory models: 
+			- **Strongly Ordered:** Immediate visibility of memory changes to all processors. 
+			- **Weakly Ordered:** Delayed visibility of memory changes to other processors. 
+		- Example Fix: 
+			- Add a memory barrier to prevent reordering: 
+				- `x = 100; memory barrier(); flag = true;`
+
+
+**Atomic Instructions**
+Special hardware instructions executed as uninterruptible units.
+
+**Test-and-Set (TAS):**
+```c
+boolean test_and_set(boolean *target) {
+	boolean rv = *target;
+	*target = true;
+	return rv;
+}
+```
+
+Used for mutual exclusion:
+  ```c
+  while (test_and_set(&lock)) ;
+  // Critical Section
+  lock = false;
+  ```
+  
+
+**Compare-and-Swap (CAS):**
+```c
+int compare_and_swap(int *value, int expected, int new_value) {
+	int temp = *value;
+	if (*value == expected)
+		*value = new_value;
+	return temp;
+}
+```
+        
+Example for mutual exclusion:
+  ```c
+  while (compare_and_swap(&lock, 0, 1) != 0) ;
+  // Critical Section
+  lock = 0;
+  ```
+
+**Bounded Waiting Using CAS**
+Ensures progress and bounded waiting:
+
+ ```c
+ waiting[i] = true;
+ key = 1;
+ while (waiting[i] && key == 1)
+	 key = compare_and_swap(&lock, 0, 1);
+ waiting[i] = false;
+ ```
+
+**Atomic Variables**
+Provide atomic operations on basic data types like integers and booleans.
+Example: Increment operation using CAS:
+ ```c
+ void increment(atomic_int *v) {
+	 int temp;
+	 do {
+		 temp = *v;
+	 } while (temp != compare_and_swap(v, temp, temp + 1));
+ }
+     ```
+   
+Limitations: Cannot solve complex race conditions (e.g., bounded-buffer problem with conditions based on a shared variable).
+
+![[atomic variables race conditions.png|400]]
+
+#### Summary of Critical Section Tools
+| **Tool**              | **Feature**                                 | **Example**                       |
+|-----------------------|---------------------------------------------|-----------------------------------|
+| **Memory Barrier**    | Ensures memory consistency, prevents reordering | `memory barrier();`              |
+| **Test-and-Set (TAS)**| Atomic lock setting                         | `test_and_set(&lock)`             |
+| **Compare-and-Swap (CAS)** | Atomic comparison and update             | `compare_and_swap(&lock, 0, 1)`   |
+| **Atomic Variables**  | Simplifies single-variable updates          | `increment(&sequence)`            |
+
 ### Synchronization with mutexes
 
 ![[mutual exclusion using mutexes.png|300]]![[sync using mutex.png|300]]
-![[posix mutex.png|300]]
+![[posix mutex.png|300]]![[spin locks and busy waiting.png|300]]
+
+>[!NOTE] Lock Contention
+>Locks are either contended or uncontended. A lock is considered contended if a thread blocks while trying to acquire the lock. If a lock is available when a thread attempts to acquire it, the lock is considered uncontended. Con- tended locks can experience either high contention (a relatively large number of threads attempting to acquire the lock) or low contention (a relatively small number of threads attempting to acquire the lock.) Unsurprisingly, highly contended locks tend to decrease overall performance of concurrent applications.
+
+
 
 **Challenges with priority scheduling when protecting shared resource accesses**
 ![[blocking using mutex in priority scheduling.png|300]]![[blocking high priority with middle priority task.png|300]]
@@ -477,7 +611,139 @@ for a non-preemptive the time is the decider or what completes first, not flexib
 Binary semaphores where a semaphore can be either 0 or 1, can also be called a mutex lock.
 
 atomic values mean there is always something that happens before something else (not at the same time even if it looks like it).
+
+### Semaphore
+**semaphore:** `S` is an integer variable that is accessed only through two standard atomic operations: `wait()` and `signal()`.
+
+[Semaphores in Process Synchronization - GeeksforGeeks](https://www.geeksforgeeks.org/semaphores-in-process-synchronization/)
+![[2INC0/attachments/semaphore.png|300]]
+
+>[!NOTE] **Semaphores Summary**
+> - **Definition**: Integer variable for synchronization, modified only via atomic operations `wait()` (P) and `signal()` (V).
+>   - **wait(S)**: Decrements `S`. If `S <= 0`, process waits (busy-wait or suspends).
+>   - **signal(S)**: Increments `S`. If `S <= 0`, wakes a process from the waiting queue.
+> 
+> - **Types**:
+>   - **Counting Semaphore**: Manages multiple resource instances (values >= 0).
+>   - **Binary Semaphore**: Like a mutex lock; values 0 or 1.
+> 
+> - **Synchronization Example**: To ensure `S2` executes after `S1`:
+>   - P1: `S1; signal(synch);`
+>   - P2: `wait(synch); S2;`
+> 
+> - **Avoid Busy Waiting**:
+>   - Replace busy wait with **process suspension**:
+>     - Use a waiting queue in the semaphore structure.
+>     - `wait()`: Adds process to queue and suspends.
+>     - `signal()`: Removes process from queue and wakes it.
+> 
+> - **Key Concepts**:
+>   - **Atomicity**: Operations must be uninterrupted.
+>     - **Single-core**: Disable interrupts during `wait()`/`signal()`.
+>     - **Multi-core**: Use spinlocks or `compare_and_swap()` for atomicity.
+>   - **Semaphore Values**:
+>     - Positive: Available resources.
+>     - Zero: All resources in use.
+>     - Negative: Number of waiting processes.
+> 
+> - **Advantages**: Reduces inefficiency by minimizing busy waiting to short critical sections.
+
+>[!NOTE] **Liveness and Deadlock**
+> - **Liveness**: Ensures processes make progress during execution.
+>   - **Failure**: Indefinite waiting violates **progress** and **bounded-waiting** criteria.
+>   - Example: Infinite loops or long busy-wait loops.
+> 
+> - **Deadlock**: A liveness failure where processes wait indefinitely for events caused only by each other.
+>   - Occurs when processes hold resources and wait for others to release theirs.
+>   - Example:
+>     - **Process P0**: `wait(S); wait(Q); ... signal(Q); signal(S);`
+>     - **Process P1**: `wait(Q); wait(S); ... signal(S); signal(Q);`
+>     - Sequence:
+>       - `P0` executes `wait(S)`.
+>       - `P1` executes `wait(Q)`.
+>       - `P0` and `P1` then wait indefinitely for `signal()` from the other, causing deadlock.
+> 
+> - **Key Issue**: All processes in the deadlocked state are waiting for an event caused by another waiting process.
+
 # Actions Synchronization
 ## Slides
+![[OS-04-slides_preparation_videos.pdf]]
 
+![[OS-04-actions_synch.pdf]]
 ## Info
+### Slides & Book
+![[action synchronization.png]]
+
+### Invariants
+![[synchronization.png|300]]![[action sync.png|300]]
+![[naming and counting.png|300]]
+
+![[topology properties.png|300]]![[proof with topology invariants.png|300]]
+**Topology Invariants**: These are conditions that remain true throughout the program's execution, derived directly from the program text.
+
+Invariants describe the relationships between variables and the counts of how often actions A,B,C,D execute.
+
+cA,cB,cC,cDc: These represent the **counts** of how many times actions A,B,C,D have been executed.
+
+>[!NOTE] Invariance Expression
+>1. $I_{0}:x=cA-cD\text{ }x\text{ depends on how many times }A\text{ (increment) and }D\text{ (decrement) are executed.}$
+>2. $I_{1}:y=cB-cC\text{ }y\text{ depends on how many times }B\text{ (increment) and }C\text{ (decrement) are executed.}$
+>3. $I_{2}:0\leq cA-cB\leq 1\text{ The counts of }A\text{ and }B\text{ executions differ by at most }1.\text{ This ensures the two actions }A\text{ and }B\text{ are tightly coupled (they happen almost simultaneously).}$
+>4. $I_{3}:0\leq cC-cD\leq 1\text{ The counts of }C\text{ and }D\text{ executions differ by at most }1.\text{ This ensures the two actions }C\text{ and }D\text{ are tightly coupled (they happen almost simultaneously).}$
+
+### Semaphores
+![[sync conditions.png|300]]![[producer consumer example.png|300]]
+![[semaphores.png|300]]![[semaphore invariance.png|300]]
+![[producer consumer problem with semaphores.png|300]]![[action sync-1.png|300]]
+
+### POSIX Semaphores
+![[counting semaphores.png|300]]![[semaphore operations.png|300]]
+![[consumer produce semaphore.png|300]]![[consumer producer posix.png|300]]
+
+**One execution example:** **Produce** Consume **Produce** Consume **Produce** **Produce** Consume **Produce** **Produce** Consume **Produce** **Produce** Consume **Produce** Consume **Produce** Consume Consume Consume Consume
+### Proving Program Properties using Invariants
+How can we **check** complex **properties** **without checking all possible traces** of a concurrent program.
+
+![[topology invariance.png|300]]![[using topolgy invariants prove program properties.png|300]]
+
+![[another example.png|400]]
+### Actions Sync using Semaphores
+How can we **enforce properties** during the program execution **using semaphores.**
+#### Race conditions
+![[sync problem.png|300]]![[busy wait solution to race conditon.png|300]]
+![[busy waiting when to use.png|300]]![[semaphores-1.png|300]]
+![[semaphores explained.png|300]]![[semaphore explained.png|300]]
+![[semaphores explained-1.png|300]]![[multiple semaphores added removed.png|300]]
+![[action sync with semaphores.png|300]]
+
+
+#### Read Write conditions
+![[topology invariance-1.png|300]]![[sync problem-1.png|300]]
+![[syncornization condition.png|300]]![[final syncronization condition example.png|300]]
+
+
+![[2INC0/attachments/ex1.png|300]]![[2INC0/attachments/ex2.png|300]]
+![[2INC0/attachments/ex3.png|300]]![[correctness of ex.png|300]]
+
+**semaphores:** $s_{1},s_{2}$ control access to $f\text{ and }w$
+**mutexes:** $mf,mw$ prevent race conditions when modifying $f\text{ and }w$
+	Mutex $mf=1,mw=1$: one task can access $f\text{ or }w$ at a time.
+
+- **Semaphores** enforce the synchronization conditions, ensuring $I_{1}$​ and $I_{2}$​ hold true.
+- **Mutexes** prevent race conditions by serializing access to $f$ and $w$.
+- Critical sections exclude `produce()` and `transport()` to minimize blocking and maintain system performance.
+### Preventing Deadlocks
+**A deadlock state:** is a system state in which **a set of tasks** is **blocked indefinitely.**
+	- each task is blocked on another task in the same set.
+
+We typically **prove** the absence of deadlock **by contradiction:**
+	- assume deadlock occurs
+	- investigate all task sets that can be blocked at the same time (often: just 1)
+	- show a contradiction for all possible combinations of blocking actions of those tasks.
+
+![[proof against deadlock.png|300]]![[produce a deadlock.png|300]]
+
+**Prevent deadlock:** make sure critical sections terminate: **call `unlock(m)` after `lock(m)`.**
+**Avoid cyclic waiting:** Avoid **P or lock operations** that block indefinitely **between `lock(m)` and `unlock(m)`.**
+
+![[cyclic waiting deadlock.png|300]]

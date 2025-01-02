@@ -581,9 +581,9 @@ bus, ring, star, mesh network topologies...
 ### Passive Optical Networks
 [Passive optical network - Wikipedia](https://en.wikipedia.org/wiki/Passive_optical_network)
 fiber-optic telecommunications network that uses only unpowered devices to carry signals, as opposed to electronic equipment. In practice, PONs are typically used for the last mile between Internet service providers and their customers.
-![[ex1.png|300]]![[sol1.png|300]]
-![[ex2.png|300]]![[sol2.png|300]]
-![[ex3.png|300]]![[sol3.png|300]]
+![[5XTA0/attachments/ex1.png|300]]![[sol1.png|300]]
+![[5XTA0/attachments/ex2.png|300]]![[sol2.png|300]]
+![[5XTA0/attachments/ex3.png|300]]![[sol3.png|300]]
 ![[ex4.png|300]]![[sol4.png|300]]
 ![[ex5.png|200]]![[sol5.png|200]]![[sol5-1.png|200]]
 # Internetworking and Transport Reliability (Georgios)

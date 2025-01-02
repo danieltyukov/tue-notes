@@ -704,7 +704,7 @@ x86 controll can be improved with funny loop
 	- **TSL (Test-And-Set Lock)**: Hardware solution for atomic access.
 ### Semaphores
 [Semaphores - YouTube](https://www.youtube.com/watch?v=XDIOC2EY5JE)
-![[semaphore.png|300]]![[example of semaphore.png|300]]
+![[5EIB0/attachments/semaphore.png|300]]![[example of semaphore.png|300]]
 - Integer variable accessible only through atomic `wait` and `signal` operations.
 - **Usage**: Control access and order of process execution.
 - **Advantages**: Suitable for any number of processes, avoids busy waiting via process sleeping.
