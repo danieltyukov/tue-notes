@@ -743,7 +743,225 @@ We typically **prove** the absence of deadlock **by contradiction:**
 
 ![[proof against deadlock.png|300]]![[produce a deadlock.png|300]]
 
-**Prevent deadlock:** make sure critical sections terminate: **call `unlock(m)` after `lock(m)`.**
-**Avoid cyclic waiting:** Avoid **P or lock operations** that block indefinitely **between `lock(m)` and `unlock(m)`.**
+>[!NOTE] Preventing deadlock
+>- **Prevent deadlock:** make sure critical sections terminate: **call `unlock(m)` after `lock(m)`.**
+>- **Avoid cyclic waiting:** Avoid **P or lock operations** that block indefinitely **between `lock(m)` and `unlock(m)`.**
+>- **Fixed order when calling P-operations on semaphores or mutexes**
+>	- P(m);P(n);... in one task may deadlock with P(n);P(m);... in another task
+>- **Avoid greedy consumers**
+>	- $P(a)^k$ should be **an indivisible atomic operation** when tasks compete for limited resources.
 
-![[cyclic waiting deadlock.png|300]]
+![[cyclic waiting deadlock.png|300]]![[fixed order semaphores.png|300]]
+![[multiple producer deadlock.png|300]]![[multiple producers.png|300]]
+
+### Synchronization of Execution
+![[exercise on sync.png|400]]![[fairness of sync.png|200]]
+
+![[topology invariance-2.png|400]]![[resolving deadlock.png|200]]
+
+# Condition Synchronization
+## Slides
+![[OS-05-preparation_slides.pdf]]
+
+![[OS-05-condition_synch 1.pdf]]
+## Info
+### Slides & Book
+6.7
+![[condition synhronization.png]]
+
+### Condition Variables
+limit of action synchronization:
+![[action sync what can be enforced.png|300]]![[what can be enforced vs what cant be.png|300]]
+
+![[action sync-2.png|300]]![[condition sync.png|300]]
+
+>[!NOTE] Two Principles of Condition Synchronization
+>- **Condition synchronization:** explicit communication (signaling) between tasks.
+>	- when just counting is not enough to solve synchronization problem.
+>	- or to simplify otherwise complex sequences of semaphore operations: e.g: P(a);P(a);P(b);P(m);...V(a);V(b);
+>
+>- **Where a condition may be violated:** check and block
+>- **Where a condition may have become true:** signal the waiters
+>  
+>![[principle 1 applied.png|300]]![[principle 2.png|300]]
+>
+>Sigall and Wait are not atomic so Sigall could be called earlier so P1 is never woken up...
+>
+>![[combined variable and semaphore.png|300]]![[using timeout in condition variables.png|300]]
+
+![[condition sync building blocks.png|300]]![[posix condition variables.png|300]]
+
+![[exam level ocndition variable question.png|300]]![[signalling strategies.png|300]]
+#### Further Examples of Using Condition
+
+![[Pasted image 20250104210312.png|300]]![[Operating Systems - 2INC0-2.png|300]]
+![[Operating Systems - 2INC0-3.png|300]]![[Operating Systems - 2INC0-4.png|300]]
+![[guard condition.png|300]]
+
+
+
+### Monitors
+![[monitor design patten in object.png|300]]![[readers writers problem using monitors.png|300]]
+
+>[!NOTE] Readers Writers Problem Using Monitors
+>- At any given time, we can have **several** readers but no writers, or **one** writer and no readers... -> **why using mutexes or semaphores is not a good solution?.**
+>- We use **monitor** to **synchronize accesses** to the read and write actions.
+>- Add **entry and exit protocols** around the read and write actions...
+>- **Why** did we **not implement the Write_action() and Read_action()** procedures in the monitor, instead of using Entry and Exit procedures?:
+>	- Would limit the number of readers reading concurrently to one because the monitor procedures are mutually exclusive.
+
+### Signaling Disciplines
+
+>[!NOTE] Structuring by Monitors
+>- A monitor:
+>	- **encapsulates** relevant **shared variables**
+>	- provides well-defined **operations on the shared variables**
+>- A monitor **provides exclusion**
+>	- **At most one task be inside** the monitor at any given time
+>- **Which task is inside the monitor right after the signal?**
+>	- Depends on **signaling discipline (scheduling discipline)**
+
+>[!NOTE] Scheduling/signaling Disciplines
+>The discipline defines what happens to the monitor upon a signal.
+>
+>Four disciplines are used in various implementations
+>	- signal & **exit**
+>	- signal & **continue**
+>	- signal & **wait**
+>	- signal & **urgent wait**
+>
+>Correctness of solution depends on signalling discipline
+
+![[signal and exit.png|300]]![[signal and continue.png|300]]
+![[signal and wait.png|300]]![[signal and urgent wait.png|300]]
+
+# Deadlocks
+## Slides
+![[OS-06-slides_preparation_videos.pdf]]
+
+![[OS-06-deadlock.pdf]]
+## Info
+### Slides & Book
+![[deadlocks.png]]
+
+### Analysis of Deadlocks
+Task is **blocked**: it is **waiting on a blocking synchronization action.**
+
+A set D of tasks is called **deadlocked**:
+- **all tasks in D are blocked or terminated** (normally or abnormally).
+- there is **at least one non-terminated** task in D, and,
+- for each non-terminated task t in D, any **task that might unblock t is also in D.**
+
+![[deadlock conditions.png|300]]![[deadlock resource types.png|300]]
+
+![[resource types.png|500]]
+
+#### Wait-for graphs
+
+![[wait for graph 1.png|300]]![[wait for graph 2.png|300]]
+![[wait for graph analysis.png|300]]![[deadlock wait for graph.png|300]]
+
+![[wait for graph proof.png|400]]
+
+#### Resource dependency graphs
+
+![[dependency graphs.png|400]]
+
+![[deadlock could occur.png|300]]![[using resource dependency graphs to show the absence of a deadlock state.png|300]]
+
+![[resource dependency graph.png|300]]![[resource dependency.png|300]]
+
+![[Operating Systems - 2INC0-5.png|300]]![[Operating Systems - 2INC0-6.png|300]]
+
+#### Finite state machines
+![[Operating Systems - 2INC0-7.png|300]]![[Operating Systems - 2INC0-8.png|300]]
+![[fsm.png|300]]
+
+#### Examples
+![[4rpuihiywiyuhefr.png|300]]![[Operating Systems -.png|300]]
+
+![[example of wait grpah.png|300]]![[dependency graph example.png|300]]
+
+
+### Dealing with Deadlocks
+![[dealing with deadlock.png|400]]
+
+![[preventation.png|300]]![[avoidance.png|300]]
+
+![[Overview.png|400]]
+#### Avoidance
+![[max claim graph.png|300]]![[avoiding deadlock.png|300]]
+![[banker algorithm.png|300]]![[formalization of banker algorithm.png|300]]
+![[formalization.png|300]]![[safety check.png|300]]
+![[algorithm for safety.png|300]]
+##### Exercises
+![[state safe?.png|300]]![[deadlock analysis.png|300]]
+
+#### Detection and Recovery
+![[detection of deadlock.png|300]]![[detection during execution.png|300]]
+
+### Other
+**Starvation:** can be the result of cooperation of several processes. Can also be the result of interference between scheduling and blocking. 
+
+**Livelock:** try to pass a critical condition repeatedly, without making progress. Results functionally in starvation ordeadlock. 
+
+**Deadlock:** extreme case of starvation: continuation not possible.
+	Program behaviours that may lead to deadlock: 
+		- Mutual exclusion 
+		- Greediness: hold and wait 
+		- Absence of pre-emption mechanism - Circular waiting
+
+# Summary Questions
+- What is interference of concurrent programs?: The truth of an assertion that on local reasoning would be true is falsified.
+
+- What is meant by interference among concurrent threads?: Assumptions or knowledge that one thread has about the state are disturbed by actions of another thread.
+
+- Give the steps that make up a conditional critical region.:
+	1. lock 
+	2. while not condition do wait od 
+	3. critical section 
+	4. possible signals 
+	5. unlock
+
+- A spinlock is a common approach to implementing mutual exclusion. What are its advantages and disadvantages, and where is it used:
+	- Advantage: work with multiprocessors.
+	- Disadvantage: busy waiting, cost time, doesnt work for single processor.
+
+- Give two motivations for making a program multi-threaded.:
+	- follow solution structure: natural concurrency 
+	- take advantage of underlying platform concurrency 
+	- hide latency
+
+- ![[check for atomicity.png|300]]
+
+- ![[correctness concerns.png|300]]
+
+- What are the two principles of condition synchronization?:
+	- At places where the truth of a condition is required: check and block.
+	- At places where a condition may have become true: signal waiters.
+
+- What is meant with the term ‘race condition’:
+	- The situation that correctness of a concurrent program depends on specific interleavings being chosen. For example, in a program that assumes that the state is not changed between a test and an action that depends on the result of this test.
+
+- What is the difference between the monitor signaling disciplines ‘signal-and-wait’ and ‘signal-and- continue’?:
+	- signal-and-wait: signaled process gets immediate access; signaler waits
+	- signal-and-continue: signaled process queues again for critical section access; signaler continues.
+
+- When can we call a set of tasks D a deadlocked set?:
+	- D is said to be deadlocked when D contains at least one not terminated task;
+	- all tasks in D are blocked
+	- for each non-terminated task t in D, any task that might unblock it is also in D.
+
+- ![[way to deal with deadlock.png|300]]
+
+- ![[avoid deadlock.png|300]]
+
+- ![[posix.png|300]]
+# File Systems
+# File Systems
+## Slides
+![[OS-08-FileSystem.pdf]]
+## Info
+### Book & Slides
+![[file systems 1.png]]
+![[file systems 2.png]]
