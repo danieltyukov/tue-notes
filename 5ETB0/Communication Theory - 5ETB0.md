@@ -266,3 +266,61 @@ $\mathcal{M}=\text{number of messages}$
 
 ![[M10.2.pdf]]
 
+# Pass-Band Channels
+![[M11.1.pdf]]
+
+![[M11.2.pdf]]
+
+![[quandrature multiplexing.png|500]]
+Q1: $N_{c}+N_{s}$.
+Q2: Set frequency $f_{0}=0$ (2nd addition of sine is now 0) and the number of cosine building block waveforms $N_{c}=1$.
+Q3: 1
+
+![[QAM modulation.png|300]]![[qam modulator scheme.png|300]]
+![[constelaltion diagrams.png|300]]![[higher MCS rate = higher required sir.png|300]]
+
+[Inside Wireless: QAM modulation (Quadrature Amplitude Modulation) - YouTube](https://www.youtube.com/watch?v=IbUflaeJcU8)
+![[constellation diagram bits per symbol.png|300]]![[more qam better time signal sent.png|300]]
+![[qam modulation animation.png|300]]![[16 qam animation.png|300]]
+
+![[quadrature recovery.png|300]]![[show how changing the frequency moves one of the components in frequency domain to be extracted.png|300]]
+
+[Quadrature Amplitude Modlation (QAM): Explained - YouTube](https://www.youtube.com/watch?v=1asY7-NZ93g)
+
+![[demodulator of qam.png|400]]
+[Quadrature amplitude modulation - Wikipedia](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
+
+$\text{capacity in bit per dimension: }C_{N}=\frac{1}{2}\log_{2}\left( 1+\frac{P_{s}}{2N_{0}W} \right)\left[ \frac{bit}{dimension} \right]$
+$\text{capacity per bit per second: }C=4WC_{N}\left[ \frac{bit}{second} \right]$
+
+$\text{dealyed signal version: }s(t-\Delta)+n_{w}(t)$
+
+![[coherent reception.png|300]]![[pulse shaping function.png|300]]
+[What You Need to Know about Wideband Signal Analysis](https://www.keysight.com/blogs/en/tech/rfmw/2021/04/19/what-you-need-to-know-about-wideband-signal-analysis)
+[What You Need to Know about Wideband Signal Analysis](https://www.keysight.com/blogs/en/tech/rfmw/2021/04/19/what-you-need-to-know-about-wideband-signal-analysis)
+# Random Carrier-Phase
+coherent vs **incoherent** reception: no knowledge of $\theta$ means there is only cosine but it can be decomposed to have the sine component.
+
+$\cos(a-b)=\cos a\cos b+\sin a\sin b$
+![[incoherent signal decomposition.png|400]]
+
+![[M12.1.pdf]]
+
+![[M12.2.pdf]]
+
+**optimum incoherent reception (and when equal energy)**
+![[optimum incoherent reception.png|300]]![[optimum reception equal energy.png|300]]
+
+**envelope simplified representation**
+![[output of simplified filter.png|300]]![[receiver structure.png|300]]
+the green box the linear filter is a basically a mix of baseband and passband(carrier) signals.
+
+![[envelope dection example.png|500]]
+i. we have a binary message, ii. vector representation of the received signal in the time domain, iii. linear filter: invert + delay, iv: what you get out of the linear filter,  v: then you get the envelopes, and now you can optimally detect messages (receive something close to 1 then message 2 and if close to 0 then message 1).
+
+If message 1 if just inverted of message 1: would be identical to $u_{2}(t)$, so cant detect message differences: **antipodal signaling** BUT in **coherent** reception we have the phase so we can differentiate between them. For **incoherent** we dont have the phase so we cant differentiate. **ANTIPODAL SIGNALING DOES NOT WORK IN INCOHERENT RECEPTION.**
+
+only orthogonal signaling possible...
+
+![[random phase transmission, maximization.png|400]]
+![[same energy maximization.png|400]]
