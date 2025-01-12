@@ -964,4 +964,88 @@ A set D of tasks is called **deadlocked**:
 ## Info
 ### Book & Slides
 ![[file systems 1.png]]
-![[file systems 2.png]]
+![[file systems 2.png]]![[file system structure.png|400]]
+
+### Objectives of file system
+![[responsobilities of a file system.png|400]]
+### User view (file-system interface)
+
+> - what constitutes a file
+> - naming of files
+> - allowed operations on files
+
+![[file attributes.png|300]]![[sequantial access.png|300]]
+![[file access methods direct access.png|300]]![[through index files.png|300]]
+![[file system organization.png|300]]![[directory operations semantics.png|300]]
+![[apu operations for regular files.png|300]]![[unix access lists.png|300]]
+
+[chmod - Wikipedia](https://en.wikipedia.org/wiki/Chmod)
+
+![[access lists and groups.png|300]]![[opening file from an application.png|300]]
+![[conceptial interaction diagram.png|300]]
+### OS view (implementation of a file system)
+
+> - how should logical blocks of the disk be assigned to files?
+> - how to keep track of free storage?
+> - how to assign new block from the disk to a growing file?
+
+![[magnetic disks.png|300]]![[booting from the hard drive.png|300]]
+![[data structure used by kernel.png|300]]![[data structures used by kernel.png|300]]
+![[reading from file.png|300]]![[opening an open file and closing.png|300]]
+[How to manage open files in operating systems](https://www.educative.io/answers/how-to-manage-open-files-in-operating-systems)
+
+![[storing files one the disk.png|400]]
+#### Contiguous allocaiton
+![[contiguous allocation 1.png|300]]![[contiguous allocation 2.png|300]]
+![[contiguous allocation 3.png|300]]![[conthuous allocation 4.png|300]]
+
+#### Linked allocation
+![[linked allocation.png|300]]![[linked allocation-1.png|300]]
+
+#### Indexed allocation
+![[indexed allocation.png|300]]![[indexed allocation-1.png|300]]
+![[indexed allocation-2.png|300]]![[indexed allocation-3.png|300]]
+
+![[unix indone example.png|300]]![[indoe example.png|300]]
+
+#### Other
+![[free space management.png|300]]![[file system example.png|300]]
+
+### Questions
+**Having many small files lead to internal fragmentation in file systems, two ways of solving?**
+- add the file context in the file descriptor
+- use contiguous allocation for small files
+- use blocks of variable size
+
+**What is the working set, and what determines the lower and upper limits to its size?**
+- working set is the set of physical memory pages currently dedicated to a running process. It includes the current top of stack, areas of the heap being accessed, the current area of code segment being executed, and any shared libraries recently used.
+- upper limit to its size: degree of multiprogramming
+- lower limit: avoiding occurrence of page faults
+
+**Which (possible conflicting) requirements determine the choice of the page-size in a virtual memory system?**
+- it has to be a power of 2
+- it has to be a big value so the page-table tasks up a small amount of the memory
+- it has to be a low value to decrease the amount of internal fragmentation
+
+**Explain the difference between mounting and symbolic linking**
+- symbolic link: name in new name system + closure are the contents of a file
+- mounting: closure and prefixing are (transparently added to the resolution algorithm - joining two name spaces)
+
+![[file organization.png|400]]
+![[journaling.png|400]]
+![[distributed file system.png|400]]
+![[sharing semantics and implementing distributive file system.png|400]]
+# Memory Management
+## Slides
+![[OS-07-Preparation_slides.pdf]]
+
+![[OS-07-virtual_memory-part1.pdf]]
+
+![[OS-07-virtual_memory-part2.pdf]]
+## Info
+### Slides and Book
+9.1
+![[virtual memory part 1.png]]
+![[virtual memory part 2.png]]
+
+# I/O Management
