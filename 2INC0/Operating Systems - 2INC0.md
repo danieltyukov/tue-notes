@@ -1124,7 +1124,7 @@ $\text{frame num: }2^f\text{ frame size: }2^w$
 ![[how to solve.png|400]]
 ![[corrected.png|400]]
 
-![[frame table exercise.png|400]]
+![[frame table exercise-1.png|400]]
 ![[solving for frame table.png|400]]
 ![[calculating physical address.png|400]]
 
@@ -1132,7 +1132,7 @@ $\text{frame num: }2^f\text{ frame size: }2^w$
 
 ![[how to decide which page to load and when.png|400]]
 
-### Load and replacement strategies
+#### Summary
 **Remaining problems after memory paging was introduced:**
 1. we must **keep track of where pages are stored**
 2. we must provide a mechanism for **address binding** (i.e. translate logical addresses into physical addresses)
@@ -1140,4 +1140,68 @@ $\text{frame num: }2^f\text{ frame size: }2^w$
 
 ![[keep track of pages locations in physical memory summary.png|300]]![[address binding-2.png|300]]
 
+![[page table exercise 2.png|400]]
+![[page table extension.png|300]]![[multi level page tables.png|300]]
+![[outstanding implementation issues.png|300]]
+### Load and replacement strategies
+#### Demand paging
+![[avoid loading complete processes.png|300]]
+
+![[demand paging how it works?.png|400]]
+![[performance of demand paging.png|400]]
+**Effective access time (EAT):**$$(1-p) \times \text{memory access time}+p\times(\text{page fault overhead }+\text{ swap page out }+\text{ swap page in }+\text{ mem access time})$$
+![[improve performance of demand paging.png|300]]
+#### Page replacement and load strategies
+##### global
+![[thrashing.png|300]]![[load and replacement strategies.png|300]]
+![[global replacement strategies.png|300]]![[min policy.png|300]]![[lru policy.png|300]]![[fifo policy.png|300]]
+
+##### working set
+What is the **working set at time t1 and t2** assuming a window length $\tau=10$?
+![[working set.png|400]]
+
+![[working set example.png|300]]![[load control.png|300]]
+
+### Summary
+![[adv and disadv.png|400]]
+![[summary of paging.png|300]]
+
 # I/O Management
+## Slides
+![[OS-09-IO_management.pdf]]
+## Info
+### Slides & Book
+![[io management.png]]
+![[io management p2.png]]
+### I/O device controllers
+![[io ocntroller interface.png|300]]![[two methods for accessing the device controller.png|300]]
+>[!NOTE] Issue
+>**Each I/O device controller** may have a **different** set of registers/opcodes/operands
+>- Code is written for a specific I/O controller and must be re-written if we change the type or brand of I/O device (e.g: move from HDD to SSD, change brand of SSD etc...)
+>- **Limits portability**
+>- **Increases work, risk of bugs etc...**
+
+### I/O subsystem
+![[io subsystem.png|300]]![[two levels of abstraction-1.png|300]]
+![[divide io devices in different classes.png|300]]![[solutions when io devices do not fit any class.png|300]]
+
+![[device driver interface.png|300]]![[driver communication with device controller.png|300]]
+**When is it acceptable to busy-wait?**: only **when I/O operations are** known to be **fast in comparison to** the overhead of **context switches.**
+![[cpu and controller.png|200]]
+### I/O buffering
+![[io buffering motivation.png|300]]![[io buffering.png|300]]
+![[buffering alternatives.png|300]]![[buffer use schemes.png|300]]
+![[buffer use schemes-1.png|300]]![[throughput calculation.png|300]]
+
+**Throughput:** **How many** data can be transferred per second? (we limit ourselves to analyzing the input scenario).
+
+$max(C,T)\text{ because they can happen in parallel}$
+
+### Disk scheduling
+Several **platters**, divided in **tracks**, divided in **sectors**.
+**Cylinder:** set of tracks that are at the same arm position (same radius).
+
+![[hard drive operation.png|300]]![[disk scheduling.png|300]]
+![[comparison example.png|300]]![[summery.png|300]]
+
+
