@@ -743,7 +743,7 @@ x86 controll can be improved with funny loop
 # Memory/JVM, Cache, I/O, Virtual Memory and SIMD (Memory Hierarchy)
 ![[associative block example.png|300]]![[cache memory performance equation.png|300]]
 ## Introduction to Large and Fast: Exploiting Memory Hierarchy
-![[memory hierarchy.png|200]]![[cache memory performance improvement.png|200]]
+![[5EIB0/attachments/memory hierarchy.png|200]]![[cache memory performance improvement.png|200]]
 ### Principles of Locality
 - **Temporal**: Recently accessed data likely needed soon.
 - **Spatial**: Data near recently accessed data likely needed soon.

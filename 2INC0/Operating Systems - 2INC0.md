@@ -1047,5 +1047,97 @@ A set D of tasks is called **deadlocked**:
 9.1
 ![[virtual memory part 1.png]]
 ![[virtual memory part 2.png]]
+### Memory management
+![[logical os organization.png|300]]![[2INC0/attachments/memory hierarchy.png|300]]
+![[contemporary memory hierarchy.png|300]]![[OS exploting hierarchy.png|300]]
+![[classical memory managers.png|300]]
+
+### Memory management using partitions
+![[single programmed solution.png|300]]![[fixed partitions.png|300]]
+![[example of fixed partitions.png|300]]
+![[dynamic partitions.png|300]]![[dynamic partions example.png|300]]
+![[dynamic partions alloaction schemes.png|300]]
+for **first-fit** order the list by memory location
+for **best-fit** order the list by block sizes
+
+![[best fit algorithm example.png|300]]![[other allocation schemes.png|300]]
+
+![[dynamic memory deallocation.png|300]]![[deallallocation example.png|300]]
+![[only deallocation really idle processes.png|300]]
+
+### Relocatable partitions
+![[relocatable dynamic partions.png|300]]![[compaction steps.png|300]]
+![[memory compation strategies.png|300]]![[compaction example.png|300]]
+![[memory compaciton remarks.png|300]]![[how to keep track of relocation.png|300]]
+![[swapping.png|300]]
+### Virtual memory
+#### importance of memory management
+![[process creation-2.png|300]]![[memory manament the physical addresses are different for each process variables.png|300]]
+#### Basics of memory
+![[ideal memory expectations.png|300]]
+
+![[types of partitioning schemes.png|400]]
+
+![[example of fixed partitioning.png|300]]![[dynamic partitioning.png|300]]
+**Dynamic partitioning:** the partition size is made based on the size of the process rather than pre-made. Causes external memory fragmentation rather than internal fragmentation that is caused by left over memory in a partition like in a fixed partitioning example.
+![[dynamic partitioning cont.png|300]]![[relocatable partitioning example.png|300]]
+![[relocatable cont.png|300]]![[compaction performed.png|300]]
+
+![[virtual addresses in physcial addresses.png|400]]
+[Logical and Physical Address in Operating System - GeeksforGeeks](https://www.geeksforgeeks.org/logical-and-physical-address-in-operating-system/)
+$$\text{start address of process in physical memory}+ \text{virtual address}=\text{physical address}$$
+
+![[early memory partioning scheme overview.png|300]]
+
+### Memory paging
+![[memory paging.png|400]]
+![[memory paging example.png|400]]
+![[keep track of pages.png|300]]
+
+![[keep track of page location.png|400]]
+![[frame table.png|400]]
+
+![[exercise on paging.png|400]]
+![[exercise 2 on paging.png|400]]
+
+![[address binding.png|300]]
+
+![[address binding-1.png|400]]
+$\text{page num: }2^p\text{ page size: }2^w$
+$\text{frame num: }2^f\text{ frame size: }2^w$
+
+
+![[address binding using page tables.png|300]]![[address binding using frame table.png|300]]
+
+**Page table:** records the page **frame used by each page** of the process
+
+>[!NOTE] Calculating Page Table Example
+>**virtual address:** $\text{0x056}$
+>**page number:** $056\to_{8}5\text{ decimal so page number } \frac{86}{256}=0$
+>**offset:** $86 \text{ }mod\text{ }256=86$
+>**page table entry (page frame):** $\text{0x5AC0}$
+>**physical address:** $\text{page frame (0x5AC0) * page size (256) + offset (0x056) = 0x5AC056}$
+>
+>the reason why $\text{0x912}$ is errored is because in decimal its 2322 and since 256*9 means its page 9 and since there is no page 9.
+
+![[exercise on page table.png|400]]
+![[how to solve.png|400]]
+![[corrected.png|400]]
+
+![[frame table exercise.png|400]]
+![[solving for frame table.png|400]]
+![[calculating physical address.png|400]]
+
+![[address binding acceleration.png|400]]
+
+![[how to decide which page to load and when.png|400]]
+
+### Load and replacement strategies
+**Remaining problems after memory paging was introduced:**
+1. we must **keep track of where pages are stored**
+2. we must provide a mechanism for **address binding** (i.e. translate logical addresses into physical addresses)
+3. we must decide **which pages** of process **to load and when**
+
+![[keep track of pages locations in physical memory summary.png|300]]![[address binding-2.png|300]]
 
 # I/O Management
