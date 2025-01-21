@@ -253,6 +253,10 @@ When a process calls `exit()`, the status is returned to the parent if it was wa
 4.1-4.3 + 4.6.5
 ![[threads and scheduling.png]]
 ![[more scheduling and IPC.png]]
+
+![[20250119_222209.jpg]]
+![[20250119_222216.jpg]]
+![[20250119_222200.jpg]]
 ### Threads
 ![[process vs thread.png|300]]![[threds share.png|300]]
 >[!NOTE] Threads are Faster than Processes
@@ -674,6 +678,9 @@ atomic values mean there is always something that happens before something else 
 ### Slides & Book
 ![[action synchronization.png]]
 
+![[20250121_130016.jpg]]
+![[20250121_130022.jpg]]
+![[20250121_130030.jpg]]
 ### Invariants
 ![[synchronization.png|300]]![[action sync.png|300]]
 ![[naming and counting.png|300]]

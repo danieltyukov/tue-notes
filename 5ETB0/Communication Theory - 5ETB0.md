@@ -3,6 +3,12 @@
 ![[learning objectives.png]]
 # formula sheet
 ![[Formula_Sheet.pdf]]
+
+# Course Introduction, Motivation, and Math Preamble
+![[M1.1.pdf]]
+
+![[M1.2.pdf]]
+
 # Analog vs Digital Communication
 [[Math II - 5EMA0]]
 [[DSP(digital signal processing) fundamentals (signals II) - 5ESC0]]
@@ -324,3 +330,46 @@ only orthogonal signaling possible...
 
 ![[random phase transmission, maximization.png|400]]
 ![[same energy maximization.png|400]]
+
+# Nice to knows
+signal like this can be split in the following way:
+$s(t)=\sum^\infty_{k=0}a_{k}\phi(t-kT)\psi_{I}(t)+b_{k}\phi(t-kT)\psi_{Q}(t)$
+where:
+- **Message component:**$(a_{k},b_{k})$ encodes the actual data.
+- **Building block:**$\phi(t-kT)$ structures the signal in time, shapes it in frequency and minimizes the inter-symbol interference.
+- **Carrier component:**$\psi(t)$ modulates the signal to the desired transmission frequency while preserving orthogonality between **in-phase** and **quadrature** components.
+
+# Invited Lecture (IMPORTANT)
+- Satellites operate on RF band -> could be a problem?
+- Infrared c-band spectrum -> allows a much larger bandwidth that classic RF like FM or 5G MMWAVE BAND.
+
+	- Sat RTT: 46ms and 
+	- Great circle fibre: 55ms  -> takes longer over long distance than satellite.
+	- free space optical communication is better over long distance than RF.
+
+FSO vs RF 
+$P_{R}=\eta P_{r}\left( \frac{\pi Dr}{\lambda} \right)^2\left( \frac{\pi D_{R}}{\lambda} \right)^2\left( \frac{\lambda}{4\pi R} \right)^2$ Receive power 
+proportional to: $\frac{1}{\lambda^2}\text{ and }f^2$
+**Example:** Ka-band vs FA
+with RF Ka-band (30GHz) vs FSO C-band (193 THz).
+This gives about **75 dB gain** in receive power for FSO over RF.
+Assuring antenna $D_{T}$ and $D_{P}$ transmit power $P_{T}$ distance $R$ all the same.
+
+
+objective of communication networks:
+- throughput
+- reliability
+- high-availability
+- low-latency
+
+minimizing:
+- cost per bit
+- bandwidth / wavelength
+- power/safety
+- form factor (size/weight)
+- complexity of the system
+
+
+
+UP link: diversity gain: temporal diversity, spatial diversitty, site diversity, frequency diversity.
+
