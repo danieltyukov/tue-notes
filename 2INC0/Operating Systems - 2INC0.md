@@ -775,6 +775,11 @@ We typically **prove** the absence of deadlock **by contradiction:**
 ### Slides & Book
 6.7
 ![[condition synhronization.png]]
+![[20250121_214627~2.jpg]]
+![[20250121_214621~2.jpg]]
+![[20250121_214614~2.jpg]]
+![[20250121_214609~2.jpg]]
+
 
 ### Condition Variables
 limit of action synchronization:
@@ -918,6 +923,10 @@ A set D of tasks is called **deadlocked**:
 		- Greediness: hold and wait 
 		- Absence of pre-emption mechanism - Circular waiting
 
+![[preventing circular waiting.png|300]]
+
+A system in **unsafe** state does not imply **deadlock**.''
+
 # Summary Questions
 - What is interference of concurrent programs?: The truth of an assertion that on local reasoning would be true is falsified.
 
@@ -1054,6 +1063,24 @@ A set D of tasks is called **deadlocked**:
 9.1
 ![[virtual memory part 1.png]]
 ![[virtual memory part 2.png]]
+$\text{physical address = base register + virtual address}=\text{(frame num * page size)+offset}$
+
+$2KB=2 \times 1024=2048\text{ }bytes$
+$\text{logical address with page size 2048 bytes: }\log_{2}(2048)=11\text{ bits}\text{ to represent offset of logical address in the page}$
+
+$\text{virtual address: 11 bits to encode page num: number of possible page entries: }2^{11}=2048$
+
+$\text{virtual memory size = num of pages * page size}$
+$\text{physical memory size = numb of frames * frame size}$
+
+![[page number.png|300]]![[addresses in a table.png|300]]
+![[virtual memory size.png|300]]![[physical memory calc.png|300]]
+
+
+![[20250122_161949~2.jpg]]
+
+![[20250122_161959~2.jpg]]
+
 ### Memory management
 ![[logical os organization.png|300]]![[2INC0/attachments/memory hierarchy.png|300]]
 ![[contemporary memory hierarchy.png|300]]![[OS exploting hierarchy.png|300]]
