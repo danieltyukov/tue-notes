@@ -256,6 +256,9 @@ Antipodal signaling is more energy-efficient than orthogonal signaling in the bi
 ![[optimum receiver.png|400]]
 
 $\text{energy per transmitted but of information: }E_{b}=\frac{E_{s}}{\log_{2}|M|}$
+
+![[reliable communication achieved.png|400]]
+![[more messages higher energy for same Pe needed.png|400]]
 # Message Sequences, Bandwidth
 ![[M8.1.pdf]]
 
@@ -303,7 +306,8 @@ $\text{dealyed signal version: }s(t-\Delta)+n_{w}(t)$
 
 ![[coherent reception.png|300]]![[pulse shaping function.png|300]]
 [What You Need to Know about Wideband Signal Analysis](https://www.keysight.com/blogs/en/tech/rfmw/2021/04/19/what-you-need-to-know-about-wideband-signal-analysis)
-[What You Need to Know about Wideband Signal Analysis](https://www.keysight.com/blogs/en/tech/rfmw/2021/04/19/what-you-need-to-know-about-wideband-signal-analysis)
+
+![[serial quadrature.png|400]]
 # Random Carrier-Phase
 coherent vs **incoherent** reception: no knowledge of $\theta$ means there is only cosine but it can be decomposed to have the sine component.
 
@@ -316,6 +320,7 @@ $\cos(a-b)=\cos a\cos b+\sin a\sin b$
 
 **optimum incoherent reception (and when equal energy)**
 ![[optimum incoherent reception.png|300]]![[optimum reception equal energy.png|300]]
+![[incoherent receiver structure.png|400]]
 
 **envelope simplified representation**
 ![[output of simplified filter.png|300]]![[receiver structure.png|300]]
@@ -339,7 +344,9 @@ where:
 - **Building block:**$\phi(t-kT)$ structures the signal in time, shapes it in frequency and minimizes the inter-symbol interference.
 - **Carrier component:**$\psi(t)$ modulates the signal to the desired transmission frequency while preserving orthogonality between **in-phase** and **quadrature** components.
 
-# Invited Lecture (IMPORTANT)
+# Invited Lecture
+![[5ETB0_Invited_Lecture_Optical_Satellite_Communications.pdf]]
+
 - Satellites operate on RF band -> could be a problem?
 - Infrared c-band spectrum -> allows a much larger bandwidth that classic RF like FM or 5G MMWAVE BAND.
 
@@ -369,7 +376,6 @@ minimizing:
 - form factor (size/weight)
 - complexity of the system
 
-
-
 UP link: diversity gain: temporal diversity, spatial diversitty, site diversity, frequency diversity.
 
+![[Pasted image 20250123224550.png]]

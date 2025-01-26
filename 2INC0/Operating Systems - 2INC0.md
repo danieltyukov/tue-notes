@@ -982,6 +982,8 @@ A system in **unsafe** state does not imply **deadlock**.''
 ![[file systems 1.png]]
 ![[file systems 2.png]]![[file system structure.png|400]]
 
+
+
 ### Objectives of file system
 ![[responsobilities of a file system.png|400]]
 ### User view (file-system interface)
