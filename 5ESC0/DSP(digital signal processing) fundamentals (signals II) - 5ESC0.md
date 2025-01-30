@@ -1,4 +1,4 @@
-# Preknowledge
+# Pre-knowledge
 ![[Introduction_5ESC0 (4).pdf]]
 $z=|z|e^{j\theta}=Re\{ z \}+j \cdot Im\{ z \}\to \text{conjugate: }-j$
 $\text{euler: }e^{j\theta}=\cos \theta+j\sin \theta \text{ where }\cos \theta=\frac{e^{j\theta}+e^{-j\theta}}{2}\text{ and }\sin \theta=\frac{e^{j\theta}-e^{-j\theta}}{2j}$

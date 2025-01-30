@@ -583,12 +583,12 @@ Limitations: Cannot solve complex race conditions (e.g., bounded-buffer problem 
 ![[atomic variables race conditions.png|400]]
 
 #### Summary of Critical Section Tools
-| **Tool**              | **Feature**                                 | **Example**                       |
-|-----------------------|---------------------------------------------|-----------------------------------|
-| **Memory Barrier**    | Ensures memory consistency, prevents reordering | `memory barrier();`              |
-| **Test-and-Set (TAS)**| Atomic lock setting                         | `test_and_set(&lock)`             |
-| **Compare-and-Swap (CAS)** | Atomic comparison and update             | `compare_and_swap(&lock, 0, 1)`   |
-| **Atomic Variables**  | Simplifies single-variable updates          | `increment(&sequence)`            |
+| **Tool**                   | **Feature**                                     | **Example**                     |
+| -------------------------- | ----------------------------------------------- | ------------------------------- |
+| **Memory Barrier**         | Ensures memory consistency, prevents reordering | `memory barrier();`             |
+| **Test-and-Set (TAS)**     | Atomic lock setting                             | `test_and_set(&lock)`           |
+| **Compare-and-Swap (CAS)** | Atomic comparison and update                    | `compare_and_swap(&lock, 0, 1)` |
+| **Atomic Variables**       | Simplifies single-variable updates              | `increment(&sequence)`          |
 
 ### Synchronization with mutexes
 
@@ -1065,6 +1065,8 @@ A system in **unsafe** state does not imply **deadlock**.''
 9.1
 ![[virtual memory part 1.png]]
 ![[virtual memory part 2.png]]
+
+![[all u need to know about memory.png]]
 $\text{physical address = base register + virtual address}=\text{(frame num * page size)+offset}$
 
 $2KB=2 \times 1024=2048\text{ }bytes$
@@ -1167,6 +1169,9 @@ $\text{frame num: }2^f\text{ frame size: }2^w$
 ![[address binding acceleration.png|400]]
 
 ![[how to decide which page to load and when.png|400]]
+
+[Translation lookaside buffer - Wikipedia](https://en.wikipedia.org/wiki/Translation_lookaside_buffer)
+![[TLB.png]]
 
 #### Summary
 **Remaining problems after memory paging was introduced:**
