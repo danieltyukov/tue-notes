@@ -73,6 +73,9 @@ $\text{class 3: }\left( \left( \frac{j\omega}{\omega_{n}} \right)^2 + 2\zeta  \f
 	$\text{magnitude slope: }\pm40db$
 	$\text{phase slope: }\pm180 \degree$
 
+
+$$(\left( \frac{j\omega}{\omega_{n}} \right)^2+ 2\zeta  \frac{j\omega}{\omega_{n}}+1)^{\pm1}\to \text{second order standard form}\to \omega_{n}^2 \cdot (\left( \frac{j\omega}{\omega_{n}} \right)^2+ 2\zeta  \frac{j\omega}{\omega_{n}}+1)^{\pm1}=((j\omega)^2+2\zeta \omega_{n}(j\omega)+\omega_{n}^2)^{\pm1}$$
+
 ![[bode plot sketching.png]]![[Pasted image 20240926200943.png]]
 
 ![[bodep lot showcase difference between in and output.png|400]]
@@ -103,6 +106,8 @@ $\zeta=\frac{PM}{100}$
 $N_{CCW}=P_{rhp}=0\text{ so the system is stable for }K=1$
 ![[margins.png|300]]![[gain phase margins.png|300]]
 ![[nyquist.png|300]]![[nyquist2.png|300]]
+
+![[Control systems - 5ESD0-1.png]]
 # Module 5: Frequency Response Controller Design (Designing single-input-single-output feedback controllers by shaping the open-loop frequency-response function)
 ## performance specifications
 $L(s)=D(s)G(s)$
