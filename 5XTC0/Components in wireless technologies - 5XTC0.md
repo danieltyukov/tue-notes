@@ -90,4 +90,41 @@ $V_0^- = \frac{Z_L - Z_0}{Z_L + Z_0} V_0^+$   $\Gamma = \frac{V_0^-}{V_0^+} = \f
 >
 >![[terminated transmission line.png|300]]
 
+>[!NOTE] Insertion Loss
+>Insertion loss quantifies the power loss when two transmission lines with different characteristic impedances are connected.
+>
+>### Transmitted Wave for $z > 0$:
+>$V(z) = V_0^+ T e^{-j\beta z}$
+>where $T$ is the transmission coefficient.
+>
+>### Transmission Coefficient:
+>$T = 1 + \Gamma = 1 + \frac{Z_1 - Z_0}{Z_1 + Z_0} = \frac{2Z_1}{Z_1 + Z_0}$
+>This equation determines how much of the wave is transmitted through the junction.
+>
+>### Insertion Loss (IL):
+>Insertion loss is calculated using power ratios:
+>$IL = -10 \log \left(\frac{P_1}{P_0}\right) = -10 \log \left( \frac{|V_1|^2 / Z_1}{|V_0|^2 / Z_0} \right)$
+>Simplifying:
+>$IL = -20 \log |T| + 10 \log \left(\frac{Z_1}{Z_0}\right)$
+>The negative sign indicates **loss** in power transmission. A higher impedance mismatch leads to greater insertion loss.
+>
+>![[insertion loss.png|300]]
 
+>[!NOTE] Quarter-Wave Transformer – The Impedance Viewpoint
+>The **quarter-wave transformer** is a transmission line segment of length $\lambda/4$ used to match two impedances.
+>### Input Impedance at $z=-\lambda/4$:
+>The impedance transformation equation is given by:
+>$Z_{in} = Z_1 \frac{R_L + jZ_1 \tan \beta l}{Z_1 + jR_L \tan \beta l}$
+>### Special Case for a Quarter-Wavelength Line:
+>Since the phase shift $\beta l$ for a quarter-wavelength section is:
+>$\beta l = (2\pi / \lambda)(\lambda / 4) = \pi / 2$
+>The input impedance simplifies to:
+>$Z_{in} = \frac{Z_1^2}{R_L}$
+>### Condition for Perfect Matching:
+>To achieve **impedance matching** ($\Gamma = 0$), we set:
+>$Z_1 = \sqrt{Z_0 R_L}$
+>This ensures that all power is transferred to the load **without reflections**.
+>
+>![[quarter wave transformer.png|300]]
+
+## Smith chart
