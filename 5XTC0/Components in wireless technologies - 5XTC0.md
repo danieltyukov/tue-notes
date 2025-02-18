@@ -73,6 +73,7 @@ $V(z) = V_0^+ e^{-j\beta z} + V_0^- e^{j\beta z}$      $I(z) = \frac{V_0^+}{Z_0}
 $Z_L = \frac{V(0)}{I(0)} = \frac{V_0^+ + V_0^-}{V_0^+ - V_0^-} Z_0$
 **Special cases:**
 $Z_{L}=Z_{0}\to \Gamma=0,\text{ }Z_{L}=0\to \Gamma=-1,\text{ }Z_{L}=\infty\to \Gamma=1$
+**short circuit load:** $Z_{L}=0$ **open ended load:** $Z_{L}=\infty$ **matched load:** $Z_{L}=Z_{0}$
 
 **Rewriting:**
 $V_0^- = \frac{Z_L - Z_0}{Z_L + Z_0} V_0^+$   $\Gamma = \frac{V_0^-}{V_0^+} = \frac{Z_L - Z_0}{Z_L + Z_0}$ **reflection coefficient**
@@ -86,9 +87,20 @@ $V_0^- = \frac{Z_L - Z_0}{Z_L + Z_0} V_0^+$   $\Gamma = \frac{V_0^-}{V_0^+} = \f
 >$Z_{in} = \frac{V(z=-l)}{I(z=-l)} = \frac{V_0^+ \left[ e^{j\beta l} + \Gamma e^{-j\beta l} \right]}{V_0^+ \left[ e^{j\beta l} - \Gamma e^{-j\beta l} \right]} Z_0=$
 >$Z_{in}(z=-l)=Z_{0} \frac{Z_{L} + jZ_{0}\tan \beta l}{Z_{0}+jZ_{L}\tan \beta l}$
 >
->$\lambda=\frac{2\pi}{\beta}=\frac{2\pi}{\omega \sqrt{ LC }},f=\frac{c}{\lambda}\text{ and phase velocity: }v_{p}=\frac{\omega}{\beta}=\frac{1}{\sqrt{ LC }}$
+>$\omega =2\pi f$
+>
+>$\lambda=\frac{2\pi}{\beta}=\frac{2\pi}{\omega \sqrt{ LC }}=\frac{c}{f},f=\frac{c}{\lambda}= \frac{1}{2\pi \sqrt{ LC }} \text{ and phase velocity: }v_{p}=\frac{\omega}{\beta}=\frac{1}{\sqrt{ LC }}$
 >
 >![[terminated transmission line.png|300]]
+
+**LC lumped element (resonator) as load:**
+$\text{inductor impedance: }Z_{L}=j\omega L$
+$\text{capacitor impedance: } Z_{C}=\frac{1}{j\omega C}$
+$\text{total: }Z_{LC}=Z_{L}+Z_{C}$
+$Z_{total}=Z_{LC}||R\implies \frac{Z_{LC} \times R}{Z_{LC } +R}$
+$\Gamma=\frac{Z_{total}-Z_{0}}{Z_{total}+Z_{0}}$
+![[LC lumped element resonator as load.png|250]]
+
 
 >[!NOTE] Insertion Loss
 >Insertion loss quantifies the power loss when two transmission lines with different characteristic impedances are connected.
@@ -120,11 +132,48 @@ $V_0^- = \frac{Z_L - Z_0}{Z_L + Z_0} V_0^+$   $\Gamma = \frac{V_0^-}{V_0^+} = \f
 >$\beta l = (2\pi / \lambda)(\lambda / 4) = \pi / 2$
 >The input impedance simplifies to:
 >$Z_{in} = \frac{Z_1^2}{R_L}$
+>
+>Transmission line length: $L = \frac{\lambda}{4}$
+>
 >### Condition for Perfect Matching:
 >To achieve **impedance matching** ($\Gamma = 0$), we set:
 >$Z_1 = \sqrt{Z_0 R_L}$
 >This ensures that all power is transferred to the load **without reflections**.
 >
 >![[quarter wave transformer.png|300]]
+$Z_1 = \sqrt{Z_0 \cdot R_L} = \sqrt{50 \times 100} = 71 \text{ Ohm}$
 
+**quarter wave transformer:**
+$Z_1 = \sqrt{Z_0 \cdot R_L} = \sqrt{50 \times 100} = 71 \text{ Ohm}$
+$\lambda = \frac{c}{f} = \frac{3 \times 10^8}{1 \times 10^9} = 0.3 \text{ m}$
+$L = \frac{\lambda}{4} = 75 \text{ mm}$
+$\Gamma = \frac{Z_{\text{in}} - Z_0}{Z_{\text{in}} + Z_0}$
+$Z_{\text{in}} = \frac{Z_1^2}{R_L}$ where $Z_1 = \sqrt{Z_0 \cdot R_L}$
+Thus, $Z_{\text{in}} = Z_0$, so:
+$\Gamma = 0$
+In our case, $\Gamma$ is close to 0, meaning **no reflection**.
+![[quarter wave transformer-1.png|250]]
+
+**Lossy quarter wave transformer:**
+$\text{Attenuation for } 75\text{mm:} \quad \alpha L = 1 \text{ dB/m} \times 0.075 = 0.075 \text{ dB}$
+$\text{Exponential loss factor:} \quad e^{-2\alpha L} = 0.983$
+$Z_{\text{in}} \neq Z_0 \text{ since we have real-world attenuation.}$
+$Z_{\text{in}} = \frac{Z_1^2}{R_L} \times e^{-2\alpha L}$
+$Z_{\text{in}} = 50 \times 0.983 = 49.15$
+$\Gamma \neq 0 \text{ so reflection increases.}$
 ## Smith chart
+[The scariest thing you learn in Electrical Engineering \| The Smith Chart - YouTube](https://www.youtube.com/watch?v=pXWbdxOAuDs)
+- When there is very high frequencies on small length it causes reflections, good example in the video with a pulsating rope.
+- Smith chart shows how much Voltage transmitted vs how much is reflected.
+
+![[unit circle visualized.png]]
+if the original signal is 10V then the reflection is 6.2V.
+![[smith chart cheatsheet.png]]
+![[charting on smith chart.png|300]]![[charting on smith chart-1.png|300]]
+![[terminated lossless transmission line.png|300]]![[derived from smith chart.png|300]]
+$|\Gamma|\text{ magnitude of reflection coefficient and: }\Theta \text{ phase of reflection coefficient}$
+
+[finding reflection coefficient on smith chart](https://www.youtube.com/watch?v=cOB7YijdveA)
+[moving towards generator on smith chart](https://www.youtube.com/watch?v=vwqIGjXGKkk)
+![[conversion between impedance and admittance.png|400]]
+# Passive microwave networks
