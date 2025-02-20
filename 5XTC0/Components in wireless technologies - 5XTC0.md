@@ -62,7 +62,7 @@ $V(z) = V_0^+ e^{-\gamma z} + V_0^- e^{\gamma z}$ and $I(z) = I_0^+ e^{-\gamma z
 >
 >$Z_0$ is the **characteristic impedance** of the transmission line, which determines how waves propagate and reflect along the line.
 
-## The Lossless Transmission Line
+## The lossless transmission line
 ![[Lossless transmission line simplification.png|200]]
 
 $\text{since R=0 and G=0: }\gamma=j\beta=j\omega \sqrt{ LC }\implies Z_{0}=\sqrt{ \frac{L}{C} }$
@@ -177,3 +177,44 @@ $|\Gamma|\text{ magnitude of reflection coefficient and: }\Theta \text{ phase of
 [moving towards generator on smith chart](https://www.youtube.com/watch?v=vwqIGjXGKkk)
 ![[conversion between impedance and admittance.png|400]]
 # Passive microwave networks
+## Microwave network matrices
+$Z_{ij}=\frac{V_{i}}{I_{j}}|_{I_{k}=0,k\neq j}$ and $Y_{ij}=\frac{I_{i}}{V_{j}}|_{V_{k}=0,k\neq j}$
+![[impedance and admittance matrices.png|300]]
+**microwave circuits:** $V_{n}=V_{n}^++V_{n}^-\text{ and }I_{n}=I_{n}^+ - I_{n}^-$
+- Voltage and current difficult to measure (either separate measurement of $V_{n}^+$ and $V_{n}^-$ or of standing wave pattern required)
+- Voltage and current difficult to define for non-TEM transmission lines.
+
+### Scattering parameters
+**using power relations:** wave amplitudes defined to obtain meaningful power relations: $a_{n}=\frac{V_{n}^+}{\sqrt{ Z_{0}n }}\text{ and }b_{n}=\frac{V_{n}^-}{\sqrt{ Z_{0}n }}$ knowing the microwave circuit equations of $V_{n}\text{ and }I_{n}\text{ obtained before we get: }V_{n}=\sqrt{ Z_{0}n }(a_{n}+b_{n})\text{ and }I_{n}=\frac{1}{\sqrt{ Z_{0}n }}(a_{n}-b_{n})$
+**power delivered to port = incident - reflected wave** $P_{n}=\frac{1}{2}Re\{V_{n}I^*_{n}\}=\frac{1}{2}|a_{n}|^2-\frac{1}{2}|b_{n}|^2$
+
+![[scattering matrix.png|300]]![[scattering matrix for loessless network.png|300]]
+![[scattering matrix for reciprocal network.png|300]]![[transmission ABCD matrix.png|300]]
+
+$\text{transmission (ABCD)for single network: }\begin{bmatrix}V_{1} \\ I_{1}\end{bmatrix}=\begin{bmatrix} A_{1} & B_{1} \\ C_{1}&D_{1}\end{bmatrix}\begin{bmatrix}V_{2} \\ I_{2} \end{bmatrix}$
+## Impedance matching and tuning
+![[Pasted image 20250218140025.png]]
+letting $\frac{\delta P_{L}}{\delta R_{L}}=\frac{\delta P_{L}}{\delta X_{L}}=0$ we fine that value $R_{L}\text{ and }X_{L}\text{ that would maximize }P_{L}\text{ is }R_{L}=R_{s'}X_{L}=-X_{s^*}\text{ basically: }Z_{L}=Z_{s}^*$ to max the power transfer to load impedance $Z_{L}$ must be complex conjugate of $Z_{s'}$ this is called **Conjugate Matched**
+
+>[!NOTE] Impedance matching network
+>such network is pushed between source and load in the case there are reflections due to $Z_{S}\neq Z_{L}$, in the course we only deal with single frequencies but in general the impedance matching network can range for **Broadband**.
+
+![[impedances for serial lumped elements.png|300]]![[impedances for parallel lumped elements.png|300]]
+![[impact of serieis component.png|300]]![[impact of parallel components.png|300]]
+![[smith chart matchig.png|300]]
+
+>[!NOTE] Distributed elements (using stubs to mimic lumped components)
+>inductances and capacitances can be achieved using $\text{e.g. } \lambda/8$ transmission lines:
+>![[transmission line distributed lines.png|300]]
+>
+>$Z_{in}=Z_{0} \frac{Z_{L}+jZ_{0}\tan \beta l}{Z_{0}+jZ_{L}\tan \beta l}$
+>
+>**Inductance:** $Z_{in}(Z_{L}=0)=jZ_{0}\tan \beta l=j\Omega Z_{0}=j\Omega L$
+>**Capacitance:** $Z_{in}(Z_{L}=\infty) =\frac{Z_{0}}{j\tan \beta l}=\frac{Z_{0}}{j \Omega}=\frac{1}{j\Omega C}$
+
+## Power dividers and directional couplers
+A power divider network can have symmetrical or asymmetrical.
+![[power deivider and combiner.png|300]]
+
+
+
