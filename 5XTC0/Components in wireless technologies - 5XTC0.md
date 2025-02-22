@@ -214,7 +214,11 @@ letting $\frac{\delta P_{L}}{\delta R_{L}}=\frac{\delta P_{L}}{\delta X_{L}}=0$ 
 
 ## Power dividers and directional couplers
 A power divider network can have symmetrical or asymmetrical.
-![[power deivider and combiner.png|300]]
+![[power deivider and combiner.png|300]]![[power ivider combiners.png|300]]
+![[power divider combiners.png|300]]![[directional couplers-1.png|300]]
+![[directional couplers-2.png|300]]![[directional couplers-3.png|300]]
+![[symmetric and anit symmetric coupler.png|300]]![[real type of such directional couplers.png|300]]
+
 
 
 
