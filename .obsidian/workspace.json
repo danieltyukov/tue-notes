@@ -4,19 +4,51 @@
     "type": "split",
     "children": [
       {
-        "id": "a1c1948d920ccbd7",
+        "id": "db723dece9597fd4",
         "type": "tabs",
         "children": [
           {
-            "id": "e5f51aa28eda467b",
+            "id": "8d6830f7d368f5f4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "5EPA0/Electromagnetics I - 5EPA0.md",
-                "mode": "preview",
+                "file": "BEP - SiP Integration of Large Scale DAC Arrays/Developing a Process for System in Package Integration of Large Scale DAC Arrays.md",
+                "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "Developing a Process for System in Package Integration of Large Scale DAC Arrays"
+            }
+          }
+        ]
+      },
+      {
+        "id": "4bf86e90ac86d053",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "34f96022b178479a",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "BEP - SiP Integration of Large Scale DAC Arrays/litrature/BEP_presentation_flip-chip_technology_Wouter_Beelaerts_van_Emmichoven.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "BEP_presentation_flip-chip_technology_Wouter_Beelaerts_van_Emmichoven"
+            }
+          },
+          {
+            "id": "f2ca0b9acc2b84ea",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "BEP - SiP Integration of Large Scale DAC Arrays/litrature/Introduction slides BEP Daniel.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Introduction slides BEP Daniel"
             }
           }
         ]
@@ -38,8 +70,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -48,28 +83,23 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "eps",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
-            }
-          },
-          {
-            "id": "84de31a68772ac1a",
-            "type": "leaf",
-            "state": {
-              "type": "bookmarks",
-              "state": {}
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 403.5
+    "width": 424.51103591918945,
+    "collapsed": true
   },
   "right": {
     "id": "75fc54ffbb8d3a6a",
@@ -85,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "5EPA0/Electromagnetics I - 5EPA0.md",
+                "file": "5XTC0/Components in wireless technologies - 5XTC0.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +123,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Components in wireless technologies - 5XTC0"
             }
           },
           {
@@ -102,21 +134,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "5EPA0/Electromagnetics I - 5EPA0.md",
+                "file": "5XTC0/Components in wireless technologies - 5XTC0.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "6350acee82ef0b5a",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Components in wireless technologies - 5XTC0"
             }
           },
           {
@@ -125,21 +148,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "5EPA0/Electromagnetics I - 5EPA0.md"
-              }
-            }
-          },
-          {
-            "id": "3c46d88a52a98251",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency"
-              }
+                "file": "BEP - SiP Integration of Large Scale DAC Arrays/Developing a Process for System in Package Integration of Large Scale DAC Arrays.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Developing a Process for System in Package Integration of Large Scale DAC Arrays"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -149,39 +168,51 @@
   "left-ribbon": {
     "hiddenItems": {
       "switcher:Open quick switcher": false,
-      "graph:Open graph view": true,
-      "canvas:Create new canvas": true,
-      "daily-notes:Open today's daily note": true,
-      "templates:Insert template": true,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "omnisearch:Omnisearch": false,
+      "markdown-importer:Open format converter": false
     }
   },
-  "active": "e5f51aa28eda467b",
+  "active": "8d6830f7d368f5f4",
   "lastOpenFiles": [
-    "5EPA0/attachments/differential-operatorss.png",
-    "5EPA0/attachments/maxwell-static.png",
-    "5EPA0/attachments/stoke-theorem.png",
-    "5EPA0/attachments/ampere-point-law.png",
-    "5EPA0/attachments/differential-operators.png",
-    "2WBB0/Calculus - 2WBB0.md",
-    "5EPA0/Electromagnetics I - 5EPA0.md",
-    "5EPA0/attachments/biot-savart-law.png",
-    "2WBB0/attachments/quotient-rule-formula.png",
-    "2WBB0/attachments/squeeze-theorem.png",
-    "2WBB0/attachments/min-max-theorem.png",
-    "2WBB0/attachments/definition-continuity.png",
-    "2WBB0/attachments/limit.jpg",
-    "5EMA0/Math II - 5EMA0.md",
-    "5EPA0/attachments",
-    "5ECB0/Electronics - 5ECB0.md",
+    "BEP - SiP Integration of Large Scale DAC Arrays/attachments/SiIP PKG.png",
+    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/BEP_presentation_flip-chip_technology_Wouter_Beelaerts_van_Emmichoven.pdf",
+    "BEP - SiP Integration of Large Scale DAC Arrays/Developing a Process for System in Package Integration of Large Scale DAC Arrays.md",
+    "BEP - SiP Integration of Large Scale DAC Arrays/attachments/PVD Methods.png",
+    "BEP - SiP Integration of Large Scale DAC Arrays/attachments/Chip on PCB design.png",
+    "BEP - SiP Integration of Large Scale DAC Arrays/attachments/chip building blocks.png",
+    "BEP - SiP Integration of Large Scale DAC Arrays/attachments",
+    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/Flip_chip_assembly_for_sub-millimeter_wave_amplifier_MMIC_on_polyimide_substrate.pdf",
+    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/Introduction slides BEP Daniel.pdf",
+    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/DML_Norwegen_2008_Handout.pdf",
+    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/ep_138_03_030802.pdf",
+    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/Gold_stud_bump_in_flip-chip_applications.pdf",
+    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/V2_BEP_Final_paper___Flip_Chip_technology_Wouter_Beelaerts.pdf",
+    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/BEP_Final_paper_Flip_Chip_technology_Wouter_Beelaerts_van Emmichoven.pdf",
+    "logseq/custom.css",
+    "pages/contents.md",
+    "5XCC0/Biopotential and neural interface circuits - 5XCC0.md",
+    "2INC0/Operating Systems - 2INC0.md",
+    "5XTC0/Components in wireless technologies - 5XTC0.md",
+    "5EWB0/EPS - 5EWB0.md",
+    "5XTC0/attachments/real type of such directional couplers.png",
+    "5XTC0/attachments/symmetric and anit symmetric coupler.png",
+    "5XTC0/attachments/directional couplers-3.png",
+    "5XTC0/attachments/directional couplers-2.png",
+    "5XTC0/attachments/directional couplers-1.png",
+    "5XTC0/attachments/directional couplers.png",
+    "5XTC0/attachments/power divider combiners.png",
+    "BEP - SiP Integration of Large Scale DAC Arrays/BEP Skills.md",
     "5ESB0/Systems - 5ESB0.md",
+    "5EIB0/Computation II - 5EIB0.md",
+    "5XTB0/Photonics - 5XTB0.md",
+    "5ETA0/Intro to Telecommunication - 5ETA0.md",
+    "5ESC0/DSP(digital signal processing) fundamentals (signals II) - 5ESC0.md",
+    "5EPA0/Electromagnetics I - 5EPA0.md",
+    "2WBB0/Calculus - 2WBB0.md",
+    "5EMA0/Math II - 5EMA0.md",
+    "5ECB0/Electronics - 5ECB0.md",
     "2DE20/Math I - 2DE20.md",
-    "2WBB0/attachments",
-    "5EPA0/attachments",
-    "5EPA0",
-    "2WBB0/attachments",
-    "2WBB0",
-    "2DE20/attachments",
     "2023-07-01.md"
   ]
 }
