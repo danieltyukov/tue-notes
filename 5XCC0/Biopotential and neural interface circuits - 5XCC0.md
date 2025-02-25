@@ -18,3 +18,67 @@
 until: **PAGE 24** low power system design
 
 $v_{cm = \frac{1}{2}(v_{1}+v_{2})}\text{ and }v_{diff}=v_{1}-v_{2}$
+
+# Low-power Amplifiers & Filters
+## Amplifier Types
+
+>[!NOTE] Concepts to be familiar with
+>- Differential pair 
+>- Current mirror 
+>- Common-mode, differential-mode 
+>- Common-mode feedback 
+>- Open-loop, closed-loop, stability, phase margin
+
+![[amplifier types.png|300]]![[amplifier types-1.png|300]]
+![[photodiodes.png|300]]
+### Transimpedance Amplifiers
+![[transimpedance amplifier.png|400]]
+### Transconductance Amplifiers
+![[transconducatance amplifier.png|400]]
+### Voltage Amplifiers
+![[common source and voltage amplifiers.png|400]]
+$\text{Gain: }A=-g_{m_{1}}\cdot(r_{o1} //r_{o2})\text{ and Input-referred noise: }V_{n}^2(f)\{I_{n1}^2(f)+I_{n2}^2(f)\}/g_{m1}^2$
+The reason for small signal model **not** having $g_{m2}V_{B}$ is because in small signal model $v_{B}\text{ and }v_{DD}\text{ are both = }0$ so $v_{GS}=0$ so there is no current, so there is no gain. The top part basically just acts as a resistor in small signal model, so we only consider $r_{o2}$.
+
+![[inverter-based voltage amplifier.png|400]]
+$\text{Gain: }A=-(g_{m1}+g_{m2}) \cdot(r_{o1}//r_{o2})\text{ and Input-referred noise: }V_{n}^2(f)=\{I_{n1}^2(f)+I_{n2}^2(f)\}/(g_{m1}+g_{m2})^2$
+More gain (about 2x) and lower input-referred noise power spectral density (about 4x) compared to CS VA.
+## Advanced Amplifier Techniques
+
+>[!NOTE] Low-Voltage Analog Design
+>- Each transistor needs a certain $V_{DSAT}\to$
+>	- Minimize number of stacked transistors
+>	- Use sub-threshold biasing (lower $V_{DSAT}$)
+>- Use cascaded stages rather than cascoded transistors to increase gain.
+>- Increase DC gain by positive feedback.
+
+![[positive feedback loops.png|300]]![[enhance gain with positive feedback.png|300]]
+$V_{out}=A_{0}(V_{+}-V_{-})\text{ so closed loop gain: } A_{cl}=\frac{V_{out}}{V_{in}}=A_{0} \frac{R_{2}}{[R_{1}+R_{2}-A_{0}R_{1}]}\text{ only stable when }R_{1}+R_{2}-A_{0}R_{1}>0\text{ and gain can be }A_{0}>0$
+negative feedback: $|A_{cl}|<A_{0}$ and positive feedback: $|A_{cl}|>A_{0}$
+
+>[!NOTE] Positive vs Negative Feedback Amplification
+>- **Positive feedback** entails adding the output of a function or process to its input. **Negative feedback** is subtracted from the input instead of being added.
+>- The effect, generally, is that positive feedback causes the output, or its amplitude, to grow without bound or until a saturation level is reached.
+>- Another purpose for **positive amplification** is to enhance impedance. So either increase gain or enhance impedance.
+
+![[positive feedback to enhance impedance.png|400]]
+$V_{out}=\frac{R_{2}}{R_{1}}\cdot V_{in}\text{ the input impedance: }Z_{in}\approx2R_{1}\text{ (differential)}$
+With positive feedback, $Z_{in}$ can be increased... theoretically can be increased to infinity but that's impractical. for $Z_{in}=\infty \text{ the }I_{in}=0=0.5V_{in}/R_{1}(0.5V_{in}-0.5V_{out})/R_{x}=0$:
+![[increasing impedance to infinity.png|200]]
+$I_{in}=I_{R1}+I_{{Rx}}\text{ where }I_{R1}=\frac{0.5V_{in}}{R_{1}}\text{ and } \frac{I_{Rx}(0.5V_{in}-0.5V_{out})}{Rx}$
+$\text{since: }V_{out}=\frac{R_{2}}{R_{1}}V_{in}\text{ leads to }R_{x}=R_{2}-R_{1}$
+
+![[capacitively coupled amplifiers.png|300]]
+![[chopping amplifier.png|300]]![[chopping amplifier-1.png|300]]
+[Chopper (electronics) - Wikipedia](https://en.wikipedia.org/wiki/Chopper_(electronics)#:~:text=Chopper%20amplifiers,-One%20classic%20use&text=A%20chopper%20circuit%20is%20used,DC%20signals%20can%20be%20amplified.)
+****A chopper circuit is used to break up the input signal so that it can be processed as if it were an AC signal, then integrated back to a DC signal at the output**. In this way, extremely small DC signals can be amplified.*
+## $G_{m}-C$ Filters
+![[filters.png|400]]
+- [Passive RLC](https://en.wikipedia.org/wiki/RLC_circuit) for high $f$ requires very large passive RLC values so cant be used on integrated circuits.
+- [Opamp-RC](https://www.electronics-tutorials.ws/filter/filter_5.html)
+- [OPAMP-Switched-capacitor](https://en.wikipedia.org/wiki/Switched_capacitor)
+- [Mosfet-RC](https://electronics.stackexchange.com/questions/76037/designing-a-mosfet-circuit-for-low-pass-filtered-pwm-operation-and-with-saftey-c)
+
+![[Gm-C filters.png|400]]
+![[2nd order Gm-C filter.png|400]]
+![[higher order gm-c filter.png|300]]![[noise in gm-c filter.png|300]]
