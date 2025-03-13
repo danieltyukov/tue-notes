@@ -120,6 +120,11 @@ On Design 2 gold bump placement were not gold bumps they were cone shaped deposi
 
 There was a heating malfunction where the temperature went only to 270 degrees.
 
+Biggest problem was **yielding issues** due to gold bumps of $25 \mu m$ were too large in gold bump format ($\approx75 \mu m$) this caused that for pads of $70 \mu m$ it had an overhang and way too little space between the pads. $17 \mu m$ how ever clogged the machine, but we must work with these smaller sizes.
+
+The die placement was also an issue and broke overnight due to the mechanical stress due to ban interconnections.
+
+Matlab code was used to find out the true size of gold bumps by identifying how they look and measuring in pixels and converting to micro meters.
 
 >[!NOTE] Measurements Obtained & Calculated
 >
