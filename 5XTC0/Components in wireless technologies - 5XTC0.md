@@ -194,7 +194,10 @@ $Z_{ij}=\frac{V_{i}}{I_{j}}|_{I_{k}=0,k\neq j}$ and $Y_{ij}=\frac{I_{i}}{V_{j}}|
 $\text{transmission (ABCD)for single network: }\begin{bmatrix}V_{1} \\ I_{1}\end{bmatrix}=\begin{bmatrix} A_{1} & B_{1} \\ C_{1}&D_{1}\end{bmatrix}\begin{bmatrix}V_{2} \\ I_{2} \end{bmatrix}$
 ## Impedance matching and tuning
 ![[Pasted image 20250218140025.png]]
-letting $\frac{\delta P_{L}}{\delta R_{L}}=\frac{\delta P_{L}}{\delta X_{L}}=0$ we fine that value $R_{L}\text{ and }X_{L}\text{ that would maximize }P_{L}\text{ is }R_{L}=R_{s'}X_{L}=-X_{s^*}\text{ basically: }Z_{L}=Z_{s}^*$ to max the power transfer to load impedance $Z_{L}$ must be complex conjugate of $Z_{s'}$ this is called **Conjugate Matched**
+letting $\frac{\delta P_{L}}{\delta R_{L}}=\frac{\delta P_{L}}{\delta X_{L}}=0$ we fine that value $R_{L}\text{ and }X_{L}\text{ that would maximize }P_{L}\text{ is }R_{L}=R_{s'}X_{L}=-X_{s^*}\text{ basically: }Z_{L}=Z_{s}^*$ to max the power transfer to load impedance $Z_{L}$ must be complex conjugate of $Z_{s'}$ this is called **Conjugate Matched**.
+
+$$\text{obtained from smith chart, normalized value: } Z'_{in}\text{ unnormalize: }Z_{in}=Z_{0} \cdot Z'_{in}\text{ where }Z_{0}\text{ characteristic impedance}$$
+
 
 >[!NOTE] Impedance matching network
 >such network is pushed between source and load in the case there are reflections due to $Z_{S}\neq Z_{L}$, in the course we only deal with single frequencies but in general the impedance matching network can range for **Broadband**.
@@ -218,6 +221,12 @@ A power divider network can have symmetrical or asymmetrical.
 ![[power divider combiners.png|300]]![[directional couplers-1.png|300]]
 ![[directional couplers-2.png|300]]![[directional couplers-3.png|300]]
 ![[symmetric and anit symmetric coupler.png|300]]![[real type of such directional couplers.png|300]]
+
+### Matrix Based Question
+
+![[20250316_131211~2.jpg]]
+
+![[20250316_131224~2.jpg]]
 
 # Antenna parameters & theory
 ![[antenna types.png|300]]
@@ -251,7 +260,7 @@ The power density decays with $\frac{1}{R^2}$ hence the **radiation intensity** 
 To have **power independent figure** we normalize the radiation intensity with respective radiation intensity of (ideal) isotropic radiator: $D_{g}=\frac{U(\theta,\phi)}{U_{0}}$ where $D_{g}$ is **directivity.** and isotropic radiator: $U_{0}=\frac{P_{rad}}{4\pi}\left( =R^2 \frac{P_{rad}}{4\pi R^2} \right)$.
 
 To know the **directivity** radiated power is needed, we obtain **gain:** $G_{g}=\frac{4\pi U(\theta,\phi)}{P_{in}}$ the input power is related to radiated power by **efficiency:** $e_{t}$ so $P_{rad}=e_{t}P_{in}=e_{r}e_{cd}P_{in}\text{ where }e_{r}=1-|\Gamma|^2\text{ and reflection (mismatch) efficiency is related to conduction and dielectric loss }e_{cd}.$
-$G_{g}=e_{t}D_{g}$
+$G_{g}=e_{t}D_{g}\to \text{ in dB }\to D(dBi)=G(dBi)+e_{t}$
 
 >[!NOTE] Polarization
 >In a specified direction from an antenna and at a point in its far field, the polarization of the (locally) plane wave that is used to represent the radiated wave at that point.
@@ -279,4 +288,7 @@ power received by antenna 2 depends on its effective aperture: $P_{rec}=W_{inc}A
 Ratio of gain to effective aperture in certain direction is same for all antennas, for example for **very short dipole** $A_{e,max}=\frac{3\lambda^2}{8\pi}$, **max gain: 1.5** so $\frac{A_{e,max}}{G_{max}}=\frac{\lambda^2}{4\pi}$ so rewriting for received power: $P_{rec}=W_{inc}A_{e,2}=A_{e,2}G_{1} \frac{P_{in}}{4\pi R^2}=G_{1}G_{2} \frac{\lambda^2}{(4\pi R)^2}P_{in}$.
 
 **Friis Transmission equation:** $\frac{P_{rec}}{P_{in}}=\left( \frac{\lambda}{4\pi R} \right)^2G_{1}G_{2}$
+$EIRP=G_{Tx}P_{in}=G_{T}+G_{PA}+P_{in}$
+$P_{in}=P_{out}-(G_{PA}-G_{A1})-20\log_{10}\left( \frac{\lambda}{4\pi D_{1}} \right)-(G_{A2}-G_{LNA})$
+$10^{db/10}=mW$
 
