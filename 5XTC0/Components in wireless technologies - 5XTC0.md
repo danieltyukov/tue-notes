@@ -327,5 +327,26 @@ $\text{input power to network: }P_{in}=\frac{|V_{1}^+|^2}{2Z_{0}}(1-|\Gamma_{in}
 $\text{power gain: }G=\frac{P_{L}}{P_{in}}=\frac{|S_{21}|^2(1-|\Gamma_{L}|^2)}{(1-|\Gamma_{in}|^2)|1-S_{22}\Gamma_{L}|^2}$
 $\text{available power gain: }G_{A}=\frac{P_{avn}}{P_{avs}}=\frac{|S_{21}|^2(1-|\Gamma_{S}|^2)}{|1-S_{11}\Gamma_{S}|^2(1-|\Gamma_{out}|^2)}$
 $\text{transducer powr gain: }G_{T}=\frac{P_{L}}{P_{avs}}=\frac{|S_{21}|^2(1-|\Gamma_{S}|^2)(1-|\Gamma_{L}|^2)}{|1-\Gamma_{S}\Gamma_{in}|^2|1-S_{22}\Gamma_{L}|^2}$
+$\text{unilateral transducer power gain: }G_{TU}=\frac{1-|\Gamma_{S}|^2}{|1-\Gamma_{in}\Gamma_{S}|^2}|S_{21}|^2 \frac{1-|\Gamma_{L}|^2}{|1-S_{22}\Gamma_{L}|^2}\text{ since: }\Gamma_{in}=\frac{V_{1}^-}{V_{1}^+}=S_{11}$
+![[general transistor amplifier circuit.png|600]]
+$G_{S}=\frac{1-|\Gamma_{S}|^2}{|1-\Gamma_{in}\Gamma_{S}|^2}$, $\text{unilaterial case: }G_{0}=|S_{21}|^2$, $G_{L}=\frac{1-|\Gamma_{L}|^2}{|1-S_{22}\Gamma_{L}|^2}$
+$G_{T}=G_{S}G_{0}G_{L}\to G_{T,dB}=G_{S,dB}+G_{0,dB}+G_{L,dB}$
+If $S_{12}=0$ then: $\Gamma_{out}=S_{22}$ and $\Gamma_{in}=S_{11}$
 
+![[circles of constant power gain.png|300]]![[constant gain circles.png|300]]
+**circles of constant power gain:**
+**max gain of input and output matching networks:**
+$G_{S_{max}}=\frac{1}{1-|S_{11}|^2},\text{ for }\Gamma_{S}=S_{11}^*\text{ and }G_{L_{max}}=\frac{1}{1-|S_{22}|^2},\text{ for }\Gamma_{L}=S^*_{22}$
+**normalized gain factors $g_{s}$ and $g_{L}$:**
+$g_{S}=\frac{G_{S}}{G_{S_{max}}}=\frac{1-|\Gamma_{S}|^2}{|1-S_{11}\Gamma_{S}|^2}(1-|S_{11}|^2)\text{ and }g_{L}=\frac{G_{L}}{G_{L_{max}}}=\frac{1-|\Gamma_{L}|^2}{|1-S_{22}\Gamma_{L}|^2}(1-|S_{22}|^2)$
+**center and radius of constant gain circle for input and output matching network:**
+$C_{S}=\frac{g_{S}S_{11}^*}{1-(1-g_{S})|S_{11}|^2}\text{ and }R_{S}=\frac{\sqrt{ 1-g_{S} }(1-|S_{11}|^2)}{1-(1-g_{S})|S_{11}|^2}$
+$C_{L}=\frac{g_{L}S_{22}^*}{1-(1-g_{L})|S_{22}|^2} \text{and }R_{L}=\frac{\sqrt{1-g_{L}}(1-|S_{22}|^2)}{1-(1-g_{L})|S_{22}|^2}$
+
+![[stability of 2 port circuit.png|300]]![[unilateral case.png|300]]
+![[input stability circles.png|300]]![[output stability circles.png|300]]
+
+![[output stability circle on smith chart.png|400]]
+If $|\Delta|=|S_{11}S_{22}-S_{12}S_{21}|<1\text{ and }K= \frac{1-|S_{11}|^2-|S_{22}|^2+\Delta^2}{2|S_{12}S_{21}|}>1$ than the 2-port is unconditionally stable. **Unilateral case: $S_{12}=0$**, the conditions for unconditional stability: $|S_{11}|<1\text{ and }|S_{22}|<1$.
+**Where K is the Rollet stability factor**.
 # Noise and LNA design
