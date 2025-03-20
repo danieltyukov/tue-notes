@@ -172,6 +172,7 @@ if the original signal is 10V then the reflection is 6.2V.
 ![[charting on smith chart.png|300]]![[charting on smith chart-1.png|300]]
 ![[terminated lossless transmission line.png|300]]![[derived from smith chart.png|300]]
 $|\Gamma|\text{ magnitude of reflection coefficient and: }\Theta \text{ phase of reflection coefficient}$
+In the center it is the **Load**
 
 [finding reflection coefficient on smith chart](https://www.youtube.com/watch?v=cOB7YijdveA)
 [moving towards generator on smith chart](https://www.youtube.com/watch?v=vwqIGjXGKkk)
@@ -253,6 +254,10 @@ A power divider network can have symmetrical or asymmetrical.
 - Radiation fields predominate
 - Radiation pattern independent of $R$
 
+[Near and far field - Wikipedia](https://en.wikipedia.org/wiki/Near_and_far_field)
+
+![[antenna field regions visualized.png|400]]
+
 **Poynnting vector:** $\vec{W}_{av}=\frac{1}{2}Re\{\vec{E}(\vec{r}) \times \vec{H}^*(\vec{r})\}\text{ Power density }[W/m^2]$.
 
 The power density decays with $\frac{1}{R^2}$ hence the **radiation intensity** $\vec{U}(\theta,\phi)=R^2\vec{W}_{av}(\vec{r})$ is defined as distance independent parameter, provides radiated power per unit solid angle.
@@ -260,7 +265,8 @@ The power density decays with $\frac{1}{R^2}$ hence the **radiation intensity** 
 To have **power independent figure** we normalize the radiation intensity with respective radiation intensity of (ideal) isotropic radiator: $D_{g}=\frac{U(\theta,\phi)}{U_{0}}$ where $D_{g}$ is **directivity.** and isotropic radiator: $U_{0}=\frac{P_{rad}}{4\pi}\left( =R^2 \frac{P_{rad}}{4\pi R^2} \right)$.
 
 To know the **directivity** radiated power is needed, we obtain **gain:** $G_{g}=\frac{4\pi U(\theta,\phi)}{P_{in}}$ the input power is related to radiated power by **efficiency:** $e_{t}$ so $P_{rad}=e_{t}P_{in}=e_{r}e_{cd}P_{in}\text{ where }e_{r}=1-|\Gamma|^2\text{ and reflection (mismatch) efficiency is related to conduction and dielectric loss }e_{cd}.$
-$G_{g}=e_{t}D_{g}\to \text{ in dB }\to D(dBi)=G(dBi)+e_{t}$
+$G_{g}=e_{t}D_{g}\to \text{ in dB }\to D(dBi)=G(dBi)+10\log_{10}(e_{t})$
+[Directivity - Wikipedia](https://en.wikipedia.org/wiki/Directivity)
 
 >[!NOTE] Polarization
 >In a specified direction from an antenna and at a point in its far field, the polarization of the (locally) plane wave that is used to represent the radiated wave at that point.
@@ -278,6 +284,7 @@ $G_{g}=e_{t}D_{g}\to \text{ in dB }\to D(dBi)=G(dBi)+e_{t}$
 $\text{Radiation Efficiency: }\frac{P_{rad}}{P_{in}}=e_{t}$
 In receive mode the power $P_{T}$ accepted by Rx terminal can be linked to power density, $W_{inc}=|\vec{W}_{av}(\vec{r})|$ of the incident electromagnetic wave: $P_{T}=W_{inc}A_{e}$ where $A_{e}$ is **effective aperture of antenna.** and for max power transfer: $R_{T}=R_{A}\text{ and }X_{T}=-X_{A}$
 $A_{e,max}=\frac{|V_{T}|^2}{8W_{inc}}\left( \frac{1}{R_{rad}+R_{loss}}\right)$
+
 ## Propagation channel basics
 The **Friis transmission equation** relates the power received by an antenna 2 to the radiated power by antenna 1 and vice versa.
 ![[friis antennas.png|200]]![[friis equation explanation.png|200]]
@@ -287,8 +294,38 @@ power received by antenna 2 depends on its effective aperture: $P_{rec}=W_{inc}A
 
 Ratio of gain to effective aperture in certain direction is same for all antennas, for example for **very short dipole** $A_{e,max}=\frac{3\lambda^2}{8\pi}$, **max gain: 1.5** so $\frac{A_{e,max}}{G_{max}}=\frac{\lambda^2}{4\pi}$ so rewriting for received power: $P_{rec}=W_{inc}A_{e,2}=A_{e,2}G_{1} \frac{P_{in}}{4\pi R^2}=G_{1}G_{2} \frac{\lambda^2}{(4\pi R)^2}P_{in}$.
 
-**Friis Transmission equation:** $\frac{P_{rec}}{P_{in}}=\left( \frac{\lambda}{4\pi R} \right)^2G_{1}G_{2}$
+**Friis Transmission equation:** $\frac{P_{r}}{P_{T}}=\left( \frac{\lambda}{4\pi R} \right)^2G_{1}G_{2}$
 $EIRP=G_{Tx}P_{in}=G_{T}+G_{PA}+P_{in}$
 $P_{in}=P_{out}-(G_{PA}-G_{A1})-20\log_{10}\left( \frac{\lambda}{4\pi D_{1}} \right)-(G_{A2}-G_{LNA})$
 $10^{db/10}=mW$
+[Friis transmission equation - Wikipedia](https://en.wikipedia.org/wiki/Friis_transmission_equation)
 
+
+[FSPL](https://en.wikipedia.org/wiki/Free-space_path_loss) - Free Space Path Loss: influenced by frequency operation - Friis equation -> has a wavelength component. $FSPL=\left( \frac{4\pi d}{\lambda} \right)^2$
+# RF systems and Amplifier design
+## RF Systems
+![[application of rf systems.png|300]]![[applications of rf systems.png|300]]
+![[trends in semiconductors.png|300]]![[transciever design.png|300]]![[lna design topics addressed.png|300]]
+## Amplifier design
+![[2 port network description.png|300]]![[2 port network description-1.png|300]]
+
+![[common antenna amplifier.png|600]]
+$\Gamma_{S}=\frac{Z_{S}-Z_{0}}{Z_{S}+Z_{0}}\text{ and }V_{1}^+=\Gamma_{S}V_{1}^-$
+$\Gamma_{L}=\frac{Z_{L}-Z_{0}}{Z_{L}+Z_{0}}\text{ and }V_{2}^+=\Gamma_{L}V_{2}^-$
+$\Gamma_{in}=\frac{V_{1}^-}{V_{1}^+}=S_{11}+\frac{S_{12}S_{21}\Gamma_{L}}{1-S_{22}\Gamma_{L}}$
+$\Gamma_{out}=\frac{V_{2}^-}{V_{2}^+}=S_{22}+\frac{S_{12}S_{21}\Gamma_{S}}{1-S_{11}\Gamma_{S}}$
+$\text{unilaterial case: }S_{12}=0:\Gamma_{in}=\frac{V_{1}^-}{V_{1}^+}=S_{11}\text{ and }\Gamma_{out}=\frac{V_{2}^-}{V_{2}^+}=S_{22}$
+$\text{power delivered to load: }P_{L}=\frac{|V_{2}^-|^2}{2Z_{0}}(1-|\Gamma_{L}|^2)$
+$\text{input power to network: }P_{in}=\frac{|V_{1}^+|^2}{2Z_{0}}(1-|\Gamma_{in}|^2)$
+- Power available from source: $P_{avs}$, $P_{in}$ when source impedance is conjugately matched to input impedance: $Z_{in}=Z_{S}^*$ .
+- Power available from network: $P_{avn}$, $P_{L}$ when load impedance is conjugately matched to output impedance: $Z_{out}=Z_{load}^*$.
+
+>[!NOTE] Unilateral Amplifier
+>An amplifier whose **output exhibits no feedback to its input side** is described as 'unilateral'. The input impedance of a unilateral amplifier is independent of load, and output impedance is independent of signal source impedance. 
+
+![[power definitions.png|400]]
+$\text{power gain: }G=\frac{P_{L}}{P_{in}}=\frac{|S_{21}|^2(1-|\Gamma_{L}|^2)}{(1-|\Gamma_{in}|^2)|1-S_{22}\Gamma_{L}|^2}$
+$\text{available power gain: }G_{A}=\frac{P_{avn}}{P_{avs}}=\frac{|S_{21}|^2(1-|\Gamma_{S}|^2)}{|1-S_{11}\Gamma_{S}|^2(1-|\Gamma_{out}|^2)}$
+$\text{transducer powr gain: }G_{T}=\frac{P_{L}}{P_{avs}}=\frac{|S_{21}|^2(1-|\Gamma_{S}|^2)(1-|\Gamma_{L}|^2)}{|1-\Gamma_{S}\Gamma_{in}|^2|1-S_{22}\Gamma_{L}|^2}$
+
+# Noise and LNA design
