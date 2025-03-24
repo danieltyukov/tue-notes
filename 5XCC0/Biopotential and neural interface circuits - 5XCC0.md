@@ -48,6 +48,51 @@ So we need enough dynamic range to accommodate both the signal/disturbance witho
 
 ![[impact electrode mismatch and input impedance.png|500]]
 
+![[motion artificats, interference.png|200]]
+large dynamic range needed, spatial discrimination, frequency-domain filtering, time selection, advanced dsp.
+
+![[dynamic range of system.png|500]]
+dynamic range: $20\log_{10}\left( \frac{V_{max}}{V_{min}} \right)$ the **voltages must be same unit!**
+$V(t)=A\sin(2\pi ft)\text{ where }V_{pp}=2A\text{ and }V_{rms}=\frac{A}{\sqrt{ 2 }}$
+$V_{rms}=\frac{V_{pp}}{2\sqrt{ 2 }}$ to make sure that the voltages are same unit.
+>[!NOTE] CMRR to Common-Mode Gain - Multiple differential contibutions
+>common-mode interference: $V_{CM,pp}$ and CMRR given.
+>eg: $CMRR:60=20\log_{10}\left( \frac{A_{d}}{A_{c}} \right)\to \frac{A_{d}}{A_{c}}=1000$
+>since we care about **input voltage contribution** we don't need exact gain values.
+>**CM suppression factor = 1000**
+>if $V_{CM,pp}=100mV_{pp}$ then $V_{\text{CM,differential}}=\frac{100mV_{pp}}{1000}=0.1mVpp$
+>
+>if we have multiple differential contributions like EEG signal, disturbance signal, converted CM interference: $V_{total,pp}=\text{all of them added }mV_{pp}$
+
+![[interference sensitivity.png|500]]
+$Z_{cable}=Z_{in}//Z_{out}\text{ usually: }Z_{in}\gg Z_{out}\to Z_{cable}\approx Z_{out}\to V_{if2}=\frac{V_{if} \cdot Z_{cable}}{(Z_{cable} + Z_{if})}$
+
+![[close to dc information.png|500]]
+
+>[!NOTE] AC coupling & DC Coupling
+>![[ac coupling circuit.png|200]]
+>AC coupling should be before amplification, otherwise saturation:
+>- Gain: $A_{0}=\frac{C_{1}}{C_{2}}$
+>- Cut-off frequency: $f_{c}=\frac{1}{2\pi RC_{2}}$
+>- $Z_{in}=\frac{1}{\omega C_{1}}$
+>  signal attenuation: $20\log_{10}\left( \frac{Z_{in}}{Z_{in}+Z_{EFI}} \right)$
+>
+>Trade-off:
+>- For large $Z_{in}\to C_{1}$ small
+>- For low $f_{c}$, high gain $A_{0}\to C_{1}$ large
+>  
+>![[dc coupling.png|400]]
+>
+>Assume we have a DC coupled amplifier. Due to electrode mismatch, the half-cell potentials result in a differential DC level of up to 100mV. The signal of interest is 400µV. The amplifier has a 1V output range.
+>![[dc coupling example.png|400]]
+>![[max gain example.png|400]]
+
+![[1f noise.png|300]]
+- 1/f noise (flicker noise) has a power-spectral density (PSD) that is inversely proportional to the frequency 
+- ExG signals are at low frequencies too 
+- Often the 1/f noise is dominant compared to white noise sources
+
+**Can look at slides for example details**
 # Low-Power System Design
 ## Amplifier Types
 
