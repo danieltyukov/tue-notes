@@ -1,7 +1,7 @@
 # Getting Started Information
 ## Contacts
 **Primary:**
-Tyukov Daniel (d.tyukov@student.tue.nl)
+Daniel Tyukov (d.tyukov@student.tue.nl)
 [Vojkan Vidojkovic](https://www.tue.nl/en/research/researchers/vojkan-vidojkovic) (v.vidojkovic@tue.nl)
 [Marco Fattori](https://www.tue.nl/en/research/researchers/marco-fattori) (m.fattori@tue.nl)
 [Georgi Radulov](https://www.tue.nl/en/research/researchers/georgi-radulov) (g.radulov@tue.nl)
@@ -199,5 +199,24 @@ Matlab code was used to find out the true size of gold bumps by identifying how 
 - [RLC circuit - Wikipedia](https://en.wikipedia.org/wiki/RLC_circuit)
 - **[Why Au is preferred over Ag as a bonding metal](https://engineering.purdue.edu/MSE/engagement/PastSeniorDesign/Poster%20Folder/2017%20posters/Juniper%20Networks%20Poster.pdf)**
 - **[Why Au is preferred over Cu as bonding metal](https://www.jos.ac.cn/fileBDTXB/oldPDF/10092014.pdf)**
+- [Why AMD's Chiplets Work - Heterogeneous Integration](https://www.youtube.com/watch?v=-x9nGo0Ge70)
+- [S-Parameters for Antennas (S11, S12, ...)](https://www.antenna-theory.com/definitions/sparameters.php#:~:text=S%2Dparameters%20describe%20the%20input,Port%201%20to%20Port%202.)
+- [TPT Wire Bonder - Made in Germany](https://www.tpt-wirebonder.com/)
+
+- **[Design and Package Technology Development of Face-to-Face Die Stacking as a Low Cost Alternative for 3D IC Integration](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6897308)**
+- [Study on Flip Chip Assembly of High Density Micro-LED Array](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6117235)
+- [Solid Logic Technology: Versatile, High-Performance Microelectronics*](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5392211)
+- [Sapphire flip-chip thermocompression and eutectic bonding for dielectric laser accelerator](https://snfguide.stanford.edu/sites/default/files/sections/diplayfiles/engr241_final_rport_hd_ym.pdf)
+- [S-Parameter-Based IC Interconnect Transmission Line Characterization](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=159877)
+- [Sensitivity Analysis of Pb Free Reflow Profile Parameters Toward Flip Chip on Silicon Assembly Yield, Reliability and Intermetallic Compound Characteristics](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5490844)
+- [A Comparison of Electrical Performance between a Wire Bonded and a Flip Chip CSP Package](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1225888)
+- [Comparison of the “Pad-Open-Short” and “Open-Short-Load” Deembedding Techniques for Accurate On-Wafer RF Characterization of High-Quality Passives](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1393218)
+- [Study of Gold Wire Bonding on 0.1 ȝm Soft Gold Film Substrate](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6922635)
+- [Gold Stud Bump Flip Chip Bonding on Molded Interconnect Devices](https://www.ipc.org/system/files/technical_resource/E15%26S15_01.pdf)
+- [Comparative Analysis of Electrical Performance on Coreless and Standard Flip-Chip Substrate](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=4250148)
+- [Bond-on-Lead: A Novel Flip Chip Interconnection Technology for Fine Effective Pitch and High I/O Density](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1645620)
+- [A High Throughput and Reliable Thermal Compression Bonding Process for Advanced Interconnections](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7159653)
+- [Effects of Underfill Material Properties on the Reliability of Solder Bumped Flip Chip on Board with Imperfect Underfill Encapsulants](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=776237)
+- [Study of Interconnection Process for Fine Pitch Flip Chip](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5074092)`
 
 # Plan of BEP Research

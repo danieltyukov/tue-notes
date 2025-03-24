@@ -3,7 +3,11 @@
 # Overview
 ![[Concept structure.png|600]]
 ![[analogue system.png|300]]![[digital system.png|300]]
+![[how decibels work.png|400]]
+[S-Parameters for Antennas (S11, S12, ...)](https://www.antenna-theory.com/definitions/sparameters.php#:~:text=S%2Dparameters%20describe%20the%20input,Port%201%20to%20Port%202.)
+
 # Transmission Lines
+
 ![[types of transmission lines.png|300]]![[lumped element circuit model of a transmission line.png|300]]
 
 ## Telegrapher equations
@@ -197,7 +201,13 @@ $\text{transmission (ABCD)for single network: }\begin{bmatrix}V_{1} \\ I_{1}\end
 ![[Pasted image 20250218140025.png]]
 letting $\frac{\delta P_{L}}{\delta R_{L}}=\frac{\delta P_{L}}{\delta X_{L}}=0$ we fine that value $R_{L}\text{ and }X_{L}\text{ that would maximize }P_{L}\text{ is }R_{L}=R_{s'}X_{L}=-X_{s^*}\text{ basically: }Z_{L}=Z_{s}^*$ to max the power transfer to load impedance $Z_{L}$ must be complex conjugate of $Z_{s'}$ this is called **Conjugate Matched**.
 
-$$\text{obtained from smith chart, normalized value: } Z'_{in}\text{ unnormalize: }Z_{in}=Z_{0} \cdot Z'_{in}\text{ where }Z_{0}\text{ characteristic impedance}$$
+>[!NOTE] Matching Network
+>normalizing impedance for smith chart: $z=\frac{Z_{load}}{Z_{0}}$
+>de-normalizing (real impedance): $Z=z \cdot Z_{0}$
+>normalized impedance: $z=r+jx$
+>
+>![[component types effect matching.png|400]]
+>![[formulas expalined.png|400]]
 
 
 >[!NOTE] Impedance matching network
@@ -303,7 +313,7 @@ $10^{db/10}=mW$
 
 [FSPL](https://en.wikipedia.org/wiki/Free-space_path_loss) - Free Space Path Loss: influenced by frequency operation - Friis equation -> has a wavelength component. $FSPL=\left( \frac{4\pi d}{\lambda} \right)^2$
 # RF systems and Amplifier design
-## RF Systems
+## RF systems
 ![[application of rf systems.png|300]]![[applications of rf systems.png|300]]
 ![[trends in semiconductors.png|300]]![[transciever design.png|300]]![[lna design topics addressed.png|300]]
 ## Amplifier design
@@ -349,4 +359,6 @@ $C_{L}=\frac{g_{L}S_{22}^*}{1-(1-g_{L})|S_{22}|^2} \text{and }R_{L}=\frac{\sqrt{
 ![[output stability circle on smith chart.png|400]]
 If $|\Delta|=|S_{11}S_{22}-S_{12}S_{21}|<1\text{ and }K= \frac{1-|S_{11}|^2-|S_{22}|^2+\Delta^2}{2|S_{12}S_{21}|}>1$ than the 2-port is unconditionally stable. **Unilateral case: $S_{12}=0$**, the conditions for unconditional stability: $|S_{11}|<1\text{ and }|S_{22}|<1$.
 **Where K is the Rollet stability factor**.
+
+![[load condition for max real power.png|600]]
 # Noise and LNA design

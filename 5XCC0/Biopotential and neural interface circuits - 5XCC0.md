@@ -1,6 +1,6 @@
 # Schedule
 ![[5XCC0/attachments/schedule.png]]
-# Introduction to biopotential and neural interfaces & other healthcare applications
+# Health Applications
 ![[biopotential interface.png|300]]![[electrode tissue interface (eti).png|300]]
 
 >[!NOTE] Electrode types
@@ -10,16 +10,45 @@
 
 **Measurement challenges:** small signal amplitudes, large ETI impedances, large disturbances, close to DC information needed
 
+![[required gain.png|500]]
 **Dealing with small signal:** high gain required for amplification, since the signal of interest is usually ($\mu V\text{ or }mV$). But **filters and ADCs** most efficient when signals large ($100's mV\text{ or V level}$). We need a trade-off:
-- Minimum signal amplitude should be detectable by the system.
+- Minimum signal amplitude should be detectable by the system. (at ADC).
 - Maximum signal, interference, DC, etc., should not saturate the system.
 
-**PAGE 20** health applications
-until: **PAGE 24** low power system design
+![[input referred noise.png|500]]
+- electronics add random noise (**thermal noise, 1/f noise, quantization noise**).
+- ETI, environment and tissue add noise.
+- IRN (input-referred noise): sensitivity of system: **should be smaller than smallest signal you want to detect**.
 
+![[ETI impedance.png|500]]
+
+**ETI Impedance:** $C_{d}=\epsilon_{0}\epsilon_{r} \frac{A}{d}\text{ and }R=\rho\frac{ l}{A}$ where 
+$\epsilon \text{ is permitivity and }\rho \text{ is resistivity}$
+$A\text{: area, }d\text{: seperation distance, }l\text{: thickness of conductive path}$
+$\epsilon_{0}=8.854 [pF/m]$
+![[impedance reminder.png|300]]
+
+![[EEG amplification.png|150]]
+maximizing without saturation of amplifier (accounting for interference and disturbances): $A_{max}\leq \frac{V_{\text{output range,pp}}-V_{\text{interferance,pp}}}{V_{\text{signal,pp}}+V_{\text{disturbance,pp}}}$
+
+![[powerline interference.png|400]]
+
+![[common mode amplifier.png|150]]
+**Common-mode Rejection Ratio (CMRR):** $V_{out}=A_{d}\left( V_{+}-V_{-}\right)+ \frac{1}{2}A_{c}(V_{+}+V_{-})\text{ where }A_{d}:\text{ differential gain and }A_{c}:\text{ common mode gain (ideally 0)}$
+$CMRR=20\log_{10}\left( \frac{A_{d}}{|A_{c}|} \right)$
+There are various (slight) differences in CMRR definitions.
+CMRR looks at small signal behavior. If CM disturbance is large, amplifier might **saturate,** and the small signal model does not hold.
 $v_{cm = \frac{1}{2}(v_{1}+v_{2})}\text{ and }v_{diff}=v_{1}-v_{2}$
 
-# Low-power Amplifiers & Filters
+![[impact finite cmrr amplifier.png|500]]
+EEG signal (differential): $V_{EEG,out}=A_{d} \cdot V_{EEG,in}=400 \times 100\mu V=40mV$
+Power-line interference (common-mode): $V_{PL,out}=A_{c} \cdot V_{PL,in}=0.4 \times 100mV=40mV$
+$V_{out}=80mV_{pp}$
+So we need enough dynamic range to accommodate both the signal/disturbance without saturation.
+
+![[impact electrode mismatch and input impedance.png|500]]
+
+# Low-Power System Design
 ## Amplifier Types
 
 >[!NOTE] Concepts to be familiar with
