@@ -362,3 +362,43 @@ If $|\Delta|=|S_{11}S_{22}-S_{12}S_{21}|<1\text{ and }K= \frac{1-|S_{11}|^2-|S_{
 
 ![[load condition for max real power.png|600]]
 # Noise and LNA design
+$SNR=\frac{S}{R}$
+![[types of noises.png|400]]
+
+**Thermal noise:** $$P_{n}=k_{B} \cdot T\cdot B\text{ where }k_{B}:\text{Boltzman const }T:\text{temp in Kelvin }B:\text{bandwidth of system}$$
+average voltage is zero, but **non zero average power.**
+
+**White noise:**
+![[white noise circuit for reference.png|300]]
+$P_{n}=\frac{V_{N}^2}{4R_{N}}=k_{B}TB$
+
+**Noise of arbitrary source:**
+![[noise of arbitrary source.png|300]]
+equivalent noise temperature: $T_{e}=\frac{N_{0}}{k_{B}B}$
+
+![[noise at amplifier.png|400]]
+
+![[noise figure.png|400]]
+$F=\frac{\frac{S_{i}}{N_{i}}}{\frac{S_{o}}{N_{o}}}=\frac{S_{i}}{S_{o}} \frac{N_{o}}{N_{i}}=\frac{1}{G} \frac{Gk_{B}(T_{0}+T_{e})B}{k_{B}T_{0}B}=1+\frac{T_{e}}{T_{0}}>0$
+$NF=10\log(F)\to \text{NF}\to \text{noise figure (dB) while F}\to \text{noise factor}$
+
+![[noise in 2 stage amplifier.png|500]]
+
+**Gain, F and $T_{e}$ of cascaded system:**
+![[cascaded system.png|300]]
+$G_{cas}=G_{1}G_{2}\text{ and }T_{cas}=T_{e1}+\frac{1}{G_{1}}T_{e2}\text{ and }F_{cas}=F_{1}+\frac{1}{G_{1}}(F_{2}-1)$
+
+**Cascaded NF: Friis’ formula:**
+![[cascaded system-1.png|300]]
+$F_{total}=1+(F_{1}-1)+\frac{F_{2}-1}{G_{a,1}}+\dots+\frac{F_{m}-1}{G_{a,1}G_{a,2}\dots G_{a,(m-1)}}$
+
+![[noise figure of an amplifier.png|500]]
+$F=F_{min}+4r_{N} \frac{|\vec{\Gamma}_{S}-\vec{\Gamma}_{opt}|^2}{(1-|\vec{\Gamma}_{S}|^2)}$
+Value of $\vec{\Gamma}_{S}$ leads to constant val of F.
+The values are in circles and we can calculate the center and the radius. The circles are called **constant noise circles.**
+$\text{centers: }\vec{C}_{F}=\frac{\Gamma_{opt}}{1+N}$
+$\text{radii: }R_{F}=\frac{1}{1+N}\sqrt{ N^2+N(1-|\Gamma_{opt}|^2) }$
+With the **Noise figure parameter N** defined as:
+$\Delta F_{n}'=N=(F-F_{min}) \frac{|1+\vec{\Gamma}_{opt}|^2}{4r_{n}}=\frac{|\vec{\Gamma}_{S}-\vec{\Gamma}_{opt}|^2}{1-|\vec{\Gamma}_{S}|^2}$
+![[constant noise circles.png|500]]
+![[specific noise figure design.png|500]]

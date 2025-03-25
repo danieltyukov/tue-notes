@@ -29,8 +29,8 @@ That is why we want to develop in our lab the flip-chip and system-in-package in
 ### Student task description for extension (if applicable)
 1.  Iterate steps 4 and 5
 2. Define existing problems in the developed know-how and propose further steps for research
-## Initial Literature Review
-1. At this link you find a nice overview of all the major interconnection techniques available to connect electrically dies and substrates. Remember you will go for bumps (thermal compression or ultrasonic bonding) + flip chip. [https://www.nextpcb.com/blog/wire-bonding](https://www.nextpcb.com/blog/wire-bonding "https://www.nextpcb.com/blog/wire-bonding")
+## Initial Literature Review - done (including pdfs)
+1. At this link you find a nice overview of all the major interconnection techniques available to connect electrically dies and substrates. Remember you will go for bumps (thermal compression or ultrasonic bonding) + flip chip. **Discusses bonding materials like gold/aluminium** [https://www.nextpcb.com/blog/wire-bonding](https://www.nextpcb.com/blog/wire-bonding "https://www.nextpcb.com/blog/wire-bonding")
 2. How to make gold bumps? Check this .pdf file related to our machine. [https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf](https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf "https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf") and relative video [https://www.youtube.com/watch?v=0-UblD-Tv1w](https://www.youtube.com/watch?v=0-UblD-Tv1w "https://www.youtube.com/watch?v=0-UblD-Tv1w")
 3. Here a recent relevant paper about an application of the flip chip approach [https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6848323A](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6848323A "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6848323A")
 4. tutorial on the flip chip process step by step [https://www.integra-tech.com/hubfs/INTEGRA%20Flip-chip-Tutorial-video-042021.pdf](https://www.integra-tech.com/hubfs/INTEGRA%20Flip-chip-Tutorial-video-042021.pdf "https://www.integra-tech.com/hubfs/INTEGRA%20Flip-chip-Tutorial-video-042021.pdf")
@@ -219,4 +219,18 @@ Matlab code was used to find out the true size of gold bumps by identifying how 
 - [Effects of Underfill Material Properties on the Reliability of Solder Bumped Flip Chip on Board with Imperfect Underfill Encapsulants](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=776237)
 - [Study of Interconnection Process for Fine Pitch Flip Chip](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5074092)`
 
-# Plan of BEP Research
+# BEP Research
+![[types of bonding.png|500]]
+>[!NOTE] Bonding Material (Why Gold?)
+>- conductivity, corrosion resistance, capacity to get bonds in place in an ambient environment.
+>- copper oxidizes easily.
+>- [Bump bonding](https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf)
+
+explore the idea of bump to pillar bonding techniques.
+[Everything to consider during bonding](https://www.microwavejournal.com/articles/3622-gold-stud-bumps-in-flip-chip-applications)
+![[planarity.png|300]]
+**planarity**, in flip-chip bonding, refers to the height consistency
+
+![[flip chip interconnect mm-wave characteristics.png|300]]![[comparison small large bumps.png|300]]
+![[measurement results on inut reflection.png|300]]![[parasitic substrate modes.png|300]]
+[Interconnection signal property details](https://ewh.ieee.org/r8/norway/ap-mtt/files/DML_Norwegen_2008_Handout.pdf)
