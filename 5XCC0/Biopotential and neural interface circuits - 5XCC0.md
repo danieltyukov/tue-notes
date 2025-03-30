@@ -139,7 +139,47 @@ $SQNR_{dB}=6.02N+1.76$
 >
 >$ENOB=(DR_{actual}-1.76)/6.02=\dots bits$
 
+![[trade offs analog block amplifier.png|500]]
+![[trade offs mixed signal block.png|500]]
+![[trade offs digital block.png|500]]
+The lower the **NEF** (closer to unity) the better.
+Noise Efficiency Factor (NEF): $V_{irn}\sqrt{ \frac{2 \cdot I_{BIAS}}{\pi \cdot V_{t} \cdot 4kT \cdot BW} }$
 
+![[analog vs digital-1.png|500]]
+![[system budget.png|500]]
+![[effect of gain on noise and power consumption.png|500]]
+
+![[solving for series amplifier.png|300]]![[part2.png|300]]
+
+**Models of power and performance in amplitude/frequency** 
+	**Frequency:** analog & digital scale similar 
+	**Amplitude:** analog favorable for low DR, digital favorable for high DR
+
+# Electronics Fundamentals
+![[mosfet behaviour.png|500]]
+![[diffusion vs drift.png|300]]![[subabove threshold.png|300]]
+**diffusion current:** $I_{ds}=I_{0}\exp(K_{S}V_{gs}/\Phi_{t})$
+**drift current:** $I_{ds}=\frac{1}{2} \mu_{n}C_{ox} \frac{W}{L}(V_{gs}-V_{th})^2$
+![[behaviour saturation.png|300]]![[drain source behaviour.png|300]]
+$\Phi_{t}=kT/q\text{ where }4\Phi_{t}\approx100mV\text{ and in such subthreshold behaviour saturation is: }V_{ds}>4\Phi_{t}$.
+In saturation the current $I_{ds}$ is constant since no longer depends on $V_{gs}$
+![[saturation above threshold.png|300]]![[saturation below threshold.png|300]]
+![[mode summary.png|300]]![[transit time.png|300]]
+
+![[opearion in saturation.png|500]]
+- **transconductance efficiency:** $\frac{g_{m}}{I_{ds}}$ the ration of transconductance to drain current, tells **how much gain** you get **per unit of current**. Which is power efficiency.
+- It is constant in subthreshold -> why that mode operation is great for low power electronics.
+- Increasing $\frac{W}{L}$ improves performance in strong inversion mode.
+
+
+
+![[resistor noise.png|500]]
+
+![[sub threshold noise, gain and power.png|500]]
+
+![[adding noises.png|500]]
+
+![[basic differential pair amplifier.png|500]]
 # Amplifiers and Filters
 ## Amplifier Types
 
