@@ -92,8 +92,55 @@ $Z_{cable}=Z_{in}//Z_{out}\text{ usually: }Z_{in}\gg Z_{out}\to Z_{cable}\approx
 - ExG signals are at low frequencies too 
 - Often the 1/f noise is dominant compared to white noise sources
 
-**Can look at slides for example details**
+**Can look at slides for example details of health applications**
+
 # Low-Power System Design
+## V model, Risk, Optimization
+![[v model.png|300]]![[system vs block specification.png|300]]
+**requirements:** what can product do.
+**specification:** how design meet requirements.
+**verification:** whether circuits/blocks system meet specifications/requirements.
+**validation:** overall solution meets needs.
+![[risk management.png|300]]![[diff level optimizations.png|300]]
+![[trade offs.png|300]]![[design approach.png|300]]
+$P=Const \times BW/IRN^2$ IRN: input referred noise level, BW: bandwidth, P: power consumption.
+## Analog, mixed-signal, and digital circuits
+![[noise, distortion, interference.png|500]]
+![[signal definition.png|300]]![[noise.png|300]]
+![[adding signal or noise terms.png|500]]
+![[input output referred noise.png|300]]![[dynamic range.png|300]]
+![[dynamic range example.png|500]]
+$SNR=20\log_{10}\left( \frac{V_{signal}}{V_{noise}} \right)\implies 12=20\log_{10}\left( \frac{V_{signal}}{10 \times 10^{-6}} \right)\implies 40\mu V_{rms}$
+
+>[!NOTE] System Analysis Example
+>Signal -> Amplifier (gain = 100) → Filter (gain = 1) → ADC
+>
+>$V_{IRN_{total}}=\sqrt{ (10\mu V_{rms,amp})^2 +\left( \frac{1mV_{rms,adc}+0.5mV_{rms,filter}}{100} \right)^2}$.
+>
+>input range of the system would be the most severe limit: $20mV_{pp,amp}, \frac{2.4V_{pp,filter}}{100}, \frac{1.8V_{pp,adc}}{100}$ in this case would be $18mV_{pp}$.
+>
+>$DR=20\log_{10}\left( \frac{V_{max}}{V_{min}} \right)\to \text{ where } \frac{V_{max}}{V_{min}=V_{IRN_{total}}}=\frac{18mV_{pp}/(2\sqrt{ 2 })}{15V_{rms}}$
+
+![[analog, mixed, digital signals.png|300]]![[analog vs digital.png|300]]
+
+![[direct range of SQNR of digital signal.png|500]]
+$SQNR_{dB}=6.02N+1.76$
+
+![[ADC resolution and DR.png|500]]
+**ENOB** is the effective number of bits (or effective resolution) including the effects of quantization noise and circuit noise: ideally equal to N, but in practice smaller.
+
+>[!NOTE] ADC Resolution and DR
+>$DR_{digital}=6.02N+1.76=62dB$
+>levels/codes: $2^N$
+>
+>gain of ADC from input voltage to output code: $\frac{codes}{\text{input range }V_{pp}}$.
+>
+>$IRN=\frac{ORN}{gain}$ where $ORN=\frac{1}{\sqrt{ 12 }}$ RMS value quantization noise
+>
+>$ENOB=(DR_{actual}-1.76)/6.02=\dots bits$
+
+
+# Amplifiers and Filters
 ## Amplifier Types
 
 >[!NOTE] Concepts to be familiar with
