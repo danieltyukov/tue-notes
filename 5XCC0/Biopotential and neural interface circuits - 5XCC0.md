@@ -1,6 +1,46 @@
 # Schedule
 ![[5XCC0/attachments/schedule.png]]
 # Health Applications
+>[!NOTE] Formulas
+> **Electrode Capacitance**  
+> $C = \varepsilon_0 \varepsilon_r \cdot \frac{A}{d}$
+>
+> **Impedance of a Capacitor**  
+> $Z = \frac{1}{2\pi f C}$
+>
+> **Amplifier Gain (AC Coupling)**  
+> $A_0 = \frac{C_1}{C_2}$
+>
+> **Cut-off Frequency (AC Coupling)**  
+> $f_c = \frac{1}{2\pi R C_2}$
+>
+> **Input Impedance (Capacitive)**  
+> $Z_{in} = \frac{1}{sC_1}$
+>
+> **Signal Attenuation due to Impedance**  
+> $V_+ = V_a \cdot \frac{Z_{in}}{Z_{ETI} + Z_{in}}$  
+> $V_- = V_b \cdot \frac{Z_{in}}{Z_{ETI} + Z_{in}}$
+>
+> **CMRR (Common-Mode Rejection Ratio)**  
+> $CMRR = 20 \log_{10} \left( \frac{A_d}{|A_c|} \right)$  
+> $V_{out} = A_d(V^+ - V^-) + \frac{1}{2}A_c(V^+ + V^-)$
+>
+> **CMRR due to Electrode Mismatch (Approx.)**  
+> $CMRR \approx 20 \log_{10} \left( \frac{Z_{in}}{\Delta Z_{ETI}} \right)$
+>
+> **Dynamic Range**  
+> $DR = 20 \log_{10} \left( \frac{V_{max}}{V_{min}} \right)$
+>
+> **1/f Noise Trend**  
+> $S(f) \propto \frac{1}{f}$
+>
+> **Voltage Divider for Interference Sensitivity**  
+> $V_{if2} = V_{if} \cdot \frac{Z_{cable}}{Z_{cable} + Z_{if}}$
+>
+> **Transfer Function for Capacitive Coupling Interference**  
+> $|V_{if2}| = \left| \frac{V_{if} \cdot sC_{if} Z_{out}}{sC_{if} Z_{out} + 1} \right|$
+
+
 ![[biopotential interface.png|300]]![[electrode tissue interface (eti).png|300]]
 
 >[!NOTE] Electrode types
@@ -95,6 +135,51 @@ $Z_{cable}=Z_{in}//Z_{out}\text{ usually: }Z_{in}\gg Z_{out}\to Z_{cable}\approx
 **Can look at slides for example details of health applications**
 
 # Low-Power System Design
+## Summary
+> [!NOTE] Formulas
+> 
+> Power vs bandwidth and noise for analog (amp):  
+>   $P \propto BW$  
+>   $V_{irn}^2 \propto \frac{1}{P}$
+> 
+> Noise Efficiency Factor (NEF):  
+>   $\mathrm{NEF} = V_{irn} \sqrt{\frac{2 I_{BIAS}}{\pi V_t 4kT \cdot BW}}$
+> 
+> Power vs DR for ADC (mixed-signal):  
+>   $P \propto BW$  
+>   $DR \propto \frac{1}{V_{irn}} \propto \sqrt{P}$  
+>   $DR_{dB} \propto 10 \log_{10}(P)$
+> 
+> Schreier Figure of Merit (FOMS):  
+>   $\mathrm{FOMS} = DR_{dB} + 10 \log_{10}\left(\frac{BW}{P}\right)$
+> 
+> Dynamic Range (general):  
+>   $DR = \frac{V_{rms,\ max}}{V_{irn}}$  
+>   $DR_{dB} = 20 \log_{10}\left(\frac{V_{rms,\ max}}{V_{irn}}\right)$
+> 
+> DR due to quantization (digital):  
+>   $SQNR_{dB} = DR_{dB} = 6.02N + 1.76$
+> 
+> Effective Number of Bits (ENOB):  
+>   $DR_{actual,\ dB} = 6.02 \cdot \mathrm{ENOB} + 1.76$  
+>   $\mathrm{ENOB} = \frac{DR_{actual,\ dB} - 1.76}{6.02}$
+> 
+> Quantization noise (uniform distribution):  
+>   $\sigma^2 = \int_{-0.5}^{+0.5} x^2 dx = \frac{1}{12}$  
+>   $\sigma = \frac{1}{\sqrt{12}}$
+> 
+> Input/Output referred noise:  
+>   $V_{orn} = A \cdot V_{irn}$
+> 
+> Total input-referred noise (cascaded blocks):  
+>   $V_{irn, total} = \sqrt{V_{irn1}^2 + \left(\frac{V_{irn2}}{A}\right)^2}$
+>   
+>  Input-referred quantization noise (ADC):  
+> $V_{\text{IRN,q}} = \frac{1/\sqrt{12}}{\text{Gain}}$  
+>  
+> FOMS estimation rearrangement:
+> $P = \frac{BW}{10^{(FOMS - DR_{dB})/10}}$  
+
 ## V model, Risk, Optimization
 ![[v model.png|300]]![[system vs block specification.png|300]]
 **requirements:** what can product do.
@@ -156,29 +241,124 @@ Noise Efficiency Factor (NEF): $V_{irn}\sqrt{ \frac{2 \cdot I_{BIAS}}{\pi \cdot 
 	**Amplitude:** analog favorable for low DR, digital favorable for high DR
 
 # Electronics Fundamentals
-![[mosfet behaviour.png|500]]
-![[diffusion vs drift.png|300]]![[subabove threshold.png|300]]
+![[5XCC0-03 Electronics Fundamentals.pdf]]
+
+> [!NOTE] Formulas  
+> **Sub-threshold region (MOSFET):**  
+> $I_{DS} = I_0 \cdot \exp\left(\frac{K_s V_{GS}}{\Phi_t}\right)$  
+>  
+> **Above-threshold, Linear mode (MOSFET):**  
+> $I_{DS} = \mu_n C_{ox} \frac{W}{L} \left[(V_{GS} - V_{th}) V_{DS} - \frac{1}{2} V_{DS}^2\right]$  
+>  
+> **Above-threshold, Saturation mode (MOSFET):**  
+> $I_{DS} = \frac{1}{2} \mu_n C_{ox} \frac{W}{L} (V_{GS} - V_{th})^2$  
+>  
+> **Thermal voltage:**  
+> $\Phi_t = \frac{kT}{q}$  
+>  
+> **Transconductance (gm):**  
+> Sub-threshold:  
+> $g_m = \frac{K_s}{\Phi_t} I_{DS} \approx 27 I_{DS}$  
+>  
+> Above-threshold:  
+> $g_m = \mu_n C_{ox} \frac{W}{L} (V_{GS} - V_{th}) = \sqrt{2 \mu_n C_{ox} \frac{W}{L} I_{DS}}$  
+>  
+> **Efficiency ratio:**  
+> Sub-threshold:  
+> $\frac{g_m}{I_{DS}} = \frac{K_s}{\Phi_t} \approx 27$  
+>  
+> Above-threshold:  
+> $\frac{g_m}{I_{DS}} = \sqrt{\frac{2 \mu_n C_{ox} \frac{W}{L}}{I_{DS}}}$  
+>  
+> **Shot noise (current):**  
+> $S_I^2(f) = 2qI$  
+>  
+> **Thermal noise (resistor):**  
+> Current PSD:  
+> $S_I^2(f) = 4kTG$  
+> Voltage PSD:  
+> $S_V^2(f) = 4kTR$  
+>  
+> **Noise power (bandwidth $\Delta f$):**  
+> Current noise:  
+> $I_{n,rms}^2 = \Delta f \cdot S_I^2(f)$  
+> Voltage noise:  
+> $V_{n,rms}^2 = \Delta f \cdot S_V^2(f)$  
+>  
+> **Integrated noise amplitude:**  
+> $I_{n,rms} = \sqrt{\Delta f} \cdot S_I(f)$  
+> $V_{n,rms} = \sqrt{\Delta f} \cdot S_V(f)$  
+>  
+> **Noise at MOS input (sub-threshold):**  
+> $S_{I}^2(f) = 2qI_{DSAT}$  
+> $S_{V,g,n}^2(f) = \frac{S_I^2(f)}{g_m^2} \approx \frac{kT}{9 I_{DS}} \approx \frac{4kT \cdot \frac{2}{3}}{g_m}$  
+>  
+> **Noise at MOS input (above-threshold):**  
+> $g_m \propto \sqrt{I_{DS}}$  
+> $S_I^2(f) = \left(4kT \cdot \frac{2}{3}\right) g_m$  
+> $S_{V,g,n}^2(f) \approx \frac{4kT \cdot \frac{2}{3}}{g_m}$  
+>  
+> **1/f noise:**  
+> Sub-threshold:  
+> $S_I^2(f) = \frac{K I_{DS}^2}{f}$  
+>  
+> Above-threshold:  
+> $S_I^2(f) = \frac{K I_{DS}}{f}$  
+>  
+> General:  
+> $S_I^2(f) \propto \frac{g_m^2}{f}$  
+>  
+> **Voltage divider ratio:**  
+> $V_{out}/V_{in} = \frac{R_2}{R_1 + R_2}$  
+>  
+> **Effective resistance:**  
+> $R_{eff} = \frac{R_1 R_2}{R_1 + R_2}$  
+>  
+> **Low-pass filter cutoff frequency:**  
+> $f_{3dB} = \frac{1}{2\pi R_{eff} C}$  
+>  
+> **Sampled noise power (switched capacitor):**  
+> $P_{n,out} = \frac{kT}{C}$  
+>  
+> **SNR (in dB):**  
+> $SNR = 10 \log_{10} \left( \frac{P_{signal}}{P_{noise}} \right)$  
+>  
+> **Small signal gain of differential pair:**  
+> $A_0 = g_m r_{out}$  
+>  
+> **Noise output of differential amplifier:**  
+> $v_{n,out}^2(f) = \left(2 \cdot 2qI_{DS} + 2 \cdot 4kT/r_{out} \right) \cdot r_{out}^2$  
+>  
+> **Input-referred noise:**  
+> $v_{n,in}^2(f) = \frac{v_{n,out}^2(f)}{A_0^2}$
+
+
 **diffusion current:** $I_{ds}=I_{0}\exp(K_{S}V_{gs}/\Phi_{t})$
 **drift current:** $I_{ds}=\frac{1}{2} \mu_{n}C_{ox} \frac{W}{L}(V_{gs}-V_{th})^2$
-![[behaviour saturation.png|300]]![[drain source behaviour.png|300]]
+
 $\Phi_{t}=kT/q\text{ where }4\Phi_{t}\approx100mV\text{ and in such subthreshold behaviour saturation is: }V_{ds}>4\Phi_{t}$.
 In saturation the current $I_{ds}$ is constant since no longer depends on $V_{gs}$
 ![[saturation above threshold.png|300]]![[saturation below threshold.png|300]]
-![[mode summary.png|300]]![[transit time.png|300]]
 
-![[opearion in saturation.png|500]]
-- **transconductance efficiency:** $\frac{g_{m}}{I_{ds}}$ the ration of transconductance to drain current, tells **how much gain** you get **per unit of current**. Which is power efficiency.
-- It is constant in subthreshold -> why that mode operation is great for low power electronics.
+
+- **trans-conductance efficiency:** $\frac{g_{m}}{I_{ds}}$ the ration of trans-conductance to drain current, tells **how much gain** you get **per unit of current**. Which is power efficiency.
+- It is constant in sub-threshold -> why that mode operation is great for low power electronics.
 - Increasing $\frac{W}{L}$ improves performance in strong inversion mode.
 
 
+signal power: $\frac{1}{2}A^2$
+$P_{noise}=V_{n}^2(f) \cdot BW$
+$V_{n,rms}=\sqrt{ P_{noise} }$
+$SNR=10\log_{10}\left( \frac{P_{signal}}{P_{noise}} \right)$ not rms values
+
+noise power spectral density: $V_{n}^2(f)=4kTR[V^2/Hz]$
+total integrated noise power: $V_{n,out,rms}^2=\frac{kT}{C}$
+
+$g_{m}=\frac{I_{DS}}{nV_{T}}$
 
 ![[resistor noise.png|500]]
-
 ![[sub threshold noise, gain and power.png|500]]
-
 ![[adding noises.png|500]]
-
 ![[basic differential pair amplifier.png|500]]
 # Amplifiers and Filters
 ## Amplifier Types
