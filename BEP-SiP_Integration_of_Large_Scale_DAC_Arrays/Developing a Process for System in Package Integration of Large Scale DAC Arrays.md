@@ -30,12 +30,12 @@ That is why we want to develop in our lab the flip-chip and system-in-package in
 1.  Iterate steps 4 and 5
 2. Define existing problems in the developed know-how and propose further steps for research
 ## Initial Literature Review - done (including pdfs)
-1. At this link you find a nice overview of all the major interconnection techniques available to connect electrically dies and substrates. Remember you will go for bumps (thermal compression or ultrasonic bonding) + flip chip. **Discusses bonding materials like gold/aluminium** [https://www.nextpcb.com/blog/wire-bonding](https://www.nextpcb.com/blog/wire-bonding "https://www.nextpcb.com/blog/wire-bonding")
-2. How to make gold bumps? Check this .pdf file related to our machine. [https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf](https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf "https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf") and relative video [https://www.youtube.com/watch?v=0-UblD-Tv1w](https://www.youtube.com/watch?v=0-UblD-Tv1w "https://www.youtube.com/watch?v=0-UblD-Tv1w")
-3. Here a recent relevant paper about an application of the flip chip approach [https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6848323A](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6848323A "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6848323A")
-4. tutorial on the flip chip process step by step [https://www.integra-tech.com/hubfs/INTEGRA%20Flip-chip-Tutorial-video-042021.pdf](https://www.integra-tech.com/hubfs/INTEGRA%20Flip-chip-Tutorial-video-042021.pdf "https://www.integra-tech.com/hubfs/INTEGRA%20Flip-chip-Tutorial-video-042021.pdf")
-5. A slide deck over flip chip processes for mmWave applications [https://ewh.ieee.org/r8/norway/ap-mtt/files/DML_Norwegen_2008_Handout.pdf](https://ewh.ieee.org/r8/norway/ap-mtt/files/DML_Norwegen_2008_Handout.pdf "https://ewh.ieee.org/r8/norway/ap-mtt/files/DML_Norwegen_2008_Handout.pdf")
-6. Finally some info about interposers [https://anysilicon.com/semipedia/interposer/](https://anysilicon.com/semipedia/interposer/ "https://anysilicon.com/semipedia/interposer/")
+1. DONE. At this link you find a nice overview of all the major interconnection techniques available to connect electrically dies and substrates. Remember you will go for bumps (thermal compression or ultrasonic bonding) + flip chip. **Discusses bonding materials like gold/aluminium** [https://www.nextpcb.com/blog/wire-bonding](https://www.nextpcb.com/blog/wire-bonding "https://www.nextpcb.com/blog/wire-bonding")
+2. DONE. How to make gold bumps? Check this .pdf file related to our machine. [https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf](https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf "https://www.tpt.de/wp-content/uploads/00_Media/99_Elemente_und_Platzhalter/Anleitungen/TPT-Application-Bumps-NEW-EN.pdf") and relative video [https://www.youtube.com/watch?v=0-UblD-Tv1w](https://www.youtube.com/watch?v=0-UblD-Tv1w "https://www.youtube.com/watch?v=0-UblD-Tv1w")
+3. DONE. Here a recent relevant paper about an application of the flip chip approach [https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6848323A](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6848323A "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6848323A")
+4. DONE. tutorial on the flip chip process step by step [https://www.integra-tech.com/hubfs/INTEGRA%20Flip-chip-Tutorial-video-042021.pdf](https://www.integra-tech.com/hubfs/INTEGRA%20Flip-chip-Tutorial-video-042021.pdf "https://www.integra-tech.com/hubfs/INTEGRA%20Flip-chip-Tutorial-video-042021.pdf")
+5. DONE. Broad-band interconnects up to 80 GHz and more realized slide deck over flip chip processes for mmWave applications [https://ewh.ieee.org/r8/norway/ap-mtt/files/DML_Norwegen_2008_Handout.pdf](https://ewh.ieee.org/r8/norway/ap-mtt/files/DML_Norwegen_2008_Handout.pdf "https://ewh.ieee.org/r8/norway/ap-mtt/files/DML_Norwegen_2008_Handout.pdf")
+6. DONE. Finally some info about interposers [https://anysilicon.com/semipedia/interposer/](https://anysilicon.com/semipedia/interposer/ "https://anysilicon.com/semipedia/interposer/")
 ## Prior Research Done in Project
 **Topic:** Development and Characterization of Thermal Compression Flip-Chip Bonding Process.
 The goal was interposer design & production, bump placement, die placement, testing. **But only interposer design was achieved and bump placement on interposer.**
@@ -231,6 +231,41 @@ explore the idea of bump to pillar bonding techniques.
 ![[planarity.png|300]]
 **planarity**, in flip-chip bonding, refers to the height consistency
 
-![[flip chip interconnect mm-wave characteristics.png|300]]![[comparison small large bumps.png|300]]
-![[measurement results on inut reflection.png|300]]![[parasitic substrate modes.png|300]]
+![[DML_Norwegen_2008_Handout.pdf]]
+
+![[considerations for research.png|500]]
+
+**PARALLEL PLATE LINE (UNDERSTAND)**
+thin film microstrip on carrier
+
+[parallel plate line](https://chatgpt.com/c/67ea5ef4-2e68-800b-9d1b-75e05c2487c5)
+
 [Interconnection signal property details](https://ewh.ieee.org/r8/norway/ap-mtt/files/DML_Norwegen_2008_Handout.pdf)
+[Planar transmission line - Wikipedia](https://en.wikipedia.org/wiki/Planar_transmission_line)
+
+>[!NOTE] Advantages of Flip chip
+>- high pin count
+>- high signal density
+>- better power dissipation
+>- low signal inductance and good power/ground connectivity
+>- ideal for high speed interfaces (including RF) that wire bonds cannot support
+>- good assembly dynamics
+>- FCBGA (flip chip ball grid array): good thermal performance, finer pitch routing, preferred for high power design (look into power amplification chips).
+>- best for lower frequencies due to short interconnections
+>- suitable for mm-waves because of small dimensions
+>- **RF-effects:** detuning of on-chip circuit, reflections at bump transition.
+>  - Broad-band interconnects up to 80 GHz and more realized
+
+![[assembly considerations.png|500]]
+![[performance characteristics.png|500]]
+
+>[!NOTE] Advantages of Interposer
+>- higher interconnect density
+>- iimproved signal integrity
+>- lower power consumption
+>- enhanced power efficiency
+>- potential for cost savings in manufacturing processes
+>- primary reason is fro RDL (redistribution layers) -> reroute connects from dense pitch to wider pitch of substrate.
+>  - look into Intel **embedde multi-die interconnect bridge (EMIB)**
+
+

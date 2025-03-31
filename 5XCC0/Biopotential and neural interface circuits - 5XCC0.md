@@ -1,6 +1,8 @@
 # Schedule
 ![[5XCC0/attachments/schedule.png]]
 # Health Applications
+![[5XCC0-01 Health Applications.pdf]]
+
 >[!NOTE] Formulas
 > **Electrode Capacitance**  
 > $C = \varepsilon_0 \varepsilon_r \cdot \frac{A}{d}$
@@ -136,6 +138,8 @@ $Z_{cable}=Z_{in}//Z_{out}\text{ usually: }Z_{in}\gg Z_{out}\to Z_{cable}\approx
 
 # Low-Power System Design
 ## Summary
+![[5XCC0-02 Low-Power System Design.pdf]]
+
 > [!NOTE] Formulas
 > 
 > Power vs bandwidth and noise for analog (amp):  
@@ -361,6 +365,9 @@ $g_{m}=\frac{I_{DS}}{nV_{T}}$
 ![[adding noises.png|500]]
 ![[basic differential pair amplifier.png|500]]
 # Amplifiers and Filters
+![[5XCC0-04 Amplifiers and Filters.pdf]]
+
+
 ## Amplifier Types
 
 >[!NOTE] Concepts to be familiar with
