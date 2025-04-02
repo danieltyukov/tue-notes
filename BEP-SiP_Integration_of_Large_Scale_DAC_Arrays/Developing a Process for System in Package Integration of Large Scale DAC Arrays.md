@@ -218,6 +218,7 @@ Matlab code was used to find out the true size of gold bumps by identifying how 
 - [A High Throughput and Reliable Thermal Compression Bonding Process for Advanced Interconnections](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7159653)
 - [Effects of Underfill Material Properties on the Reliability of Solder Bumped Flip Chip on Board with Imperfect Underfill Encapsulants](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=776237)
 - [Study of Interconnection Process for Fine Pitch Flip Chip](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5074092)`
+- [MATLAB - Measuring Manufacturing Yield for Gold Bumping Processes Under Dynamic Variance Change](https://ir.lib.nycu.edu.tw/bitstream/11536/5564/1/000276270800001.pdf)
 
 # BEP Research
 ![[types of bonding.png|500]]

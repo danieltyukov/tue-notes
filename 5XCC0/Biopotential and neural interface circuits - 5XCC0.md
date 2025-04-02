@@ -41,8 +41,11 @@
 >
 > **Transfer Function for Capacitive Coupling Interference**  
 > $|V_{if2}| = \left| \frac{V_{if} \cdot sC_{if} Z_{out}}{sC_{if} Z_{out} + 1} \right|$
+> 
+> **IRN**
+> Adding them in RMS: $\sqrt{ 10^2+\left( \frac{70}{10} \right)^2+\left( \frac{120}{10} \right)^2 }$ After amplifier the filter and ADC see factor of 10 from amplifier.
 
-
+## Other
 ![[biopotential interface.png|300]]![[electrode tissue interface (eti).png|300]]
 
 >[!NOTE] Electrode types
@@ -183,6 +186,10 @@ $Z_{cable}=Z_{in}//Z_{out}\text{ usually: }Z_{in}\gg Z_{out}\to Z_{cable}\approx
 >  
 > FOMS estimation rearrangement:
 > $P = \frac{BW}{10^{(FOMS - DR_{dB})/10}}$  
+> 
+> Least significant bit
+> $LSB=\frac{V_{pp}}{2^{bits}}$
+> RMS->$\frac{LSB}{\sqrt{ 12 }}$
 
 ## V model, Risk, Optimization
 ![[v model.png|300]]![[system vs block specification.png|300]]
@@ -336,7 +343,7 @@ Noise Efficiency Factor (NEF): $V_{irn}\sqrt{ \frac{2 \cdot I_{BIAS}}{\pi \cdot 
 > **Input-referred noise:**  
 > $v_{n,in}^2(f) = \frac{v_{n,out}^2(f)}{A_0^2}$
 
-
+## other
 **diffusion current:** $I_{ds}=I_{0}\exp(K_{S}V_{gs}/\Phi_{t})$
 **drift current:** $I_{ds}=\frac{1}{2} \mu_{n}C_{ox} \frac{W}{L}(V_{gs}-V_{th})^2$
 
@@ -367,6 +374,29 @@ $g_{m}=\frac{I_{DS}}{nV_{T}}$
 # Amplifiers and Filters
 ![[5XCC0-04 Amplifiers and Filters.pdf]]
 
+>[!NOTE] Formulas
+> - Voltage amplifier: $V_{out} = A \cdot V_{in}$
+> - Transconductance amplifier: $I_{out} = G_m \cdot V_{in}$
+> - Current amplifier: $I_{out} = A \cdot I_{in}$
+> - Transimpedance amplifier: $V_{out} = Z \cdot I_{in}$
+> - TIA transfer function (ideal): $\frac{v_{out}}{i_{in}} = -\frac{R_f}{1 + sCR_f}$
+> - TIA with op-amp gain $A$: $\frac{v_{out}}{i_{in}} = \frac{R_f}{1 + \frac{sCR_f}{A}}$
+> - Transconductance amplifier: $i_{out} = g_m v_{in}$, $g_m = \frac{K_s}{\Phi_t} \cdot \frac{1}{2}I_B$
+> - Input-referred noise OTA: $V_{n}^2(f) = \frac{4kT}{9I_B}$
+> - CS voltage amplifier gain: $A = -g_{m1} \cdot (r_{o1} \parallel r_{o2})$
+> - Inverter-based voltage amplifier gain: $A = -(g_{m1} + g_{m2}) \cdot (r_{o1} \parallel r_{o2})$
+> - Input-referred noise CS VA: $V_n^2(f) = \frac{I_{n1}^2(f) + I_{n2}^2(f)}{g_{m1}^2}$
+> - Input-referred noise INV VA: $V_n^2(f) = \frac{I_{n1}^2(f) + I_{n2}^2(f)}{(g_{m1} + g_{m2})^2}$
+> - Positive feedback gain: $A_{cl} = \frac{A_0 R_2}{R_1 + R_2 - A_0 R_1}=1+\frac{R_{2}}{R_{1}}$
+> - Condition for stability: $R_1 + R_2 - A_0 R_1 > 0$
+> - Input impedance with positive feedback: $Z_{in} = \infty$ when $R_x = R_2 - R_1$
+> - Capacitive amplifier gain: $\frac{C_1}{C_2}$
+> - Gm-C filter time constant: $\tau = \frac{C}{G_m}$
+> - Gm-C 1st-order LPF: $H(s) = \frac{1}{s\tau + 1}$
+> - $\tau=\frac{1}{2\pi f}$
+> - Gm-C 2nd-order LPF: $H(s) = \frac{1}{\tau_1 \tau_2 s^2 + \tau_1 s + 1}$
+> - Gm from bias current (subthreshold): $G_m = \frac{K_s}{\Phi_t} \cdot \frac{1}{2} I_B$
+> - Noise in Gm-C filters: $P_{noise} \propto \frac{kT}{C}$
 
 ## Amplifier Types
 
