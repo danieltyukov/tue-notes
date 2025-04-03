@@ -460,3 +460,74 @@ $\text{since: }V_{out}=\frac{R_{2}}{R_{1}}V_{in}\text{ leads to }R_{x}=R_{2}-R_{
 ![[Gm-C filters.png|400]]
 ![[2nd order Gm-C filter.png|400]]
 ![[higher order gm-c filter.png|300]]![[noise in gm-c filter.png|300]]
+
+# Digital. ADCs, and Layout
+![[5XCC0-07 Digital, ADCs, and Layout.pdf]]
+
+>[!NOTE] Formulas
+> 
+> **Dynamic Power Consumption**  
+> $P_{dyn} = f_{switch} \cdot C_L \cdot V_{DD}^2$  
+> $E = C_L \cdot V_{DD}^2$
+> 
+> **Total Power Consumption**  
+> $P_{total} = P_{dyn} + P_{short} + P_{leakage}$
+>
+> **Average Power from Simulation**  
+> $P = \frac{1}{T} \int_0^T V_{DD} \cdot I_{supply}(t)\,dt$
+>
+> **Dynamic IR Drop**  
+> $V_{drop,peak} = I_{peak} \cdot (R_1 + R_2)$  
+> $V_{drop,avg} = I_{avg} \cdot (R_1 + R_2)$  
+> $\Delta V_{dec} = \frac{Q_{peak}}{C_{dec}}$
+>
+> **ADC Parameters**  
+> $T_s = \frac{1}{f_s}$
+>
+> **ADC Resolution / Dynamic Range**  
+> $DR_{ideal,dB} = 6.02N + 1.76$  
+> $DR_{actual,dB} = 6.02 \cdot ENOB + 1.76$
+>
+> **Nyquist Criterion**  
+> $BW \leq \frac{1}{2}f_s$
+>
+> **SAR ADC Voltage Step**  
+> $\Delta V_{out} = \frac{C_i}{C_{sum}} \cdot V_{FS}$
+>
+> **Capacitor Array for SAR ADC**  
+> $C_i = 2^i \cdot C_0$  
+> $C_{sum} = 2^{N-1} \cdot C_0$
+>
+> **Parasitic Impact on Full-Scale Range**  
+> $\Delta V_{out} = \frac{C_i}{C_{DAC} + C_p} \cdot V_{FS}$  
+> $FS_{new} = \frac{C_{DAC}}{C_{DAC} + C_p} \cdot V_{FS}$
+>
+> **Sampling Noise**  
+> $P_n = \frac{kT}{C_{sum}}$ (single-ended)  
+> $P_n = \frac{2kT}{C_{sum}}$ (differential)
+>
+> **Signal Power and SNR**  
+> $P_{signal} = \frac{1}{2}V_{FS}^2$  
+> $\text{SNR} = \frac{P_{signal}}{P_{noise}}$
+>
+> **Power Consumption of DAC**  
+> $E_{DAC} \propto C_{sum} \cdot V_{FS}^2$  
+> $P_{DAC} \propto f_s \cdot E_{DAC}$
+>
+> **MIM Capacitor**  
+> $C = \varepsilon \varepsilon_0 \frac{A}{d}$
+>
+> **Random Mismatch**  
+> $\sigma_{\%} \propto \frac{1}{\sqrt{Area}}$  
+> $\sigma_{offset} = \frac{2\,\text{mV}}{\sqrt{W \cdot L}}$
+>
+> **Systematic Gradient Offset**  
+> $V_{offset} = 0.01\,\text{mV} \cdot d$
+>
+> **Wire Resistance and Capacitance**  
+> $R = R_{\square} \cdot \frac{L}{W}$  
+> $C = C_b \cdot A + C_f \cdot P$  
+> $\tau = (R_{source} + R_{wire})(C_{load} + C_{wire})$
+>
+> **Static IR Drop**  
+> $V_{DROP} = I_{DC} \cdot (R_1 + R_2)$
