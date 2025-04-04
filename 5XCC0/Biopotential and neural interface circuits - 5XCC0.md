@@ -470,6 +470,9 @@ $\text{since: }V_{out}=\frac{R_{2}}{R_{1}}V_{in}\text{ leads to }R_{x}=R_{2}-R_{
 > $P_{dyn} = f_{switch} \cdot C_L \cdot V_{DD}^2$  
 > $E = C_L \cdot V_{DD}^2$
 > 
+> **Quantization noise (rms):**
+>$V_{q,rms}=\frac{V_{FS}=V_{signal,pp}}{\sqrt{ 12 } \cdot 2^N}$
+> 
 > **Total Power Consumption**  
 > $P_{total} = P_{dyn} + P_{short} + P_{leakage}$
 >
@@ -527,7 +530,47 @@ $\text{since: }V_{out}=\frac{R_{2}}{R_{1}}V_{in}\text{ leads to }R_{x}=R_{2}-R_{
 > **Wire Resistance and Capacitance**  
 > $R = R_{\square} \cdot \frac{L}{W}$  
 > $C = C_b \cdot A + C_f \cdot P$  
+> $\text{bottom plate: }C_{b}(LW)\text{ finging: }C_{f}L_{9}\text{ sum of these is }C$
 > $\tau = (R_{source} + R_{wire})(C_{load} + C_{wire})$
+> $\tau=RC=\frac{R_{s}L}{W}(C_{b}WL+C_{f}L)$
+> $R=\frac{V_{drop}}{I}$
 >
 > **Static IR Drop**  
 > $V_{DROP} = I_{DC} \cdot (R_1 + R_2)$
+> $\Delta V=\frac{Q}{C}$
+> 
+> **Thermal noise**
+> $\frac{kT}{C_{sum}}=\text{sampling noise}^2=V_{rms}^2=$
+# Acquisition of neural signals
+![[5XCC0-05 Acquisition of neural signals.pdf]]
+
+>[!NOTE] Formulas
+> **High-pass filter cutoff frequency (from AC coupling):**  
+> $f_{HP} = \frac{1}{2\pi RC}$
+>
+> **Amplifier Gain (capacitive feedback amplifier):**  
+> $A_0 = \frac{C_1}{C_2}$
+>
+> **Low-pass cutoff frequency (in capacitive feedback):**  
+> $f_{LP} \approx \frac{g_m}{2\pi C_L}$
+>
+> **Input-Referred Noise (IRN):**  
+> $v_{IRN}^2 = \left(\frac{C_1}{C_1 + C_2}\right)^2 v_{n,OTA}^2 + v_{n,R}^2 + \frac{C_P^2}{(C_1 + C_2)^2}v_{n,C}^2$
+>
+> **Input Impedance (for capacitive input):**  
+> $Z_{in} \approx \frac{1}{j\omega C}$
+>
+> **Pseudo-Resistor Effective Resistance:**  
+> $R_{eq} \approx 100\ \text{G}\Omega$
+>
+> **Noise corner shift due to increased bias current:**  
+> (not a formula, but remember that increasing bias shifts $f_c$ to a higher frequency)
+>
+> **Chopping Requirement:**  
+> Chopping frequency $f_{chop} > f_{corner}$
+>
+> **Chopping Duty Cycle Requirement:**  
+> Must be exactly $50\%$ to avoid DC offset in modulated signal
+
+![[NFP acquisition system.png]]
+# Stimulation of neural tissues
