@@ -574,3 +574,17 @@ $\text{since: }V_{out}=\frac{R_{2}}{R_{1}}V_{in}\text{ leads to }R_{x}=R_{2}-R_{
 
 ![[NFP acquisition system.png]]
 # Stimulation of neural tissues
+![[5XCC0-06 Stimulation of neural tissues.pdf]]
+
+>[!NOTE] Formulas
+> - Nernst Equation: $E = E^\circ + \frac{RT}{nF} \ln \left(\frac{[\text{Ox}]}{[\text{Red}]}\right)$  
+> - Butler–Volmer Equation: $j = j_0 \left[\exp\left(\frac{\alpha_a n F \eta}{RT}\right) - \exp\left(-\frac{\alpha_c n F \eta}{RT}\right)\right]$  
+> - Electrode Current Density: $j = \frac{I}{A}$  
+> - Overpotential: $\eta = E - E_{\text{rev}}$  
+> - Safe Stimulation Limit (Shannon equation): $\log D = k - \log Q$  
+> - Strength-Duration Relationship (Weiss Law): $I = I_r \left(1 + \frac{c}{t}\right)$  
+> - Charge: $Q = I \cdot t$  
+> - Charge Density per Phase: $D = \frac{Q}{A}$  
+> - Charge Transfer Resistance (ideally): $R_{CT} \to \infty$ for safe implanted electrodes  
+> - Power Dissipation: $P = V \cdot I$  
+> - DC current avoidance (concept): ensure $\int i(t) dt = 0$ over time to avoid electrolysis  

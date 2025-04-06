@@ -8,6 +8,62 @@
 
 # Transmission Lines
 
+![[5XTC0_Lecture_Module1_TL-Theory_2025.pdf]]
+
+>[!NOTE] Formulas
+> **Telegrapher Equations (Time Domain):**  
+> $\frac{\partial v(z,t)}{\partial z} = -R i(z,t) - L \frac{\partial i(z,t)}{\partial t}$  
+> $\frac{\partial i(z,t)}{\partial z} = -G v(z,t) - C \frac{\partial v(z,t)}{\partial t}$
+> 
+> **Telegrapher Equations (Frequency Domain):**  
+> $\frac{dV(z)}{dz} = -(R + j\omega L) I(z)$  
+> $\frac{dI(z)}{dz} = -(G + j\omega C) V(z)$
+> 
+> **Wave Equations (Voltage and Current):**  
+> $\frac{d^2 V(z)}{dz^2} = \gamma^2 V(z)$  
+> $\frac{d^2 I(z)}{dz^2} = \gamma^2 I(z)$  
+> where $\gamma = \alpha + j\beta = \sqrt{(R + j\omega L)(G + j\omega C)}$
+> 
+> **General Solution (Wave Propagation):**  
+> $V(z) = V_0^+ e^{-\gamma z} + V_0^- e^{\gamma z}$  
+> $I(z) = I_0^+ e^{-\gamma z} + I_0^- e^{\gamma z}$
+> 
+> **Characteristic Impedance:**  
+> $Z_0 = \sqrt{\frac{R + j\omega L}{G + j\omega C}}$  
+> For lossless lines: $Z_0 = \sqrt{\frac{L}{C}}$
+> 
+> **Lossless Line Parameters:**  
+> $\gamma = j\beta$  
+> $\beta = \omega \sqrt{LC}$  
+> $v_p = \frac{1}{\sqrt{LC}}$  
+> $\lambda = \frac{2\pi}{\beta}$
+> 
+> **Reflection Coefficient at Load:**  
+> $\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0}$
+> 
+> **Voltage and Current on Terminated Line:**  
+> $V(z) = V_0^+ \left(e^{-j\beta z} + \Gamma e^{j\beta z}\right)$  
+> $I(z) = \frac{V_0^+}{Z_0} \left(e^{-j\beta z} - \Gamma e^{j\beta z}\right)$
+> 
+> **Input Impedance at Distance $l$ from Load:**  
+> $Z_{in} = Z_0 \frac{Z_L + j Z_0 \tan(\beta l)}{Z_0 + j Z_L \tan(\beta l)}$
+> 
+> **Quarter-Wave Transformer Matching Condition:**  
+> $Z_{in} = \frac{Z_0^2}{Z_L}$  
+> if line length $l = \frac{\lambda}{4}$
+> 
+> **Transmission Coefficient:**  
+> $T = \frac{2 Z_1}{Z_1 + Z_0}$
+> 
+> **Insertion Loss (dB):**  
+> $IL = -20 \log|T| + 10 \log\left(\frac{Z_1}{Z_0}\right)$
+> 
+> **Smith Chart Reflection Phase Relation:**  
+> $\Gamma(z = l) = \Gamma(z = 0) e^{-2j\beta l}$
+
+
+## other
+
 ![[types of transmission lines.png|300]]![[lumped element circuit model of a transmission line.png|300]]
 
 ## Telegrapher equations
@@ -182,6 +238,73 @@ In the center it is the **Load**
 [moving towards generator on smith chart](https://www.youtube.com/watch?v=vwqIGjXGKkk)
 ![[conversion between impedance and admittance.png|400]]
 # Passive microwave networks
+
+![[5XTC0_Lecture_Module2_Passives.pdf]]
+
+>[!NOTE] Formulas
+> **Telegrapher's Equations (frequency domain)**  
+> $-\frac{\partial v(z,t)}{\partial z} = R i(z,t) + L \frac{\partial i(z,t)}{\partial t}$  
+> $-\frac{\partial i(z,t)}{\partial z} = G v(z,t) + C \frac{\partial v(z,t)}{\partial t}$  
+>  
+> **Voltage and Current in Transmission Line**  
+> $V(z,t) = V^+(z,t) + V^-(z,t)$  
+> $I(z,t) = \frac{1}{Z_0}(V^+(z,t) - V^-(z,t))$  
+>  
+> **Reflection Coefficient**  
+> $\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0}$  
+>  
+> **Voltage and Current using $\Gamma$**  
+> $V(z) = V_0^+ (e^{-j\beta z} + \Gamma e^{j\beta z})$  
+> $I(z) = \frac{V_0^+}{Z_0}(e^{-j\beta z} - \Gamma e^{j\beta z})$  
+>  
+> **Impedance Matrix**  
+> $\mathbf{V} = \mathbf{Z} \mathbf{I}$  
+>  
+> **Admittance Matrix**  
+> $\mathbf{I} = \mathbf{Y} \mathbf{V}$  
+>  
+> **Scattering Parameters**  
+> $a_n = \frac{V_n^+}{\sqrt{Z_{0n}}}, \quad b_n = \frac{V_n^-}{\sqrt{Z_{0n}}}$  
+> $\mathbf{b} = \mathbf{S} \mathbf{a}$  
+>  
+> **Power at a Port**  
+> $P_n = \frac{1}{2}(|a_n|^2 - |b_n|^2)$  
+>  
+> **Unitary Condition (Lossless S-matrix)**  
+> $\mathbf{S}^\dagger \mathbf{S} = \mathbf{I}$  
+>  
+> **Reciprocal Network (S-matrix Symmetry)**  
+> $S_{ij} = S_{ji}$  
+>  
+> **ABCD (Transmission) Matrix**  
+> $\begin{bmatrix} V_1 \\ I_1 \end{bmatrix} = \begin{bmatrix} A & B \\ C & D \end{bmatrix} \begin{bmatrix} V_2 \\ I_2 \end{bmatrix}$  
+>  
+> **Impedances of Lumped Elements (Series)**  
+> $Z_R = R$  
+> $Z_L = j \omega L$  
+> $Z_C = \frac{1}{j \omega C}$  
+>  
+> **Admittances of Lumped Elements (Parallel)**  
+> $Y_R = \frac{1}{R}$  
+> $Y_L = \frac{1}{j \omega L}$  
+> $Y_C = j \omega C$  
+>  
+> **Quarter-Wavelength Transformer**  
+> $Z_{in} = \frac{Z_0^2}{Z_L}$  
+>  
+> **Transmission Line Impedance Transformation**  
+> $Z_{in} = Z_0 \frac{Z_L + j Z_0 \tan(\beta l)}{Z_0 + j Z_L \tan(\beta l)}$  
+>  
+> **Power Divider (Asymmetrical)**  
+> $P_2 = \alpha P_1, \quad P_3 = (1 - \alpha) P_1$  
+>  
+> **Directional Coupler (Symmetrical)**  
+> $S = \begin{bmatrix} 0 & \alpha & j\beta & 0 \\ \alpha & 0 & 0 & j\beta \\ j\beta & 0 & 0 & \alpha \\ 0 & j\beta & \alpha & 0 \end{bmatrix}$  
+>  
+> **Directional Coupler (Anti-symmetrical)**  
+> $S = \begin{bmatrix} 0 & \alpha & \beta & 0 \\ \alpha & 0 & 0 & -\beta \\ \beta & 0 & 0 & \alpha \\ 0 & -\beta & \alpha & 0 \end{bmatrix}$  
+
+
 ## Microwave network matrices
 $Z_{ij}=\frac{V_{i}}{I_{j}}|_{I_{k}=0,k\neq j}$ and $Y_{ij}=\frac{I_{i}}{V_{j}}|_{V_{k}=0,k\neq j}$
 ![[impedance and admittance matrices.png|300]]
@@ -240,7 +363,80 @@ A power divider network can have symmetrical or asymmetrical.
 ![[20250316_131224~2.jpg]]
 
 # Antenna parameters & theory
-![[antenna types.png|300]]
+
+![[5XTC0_Lecture_Module3_Antenna-Parameters-3.pdf]]
+
+>[!NOTE] Formulas
+> **Poynting Vector (Instantaneous):**  
+> $𝒲(\vec{r}, t) = \vec{E}(\vec{r}, t) \times \vec{H}(\vec{r}, t)$  
+>  
+> **Time-Averaged Power Density:**  
+> $W_{\text{av}}(\vec{r}) = \frac{1}{2} \text{Re}[\vec{E}(\vec{r}) \times \vec{H}^*(\vec{r})]$  
+>  
+> **Radiation Intensity:**  
+> $U(\theta, \phi) = R^2 W_{\text{av}}(\vec{r})$  
+>  
+> **Surface Element in Spherical Coordinates:**  
+> $dS = R^2 \sin(\theta) d\theta d\phi = R^2 d\Omega$  
+>  
+> **Solid Angle:**  
+> $\omega = \int_0^{2\pi} \int_0^\alpha \sin(\theta) d\theta d\phi = 2\pi (1 - \cos(\alpha))$  
+>  
+> **Total Radiated Power:**  
+> $P_{\text{rad}} = \int\int U(\theta, \phi) \sin(\theta) d\theta d\phi$  
+>  
+> **Directivity:**  
+> $D_g = \frac{U(\theta, \phi)}{U_0} \quad \text{where} \quad U_0 = \frac{P_{\text{rad}}}{4\pi}$  
+>  
+> **Gain:**  
+> $G_g = \frac{4\pi U(\theta, \phi)}{P_{\text{in}}}$  
+>  
+> **Gain vs Directivity:**  
+> $G_g = e_t D_g \quad \text{with} \quad e_t = e_r e_{cd}$  
+>  
+> **Reflection Efficiency:**  
+> $e_r = 1 - |\Gamma|^2$  
+>  
+> **Axial Ratio (AR):**  
+> $AR = \frac{A}{B} = \frac{\max(E_\theta \hat{u}_\theta + E_\phi \hat{u}_\phi)}{\min(E_\theta \hat{u}_\theta + E_\phi \hat{u}_\phi)}$  
+>  
+> **Bandwidth:**  
+> $BW = f_{\max} - f_{\min}$  
+>  
+> **Narrowband Percentage:**  
+> $p = \frac{BW}{f_c}$  
+>  
+> **Input Impedance (Thevenin Model):**  
+> $Z_A = R_A + jX_A = R_{\text{rad}} + R_{\text{loss}} + jX_A$  
+>  
+> **Input Admittance (Norton Model):**  
+> $Y_A = G_A + jB_A = G_{\text{rad}} + G_{\text{loss}} + jB_A$  
+>  
+> **Radiation Efficiency (Power-Based):**  
+> $\eta = \frac{P_{\text{rad}}}{P_{\text{in}}} = \frac{R_{\text{rad}}}{R_{\text{rad}} + R_{\text{loss}}}$  
+>  
+> **Received Power and Effective Aperture:**  
+> $P_T = W_{\text{inc}} A_e$  
+>  
+> **Effective Aperture:**  
+> $A_e = \frac{P_T}{W_{\text{inc}}} = \frac{V_T^2}{2W_{\text{inc}}(R_T + R_{\text{rad}} + R_{\text{loss}})^2 + (X_T + X_A)^2}$  
+>  
+> **Max Effective Aperture (Matched Case):**  
+> $A_{e,\text{max}} = \frac{V_T^2}{8W_{\text{inc}}(R_{\text{rad}} + R_{\text{loss}})}$  
+>  
+> **Free Space Power Density:**  
+> $W_{\text{inc}} = \frac{1}{2} \text{Re}(E \times H^*) = \frac{E^2}{2\eta}$  
+>  
+> **Max Effective Aperture (Dipole Example):**  
+> $A_{e,\text{max}} = \frac{3\lambda^2}{8\pi}$  
+>  
+> **Friis Transmission Equation:**  
+> $P_{\text{rec}} = \left(\frac{\lambda}{4\pi R}\right)^2 G_{\text{Tx}} G_{\text{Rx}} P_{\text{in}}$  
+>  
+> **Gain-to-Aperture Relationship:**  
+> $\frac{A_e}{G} = \frac{\lambda^2}{4\pi}$
+
+
 ## Radiation parameters
 
 >[!NOTE] Radiation Pattern
@@ -313,6 +509,57 @@ $10^{db/10}=mW$
 
 [FSPL](https://en.wikipedia.org/wiki/Free-space_path_loss) - Free Space Path Loss: influenced by frequency operation - Friis equation -> has a wavelength component. $FSPL=\left( \frac{4\pi d}{\lambda} \right)^2$
 # RF systems and Amplifier design
+![[5XTC0_Module_4_Amplifier_Design.pdf]]
+![[5XTC0_Module_4_RF_Building_Blocks_Study_Guide_2024.pdf]]
+![[5XTC0_Module_4_RF_Systems.pdf]]
+
+>[!NOTE] Formulas
+> **Reflection Coefficients**  
+> $Γ_L = \frac{Z_L - Z_0}{Z_L + Z_0}$  
+> $Γ_S = \frac{Z_S - Z_0}{Z_S + Z_0}$  
+>  
+> **Input and Output Reflection Coefficients**  
+> $Γ_{in} = S_{11} + \frac{S_{12}S_{21}Γ_L}{1 - S_{22}Γ_L}$  
+> $Γ_{out} = S_{22} + \frac{S_{12}S_{21}Γ_S}{1 - S_{11}Γ_S}$  
+>  
+> **Power Calculations**  
+> $P_L = \frac{1}{2} \left| V_2^+ \right|^2 \cdot \frac{1 - |Γ_L|^2}{Z_0}$  
+> $P_{in} = \frac{1}{2} \left| V_1^+ \right|^2 \cdot \frac{1 - |Γ_{in}|^2}{Z_0}$  
+> $P_{avs} = \frac{1}{2} \left| V_s \right|^2 \cdot \frac{1 - |Γ_S|^2}{Z_0}$  
+>  
+> **Power Gains**  
+> Power gain: $G = \frac{P_L}{P_{in}}$  
+> Available power gain: $G_A = \frac{P_{avn}}{P_{avs}}$  
+> Transducer gain: $G_T = \frac{P_L}{P_{avs}}$  
+> Unilateral transducer gain (S₁₂ = 0):  
+> $G_{TU} = \left| S_{21} \right|^2 \cdot \frac{1 - |Γ_S|^2}{|1 - S_{11}Γ_S|^2} \cdot \frac{1 - |Γ_L|^2}{|1 - S_{22}Γ_L|^2}$  
+>  
+> **Gain Circle Parameters**  
+> Normalized gain factor: $g_s = \frac{G_S}{G_{S,max}}$  
+> Center: $C_s = \frac{g_s S_{11}^*}{1 - (1 - g_s)|S_{11}|^2}$  
+> Radius: $r_s = \frac{\sqrt{1 - g_s}(1 - |S_{11}|^2)}{1 - (1 - g_s)|S_{11}|^2}$  
+>  
+> **Stability Factor and Condition**  
+> Rollet stability factor:  
+> $K = \frac{1 - |S_{11}|^2 - |S_{22}|^2 + |\Delta|^2}{2|S_{12}S_{21}|}$  
+> $\Delta = S_{11}S_{22} - S_{12}S_{21}$  
+> Condition for unconditional stability:  
+> $K > 1$ and $|\Delta| < 1$  
+>  
+> **Stability Circle Centers and Radii**  
+> Input stability circle (in Γ_L plane):  
+> 
+> $C_{L} = \frac{(S_{22} - \Delta S_{11}^*)^*}{|S_{22}|^2 - |\Delta|^2}$  
+> 
+> $r_L = \left| \frac{S_{12}S_{21}}{|S_{22}|^2 - |\Delta|^2} \right|$  
+>  
+> Output stability circle (in Γ_S plane):  
+> 
+> $C_{S} = \frac{(S_{11} - \Delta S_{22}^*)^*}{|S_{11}|^2 - |\Delta|^2}$  
+> 
+> $r_S = \left| \frac{S_{12}S_{21}}{|S_{11}|^2 - |\Delta|^2} \right|$
+
+
 ## RF systems
 ![[application of rf systems.png|300]]![[applications of rf systems.png|300]]
 ![[trends in semiconductors.png|300]]![[transciever design.png|300]]![[lna design topics addressed.png|300]]
@@ -362,6 +609,43 @@ If $|\Delta|=|S_{11}S_{22}-S_{12}S_{21}|<1\text{ and }K= \frac{1-|S_{11}|^2-|S_{
 
 ![[load condition for max real power.png|600]]
 # Noise and LNA design
+![[5XTC0_Module_5_Exercise_Amplifier_and_Low_Noise_Amplier_design.pdf]]
+
+>[!NOTE] Formulas
+> **Power Gain**: $G = \frac{P_L}{P_{in}}$
+> 
+> **Available Power Gain**: $G_A = \frac{P_{AV,N}}{P_{AV,S}}$
+>
+> **Transducer Power Gain**: $G_T = \frac{P_L}{P_{AV,S}}$
+>
+> **Unilateral Transducer Gain (S_{12}=0)**: $G_{TU} = \left|\frac{S_{21}}{1 - \Gamma_S S_{11}}\right|^2 \cdot \left|\frac{1}{1 - \Gamma_L S_{22}}\right|^2$
+>
+> **Reflection Coefficients**: $\Gamma_{in} = S_{11} + \frac{S_{12} S_{21} \Gamma_L}{1 - S_{22} \Gamma_L}$, $\Gamma_{out} = S_{22} + \frac{S_{12} S_{21} \Gamma_S}{1 - S_{11} \Gamma_S}$
+>
+> **Rollet Stability Factor**: $K = \frac{1 - |S_{11}|^2 - |S_{22}|^2 + |\Delta|^2}{2|S_{12} S_{21}|}$, with $\Delta = S_{11} S_{22} - S_{12} S_{21}$
+>
+> **Unconditional Stability Conditions**: $K > 1$ and $|\Delta| < 1$
+>
+> **Thermal Noise Power**: $P_n = k_B T B$
+>
+> **Available Noise Power from Resistor**: $P_N = 4 k_B T B R$
+>
+> **Equivalent Noise Temperature**: $T_e = \frac{N_0}{k_B B}$
+>
+> **Noise Figure**: $F = 1 + \frac{T_e}{T_0}$, with $NF = 10 \log_{10}(F)$
+>
+> **Friis’ Formula for Cascaded Stages**: $F_{total} = F_1 + \frac{F_2 - 1}{G_1} + \frac{F_3 - 1}{G_1 G_2} + \dots$
+>
+> **Noise Figure with Source Admittance**: $F = F_{min} + \frac{4 r_n}{g_s} \cdot |Y_s - Y_{opt}|^2$
+>
+> **Noise Figure with Reflection Coefficients**: $F = F_{min} + \frac{4 r_n}{|1 + \Gamma_S|^2} \cdot \frac{|\Gamma_S - \Gamma_{opt}|^2}{1 - |\Gamma_{opt}|^2}$
+>
+> **Constant Noise Circle Radius**: $R_N = \frac{|1 - |\Gamma_{opt}|^2|}{1 + N}$
+>
+> **Constant Noise Circle Center**: $C_N = \frac{\Gamma_{opt}}{1 + N}$
+
+
+## Other
 $SNR=\frac{S}{R}$
 ![[types of noises.png|400]]
 
@@ -402,3 +686,53 @@ With the **Noise figure parameter N** defined as:
 $\Delta F_{n}'=N=(F-F_{min}) \frac{|1+\vec{\Gamma}_{opt}|^2}{4r_{n}}=\frac{|\vec{\Gamma}_{S}-\vec{\Gamma}_{opt}|^2}{1-|\vec{\Gamma}_{S}|^2}$
 ![[constant noise circles.png|500]]
 ![[specific noise figure design.png|500]]
+# Basics of PA and Mixer Design (Power amplifiers and mixers)
+![[5XTC0_Module_6_PAs_Mixers (1).pdf]]
+
+>[!NOTE] Formulas
+> **Signal-to-noise ratio (SNR)**: $SNR = \frac{S}{N}$
+> 
+> **Thermal noise power**: $P_n = kTB$
+> 
+> **Noise figure (F)**: $F = \frac{S_i/N_i}{S_o/N_o} = 1 + \frac{T_e}{T_0}$
+> 
+> **Noise figure (dB)**: $NF = 10 \log_{10}(F)$
+> 
+> **Friis’ noise figure formula (cascaded stages)**: $F_{total} = F_1 + \frac{F_2 - 1}{G_{a,1}} + \frac{F_3 - 1}{G_{a,1}G_{a,2}} + \cdots$
+> 
+> **Noise figure of an amplifier with reflection coefficients**: 
+> $F = F_{min} + \frac{4r_n |\Gamma_S - \Gamma_{opt}|^2}{(1 - |\Gamma_S|^2)|1 + \Gamma_{opt}|^2}$
+> 
+> **Noise figure parameter (N)**:
+> $N = \frac{F - F_{min}}{4r_n}$
+> 
+> **Constant noise circle radius**:
+> $R_F = \frac{|\Gamma_S - \Gamma_{opt}|}{|1 + \Gamma_{opt}|}$
+> 
+> **Nonlinear output expression**: $v_{out}(t) = a_1v_{in}(t) + a_2v_{in}^2(t) + a_3v_{in}^3(t) + \cdots$
+> 
+> **1 dB Compression Point**: input/output power where gain is reduced by 1 dB from linear response
+> 
+> **Second-order intercept point (IIP2)**: Extrapolated power where second-order products intersect with fundamental
+> 
+> **Third-order intercept point (IIP3)**: Extrapolated input power where third-order products equal fundamental
+> 
+> **Cascaded IIP3 formula**: $\frac{1}{IIP3_{total}^{2}} = \frac{1}{IIP3_1^{2}} + \frac{1}{G_{a,1}^2 IIP3_2^{2}} + \cdots$
+> 
+> **Mixer output signal (RX - time domain)**:
+> $x_{if}(t) = A_{rf}A_{lo}\cos(\omega_{rf} + \omega_{lo}) + \cos(\omega_{rf} - \omega_{lo})$
+> 
+> **Intermediate frequency (IF)**: $\omega_{if} = \omega_{rf} - \omega_{lo}$
+> 
+> **Mixer output signal (TX - time domain)**:
+> $x_{rf}(t) = A_{if}A_{lo}\cos(\omega_{if} + \omega_{lo}) + \cos(\omega_{if} - \omega_{lo})$
+> 
+> **Upconverted frequency (TX)**: $\omega_{rf} = \omega_{if} + \omega_{lo}$
+> 
+> **Mixing in frequency domain**: $X_{out}(\omega) = X_{in}(\omega) * X_{lo}(\omega)$
+> 
+> **Output power**: $P_{load} = \frac{V_{load}^2}{R_L}$
+> 
+> **Optimum load resistance**: $R_L = \frac{2V_{DD} - V_{min}}{I_{max}}$
+> 
+> **Maximum PA efficiency (Class A)**: $\eta_{max} = \frac{\pi}{4} \approx 78.5\%$
