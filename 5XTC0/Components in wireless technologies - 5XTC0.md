@@ -736,3 +736,46 @@ $\Delta F_{n}'=N=(F-F_{min}) \frac{|1+\vec{\Gamma}_{opt}|^2}{4r_{n}}=\frac{|\vec
 > **Optimum load resistance**: $R_L = \frac{2V_{DD} - V_{min}}{I_{max}}$
 > 
 > **Maximum PA efficiency (Class A)**: $\eta_{max} = \frac{\pi}{4} \approx 78.5\%$
+
+# System level design
+![[5XTC0_Module7_System_Design.pdf]]
+
+>[!NOTE] Formulas
+> **Signal-to-Noise Ratio (SNR)**  
+> $SNR = \frac{S}{N}$
+>
+> **Friis' Formula for Cascaded Noise Figure**  
+> $F_{total} = F_1 + \frac{F_2 - 1}{G_{a,1}} + \frac{F_3 - 1}{G_{a,1}G_{a,2}} + \cdots$
+>
+> **Cascaded IIP3 Formula**  
+> $\frac{1}{IIP3_{total}^{2}} = \frac{1}{IIP3_1^{2}} + \frac{G_{a,1}}{IIP3_2^{2}} + \cdots$
+>
+> **Output Power from Gain**  
+> $P_{out} = G \cdot P_{in}$
+>
+> **Linear Dynamic Range (LDR)**  
+> $LDR = P_{1dB} - P_{noise}$
+>
+> **Spurious Free Dynamic Range (SFDR)**  
+> $SFDR = \frac{2}{3}(IIP3 - P_{noise})$
+>
+> **Energy per Bit**  
+> $E_b = \frac{S}{R_b}$
+>
+> **Noise Power**  
+> $N = n_0 \cdot B$
+>
+> **$E_b/n_0$ Ratio**  
+> $\frac{E_b}{n_0} = \frac{S}{N} \cdot \frac{B}{R_b}$
+>
+> **Receiver Sensitivity (in dBm)**  
+> $P_{sensitivity} = P_{Rsource} + 10\log_{10}(B) + NF + SNR_{min,out}$
+>
+> with:  
+> $P_{Rsource} = -174\, \text{dBm/Hz}$
+>
+> **Shannon Capacity**  
+> $C = B \cdot \log_2(1 + SNR)$
+>
+> **Friis Radio Link Formula (Power at RX input)**  
+> $P_{RX} = P_{TX} + G_{TX} + G_{RX} - L_{path} - L_{cables}$
