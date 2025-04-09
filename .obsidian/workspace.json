@@ -4,54 +4,49 @@
     "type": "split",
     "children": [
       {
-        "id": "db723dece9597fd4",
+        "id": "08622eb5dd3e23b0",
         "type": "tabs",
         "children": [
           {
-            "id": "8d6830f7d368f5f4",
+            "id": "ad00ec1adfc691ac",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "BEP - SiP Integration of Large Scale DAC Arrays/Developing a Process for System in Package Integration of Large Scale DAC Arrays.md",
+                "file": "5XCC0/Biopotential and neural interface circuits - 5XCC0.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Developing a Process for System in Package Integration of Large Scale DAC Arrays"
-            }
-          }
-        ]
-      },
-      {
-        "id": "4bf86e90ac86d053",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "34f96022b178479a",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "BEP - SiP Integration of Large Scale DAC Arrays/litrature/BEP_presentation_flip-chip_technology_Wouter_Beelaerts_van_Emmichoven.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "BEP_presentation_flip-chip_technology_Wouter_Beelaerts_van_Emmichoven"
+              "title": "Biopotential and neural interface circuits - 5XCC0"
             }
           },
           {
-            "id": "f2ca0b9acc2b84ea",
+            "id": "72d586015002b9c2",
             "type": "leaf",
             "state": {
               "type": "pdf",
               "state": {
-                "file": "BEP - SiP Integration of Large Scale DAC Arrays/litrature/Introduction slides BEP Daniel.pdf"
+                "file": "5XTC0/5XTC0_Formula_Sheet.pdf"
               },
               "icon": "lucide-file-text",
-              "title": "Introduction slides BEP Daniel"
+              "title": "5XTC0_Formula_Sheet"
+            }
+          },
+          {
+            "id": "898fbe18047e3936",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "5XCC0/slides/5XCC0-04 Amplifiers and Filters.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "5XCC0-04 Amplifiers and Filters"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -98,7 +93,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 424.51103591918945,
+    "width": 457.5004348754883,
     "collapsed": true
   },
   "right": {
@@ -173,39 +168,43 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "8d6830f7d368f5f4",
+  "active": "898fbe18047e3936",
   "lastOpenFiles": [
-    "BEP - SiP Integration of Large Scale DAC Arrays/attachments/SiIP PKG.png",
-    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/BEP_presentation_flip-chip_technology_Wouter_Beelaerts_van_Emmichoven.pdf",
-    "BEP - SiP Integration of Large Scale DAC Arrays/Developing a Process for System in Package Integration of Large Scale DAC Arrays.md",
-    "BEP - SiP Integration of Large Scale DAC Arrays/attachments/PVD Methods.png",
-    "BEP - SiP Integration of Large Scale DAC Arrays/attachments/Chip on PCB design.png",
-    "BEP - SiP Integration of Large Scale DAC Arrays/attachments/chip building blocks.png",
-    "BEP - SiP Integration of Large Scale DAC Arrays/attachments",
-    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/Flip_chip_assembly_for_sub-millimeter_wave_amplifier_MMIC_on_polyimide_substrate.pdf",
-    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/Introduction slides BEP Daniel.pdf",
-    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/DML_Norwegen_2008_Handout.pdf",
-    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/ep_138_03_030802.pdf",
-    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/Gold_stud_bump_in_flip-chip_applications.pdf",
-    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/V2_BEP_Final_paper___Flip_Chip_technology_Wouter_Beelaerts.pdf",
-    "BEP - SiP Integration of Large Scale DAC Arrays/litrature/BEP_Final_paper_Flip_Chip_technology_Wouter_Beelaerts_van Emmichoven.pdf",
-    "logseq/custom.css",
-    "pages/contents.md",
+    "5XCC0/slides/5XCC0-05 Acquisition of neural signals.pdf",
     "5XCC0/Biopotential and neural interface circuits - 5XCC0.md",
-    "2INC0/Operating Systems - 2INC0.md",
     "5XTC0/Components in wireless technologies - 5XTC0.md",
+    "5XTC0/5XTC0_Formula_Sheet.pdf",
+    "5XCC0/Formula Sheet 2025.pdf",
+    "5XTC0/labs/5XTC0_Lecture_Module7_System-Level-Considerations.pdf",
+    "5XTC0/slides/5XTC0_Module7_System_Design.pdf",
+    "5XTC0/exercises/5XTC0_Module_7_Exercise_System_level_design.pdf",
+    "5XTC0/slides/5XTC0_Module_6_PAs_Mixers (1).pdf",
+    "5XTC0/exercises/5XTC0_Module_6_Exercise_Amplifier_design_using_distributed_components (1).pdf",
+    "5XTC0/5XTC0_Formula_Sheet 1.pdf",
+    "5XTC0/components-wireless-tech-book.pdf",
+    "5XTC0/exercises/5XTC0_Module_5_Exercise_Amplifier_and_Low_Noise_Amplier_design.pdf",
+    "5EPB0/Electromagnetics II - 5EPB0.md",
+    "5XIE0/Computation Modeling.md",
+    "5XCC0/attachments/NFP acquisition system.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/Developing a Process for System in Package Integration of Large Scale DAC Arrays.md",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/considerations for research.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/electrical characteristics.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/overall bump and pad size.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/pad size.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/bump diameter.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/Developing influence of bump heigh.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/reflections at interconnect.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/chip detuning details.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/coplaner waveguide vs microstrip.png",
+    "Untitled.md",
+    "5XTB0/Photonics - 5XTB0.md",
+    "2INC0/Operating Systems - 2INC0.md",
+    "BEP - SiP Integration of Large Scale DAC Arrays/Developing a Process for System in Package Integration of Large Scale DAC Arrays.md",
+    "pages/contents.md",
     "5EWB0/EPS - 5EWB0.md",
-    "5XTC0/attachments/real type of such directional couplers.png",
-    "5XTC0/attachments/symmetric and anit symmetric coupler.png",
-    "5XTC0/attachments/directional couplers-3.png",
-    "5XTC0/attachments/directional couplers-2.png",
-    "5XTC0/attachments/directional couplers-1.png",
-    "5XTC0/attachments/directional couplers.png",
-    "5XTC0/attachments/power divider combiners.png",
     "BEP - SiP Integration of Large Scale DAC Arrays/BEP Skills.md",
     "5ESB0/Systems - 5ESB0.md",
     "5EIB0/Computation II - 5EIB0.md",
-    "5XTB0/Photonics - 5XTB0.md",
     "5ETA0/Intro to Telecommunication - 5ETA0.md",
     "5ESC0/DSP(digital signal processing) fundamentals (signals II) - 5ESC0.md",
     "5EPA0/Electromagnetics I - 5EPA0.md",
