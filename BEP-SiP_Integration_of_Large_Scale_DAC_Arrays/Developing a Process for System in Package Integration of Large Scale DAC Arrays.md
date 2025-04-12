@@ -270,3 +270,59 @@ thin film microstrip on carrier
 >  - look into Intel **embedde multi-die interconnect bridge (EMIB)**
 
 
+>[!NOTE] Formulas
+> **Acceleration Factor (Peck's Model)**  
+> $AF=\left(\frac{V_{Test}}{V_{Use}}\right)\left(\frac{RH_{Test}}{RH_{Use}}\right)^n e^{\frac{E_a}{k}\left(\frac{1}{T_{Use}}-\frac{1}{T_{Test}}\right)}$
+>
+> **Mean Time To Failure (MTTF)**  
+> $MTTF=AF \cdot \text{Total Device Test Hours} \cdot \frac{2}{6.3}$
+>
+> **Failure Criterion**  
+> A chip is considered failed if its resistance increases by $\geq15\%$.
+>
+> **Material Properties**  
+> - **Silver (Ag):**  
+>  Thermal conductivity: $430\ \mathrm{W/mK}$  
+>  Electrical resistivity: $1.63\times10^{-8}\ \Omega \cdot m$  
+>  Young’s modulus: $83\ \mathrm{GPa}$  
+>  Vickers hardness: $251\ \mathrm{MPa}$  
+>  Price: $\$19.59/\mathrm{oz}$
+>
+> - **Gold (Au):**  
+>  Thermal conductivity: $320\ \mathrm{W/mK}$  
+>  Electrical resistivity: $2.2\times10^{-8}\ \Omega \cdot m$  
+>  Young’s modulus: $78\ \mathrm{GPa}$  
+>  Vickers hardness: $216\ \mathrm{MPa}$  
+>  Price: $\$1322.10/\mathrm{oz}$
+>
+> - **Copper (Cu):**  
+>  Thermal conductivity: $400\ \mathrm{W/mK}$  
+>  Electrical resistivity: $1.72\times10^{-8}\ \Omega \cdot m$  
+>  Young’s modulus: $130\ \mathrm{GPa}$  
+>  Vickers hardness: $369\ \mathrm{MPa}$  
+>  Price: $\$0.14/\mathrm{oz}$
+>
+> **Testing Conditions**  
+> - **HTST:** $150^\circ C$  
+> - **Biased HTST:** $130^\circ C,\ 3.3\ \mathrm{V}$  
+> - **u-THS:** $130^\circ C,\ 85\%$ RH  
+> - **b-THS:** $130^\circ C,\ 85\%$ RH, $3.3\ \mathrm{V}$
+>
+> **Experimental Insights**  
+> - Silver wire bonds have MTTFs:  
+>  Type 6: $55.3$ years  
+>  Type 7: $73.4$ years  
+> - Gold wire bonds: No failure observed in test period
+> - Acceleration Factor computed: $AF = 337.92$
+
+>[!NOTE] Ball Bonding Material Recommendation
+> **Recommended Material: Gold (Au)**  
+> Gold remains the best choice for **ball bonding** between chip and interposer due to its **proven long-term reliability**. In accelerated stress testing, **no gold wire bond failures** were observed, while **silver** showed failures under bias, humidity, and temperature conditions.
+>
+> **Why Material Properties Matter in Ball Bonding**  
+> - **Thermal Conductivity** ($W/mK$): Measures how well heat dissipates. Important to prevent thermal buildup at the bond interface.  
+> - **Electrical Resistivity** ($\Omega \cdot m$): Lower is better for signal integrity and power efficiency.  
+> - **Young’s Modulus** ($GPa$): Reflects stiffness. Lower modulus (as in gold) allows better compliance with thermal expansion, reducing stress and cracking.  
+> - **Vickers Hardness** ($MPa$): Indicates material hardness. Too hard (like copper) risks damaging bonding pads; too soft (like silver) risks deformation and reliability loss.
+>
+> Gold offers the **best balance** of these properties, making it ideal for reliable, damage-free, and high-performance ball bonds in microelectronics.
