@@ -72,6 +72,10 @@ The goal was interposer design & production, bump placement, die placement, test
 >[**Dry Etching**](https://en.wikipedia.org/wiki/Dry_etching): Employs gases or plasmas to etch the material, offering greater precision and control.
 >
 >[PVD vs CVD: Mastering Advanced Thin Film Deposition Techniques](https://www.wevolver.com/article/pvd-vs-cvd)
+>
+>In general in the video of Metalization he explains the difference between an etching and lift-off method, an etching method applies photoresist on a metal layer and then using an etching solution the metal layer NOT covered by photoresist is removed and then the photoresists is removed to expose the metal pattern.
+>
+>In our case though we focus on the lift off method (evaporation/sputtering as 2 available options), here the metal layer is deposited on top of photoresist and then the photoresists is removed and only the metal layer pattern remains.
 
 Wafer and overall microelectronics die bonding methods: [Wafer bonding - Wikipedia](https://en.wikipedia.org/wiki/Wafer_bonding)
 
@@ -232,7 +236,7 @@ explore the idea of bump to pillar bonding techniques.
 ![[planarity.png|300]]
 **planarity**, in flip-chip bonding, refers to the height consistency
 
-![[DML_Norwegen_2008_Handout.pdf]]
+![[interposer design patterns.pdf]]
 
 ![[considerations for research.png|500]]
 
@@ -270,6 +274,7 @@ thin film microstrip on carrier
 >  - look into Intel **embedde multi-die interconnect bridge (EMIB)**
 
 
+[Reliability of Silver Wire Bonds](https://engineering.purdue.edu/MSE/engagement/PastSeniorDesign/Poster%20Folder/2017%20posters/Juniper%20Networks%20Poster.pdf):
 >[!NOTE] Formulas
 > **Acceleration Factor (Peck's Model)**  
 > $AF=\left(\frac{V_{Test}}{V_{Use}}\right)\left(\frac{RH_{Test}}{RH_{Use}}\right)^n e^{\frac{E_a}{k}\left(\frac{1}{T_{Use}}-\frac{1}{T_{Test}}\right)}$
@@ -314,7 +319,6 @@ thin film microstrip on carrier
 >  Type 7: $73.4$ years  
 > - Gold wire bonds: No failure observed in test period
 > - Acceleration Factor computed: $AF = 337.92$
-
 >[!NOTE] Ball Bonding Material Recommendation
 > **Recommended Material: Gold (Au)**  
 > Gold remains the best choice for **ball bonding** between chip and interposer due to its **proven long-term reliability**. In accelerated stress testing, **no gold wire bond failures** were observed, while **silver** showed failures under bias, humidity, and temperature conditions.
