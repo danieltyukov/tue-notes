@@ -77,6 +77,56 @@ The goal was interposer design & production, bump placement, die placement, test
 >
 >In our case though we focus on the lift off method (evaporation/sputtering as 2 available options), here the metal layer is deposited on top of photoresist and then the photoresists is removed and only the metal layer pattern remains.
 
+>[!NOTE] Sputtering vs Evaporation
+> **Evaporation** and **sputtering** are both physical vapor deposition (PVD) techniques, but differ in energy mechanisms, film properties, and adhesion.
+>
+> **1. Directionality & Step Coverage**
+> - **Evaporation** is line-of-sight: atoms travel in straight paths.
+> - **Sputtering** involves energetic collisions → more isotropic deposition and better **step coverage** over features.
+>
+> **2. Adhesion (especially on glass)**
+> - **Sputtering** often yields better adhesion due to:
+>   - Higher energy of deposited atoms
+>   - Substrate bombardment during growth
+>   - Partial intermixing at interface
+>
+> **3. Film Density**
+> - **Sputtered films** are generally denser and more uniform due to higher atom energies ($\approx$ several eV).
+> - **Evaporated films** can be porous or columnar due to low energy ($< 1$ eV) atoms.
+>
+> **4. Deposition Rate & Uniformity**
+> - **Evaporation**: high rate but poor uniformity across large substrates.
+> - **Sputtering**: lower rate but better uniformity.
+>
+> **5. Energy Considerations**
+> - In sputtering, ions transfer momentum:
+>   - $E_{\text{ion}} \approx 100 - 1000$ eV
+>   - $E_{\text{atom}}^{\text{sputtered}} \approx 10$ eV
+> - In evaporation:
+>   - $E_{\text{atom}}^{\text{evaporated}} < 1$ eV
+>
+> **6. Film Stress & Morphology (Thornton Diagram)**
+> - Evaporation often leads to tensile stress and columnar growth.
+> - Sputtering can tailor compressive or tensile stress via parameters like pressure, bias, and temperature.
+>
+> **7. Material Suitability**
+> - **Evaporation** struggles with compounds or high melting point materials.
+> - **Sputtering** allows stoichiometric transfer of complex targets.
+>
+> **Summary Formula (Mean Free Path λ):**
+> 
+> $$
+> \lambda = \frac{k_B T}{\sqrt{2} \pi d^2 P}
+> $$
+> 
+> - In high vacuum (evaporation), $\lambda$ is large → ballistic transport.
+> - In sputtering (low vacuum), more collisions → diffusive paths.
+>
+> **Conclusion**: 
+> For high-quality metal films on **glass substrates**, **sputtering** generally provides superior **adhesion**, **step coverage**, **uniformity**, and **film density** — especially crucial for **interposer fabrication** and **high-frequency applications**.
+
+
+
 Wafer and overall microelectronics die bonding methods: [Wafer bonding - Wikipedia](https://en.wikipedia.org/wiki/Wafer_bonding)
 
 1. [Thermal Compression Bonding](https://en.wikipedia.org/wiki/Thermocompression_bonding)
@@ -191,6 +241,33 @@ Matlab code was used to find out the true size of gold bumps by identifying how 
 >   - Improving **bump and die placement settings**.
 >   - Investigating **AC behavior of interposer tracks at frequencies > 10 GHz**.
 >   - Exploring **electrical characteristics of the bumps**.
+
+![[coplanar waveguide maxwell diagram.png|500]]
+
+[Kennisgeving voor omleiding](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.researchgate.net%2Ffigure%2Fa-Microstrip-transmission-line-structure-b-its-cross-sectional-view_fig1_283031989&psig=AOvVaw37qbnoT_W65bnXTWqcMc39&ust=1744656720999000&source=images&cd=vfe&opi=89978449&ved=0CBcQjhxqFwoTCMiz0_zW1YwDFQAAAAAdAAAAABBo)
+
+>[!NOTE] Known Dimensions from Prior Research
+> - **Gold wire diameters tested**: $25\ \mu\text{m}$ and $17\ \mu\text{m}$
+> - **Bump diameter for 25μm wire**: $67{-}78\ \mu\text{m}$ (expected: $\approx 3\times$ wire diameter)
+> - **Pad pitch size**: $90\ \mu\text{m}$ (requires increase to $100\text{-}110\ \mu\text{m}$ for 25μm wire)
+> - **Pad size and spacing (Design 1)**: $70\ \mu\text{m}$ pad, $20\ \mu\text{m}$ spacing
+> - **Pad size and spacing (Designs 2 & 3)**: $60\ \mu\text{m}$ pad, $30\ \mu\text{m}$ spacing
+> - **Trace width**: Matches pad size
+> - **CPWG spacing (Design 2)**: $20\ \mu\text{m}$
+> - **Electrode thickness (Batch 1)**: $\text{Cr}(15\ \text{nm})/\text{Au}(100\ \text{nm})$
+> - **Electrode thickness (Batches 2 & 3)**: $\text{Ti}(50\ \text{nm})/\text{Au}(100\ \text{nm})$
+> - **Measured gold thickness (Batch 1 samples)**: $111\ \text{nm}$ and $104\ \text{nm}$
+> - **Die size**: $2\times2\ \text{mm}$ (measured as $2000\ \mu\text{m}$)
+> - **Camera pixel-to-metric conversion rate**: $CR = \frac{2000}{1166} \approx 1.715\ \mu\text{m/px}$
+> - **Transmission line lengths measured**: $25$, $100$, $500$, and $2740\ \mu\text{m}$
+> - **Relative permittivity of glass substrate**: $\varepsilon_r = 7.75$
+> - **Wavelength at 10 MHz**: $\lambda = \frac{3 \cdot 10^8}{10^7 \sqrt{7.75}} \approx 10.78\ \text{m}$
+> - **Gold resistivity (reference)**: $\rho_{\text{Au}} = 2.041 \cdot 10^{-8}\ \Omega\cdot\text{m}$
+> - **Trace resistivity (Evaporation)**: $3.99 \cdot 10^{-8}$ and $3.64 \cdot 10^{-8}\ \Omega\cdot\text{m}$
+> - **Trace resistivity (Sputtering)**: $5.02 \cdot 10^{-8}$ and $5.01 \cdot 10^{-8}\ \Omega\cdot\text{m}$
+> - **Line impedance formula**: $Z_{\text{line}} = Z_0 \frac{1 + S_{1,1}}{1 - S_{1,1}} - Z_0$
+> - **Trace resistivity formula**: $\rho_{\text{trace}} = \frac{Z_{\text{line}} \cdot T_{\text{trace}} \cdot W_{\text{trace}}}{l_{\text{trace}}}$
+
 
 # Basic Definitions for Quick Reference and to Check Later
 - [What is a PCB Substrate? - PCB Directory](https://www.pcbdirectory.com/community/what-is-a-pcb-substrate)
