@@ -161,6 +161,9 @@ Wafer and overall microelectronics die bonding methods: [Wafer bonding - Wikiped
 
 For [VNA (Vector Network Analyzer)](https://en.wikipedia.org/wiki/Network_analyzer_(electrical)) on top of other [methods](https://www.youtube.com/watch?v=LW5yV5qmnAg) explained the de-embedding method yields the most accurate result, and since we have access to a VNA machine in the lab, we can employ this method.
 ![[Developing de-embedding visualized.png|300]]
+[Understanding De-embedding - YouTube](https://www.youtube.com/watch?v=LW5yV5qmnAg)
+[A Visual Introduction to Scattering Parameters - YouTube](https://www.youtube.com/watch?v=CEA8njh4tLU)
+![[input output ports.png|400]]
 ### Fabrication Challenges & Findings
 Eutectic bonding was employed with the standard, Ti adhesion layer and sputtering/evaporation based deposit of conductive layer. Primarly failed due to required thermal profile not being achieved.
 
@@ -268,6 +271,7 @@ Matlab code was used to find out the true size of gold bumps by identifying how 
 > - **Line impedance formula**: $Z_{\text{line}} = Z_0 \frac{1 + S_{1,1}}{1 - S_{1,1}} - Z_0$
 > - **Trace resistivity formula**: $\rho_{\text{trace}} = \frac{Z_{\text{line}} \cdot T_{\text{trace}} \cdot W_{\text{trace}}}{l_{\text{trace}}}$
 
+![[coplanar waveguide calculation.png]]
 
 # Basic Definitions for Quick Reference and to Check Later
 - [What is a PCB Substrate? - PCB Directory](https://www.pcbdirectory.com/community/what-is-a-pcb-substrate)
@@ -407,3 +411,77 @@ thin film microstrip on carrier
 > - **Vickers Hardness** ($MPa$): Indicates material hardness. Too hard (like copper) risks damaging bonding pads; too soft (like silver) risks deformation and reliability loss.
 >
 > Gold offers the **best balance** of these properties, making it ideal for reliable, damage-free, and high-performance ball bonds in microelectronics.
+
+>[!NOTE] Types of Interposer
+> - **Open Test Structure**  
+>   • **Purpose**: Baseline measurement of parasitics (pads, traces) without loading  
+>   • **Use for**: De-embedding using open reference  
+>   • **S-parameter setup**: Port to open-end  
+>   • **Key idea**: Used to extract pad capacitance and stray inductance  
+>   • **Example use**: OS (Open-Short) de-embedding  
+>
+> - **Short Test Structure**  
+>   • **Purpose**: Estimate inductive and resistive components of interconnects  
+>   • **Use for**: De-embedding with shorted reference  
+>   • **S-parameter setup**: Port to GND short  
+>   • **Key idea**: Combined with open test to isolate bump resistance/inductance  
+>   • **De-embedding equation**: $Z_{\text{device}} = Z_{\text{measured}} - Z_{\text{short}}$  
+>
+> - **Through-Line (Matched Line)**  
+>   • **Purpose**: Measure the characteristics of a transmission line  
+>   • **Use for**: Extracting $R$, $L$, $C$, $G$ per unit length  
+>   • **S-parameter setup**: $S_{21}$ for insertion loss, $S_{11}$ for reflections  
+>   • **Length examples**: $l = 100\ \mu\text{m},\ 500\ \mu\text{m},\ 2.5\ \text{mm}$  
+>   • **Equation**: $\rho_{\text{trace}} = \frac{Z_{\text{line}} \cdot T_{\text{trace}} \cdot W_{\text{trace}}}{l_{\text{trace}}}$  
+>
+> - **Open Bump Chain**  
+>   • **Purpose**: Evaluate parasitics of bump-only interconnects  
+>   • **Use for**: Modeling bump resistance and inductance  
+>   • **S-parameter setup**: End left floating  
+>   • **Key idea**: Useful to isolate bump contribution from trace contribution  
+>
+> - **Terminated (Load-Matched)**  
+>   • **Purpose**: Validate impedance matching  
+>   • **Use for**: Reflection coefficient, return loss  
+>   • **Termination**: Load with $Z_L = 50\ \Omega$  
+>   • **Key metric**: $S_{11} \approx 0$ if matched properly  
+>
+> - **Loopback Interposer**  
+>   • **Purpose**: Simple continuity and total path loss check  
+>   • **Use for**: Insertion loss test, system-level check  
+>   • **Setup**: Connect input pad directly to output pad via trace  
+>
+> - **Multi-Length Line Structures**  
+>   • **Purpose**: Characterize delay and extract RLCG via linear fitting  
+>   • **Use for**: Time delay $\Delta t$, slope-based parameter extraction  
+>   • **Length variation**: $l = 100,\ 500,\ 1000,\ 2740\ \mu\text{m}$  
+>   • **Key formula**: $\lambda = \frac{c}{f\sqrt{\varepsilon_r}}$  
+>
+> - **Coplanar Waveguide (CPWG)**  
+>   • **Purpose**: Validate controlled impedance trace layout  
+>   • **Use for**: High-frequency signal propagation  
+>   • **Design goal**: $Z_0 = 50\ \Omega$  
+>   • **Tools**: Qucs, LineCalc, or ADS to design with $W$, $S$, $H$, $T$  
+>
+> - **Die Bonded Structure**  
+>   • **Purpose**: Final test including actual bonded die  
+>   • **Use for**: Validating electrical contact and full signal chain  
+>   • **S-parameter setup**: VNA probes on die I/O or breakout pads  
+>   • **Note**: Only used after confirming open/short/through integrity  
+
+
+can be just a transistor not an amaplifier, MUST have amplifier
+
+pmp for exampl jfet.
+
+must have statitic current operation and naked die
+
+impedance of transmission lines for the trace. maximal power desnity for the interposer, since it matters how the power amplifier will react with such small traces.
+
+relevant to try solder bumps try to get.
+
+3 inches
+
+[Single-Layer RF Interposer on Glass: Research, Designs, and Test Strategies](https://chatgpt.com/c/68036d28-0098-800b-a1ab-fea9beb1c5c4)
+
+[QUCS Design](https://chatgpt.com/c/68063118-3740-800b-b59f-6e610bde7e49)
