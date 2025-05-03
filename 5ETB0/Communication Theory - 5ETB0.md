@@ -55,7 +55,7 @@ discrete encoder, since the information is of the sampled signal it reduced the 
 [COS 126: Prefix Codes](https://www.cs.princeton.edu/courses/archive/spr01/cs126/assignments/prefix.html)
 [ocw.tudelft.nl/wp-content/uploads/Algoritmiek\_Huffman\_Codes.pdf](https://ocw.tudelft.nl/wp-content/uploads/Algoritmiek_Huffman_Codes.pdf)
 ### Side Quest: Signals
-[[Intro to Telecommunication - 5ETA0]]
+[[Communication 1 - 5ETC0]]
 Bandwidth of a signal is defined as **the difference between the highest and the lowest frequency**
 
 $$f_{m}\text{ max spectrum frequency so }f_{s}\text{ sampling and nyquist }f_{s}\geq 2f_{m}\text{ to avoid overlapping, since nature of sampling produces aliasing}$$

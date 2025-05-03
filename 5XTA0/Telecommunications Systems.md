@@ -103,7 +103,7 @@ Baseband is just a message signal...
 
 ![[digital modulation.png|300]]![[bandpass vs baseband.png|300]]
 **Baseband Signaling (fibre optic):** Binary Modulation, Multi-level modulation (multi-level PAM) : Just PSD stuff line coding so multilevel is like intro telecom.
-[[Intro to Telecommunication - 5ETA0#Linecodes and their spectras]]
+[[Communication 1 - 5ETC0#Linecodes and their spectras]]
 
 [What is Baseband and Passband? Baseband and Passband in Digital & Analog Modulation Tutorial - YouTube](https://www.youtube.com/watch?v=Wo8qeDD6H0M)
 ![[passband after baseband modulation.png|300]]

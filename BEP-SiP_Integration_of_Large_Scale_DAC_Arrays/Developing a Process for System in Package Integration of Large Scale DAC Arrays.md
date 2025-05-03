@@ -469,19 +469,58 @@ thin film microstrip on carrier
 >   • **S-parameter setup**: VNA probes on die I/O or breakout pads  
 >   • **Note**: Only used after confirming open/short/through integrity  
 
-
-can be just a transistor not an amaplifier, MUST have amplifier
-
-pmp for exampl jfet.
-
-must have statitic current operation and naked die
-
-impedance of transmission lines for the trace. maximal power desnity for the interposer, since it matters how the power amplifier will react with such small traces.
-
-relevant to try solder bumps try to get.
-
-3 inches
-
 [Single-Layer RF Interposer on Glass: Research, Designs, and Test Strategies](https://chatgpt.com/c/68036d28-0098-800b-a1ab-fea9beb1c5c4)
 
 [QUCS Design](https://chatgpt.com/c/68063118-3740-800b-b59f-6e610bde7e49)
+[Ball Bonding](https://chatgpt.com/c/6808d09e-fc00-800f-9838-3db01d2e5c37)
+[evaporation vs sputtering](https://chatgpt.com/c/680e4a76-6cb4-800f-82f7-63085aa72724)
+[interposer pad size calculation](https://chatgpt.com/c/680e5c27-20dc-800f-80f2-d0401ff3e029)
+
+>[!NOTE] Key Equations for Optimising Gold Stud Bump Bonding  
+> All symbols are defined immediately below each formula. These equations link the controllable bonder parameters ($P_{\mathrm{US}},F,t,T$) to bump quality metrics (bond coverage, diameter, strength) and enable predictive optimisation for any wire diameter or substrate stack.  
+>  
+> ### 1. Temperature-dependent yield strength  
+> $\sigma_y(T)=\sigma_0\exp[-\beta(T-T_0)]$  
+> * **$\sigma_y(T)$** – yield strength of gold at temperature $T$  
+> * **$\sigma_0$** – yield strength at reference temperature $T_0$  
+> * **$\beta$** – empirical softening coefficient (≈ 0.01 K⁻¹)  
+> * **$T$** – chuck / pad temperature (°C)  
+> * **$T_0$** – reference temperature (°C)  
+>  
+> ### 2. Minimum normal force for plastic flattening  
+> $F_{\min}=k\,\sigma_y(T)D_w^{2}$  
+> * **$F_{\min}$** – least force that initiates plastic flow  
+> * **$k$** – geometric constant for a hemispherical free-air ball (≈ π/4)  
+> * **$\sigma_y(T)$** – yield strength from Eq 1  
+> * **$D_w$** – wire diameter  
+>  
+> ### 3. Ultrasonic energy delivered  
+> $E=P_{\mathrm{US}}\,t$  
+> * **$E$** – ultrasonic energy coupled into the interface  
+> * **$P_{\mathrm{US}}$** – ultrasonic power set on the bonder  
+> * **$t$** – ultrasonic vibration time  
+>  
+> ### 4. Fraction of bonded area (slip-energy model)  
+> $\eta=1-\exp[-\gamma F E]$  
+> * **$\eta$** – bonded-area fraction ($\eta=1$ ⇒ full interface)  
+> * **$\gamma$** – empirical constant ($4.2\times10^{-4}$ mJ⁻¹ N⁻¹ for 25 µm Au)  
+> * **$F$** – applied normal force  
+> * **$E$** – ultrasonic energy from Eq 3  
+>  
+> ### 5. Minimum energy for ≥ 98 % coverage  
+> $E_{\min}=\dfrac{-\ln(0.02)}{\gamma F}$  
+> * **$E_{\min}$** – least energy that yields $\eta\ge0.98$  
+> * **$\gamma,F$** – as defined in Eq 4  
+>  
+> ### 6. Mash-diameter growth with excess energy/force  
+> $D_m=D_{\mathrm{FAB}}\bigl[1+\alpha\bigl(\tfrac{F}{E}\bigr)\bigr]$  
+> * **$D_m$** – final (mashed) bump diameter  
+> * **$D_{\mathrm{FAB}}$** – free-air-ball diameter (≈ 3 $D_w$)  
+> * **$\alpha$** – deformation coefficient (0.18 mJ N⁻¹ for 25 µm Au)  
+> * **$F,E$** – force and energy from Eqs 2 & 3  
+>  
+> ### 7. Cycle-time relation (chosen set-point)  
+> $t = \dfrac{E_{\min}}{P_{\mathrm{US}}}$  
+> * **$t$** – ultrasonic time required when power $P_{\mathrm{US}}$ is fixed  
+> * **$E_{\min}$** – energy from Eq 5  
+> * **$P_{\mathrm{US}}$** – ultrasonic power

@@ -6,6 +6,7 @@ precise means of specifying patterns/behaviors
 $\sum=\{0,1,2,3,4,5,6,7,8,9,+.-,E\}\text{ if }L_{2}=<[+/-]\text{number}[\text{E number}]>\text{ in [] optional, are valid: }+481,-42,17E9,\text{ not valid: }1.7E10$
 $\epsilon \text{ empty word}$
 $+i:[rule]:1\text{ accumulation/union of 1 based on rule }$
+$(+j:j \in \mathbb{N} \cap \sigma(j)=a:2 )$ accumulation of amounts of a, for each a we do +2 so if aba-> 4.
 $\sigma\to \text{words or strings from a language}$
 **example:**
 $\sum=\{0,1,2,3,4,5,6,7,8,9\}$ $L_{3}$ is the language of all numbers in which every 0 is eventually followed by a 1
@@ -23,6 +24,8 @@ class of language specified by regular expressions
 ![[operations on languages.png|300]]![[regular expressions.png|300]]
 powers: repetition where $L^0={\epsilon}\text{ empty word for purpose so: }L^0 \cdot L^1=L^1$.
 concatenation: put words together.
+$L=\{a,b\}\text{ so }L^2=L \cdot L^1=\{aa,ab,ba, bb\}$
+
 $L^*\text{ zero or more repetitions }L^+\text{ 1 or more repetitions}$
 $+i:\text{ union of all i}$
 $\backslash \{\}\text{ not including}$
@@ -40,7 +43,7 @@ operations on languages: regular expressions define languages.
 $\alpha \alpha^*\text{ because we need at least one string}$
 $\epsilon \text{ implying optional can be empty word or else}$
 $\text{concatenation not commutative: }a \cdot b=ab\neq ba=b \cdot a$
-$(\beta \alpha \alpha^*(\emptyset+E\alpha \alpha^*))$ is not the same since $\emptyset+\rho=\rho \text{ empty set not words}$
+$(\beta \alpha \alpha^*(\emptyset+E\alpha \alpha^*))=(\beta \alpha \alpha^*(E\alpha \alpha^*))$ is not the same since $\emptyset+\rho=\rho \text{ empty set not words}\to \emptyset \neq \epsilon$
 $a^*=(a^*)^*$
 $\epsilon\to \text{empty word}$
 ![[example of regular expressions.png|400]]
@@ -61,6 +64,8 @@ left: DFA so is NFA, right: none
 ![[nfa vs dfa.png|400]]
 ![[completeness of nfa.png|400]]
 dfa,nfa,nfa-$\epsilon$ all define precisely the class of regular languages.
+
+![[nfa vs dfa-1.png|300]]
 ### examples
 ![[basic finite example.png|300]]![[nfa vs dfa good exmaple.png|300]]
 ![[autometa exmaple 1.png|300]]![[autometa exmaple 2.png|300]]
@@ -98,6 +103,9 @@ $L(\overline{A})=\overline{L(A)}$
 infinite many options is impossible in regular languages.
 **pumping lemma:** some section of a language can be repeated still keeping the language regular. (pumping lemma can prove is language is NOT REGULAR)
 string in language can be "pumped" repeated if they are at least as long as pumping length p.
+
+**pumping:** have a middle section of the string repeated an arbitrary number of times
+
 for example:![[example of repetion that shows pumping.png|300]]![[pumping the repeated words still keeps string in the language.png|pumping the repeated words still keeps string in the language|300]]
 - so we can split strings into parts before being pumped, being pumped and part that takes us to final state.
 ![[pumping lemma 1.png|100]]![[pumping lemma 3.png|100]]![[pumping lemma 3-1.png|100]]![[pumping lemma 4.png|100]]
@@ -109,7 +117,11 @@ y can be pumped any number of times, y must be bigger than 0 (not $\epsilon$), c
 ![[pumping lemma example contradictiction.png|300]]
 ![[non-regular pumping lemma.png|300]]![[pifeonhole principle example.png|300]]
 So, if a language contains infinitely many words that need to be distinguished, this cannot be done with finitely many states. In such a case, using the pigeonhole principle, no finite automaton recognizing the language exists. So the language is not regular.
-![[exercise of proving lemmas.png|300]]![[pifeonhole example.png|300]]
+![[exercise of proving lemmas.png|400]]
+
+![[pifeonhole example.png|400]]
+
+![[non regularity proof.png|400]]
 ## Week 2: A.3 & A.4
 ## Property Checking A.3
 ![[property checking.png|400]]
