@@ -166,9 +166,12 @@ PCM involves converting an analog signal into a digital one through santizmpling
 - **Minimum Bandwidth ($B_{pcm}$)**: The least bandwidth required, $B_{pcm} \geq \frac{1}{\eta} R\geq n\cdot2\cdot \frac{1}{\eta}\cdot B_{analog}$, necessary to avoid intersymbol interference (ISI) and ensure signal integrity. 
 ![[example of b_pcm.png|300]]![[quantization and encoding.png|300]]
 ![[bpcm.png|300]]![[5ETC0/attachments/Untitled.png|300]]
+
+![[types of errors.png|500]]
+![[snr.png|500]]
 ## Signal-to-noise ratio
 [Signal-to-noise ratio - Wikipedia](https://en.wikipedia.org/wiki/Signal-to-noise_ratio#:~:text=SNR%20is%20defined%20as%20the,indicates%20more%20signal%20than%20noise.)
-[Noise spectral density - Wikipedia](https://en.wikipedia.org/wiki/Noise_spectral_density)
+[Noise spectral density - Wikipedia](https://en.wikipedia.org/wiki/Noise_spectral_density)i
 not mentioned in the reader: $SNR_{input}=\frac{P_{signal}}{P_{noise}}=\frac{P}{N_{O}\cdot n\cdot f_{s}}=\frac{SNR_{analog}}{\text{Bandwidth ratio}}=Q=\sqrt{ SNR_{in} }=SNR_{old} \cdot n_{ratio}\left( \frac{old}{new} \right)$
 $n \uparrow\to SNR_{in}\downarrow\to P_{e}\uparrow\to SNR_{out}\downarrow\left( \text{only when }P_{e} \approx \frac{M^2}{10} \right)$
 
@@ -200,6 +203,8 @@ $\frac{N_{O}}{2}$ is noise spectral density used in transmission channel: (use N
 **If $N_{O}$ given then $N_{O} \cdot2B_{PCM}$
 $\text{attenuation: } \frac{1}{P_{signal}}$
 ![[snr in snr our.png|400]]![[higher B captures more noise.png|200]]
+
+![[Q function definition.png|500]]
 ### Increasing Number of Bits
 1. $B_{pcm} \geq \frac{1}{2} n f_S\text{ as R}\uparrow$ Higher Bandwidth
 2. $SNR_{in} = \frac{P}{N_0B_{pcm}}$ Lower 
@@ -230,6 +235,8 @@ Multi-level signaling sends more than one bit per symbol, enabling higher data r
     - Bits per sample ($n$) refer to digitization (quantization) stage, indicating the resolution of analog to digital conversion.
     - Bits per level ($l$) refer to the line coding stage, indicating how many bits are represented by each level in a multi-level signaling scheme.
     ![[bits per sample vs bits per level.png|300]]
+
+![[bits per sample vs bits per symbol.png|500]]
 ## Baud-rate (or Symbol rate)
 - **Baud Rate ($D$)**: $D(\text{symbols/sec}) = \frac{N}{T_0}=B \cdot \eta \text{ null bandwidth}=\frac{1}{T_{s}}=\frac{R}{l}$, where $N$ is dimensions, $T_0$ is time per dimension. Number of symbols transmitted per second.
 - $T_{s}=lT_{b}$ also $R=\frac{n}{T_{s}}=\frac{l}{T_{s}}$
@@ -247,6 +254,9 @@ $D\leq 2B \text{ it can only become worse, higher bandwidth, (2 is sinc) nyquest
 - **Baseline wander:** occurs when the signal has a strong Low Frequency component, together with AC coupling in the system.
 # Linecodes and their spectras
 ## Power spectral density (PSD)
+![[power spectral density.png|500]]
+
+
 ![[direct method for power spectral density.png|200]]![[autocorrelation function and PSD.png|200]]![[wiener khintchine.png|200]]![[autocorrelation psd example.png|200]]![[psd multilevel signals.png|200]]
 https://www.youtube.com/watch?v=DoSLMEEo1Y0
 - **PSD** analyzes signal power across frequencies, akin to an audio EQ.
@@ -255,6 +265,9 @@ https://www.youtube.com/watch?v=DoSLMEEo1Y0
 - Line codes transform symbols into physical waveforms, influencing performance. Types include Unipolar NRZ, Polar NRZ, Unipolar RZ, Bipolar RZ, and Manchester.
 - **sharp peak in PSD -> DC component**
 ## Linecode Types
+[Differences in PSDs between line codes](https://chatgpt.com/c/68170689-d3c4-800b-84b8-3ebc7b70341d)
+
+
 The RZ (Return to Zero) signal transmission of a logic "1" will always begin at zero and end at zero. Whereas NRZ (Non Return to Zero) signal transmission of a logic "1" may or may not begin at zero and end at zero.
 ![[nrz vs rz.png|400]]
 ### Unipolar NRZ
@@ -285,7 +298,14 @@ $\text{Unipolar RZ (50\%): }\eta=\frac{1}{2}\text{ if 25\% then }\eta=\frac{1}{4
 **any signal can be multilevel and in that case their spectral effiency is multiplied by $l$**
 $\frac{D}{B}\text{cant be }>2\text{ but } \frac{R}{B}\text{ can}$
 $\frac{R}{B}=2.5\to l=2\to \frac{D}{B}=1.25\to \text{cosine rolloff}$
+
+![[power spectra for multilevel signaling.png|500]]
+![[5ETC0/attachments/spectral efficiency of linecodes.png|500]]
+
 ![[spectral eff linecodes.png|300]]![[Binary signalling waveforms.png|300]]![[pcm transmission example so far.png|500]]
+
+![[summary of first part of pipeline.png|500]]
+![[derivation of dealing with digitzation and encoding.png|500]]
 # Inter-symbol interference
 [Intersymbol interference - Wikipedia](https://en.wikipedia.org/wiki/Intersymbol_interference)
 ![[isi topic map.png|300]]
