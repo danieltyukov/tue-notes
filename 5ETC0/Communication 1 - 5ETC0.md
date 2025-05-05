@@ -306,6 +306,9 @@ $\frac{R}{B}=2.5\to l=2\to \frac{D}{B}=1.25\to \text{cosine rolloff}$
 
 ![[summary of first part of pipeline.png|500]]
 ![[derivation of dealing with digitzation and encoding.png|500]]
+![[line code quiz.png|500]]
+![[more walk throughs.png|500]]
+[ChatGPT](https://chatgpt.com/c/68173752-0334-800b-a099-8bebe173bf45)
 # Inter-symbol interference
 [Intersymbol interference - Wikipedia](https://en.wikipedia.org/wiki/Intersymbol_interference)
 ![[isi topic map.png|300]]
