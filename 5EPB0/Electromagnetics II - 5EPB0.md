@@ -89,7 +89,8 @@ time domain reflection (TDR): used for cable testing: quick pulse with switch.
 ![[detailed bounce diagram.png|bounce diagram detailed|600]]
 ![[example of wave additions.png|300]]
 # Transmission lines reflection and transmission
-
+[SUMMARY](https://chatgpt.com/c/6820402d-98d8-800b-8878-eaa9558dba0a)
+![[must know.png|500]]
 ## Boundary conditions for penetrable media & Reflection and Transmission & Bounce diagrams
 incident, reflected, transmitted field
 ![[5EPB0/attachments/boundary conditions.png|300]]![[transient signal transfer.png|265]]

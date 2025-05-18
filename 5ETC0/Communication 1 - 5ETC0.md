@@ -48,6 +48,10 @@ $dBm(\text{absolute})=dB(\text{ratio})+30$
 ![[sampling visualized.png|400]]
 ![[sampling-1.png|200]]
 ![[sampling transforms.png|400]]
+$\text{reconstruction filter sinc pulse: }h(t)=\frac{\sin(\pi t/T)}{\pi t/T}$ sinc pulse in time domain is a rectangular low pass filter with: $f_{cutoff}=\frac{1}{2T}$ so to reconstruct a signal with $f_{signal}$ the filter must be $\frac{1}{2T}\geq f_{signal}$ to capture pass that frequency.
+
+
+
 (t) dirac pulse --> (f) Constant amplitude full spectrum (can also be seen as infinitely wide sinc)
 (t) long rect pulse --> (f) narrow sinc
 (t) short rect pulse --> (f) long sinc : https://www.youtube.com/watch?v=ZcTWLwXGql0&list=WL&index=35
@@ -103,7 +107,15 @@ $sinc(x)=\frac{\sin(x)}{x}\implies \text{ limit ratio as both approach 0 l'hopit
 ![[natural sampling.png|300]]![[gating sampling example.png|300]]
 
 ![[gating sampling.png|400]]
+
+**with natural sampling the shape of the spectra remain identical to the original spectrum, as natural sampling preserves continuous amplitude inside each pulse so after ideal low pass filtering the baseband spectrum shape is unchanged while for flat-top it introduces amplitude variation (sinc distorion).**
+
 ## Flat-top sampling (instantaneous sampling)
+**The resulting spectra is the product of the ideal sampling spectrum and the sinc function.**
+
+if $\tau=T_{s}$ then the first zero of the sinc envelope is at center of each repetition spectrum.
+
+
 - **Flat-top Sampling**:
   - Instant captures at $kT_{s}$; constant hold for $\tau$.
   - Yields stable digital conversion levels.
@@ -120,6 +132,8 @@ $sinc(x)=\frac{\sin(x)}{x}\implies \text{ limit ratio as both approach 0 l'hopit
 ![[flat top sampling-3.png|400]]
 # Digitization
 ## Pulse Code Modulation (PCM)
+
+
 $\text{RZ: }B_{PCM}=\frac{1}{2}R=\frac{1}{2}nf_{s}$
 $\text{NRZ: }B_{PCM}=R=nf_{s}$
 
@@ -128,6 +142,7 @@ Bandwidth of PCM signal depends on the bit rate and the pulse shape.
 Let the bit rate be R (of the PCM signal generated), then
 
 R = n*fs
+$R=\frac{1}{T_{b}}$ Tb is bit time duration of 1 bit
 
 n = number of bits on the PCM word (M= 2^n …. M is no. of levels of quantization)
 
