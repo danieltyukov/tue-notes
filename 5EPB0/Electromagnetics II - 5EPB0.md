@@ -1,3 +1,4 @@
+# extra
 [Plane wave - Wikipedia](https://en.wikipedia.org/wiki/Plane_wave)
 **result of a gradient is a vector field, while the result of a divergence is a scalar field.**
 ![[gradient divergence and curl.png|300]]![[divergence gradien and curl.png|300]]
@@ -7,6 +8,32 @@
 **solve W.E->for fundamental unknown...**
 ![[summary of EM solutions.png|400]]![[note.png]]
 # Waves in time and one spatial dimension
+# new
+![[what i should know.png|500]]
+$\text{propagation speed: }c=\frac{1}{\sqrt{ \mu \epsilon }}\text{ and Impedance: }Z=\sqrt{ \frac{\mu}{\epsilon} }$
+$I^{\pm}=\pm YV^{\pm}$<=>$V^{\pm}=\pm ZI^{\pm}$
+![[maxwell PEC.png|500]]
+$c=\frac{1}{\sqrt{ LC }} \text{ and } Z=\sqrt{ \frac{Z}{C} }$
+$$
+\begin{bmatrix}
+V^+ \\
+V^-
+\end{bmatrix}
+= \frac{1}{2}
+\begin{bmatrix}
+V + ZI \\
+V - ZI
+\end{bmatrix}
+$$
+$$\Gamma = \frac{Z_L - Z}{Z_L + Z}, \quad V^- = \Gamma V^+$$
+
+**Special cases:**
+- $Z_L = Z \rightarrow$ matched → no reflection -> $\Gamma=0$  
+- $Z_L = \infty \rightarrow$ open circuit → total reflection with same polarity -> $\Gamma=1$  
+- $Z_L = 0 \rightarrow$ short circuit → total reflection with inverted polarity -> $\Gamma=-1$
+
+# old
+
 **DON'T FORGET THE MINUS SIGN WHEN DECOMPOSING FOR CURRENT I-**
 **LEARN CIRCUIT ANALYSIS BETTER**
 [Uniform Plane Waves: A 3D Journey to the Simplest Electromagnetic Wave Propagation](https://www.youtube.com/watch?v=zUBXiTkrmSo)
@@ -89,8 +116,15 @@ time domain reflection (TDR): used for cable testing: quick pulse with switch.
 ![[detailed bounce diagram.png|bounce diagram detailed|600]]
 ![[example of wave additions.png|300]]
 # Transmission lines reflection and transmission
+# new
+![[what to know-1.png|500]]
+![[transmission line circuit.png|500]]
+![[bounce diagram.png|500]]
+$V_{steady}=\lim_{ t \to \infty }V(z,t)=V_{steady}^++V^-_{steady}=\frac{Z_{L}}{Z_{L}+Z_{g}}V_{g}$
+$I_{steady}=\lim_{ t \to \infty }I(z,t)=I^{+}_{steady}+I^-_{steady}=\frac{1}{Z_{L}+Z_{g}}V_{g}=YV^{+}-YV^{-}$
+
+# old
 [SUMMARY](https://chatgpt.com/c/6820402d-98d8-800b-8878-eaa9558dba0a)
-![[must know.png|500]]
 ## Boundary conditions for penetrable media & Reflection and Transmission & Bounce diagrams
 incident, reflected, transmitted field
 ![[5EPB0/attachments/boundary conditions.png|300]]![[transient signal transfer.png|265]]
@@ -148,6 +182,11 @@ for electromagnetic power balance: $F=qE+q\mu_{0}v \times H$ coulomb force + lor
 
 **!!!** **moment in time just after the switch has been activated, but before possible reflections from the end of the line have returned:**$\frac{V_{comp}}{Z}+I_{steady}=0\text{ since }I_{total}|_{z=0,t>0}$
 # Time-harmonic waves
+# new
+![[should know.png|500]]
+$V_{SWR}=\frac{1+|\Gamma|}{1-|\Gamma|}$
+![[wave decomposiiton.png|300]]
+# old
 $E=Re[E_{s}(\omega)e^{j\omega t}]$
 ![[transfer and scatter matrix.png]]
 now instead of $\left\{ V^+\left( t-\frac{z}{c_{0}} \right),V^-\left( t+\frac{z}{c_{0}} \right) \right\}$
@@ -182,6 +221,13 @@ $Z_{eff}(-l)=Z_{1} \frac{Z_{2}+jZ_{1}\tan(k_{1}l)}{Z_{1}+jZ_{2}\tan(k_{1}l)}\tex
 $A=D_{1}TC_{2}\to T=C_{1}AD_{2}$
 ![[scatter to transfer matrix.png|300]]![[composition decomposition summary.png|300]]
 # Scattering matrix, phase and group speed, dispersion
+# new
+quarter-wavelength transformer optimal conditions:
+$l=\frac{\lambda_{2}}{4}\text{ and }Z_{2}=\sqrt{ Z_{1}Z_{3} }$
+![[scatter matrix-1.png|500]]
+![[scatter matrix-2.png|500]]
+
+# old
 $l=\frac{\lambda}{4}\text{ transformer}$
 $k=\beta=\frac{2\pi}{\lambda}$
 $kl=\frac{\pi}{4}$

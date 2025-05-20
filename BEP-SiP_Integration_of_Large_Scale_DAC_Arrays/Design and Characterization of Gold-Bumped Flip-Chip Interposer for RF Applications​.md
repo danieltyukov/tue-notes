@@ -482,6 +482,8 @@ thin film microstrip on carrier
 
 [The planar capacitor calculations](https://chatgpt.com/c/6821775a-d8b0-800b-8e38-7d532b53d268)
 
+[useful](https://chatgpt.com/c/68192ef4-e820-800b-a2aa-e8f590781c12)
+
 
 >[!NOTE] Key Equations for Optimising Gold Stud Bump Bonding  
 > All symbols are defined immediately below each formula. These equations link the controllable bonder parameters ($P_{\mathrm{US}},F,t,T$) to bump quality metrics (bond coverage, diameter, strength) and enable predictive optimisation for any wire diameter or substrate stack.  
