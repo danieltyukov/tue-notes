@@ -146,7 +146,7 @@ $\omega$-regular expressions pattern: $(+i:0\leq i<n:a_{i}\cdot \beta_{i}^\omega
 legend: $a_{i},\beta_{i}$ regular expressions
 ![[example of omega languages.png|400]]
 the * is all finite repetitions, while $\omega$ infinite repetitions, they are complementary.
-![[iterations undersatding.png|200]]
+![[iterations undersatding.png|500]]
 ## Büchi Automata A.4.2
 [Büchi automaton - Wikipedia](https://en.wikipedia.org/wiki/B%C3%BCchi_automaton)
 
@@ -206,7 +206,8 @@ $a_{11}^\omega+a_{12}a_{22}^\omega$ pattern
 a GNBA is an NBA but with multiple sets of final states...
 **GNBA vs NBA:**
 ![[nba-1.png|300]]![[gnba.png|300]]
-![[generalized nba.png|300]]![[henerized nba conversion.png|300]]
+![[generalized nba.png|300]]
+![[henerized nba conversion.png|600]]
 
 empty language means that there is at least one state which is not visited infinite amount of times...
 ![[property checking-1.png|200]]![[property checking-2.png|200]]![[property checking-3.png|200]]

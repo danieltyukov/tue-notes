@@ -533,3 +533,82 @@ thin film microstrip on carrier
 > * **$t$** – ultrasonic time required when power $P_{\mathrm{US}}$ is fixed  
 > * **$E_{\min}$** – energy from Eq 5  
 > * **$P_{\mathrm{US}}$** – ultrasonic power
+
+
+[ChatGPT](https://chatgpt.com/c/6822b756-4f44-800b-8286-950499679351)
+# Practical Lab-Execution Plan
+## Gold Bump Bonding Profile (TPT HB16)
+The goal is to have 2 thermalsonic bonding profiles of creating gold bumps. One from acceleronix and one personally made based off calculations from the substrate.
+
+[Wire bonder TPT HB 16 (WIRE-BONDER)](https://nano.ceitec.cz/wire-bonder-tpt-hb-16-wire-bonder/)
+
+**Up CO:** After the second bond, the clamp is **opened**, and the bondhead (Z-axis) **moves upward**, thereby cutting the wire.
+
+**Bump without Tail**:
+![[bump without tail.png|500]]
+### Acceleronix
+**Bond 1**
+US(mW): 220
+Time(ms): 200
+Force(mN): 200
+**Bond 2**
+US(mW): 70
+Time(ms): 50
+Force(mN): 20
+**Other**
+YWay($\mu m$) (horizontal direction after BOND1): 135
+Looph($\mu m$) (vertical direction after BOND1): 100
+Heater($\degree C$): 110 (108)
+Tail Step($\mu m$): 20
+EFO Power(mW): 95
+Up CO(clamp open and bondhead move upwards): 300
+### Calculated (Daniel)
+**Bond 1**
+US(mW): 180
+Time(ms): 150
+Force(mN): 100
+**Bond 2**
+US(mW): 60
+Time(ms): 60
+Force(mN): 35
+**Other**
+YWay($\mu m$) (horizontal direction after BOND1): 120
+Looph($\mu m$) (vertical direction after BOND1): 120
+Heater($\degree C$): 120
+Tail Step($\mu m$): 450
+EFO Power(mW): 90
+Up CO(clamp open and bondhead move upwards): 300
+
+
+### Changed Parameters with Justification
+Based on interposer stack: **Ti (50 nm) / Au (100 nm) on glass**, 25 µm Au wire, HB-16 Wire Bonder.
+
+| **Parameter**           | **Acceleronix** | **Calculated** | **Justification**                                                                                                                                                                                                                       |
+| ----------------------- | --------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1st Bond Force**      | 200 mN          | 100 mN         | Lowered to 100 mN, which is ~3× the plastic-flow threshold for 25 µm Au at 120°C. Calculated using: $F_{\min} = \frac{\pi}{4} \cdot \sigma_y(T) \cdot D_w^2$ where $\sigma_y(120^\circ C) \approx 35$ MPa, $D_w = 25 \times 10^{-6}$ m. |
+| **1st Bond Power**      | 220 mW          | 180 mW         | Reduced to match energy $E = 27$ mJ needed for $\eta \ge 0.98$. Using: $E = P_{\mathrm{US}} \cdot t$ and $E_{\min} = \frac{-\ln(0.02)}{\gamma F}$ with $\gamma = 4.2 \times 10^{-4}$ mJ⁻¹N⁻¹.                                           |
+| **1st Bond Time**       | 200 ms          | 150 ms         | Shorter time avoids overheating and still delivers required energy: $E = 180 \cdot 150 = 27$ mJ.                                                                                                                                        |
+| **Chuck Temperature**   | 110 °C          | 120 °C         | Slight increase to soften Au. Lower $\sigma_y(T)$ improves bond coverage at lower force. $\sigma_y(T) = \sigma_0 \cdot e^{-\beta(T - T_0)}$ with $\beta \approx 0.01 \, \text{K}^{-1}$.                                                 |
+| **Y-Way (Forward)**     | 135 µm          | 120 µm         | Reduced to centre Bond 2 on the mashed bump crown. Too much lateral shift increases risk of off-centre coin tap and uneven break.                                                                                                       |
+| **Looph (Up)**          | 100 µm          | 120 µm         | Adjusted to ensure second bond head tap clears the ball without hitting it at an angle. Ensures bump height ≈ 40 µm.                                                                                                                    |
+| **Tail Length**         | 20 µm           | 450 µm         | Changed to HB-16 standard (400–500 µm) for Table-Tear. Ensures large, uniform FAB ~75–80 µm.                                                                                                                                            |
+| **2nd Bond Force**      | 20 mN           | 35 mN          | Slightly increased to just exceed plastic deformation threshold and create a visible groove without squashing the ball. Same $\sigma_y(T)$ relation applies.                                                                            |
+| **2nd Bond Power/Time** | 70 mW / 50 ms   | 60 mW / 60 ms  | Lowered to deliver ~3.6 mJ: $E = P_{\mathrm{US}} \cdot t$. Enough to create groove for Table-Tear without collapse.                                                                                                                     |
+| **Up CO**               | 300 µm          | 300 µm         | Retained default. Adequate head lift for wire break without introducing unnecessary delay.                                                                                                                                              |
+
+### 📏 Summary of Targeted Design
+
+- **Goal**: Minimize ultrasonic energy and force to protect **thin Ti/Au on glass**.
+- **Result**: 27 mJ bonding energy at 100 mN yields ≥98% bonded area per slip-energy model.
+- **Equations Used**:
+  - $\sigma_y(T) = \sigma_0 \cdot e^{-\beta(T - T_0)}$
+  - $F_{\min} = \frac{\pi}{4} \cdot \sigma_y(T) \cdot D_w^2$
+  - $E = P_{\mathrm{US}} \cdot t$
+  - $\eta = 1 - \exp[-\gamma F E]$
+  - $E_{\min} = \frac{-\ln(0.02)}{\gamma F}$
+
+## Flip chip Bonding Profile (Dr. Tretsky T-5300)
+The goal is to have 1 personally made bonding pressure and thermal changing profile for creating a successful flip chip.
+
+
+
