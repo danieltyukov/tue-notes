@@ -360,7 +360,8 @@ Nyquist's First Criterion for zero ISI suggests that ideal sinc pulses, which ar
 # Information Theory
 ![[error correction map.png|300]]
 ## Shannon–Hartley channel capacity theorem
-- **Shannon-Hartley Theorem:** $C = B \log_2(1 + SNR_{in})\implies xB\implies xB\log_{2}\left( 1+\frac{SNR_{in} \cdot B}{xB} \right)$ [bits/s], defines max information rate $\text{error free}$.
+SNR NOT IN dB
+- **Shannon-Hartley Theorem:** $C = B \log_2(1 + SNR_{in})\implies B_{new}\implies B_{new}\log_{2}\left( 1+\frac{SNR_{in} \cdot B_{old}}{B_{new}} \right)$ [bits/s], defines max information rate $\text{error free}$.
 - **Max Spectral Efficiency:** $\eta_{max} = \frac{C}{B} = \log_2(1 + SNR_{in})$ [bits/s/Hz], efficiency of bandwidth usage.
 - **Power-Limited Region:** Low SNR ($\text{SNR} << 1$), capacity increases with SNR.
 - **Bandwidth-Limited Region:** High SNR ($\text{SNR} >> 1$), capacity constrained by bandwidth, not SNR.
@@ -373,9 +374,12 @@ Nyquist's First Criterion for zero ISI suggests that ideal sinc pulses, which ar
 - **Hamming Code Structure:** $n = m + k$, $m$ = data bits, $k$ = parity bits.
 - **Hamming(7,4) Example:** Adds 3 parity bits to 4-bit message, corrects single bit error. **CAN CORRECT 1 ERROR BIT PER MESSAGE IF THERE IS 24 BIT STRING AND WE HAVE 7/4 MEANS IT CAN CORRECT 1 BIT IN BITS OF 7 SO UP TO 3 IN WHOLE STRING**
 - **Parity Bit Positions:** Set at powers of 2 (1, 2, 4, 8, ...).
+- If there s 1 flip it takes the output gets the message bits,  does a parity check then performs XOR operation on it with the flipped sequence, calculates finds the position of the flipped bit.
 - **Limitations of Hamming:** Corrects 1-bit errors but only detects multiple errors.
 - **Advanced Schemes:** Modern systems use LDPC, polar codes for better error correction.
 ![[parity bit example.png|200]]![[parity bit example-1.png|200]]
+![[effective rate.png|400]]
+![[bi switch.png|300]]![[bit switch.png|300]]
 # Amplitude, Frequency and Phase Modulation
 [Pulse-code modulation - Wikipedia](https://en.wikipedia.org/wiki/Pulse-code_modulation)
 [Amplitude modulation - Wikipedia](https://en.wikipedia.org/wiki/Amplitude_modulation)

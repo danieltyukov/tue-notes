@@ -546,7 +546,7 @@ The goal is to have 2 thermalsonic bonding profiles of creating gold bumps. One 
 
 **Bump without Tail**:
 ![[bump without tail.png|500]]
-### Acceleronix
+### Acceleronix (Ballbond)
 **Bond 1**
 US(mW): 220
 Time(ms): 200
@@ -562,7 +562,7 @@ Heater($\degree C$): 110 (108)
 Tail Step($\mu m$): 20
 EFO Power(mW): 95
 Up CO(clamp open and bondhead move upwards): 300
-### Calculated (Daniel)
+### Calculated (Daniel) (Ballbond)
 **Bond 1**
 US(mW): 180
 Time(ms): 150
@@ -575,7 +575,7 @@ Force(mN): 35
 YWay($\mu m$) (horizontal direction after BOND1): 120
 Looph($\mu m$) (vertical direction after BOND1): 120
 Heater($\degree C$): 120
-Tail Step($\mu m$): 450
+Tail Step($\mu m$): 450 (100 max)
 EFO Power(mW): 90
 Up CO(clamp open and bondhead move upwards): 300
 
