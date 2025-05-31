@@ -485,60 +485,10 @@ thin film microstrip on carrier
 [useful](https://chatgpt.com/c/68192ef4-e820-800b-a2aa-e8f590781c12)
 
 
->[!NOTE] Key Equations for Optimising Gold Stud Bump Bonding  
-> All symbols are defined immediately below each formula. These equations link the controllable bonder parameters ($P_{\mathrm{US}},F,t,T$) to bump quality metrics (bond coverage, diameter, strength) and enable predictive optimisation for any wire diameter or substrate stack.  
->  
-> ### 1. Temperature-dependent yield strength  
-> $\sigma_y(T)=\sigma_0\exp[-\beta(T-T_0)]$  
-> * **$\sigma_y(T)$** – yield strength of gold at temperature $T$  
-> * **$\sigma_0$** – yield strength at reference temperature $T_0$  
-> * **$\beta$** – empirical softening coefficient (≈ 0.01 K⁻¹)  
-> * **$T$** – chuck / pad temperature (°C)  
-> * **$T_0$** – reference temperature (°C)  
->  
-> ### 2. Minimum normal force for plastic flattening  
-> $F_{\min}=k\,\sigma_y(T)D_w^{2}$  
-> * **$F_{\min}$** – least force that initiates plastic flow  
-> * **$k$** – geometric constant for a hemispherical free-air ball (≈ π/4)  
-> * **$\sigma_y(T)$** – yield strength from Eq 1  
-> * **$D_w$** – wire diameter  
->  
-> ### 3. Ultrasonic energy delivered  
-> $E=P_{\mathrm{US}}\,t$  
-> * **$E$** – ultrasonic energy coupled into the interface  
-> * **$P_{\mathrm{US}}$** – ultrasonic power set on the bonder  
-> * **$t$** – ultrasonic vibration time  
->  
-> ### 4. Fraction of bonded area (slip-energy model)  
-> $\eta=1-\exp[-\gamma F E]$  
-> * **$\eta$** – bonded-area fraction ($\eta=1$ ⇒ full interface)  
-> * **$\gamma$** – empirical constant ($4.2\times10^{-4}$ mJ⁻¹ N⁻¹ for 25 µm Au)  
-> * **$F$** – applied normal force  
-> * **$E$** – ultrasonic energy from Eq 3  
->  
-> ### 5. Minimum energy for ≥ 98 % coverage  
-> $E_{\min}=\dfrac{-\ln(0.02)}{\gamma F}$  
-> * **$E_{\min}$** – least energy that yields $\eta\ge0.98$  
-> * **$\gamma,F$** – as defined in Eq 4  
->  
-> ### 6. Mash-diameter growth with excess energy/force  
-> $D_m=D_{\mathrm{FAB}}\bigl[1+\alpha\bigl(\tfrac{F}{E}\bigr)\bigr]$  
-> * **$D_m$** – final (mashed) bump diameter  
-> * **$D_{\mathrm{FAB}}$** – free-air-ball diameter (≈ 3 $D_w$)  
-> * **$\alpha$** – deformation coefficient (0.18 mJ N⁻¹ for 25 µm Au)  
-> * **$F,E$** – force and energy from Eqs 2 & 3  
->  
-> ### 7. Cycle-time relation (chosen set-point)  
-> $t = \dfrac{E_{\min}}{P_{\mathrm{US}}}$  
-> * **$t$** – ultrasonic time required when power $P_{\mathrm{US}}$ is fixed  
-> * **$E_{\min}$** – energy from Eq 5  
-> * **$P_{\mathrm{US}}$** – ultrasonic power
-
-
 [ChatGPT](https://chatgpt.com/c/6822b756-4f44-800b-8286-950499679351)
 # Practical Lab-Execution Plan
 ## Types of Experiments (In order)
-### 1. Extraction of Params + Gold Bump Lump Model
+### 1. Extraction of Params + Gold Bump Lump Model (1 Port S-parameter testing) (S1P) OR 2 PORT???
 
 **Can a lumped bump model be de-embedded on a simple RF test die?**
 
@@ -549,8 +499,8 @@ A **lumped model** represents the bump as discrete components:
 - Shunt: $1/(j\omega C)$
 
 It is **not** the same as the distributed **RLCG** line model of a transmission line.
-
 #### Assumptions
+![[gsg assumption.png|400]]
 - **Metal stack**: 50 nm Ti + 100 nm Au = 150 nm total thickness
 - **Substrate**: 1 mm glass
 - **Structure**: Coplanar waveguide (CPW), single-layer, no vias
@@ -566,7 +516,6 @@ It is **not** the same as the distributed **RLCG** line model of a transmission 
 | **Thru (no bump)**   | ❌ Open ends    | ❌ No bump     | Reference S-parameter                     |
 | **Thru (with bump)** | ❌ Open ends    | ✅ Yes         | Used to extract bump model                |
 | **Reflect (short)**  | ✅ Shorted      | ❌ No bump     | Calibration (defines 0-length reflection) |
-
 #### Step 1: VNA Calibration (TRL)
 - Calibrate GSG probe tips up to probe plane.
 - Use Reflect as the short.
@@ -597,6 +546,8 @@ Measure from **10 MHz to 10 GHz**, 100 or 10 MHz step:
    \gamma = \sqrt{(R + j\omega L)(G + j\omega C)}
    $$
 5. Fit $R$, $L$, $C$, $G$ vs frequency
+6. $Z_{line}=Z_{0}(50 \Omega) \frac{1+S_{11}}{1-S_{11}}-Z_{0}$
+7. $\rho_{trace}=\frac{Z_{line}T_{trace}W_{trace}}{l_{trace}}$
 #### Step 4: Extract $R_{DC}$
 Low-frequency $Z$-matrix:
 $$
@@ -633,12 +584,23 @@ $$
 - Ensure Reflect is a **true short** and that bump contact is clean and centered.
 ### 2. Yield Testing
 **Continuity** test, check for opens, measuring the **resistance** left and right ends of the same row. The goal is that $R_{measured}=R_{DC}$.
-The way we can get through layer resistivity: $R_{DC}=\rho \cdot \frac{l}{A}=\rho \cdot \frac{l}{w \cdot t}$ where $A$ is the cross sectional area of width times thickness.
 
-Another way to measure is through sheet resistance: $R_{DC}=R_{\square} \cdot \frac{l}{w}$ where $\frac{l}{w}\text{ is the number of squares}$. 
+**Short** test, check for shorts between the parallel rows the expectation is very high resistance $M\Omega$ range.
 
-### 
+We will perform 2 tests on 2 gold bumps and assume 1 gold bump.
 
+Use formulas prior stated and assume R_DC from prior observation.
+### 3. RF & Amplifier Performance Testing (Confirm Successful Flip-chip) (S2P)
+#### RF Die
+RF Performance Testing (via 2 port).
+Voltage 2V at VDD_LNA2 AND LNA1 or only one of them?
+The goal is to categorize the performance and verify successful flip chip
+![[RF die pinout.png|500]]
+
+#### Amplifier Die
+28V voltage bias, S parameter extraction at 2 ports to verify against simulation for 10MHZ to 5GHz range.
+
+SMD component adding  performing a ball bonding flip chip and then wire bonding -> complex operation.
 ## Gold Bump Bonding Profile (TPT HB16)
 The goal is to have 2 thermalsonic bonding profiles of creating gold bumps. One from acceleronix and one personally made based off calculations from the substrate.
 
@@ -698,7 +660,7 @@ Based on interposer stack: **Ti (50 nm) / Au (100 nm) on glass**, 25 µm Au wire
 | **2nd Bond Power/Time** | 70 mW / 50 ms   | 60 mW / 60 ms                  | Lowered to deliver ~3.6 mJ: $E = P_{\mathrm{US}} \cdot t$. Enough to create groove for Table-Tear without collapse.                                                                                                                     |
 | **Up CO**               | 300 µm          | 300 µm                         | Retained default. Adequate head lift for wire break without introducing unnecessary delay.                                                                                                                                              |
 
-### 📏 Summary of Targeted Design
+### Summary of Targeted Design
 
 - **Goal**: Minimize ultrasonic energy and force to protect **thin Ti/Au on glass**.
 - **Result**: 27 mJ bonding energy at 100 mN yields ≥98% bonded area per slip-energy model.
@@ -708,6 +670,58 @@ Based on interposer stack: **Ti (50 nm) / Au (100 nm) on glass**, 25 µm Au wire
   - $E = P_{\mathrm{US}} \cdot t$
   - $\eta = 1 - \exp[-\gamma F E]$
   - $E_{\min} = \frac{-\ln(0.02)}{\gamma F}$
+
+
+### equations in detail
+
+>[!NOTE] Key Equations for Optimising Gold Stud Bump Bonding  
+> All symbols are defined immediately below each formula. These equations link the controllable bonder parameters ($P_{\mathrm{US}},F,t,T$) to bump quality metrics (bond coverage, diameter, strength) and enable predictive optimisation for any wire diameter or substrate stack.  
+>  
+> ### 1. Temperature-dependent yield strength  
+> $\sigma_y(T)=\sigma_0\exp[-\beta(T-T_0)]$  
+> * **$\sigma_y(T)$** – yield strength of gold at temperature $T$  
+> * **$\sigma_0$** – yield strength at reference temperature $T_0$  
+> * **$\beta$** – empirical softening coefficient (≈ 0.01 K⁻¹)  
+> * **$T$** – chuck / pad temperature (°C)  
+> * **$T_0$** – reference temperature (°C)  
+>  
+> ### 2. Minimum normal force for plastic flattening  
+> $F_{\min}=k\,\sigma_y(T)D_w^{2}$  
+> * **$F_{\min}$** – least force that initiates plastic flow  
+> * **$k$** – geometric constant for a hemispherical free-air ball (≈ π/4)  
+> * **$\sigma_y(T)$** – yield strength from Eq 1  
+> * **$D_w$** – wire diameter  
+>  
+> ### 3. Ultrasonic energy delivered  
+> $E=P_{\mathrm{US}}\,t$  
+> * **$E$** – ultrasonic energy coupled into the interface  
+> * **$P_{\mathrm{US}}$** – ultrasonic power set on the bonder  
+> * **$t$** – ultrasonic vibration time  
+>  
+> ### 4. Fraction of bonded area (slip-energy model)  
+> $\eta=1-\exp[-\gamma F E]$  
+> * **$\eta$** – bonded-area fraction ($\eta=1$ ⇒ full interface)  
+> * **$\gamma$** – empirical constant ($4.2\times10^{-4}$ mJ⁻¹ N⁻¹ for 25 µm Au)  
+> * **$F$** – applied normal force  
+> * **$E$** – ultrasonic energy from Eq 3  
+>  
+> ### 5. Minimum energy for ≥ 98 % coverage  
+> $E_{\min}=\dfrac{-\ln(0.02)}{\gamma F}$  
+> * **$E_{\min}$** – least energy that yields $\eta\ge0.98$  
+> * **$\gamma,F$** – as defined in Eq 4  
+>  
+> ### 6. Mash-diameter growth with excess energy/force  
+> $D_m=D_{\mathrm{FAB}}\bigl[1+\alpha\bigl(\tfrac{F}{E}\bigr)\bigr]$  
+> * **$D_m$** – final (mashed) bump diameter  
+> * **$D_{\mathrm{FAB}}$** – free-air-ball diameter (≈ 3 $D_w$)  
+> * **$\alpha$** – deformation coefficient (0.18 mJ N⁻¹ for 25 µm Au)  
+> * **$F,E$** – force and energy from Eqs 2 & 3  
+>  
+> ### 7. Cycle-time relation (chosen set-point)  
+> $t = \dfrac{E_{\min}}{P_{\mathrm{US}}}$  
+> * **$t$** – ultrasonic time required when power $P_{\mathrm{US}}$ is fixed  
+> * **$E_{\min}$** – energy from Eq 5  
+> * **$P_{\mathrm{US}}$** – ultrasonic power
 
 ## Flip chip Bonding Profile (Dr. Tretsky T-5300)
 [SC: Values](https://chatgpt.com/c/68357f0e-737c-800f-85c2-44490cd15f72?model=gpt-4o)
@@ -740,6 +754,7 @@ The goal is to have 1 personally made bonding pressure and thermal changing prof
 | Stage 4 | Heat          | –                        | 0                 | 60000          | $8$                | $240$                    | Yes                  | Apply place force        | PRE_EXEC     |
 | Stage 5 | Cooling       | –                        | 0                 | 30000          | $-5$               | $100$                    | Yes                  | –                        | SKIP_EXEC    |
 
+![[Acceronix thermal profile.png]]
 ## Intermediate Paper Feedback
 - title too long try fitting 2 lines.
 - too concerned providing numbers, provide more motivation, interpretation, explain how to do things and why you are doing these like that.
