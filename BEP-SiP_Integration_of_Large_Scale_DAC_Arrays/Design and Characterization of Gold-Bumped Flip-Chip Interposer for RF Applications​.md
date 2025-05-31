@@ -537,6 +537,108 @@ thin film microstrip on carrier
 
 [ChatGPT](https://chatgpt.com/c/6822b756-4f44-800b-8286-950499679351)
 # Practical Lab-Execution Plan
+## Types of Experiments (In order)
+### 1. Extraction of Params + Gold Bump Lump Model
+
+**Can a lumped bump model be de-embedded on a simple RF test die?**
+
+Yes. A properly designed test die with GSG structures, TRL calibration, and a controlled bump structure can enable extraction of a **lumped RLC model** for a single gold bump.
+
+A **lumped model** represents the bump as discrete components:
+- Series: $R + j\omega L$
+- Shunt: $1/(j\omega C)$
+
+It is **not** the same as the distributed **RLCG** line model of a transmission line.
+
+#### Assumptions
+- **Metal stack**: 50 nm Ti + 100 nm Au = 150 nm total thickness
+- **Substrate**: 1 mm glass
+- **Structure**: Coplanar waveguide (CPW), single-layer, no vias
+- **Probing**: GSG (Ground-Signal-Ground), 3 pins
+- **Line geometry**:
+  - Ground width: 153 µm
+  - Signal width: 69 µm
+  - Length: ~1146.995 µm
+- **Test structures**:
+
+| Structure Type       | GSG Connected? | Bump Present? | Purpose                                   |
+| -------------------- | -------------- | ------------- | ----------------------------------------- |
+| **Thru (no bump)**   | ❌ Open ends    | ❌ No bump     | Reference S-parameter                     |
+| **Thru (with bump)** | ❌ Open ends    | ✅ Yes         | Used to extract bump model                |
+| **Reflect (short)**  | ✅ Shorted      | ❌ No bump     | Calibration (defines 0-length reflection) |
+
+#### Step 1: VNA Calibration (TRL)
+- Calibrate GSG probe tips up to probe plane.
+- Use Reflect as the short.
+- Use Thru (no bump) as the Thru.
+- Save Touchstone files after calibration.
+#### Step 2: Measure S-Parameters
+Measure from **10 MHz to 10 GHz**, 100 or 10 MHz step:
+- Thru (no bump)
+- Thru (with bump)
+- Reflect
+#### Step 3: Extract RLCG (CPW)
+1. Convert $S$-parameters of **Thru (no bump)** to $ABCD$ matrix.
+2. Use:
+   $$
+   \begin{bmatrix}
+   A & B \\
+   C & D
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+   \cosh(\gamma l) & Z_0\sinh(\gamma l) \\
+   \frac{1}{Z_0}\sinh(\gamma l) & \cosh(\gamma l)
+   \end{bmatrix}
+   $$
+3. Extract $\gamma = \alpha + j\beta$
+4. Use:
+   $$
+   \gamma = \sqrt{(R + j\omega L)(G + j\omega C)}
+   $$
+5. Fit $R$, $L$, $C$, $G$ vs frequency
+#### Step 4: Extract $R_{DC}$
+Low-frequency $Z$-matrix:
+$$
+R_{DC} = \text{Re}(Z_{11}) \text{ at 10 MHz}
+$$
+
+#### Step 5: Extract Resistivity $\rho$
+$$
+\rho = R_{DC} \cdot \frac{w \cdot t}{l}
+$$
+Where:
+- $w = 69 \times 10^{-6}$ m
+- $t = 1.5 \times 10^{-7}$ m
+- $l = 1.146995 \times 10^{-3}$ m
+#### Step 6: Extract Sheet Resistance $R_{\square}$
+$$
+R_{\square} = \frac{\rho}{t}
+$$
+#### Step 7: Extract Lumped Gold Bump Model
+
+1. Convert **Thru (no bump)** and **Thru (with bump)** to $Z$-matrix
+2. Subtract:
+   $$
+   Z_{bump} = Z_{\text{with bump}} - Z_{\text{no bump}}
+   $$
+3. Fit lumped RLC model:
+   $$
+   Z_{bump}(s) = R + sL + \frac{1}{sC}
+   $$
+#### Note
+
+- Only the **center signal bump** is modeled unless side bumps are separately probed.
+- You do **not** need multiple line lengths if you extract $\gamma$ from ABCD matrix.
+- Ensure Reflect is a **true short** and that bump contact is clean and centered.
+### 2. Yield Testing
+**Continuity** test, check for opens, measuring the **resistance** left and right ends of the same row. The goal is that $R_{measured}=R_{DC}$.
+The way we can get through layer resistivity: $R_{DC}=\rho \cdot \frac{l}{A}=\rho \cdot \frac{l}{w \cdot t}$ where $A$ is the cross sectional area of width times thickness.
+
+Another way to measure is through sheet resistance: $R_{DC}=R_{\square} \cdot \frac{l}{w}$ where $\frac{l}{w}\text{ is the number of squares}$. 
+
+### 
+
 ## Gold Bump Bonding Profile (TPT HB16)
 The goal is to have 2 thermalsonic bonding profiles of creating gold bumps. One from acceleronix and one personally made based off calculations from the substrate.
 
@@ -583,18 +685,18 @@ Up CO(clamp open and bondhead move upwards): 300
 ### Changed Parameters with Justification
 Based on interposer stack: **Ti (50 nm) / Au (100 nm) on glass**, 25 µm Au wire, HB-16 Wire Bonder.
 
-| **Parameter**           | **Acceleronix** | **Calculated** | **Justification**                                                                                                                                                                                                                       |
-| ----------------------- | --------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1st Bond Force**      | 200 mN          | 100 mN         | Lowered to 100 mN, which is ~3× the plastic-flow threshold for 25 µm Au at 120°C. Calculated using: $F_{\min} = \frac{\pi}{4} \cdot \sigma_y(T) \cdot D_w^2$ where $\sigma_y(120^\circ C) \approx 35$ MPa, $D_w = 25 \times 10^{-6}$ m. |
-| **1st Bond Power**      | 220 mW          | 180 mW         | Reduced to match energy $E = 27$ mJ needed for $\eta \ge 0.98$. Using: $E = P_{\mathrm{US}} \cdot t$ and $E_{\min} = \frac{-\ln(0.02)}{\gamma F}$ with $\gamma = 4.2 \times 10^{-4}$ mJ⁻¹N⁻¹.                                           |
-| **1st Bond Time**       | 200 ms          | 150 ms         | Shorter time avoids overheating and still delivers required energy: $E = 180 \cdot 150 = 27$ mJ.                                                                                                                                        |
-| **Chuck Temperature**   | 110 °C          | 120 °C         | Slight increase to soften Au. Lower $\sigma_y(T)$ improves bond coverage at lower force. $\sigma_y(T) = \sigma_0 \cdot e^{-\beta(T - T_0)}$ with $\beta \approx 0.01 \, \text{K}^{-1}$.                                                 |
-| **Y-Way (Forward)**     | 135 µm          | 120 µm         | Reduced to centre Bond 2 on the mashed bump crown. Too much lateral shift increases risk of off-centre coin tap and uneven break.                                                                                                       |
-| **Looph (Up)**          | 100 µm          | 120 µm         | Adjusted to ensure second bond head tap clears the ball without hitting it at an angle. Ensures bump height ≈ 40 µm.                                                                                                                    |
-| **Tail Length**         | 20 µm           | 450 µm         | Changed to HB-16 standard (400–500 µm) for Table-Tear. Ensures large, uniform FAB ~75–80 µm.                                                                                                                                            |
-| **2nd Bond Force**      | 20 mN           | 35 mN          | Slightly increased to just exceed plastic deformation threshold and create a visible groove without squashing the ball. Same $\sigma_y(T)$ relation applies.                                                                            |
-| **2nd Bond Power/Time** | 70 mW / 50 ms   | 60 mW / 60 ms  | Lowered to deliver ~3.6 mJ: $E = P_{\mathrm{US}} \cdot t$. Enough to create groove for Table-Tear without collapse.                                                                                                                     |
-| **Up CO**               | 300 µm          | 300 µm         | Retained default. Adequate head lift for wire break without introducing unnecessary delay.                                                                                                                                              |
+| **Parameter**           | **Acceleronix** | **Calculated**                 | **Justification**                                                                                                                                                                                                                       |
+| ----------------------- | --------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1st Bond Force**      | 200 mN          | 100 mN                         | Lowered to 100 mN, which is ~3× the plastic-flow threshold for 25 µm Au at 120°C. Calculated using: $F_{\min} = \frac{\pi}{4} \cdot \sigma_y(T) \cdot D_w^2$ where $\sigma_y(120^\circ C) \approx 35$ MPa, $D_w = 25 \times 10^{-6}$ m. |
+| **1st Bond Power**      | 220 mW          | 180 mW                         | Reduced to match energy $E = 27$ mJ needed for $\eta \ge 0.98$. Using: $E = P_{\mathrm{US}} \cdot t$ and $E_{\min} = \frac{-\ln(0.02)}{\gamma F}$ with $\gamma = 4.2 \times 10^{-4}$ mJ⁻¹N⁻¹.                                           |
+| **1st Bond Time**       | 200 ms          | 150 ms                         | Shorter time avoids overheating and still delivers required energy: $E = 180 \cdot 150 = 27$ mJ.                                                                                                                                        |
+| **Chuck Temperature**   | 110 °C          | 120 °C                         | Slight increase to soften Au. Lower $\sigma_y(T)$ improves bond coverage at lower force. $\sigma_y(T) = \sigma_0 \cdot e^{-\beta(T - T_0)}$ with $\beta \approx 0.01 \, \text{K}^{-1}$.                                                 |
+| **Y-Way (Forward)**     | 135 µm          | 120 µm                         | Reduced to centre Bond 2 on the mashed bump crown. Too much lateral shift increases risk of off-centre coin tap and uneven break.                                                                                                       |
+| **Looph (Up)**          | 100 µm          | 120 µm                         | Adjusted to ensure second bond head tap clears the ball without hitting it at an angle. Ensures bump height ≈ 40 µm.                                                                                                                    |
+| **Tail Length**         | 20 µm           | 100 µm (press 4 times for 400) | Changed to HB-16 standard (400–500 µm) for Table-Tear. Ensures large, uniform FAB ~75–80 µm.                                                                                                                                            |
+| **2nd Bond Force**      | 20 mN           | 35 mN                          | Slightly increased to just exceed plastic deformation threshold and create a visible groove without squashing the ball. Same $\sigma_y(T)$ relation applies.                                                                            |
+| **2nd Bond Power/Time** | 70 mW / 50 ms   | 60 mW / 60 ms                  | Lowered to deliver ~3.6 mJ: $E = P_{\mathrm{US}} \cdot t$. Enough to create groove for Table-Tear without collapse.                                                                                                                     |
+| **Up CO**               | 300 µm          | 300 µm                         | Retained default. Adequate head lift for wire break without introducing unnecessary delay.                                                                                                                                              |
 
 ### 📏 Summary of Targeted Design
 
@@ -608,7 +710,77 @@ Based on interposer stack: **Ti (50 nm) / Au (100 nm) on glass**, 25 µm Au wire
   - $E_{\min} = \frac{-\ln(0.02)}{\gamma F}$
 
 ## Flip chip Bonding Profile (Dr. Tretsky T-5300)
+[SC: Values](https://chatgpt.com/c/68357f0e-737c-800f-85c2-44490cd15f72?model=gpt-4o)
 The goal is to have 1 personally made bonding pressure and thermal changing profile for creating a successful flip chip.
 
+| Parameter          | Value                                                                                                        |
+| ------------------ | ------------------------------------------------------------------------------------------------------------ |
+| Place Force        | $F_\text{bump} ≈ 0.035\ \text{kg} = 35\ \text{g}$ per bump                                                   |
+|                    | $F_\text{total} = N_\text{bump} × 0.035\ \text{kg}$                                                          |
+| Interface Pressure | $P = \frac{F}{A} ≈ \frac{0.035\ \text{kg} × 9.81\ \text{m/s}^2}{\pi (37.5\ \mu\text{m})^2} ≈ 80\ \text{MPa}$ |
+| Place Duration     | $60\,000\ \text{ms} = 60\ \text{s}$                                                                          |
+| Diffusion Length   | $x = \sqrt{Dt} ≈ \sqrt{5 × 10^{-17}\ \text{m}^2/\text{s} × 60\ \text{s}} ≈ 55\ \text{nm}$                    |
+75/2 = 37.5
+### substrate
 
+| Stage   | Segment Type | Start Trigger           | Start Delay [ms] | Duration [ms] | Ramp [$^\circ$C/s] | Target Temp [$^\circ$C] | Wait for Completion | Wait Target             | Logic       |
+|---------|---------------|--------------------------|-------------------|----------------|--------------------|--------------------------|----------------------|--------------------------|--------------|
+| Stage 1 | Heat          | –                        | 0                 | 30000          | $5$                | $90$                     | No                   | –                        | –            |
+| Stage 2 | Heat          | –                        | 0                 | 15000          | $8$                | $150$                    | No                   | –                        | –            |
+| Stage 3 | Heat          | Wait for Touchdown       | 0                 | 10000          | $15$               | $220$                    | No                   | –                        | –            |
+| Stage 4 | Heat          | Wait for Touchdown       | 0                 | 60000          | $20$               | $300$                    | Yes                  | Apply place force        | PRE_EXEC     |
+| Stage 5 | Cooling       | –                        | 0                 | 30000          | $-8$               | $80$                     | Yes                  | –                        | SKIP_EXEC    |
 
+### tool-tip
+| Stage   | Segment Type | Start Trigger           | Start Delay [ms] | Duration [ms] | Ramp [$^\circ$C/s] | Target Temp [$^\circ$C] | Wait for Completion | Wait Target             | Logic       |
+|---------|---------------|--------------------------|-------------------|----------------|--------------------|--------------------------|----------------------|--------------------------|--------------|
+| Stage 1 | Heat          | –                        | 0                 | 30000          | $5$                | $50$                     | No                   | –                        | –            |
+| Stage 2 | Heat          | –                        | 0                 | 15000          | $8$                | $120$                    | No                   | –                        | –            |
+| Stage 3 | Heat          | Wait for Touchdown       | 0                 | 10000          | $10$               | $180$                    | No                   | –                        | –            |
+| Stage 4 | Heat          | –                        | 0                 | 60000          | $8$                | $240$                    | Yes                  | Apply place force        | PRE_EXEC     |
+| Stage 5 | Cooling       | –                        | 0                 | 30000          | $-5$               | $100$                    | Yes                  | –                        | SKIP_EXEC    |
+
+## Intermediate Paper Feedback
+- title too long try fitting 2 lines.
+- too concerned providing numbers, provide more motivation, interpretation, explain how to do things and why you are doing these like that.
+- structure of report: 1. Theory, theoretical model, 2. modeling and simulation. Comparison between theory and simulation. Validation of the simulated model vs the design on paper (expectations from the theory). 3. measurements. comparison between simulated models and the measurement results. explain differences.
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/1.png|200]]
+- add footnote on first page, with the context of this paper: BEP project, from to, in which group, supervised by, add all relevant details for the context of the paper.
+- maybe dont use the standard bep paper structure, improve to capture specifics of the project.
+- write in present simple tense, facts are written in present simple tense, avoid future tense.
+- introduction should communicate what has been done and why, right now we are missing the why part, missing the motivation. should better connect the 2 parts of the introduction. EXPLAIN WHAT IS THE PROBLEM dont just jump into numbers. QUANTIFY the problem and tell us how this research solves it. And then put the numbers in the (context of state of the art). Show us how these numbers compare to what the others report in literature.
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/2.png|200]]
+- MISSING CURRENTLY: Explicit problem definition, Research question and goals of the project, Research approach: what are you going to do in order to reliably reach the goals and answer the research questions, Literature review that connect to the problem definition and the goals of the BEP. Alternative state-of-the-art approaches and examples.
+- first refer to the figures in the paper and then only add show them visually.
+- Introduce all variables of the equations before using them.
+- If results provided, provide interpretation
+- "made in simulation is not formulated in a good style" rewrite: modeled and simulated perhaps.
+- When writing, think about next student, what can next student use from the report, how can you help the next student have an easier bep.
+- Very important to have measurements and concrete deliverables.
+- dont use term: continuity.
+- what test is used to validate planarity? if not then dont mention.
+- where do these opens and shorts occur?
+- the flow is used to design... dont used "mapped".
+- dont mentioned aluminium or copper wire we use gold usually.
+- dont use "a few" use for example "GHz range".
+- START CITING AT [1]
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/3.png|200]] why is this relevant?
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/4.png|200]]
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/5.png|200]]
+- dont remention things you mention in the table for example.
+- dont write what you dont know for sure.
+- "coupon is not the right word".
+- do not reference diamensions or somehting without providing reference.
+- zoom to relevant structures (USE LATEXT SVG PDF).
+- Sideview diagram
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/6.png|200]]
+- ![[7.png|200]]
+- dont use parameter "matrix"
+- ![[8.png|200]]
+- clear models
+- export graphs to matlab and generate better figures.
+- not conforting comparing/evaluating
+- not wafers, substrates/samples.
+- through and short is the same.
+- ![[9.png|200]]
+- ![[elaborate dont randomly reference.png|200]]

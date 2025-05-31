@@ -244,7 +244,10 @@ $V_{0}^+=f(t)\cos(\omega_{0}t)$ where $\omega_{0}$ carrier wave angular frequenc
 ![[deriving impedance based on transfer func.png|300]]![[solving the impedance matching.png|300]]
 ![[14lambda transformer.png|400]]
 
+# PART 2
 # Plane waves in arbitrary directions - reflection and refraction at planar interfaces
+## slide info
+
 ## Summary
 **wavenumber:** $k=\frac{2\pi}{\lambda}=\frac{2\pi f}{c}=\frac{\omega}{c}\implies \text{if not in vaccum speed changes }c=\frac{c_{0}}{n_{1}}\implies \frac{2\pi f}{c_{0}}n_{1}\left\{  \frac{1}{m}\text{ units}  \right\}$
 
