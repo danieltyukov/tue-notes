@@ -486,10 +486,11 @@ thin film microstrip on carrier
 
 
 [presentation](https://chatgpt.com/c/6822b756-4f44-800b-8286-950499679351)
-# Practical Lab-Execution Plan
+# Practical & Lab-Execution Plan
 ## Simulations & Formulas
 ### 1. Gold Bump Lump Model
 [calculations for simulations](https://chatgpt.com/c/683c0341-a47c-800b-9d7c-9541408d9f4c)
+[Relevant Paper](file:///home/danieltyukov/workspace/tue/tue-notes/BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/litrature/comparing%20coplanar%20waveguide%20to%20a%20grounded%20version.pdf)
 S-parameter extracted from simulated lumped models of a GSG CPW line of below dimensions. 1 without the gold bump S21 and S11 and one assuming a gold bump in the middle of the signal line S21 and S11. The goal is to then follow the RP1 in lab expriments to extract in lab S2P files of 10 MHz to 10GHz range 10 MHz steps, to compare the simulated s parameters with the real world ones, and also construct a lump model by putting the real world s parameters, first finding the RLGC of without the gold bump then RLGC with the bump and then substracting to find the LUMP model of the bump RLC. Comparing against Lump model in simulation.
 ![[gsg assumption.png|300]]
 #### Lump Model without Bump
@@ -639,6 +640,27 @@ Just follow the procedure outlines in types of experiments, there are no predict
 
 After performing the gold bump placement and the flip chip the goal is extract analyze for [planarity](https://www.microwavejournal.com/articles/3622-gold-stud-bumps-in-flip-chip-applications) which is basically opens between connections and for shorts between parallel rows. The increment count for the analysis and report.
 ### 3. RF & Amplifier Performance Testing (confirm successful flip-chip)
+Bias at: Vds=Vdd=28V, Ids=128mA bias, Vgs = -2.8V
+#### Passive Component Table
+| Ref                                             | Value / Rating                  | Pkg  |
+| -----------------------------------------------| -------------------------------- | ---- |
+| **R<sub>S</sub>**                               | 22 Ω, 0.333 W                   | 0603 |
+| **R<sub>D</sub>**                               | 18 Ω, 0.333 W *(optional)*      | 0603 |
+| **R<sub>1</sub>**                               | 10 MΩ, 0.1 W                    | 0603 |
+| **R<sub>2</sub>**                               | 1 MΩ, 0.1 W                     | 0603 |
+| **C<sub>1</sub>, C<sub>2</sub>, C<sub>3</sub>** | 100 pF, 50 V, NP0               | 0402 |
+| **L<sub>bias</sub>**                            | 4.7 µH, I<sub>sat</sub> = 620 mA | 0603 |
+
+#### Design Calculations and Formulas
+| Quantity                       | Formula                                           | Inputs                  | Result / Value                                              |
+| ------------------------------| ------------------------------------------------- | ----------------------- | ------------------------------------------------------------ |
+| **R<sub>S</sub>**              | $R = \frac{V_S}{I_D}$                             | 2.8 V / 0.128 A         | 21.9 Ω → **22 Ω**                                            |
+| Power in R<sub>S</sub>         | $P = I^2 R$                                       | $0.128^2 \times 22$     | **0.36 W**                                                   |
+| **R<sub>D</sub>** (optional)   | $R = \frac{V_{DD} - V_D}{I_D}$                    | (32 V–30 V) / 0.128 A   | 15.6 Ω → **18 Ω**                                            |
+| Power in R<sub>D</sub>         | $P = I^2 R$                                       | $0.128^2 \times 18$     | 0.30 W                                                       |
+| **Gate bias**                  | $V_G = V_{DD} \cdot \frac{R_2}{R_1 + R_2}$        | 28 V, 10 MΩ / 1 MΩ      | 2.55 V                                                       |
+| $V_{GSQ}$                      | $V_G - I \cdot R_S$                               | 2.55 V − 0.128 A × 22 Ω | ≈ −0.27 V                                                    |
+| **L<sub>bias</sub> head-room** | $I_{sat} \geq 2 \cdot I_D$                        | $2 \times 0.128$ A      | 0.256 A                                                      |
 
 ## Types of Experiments (In order)
 ### 1. Extraction of Params + Gold Bump Lump Model (s2p) PORT
