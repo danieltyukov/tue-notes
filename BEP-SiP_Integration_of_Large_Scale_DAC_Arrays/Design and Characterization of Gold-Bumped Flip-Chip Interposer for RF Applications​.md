@@ -491,8 +491,7 @@ thin film microstrip on carrier
 ### 1. Gold Bump Lump Model
 [calculations for simulations](https://chatgpt.com/c/683c0341-a47c-800b-9d7c-9541408d9f4c)
 S-parameter extracted from simulated lumped models of a GSG CPW line of below dimensions. 1 without the gold bump S21 and S11 and one assuming a gold bump in the middle of the signal line S21 and S11. The goal is to then follow the RP1 in lab expriments to extract in lab S2P files of 10 MHz to 10GHz range 10 MHz steps, to compare the simulated s parameters with the real world ones, and also construct a lump model by putting the real world s parameters, first finding the RLGC of without the gold bump then RLGC with the bump and then substracting to find the LUMP model of the bump RLC. Comparing against Lump model in simulation.
-![[gsg assumption.png|400]]
-
+![[gsg assumption.png|300]]
 #### Lump Model without Bump
 ##### Symbols & Geometry
 
@@ -579,6 +578,67 @@ $C = C' \ell$
 
 $R_2 = \frac{1}{G' \ell}$
 
+#### Lump Model with Bump
+##### 1 What changes when a gold bump sits on the signal line?
+Two additions to the CPW model:
+1. **Series elements**: $R_b$, $L_b$ - resistance and inductance through the gold bump
+2. **Shunt element**: $C_b$ - bump-to-ground capacitance
+##### 2 Gold bump size estimation (TPT HB-16, 25 µm Au wire)
+
+| Parameter              | Symbol            | Value | Notes                 |
+| ---------------------- | ----------------- | ----- | --------------------- |
+| Free-air ball diameter | $D_{\text{ball}}$ | 70 µm | After EFO             |
+| Compressed bump height | $h_b$             | 25 µm | Final bonded height   |
+| Contact diameter       | $D_b$             | 70 µm | Assumed same as ball  |
+| Bump radius            | $r_b = D_b / 2$   | 35 µm | $35 \times 10^{-6}$ m |
+##### 3 Lumped element formulas for the bump
+
+$R_b = \frac{\rho_{\text{Au}}\,h_b}{\pi r_b^2}$  
+$L_b = \mu_0 h_b \left[\ln\left(\frac{4h_b}{r_b}\right)+1\right]$  
+$C_b \approx \frac{\varepsilon_0 \varepsilon_{\text{eff}} \pi r_b^2}{s}$
+###### 3.1 Numerical evaluation
+
+| Element | Formula & Calculation                                                                                   | Value       |
+| ------- | ------------------------------------------------------------------------------------------------------- | ----------- |
+| $R_b$   | $\frac{2.44 \times 10^{-8} \cdot 25 \times 10^{-6}}{\pi \cdot (35 \times 10^{-6})^2}$                   | **0.16 mΩ** |
+| $L_b$   | $4\pi \cdot 10^{-7} \cdot 25 \times 10^{-6} \cdot \left[\ln\left(\frac{4 \cdot 25}{35}\right)+1\right]$ | **64 pH**   |
+| $C_b$   | $8.854 \cdot 10^{-12} \cdot 4.375 \cdot \pi \cdot (35 \times 10^{-6})^2 / (41 \times 10^{-6})$          | **3.6 fF**  |
+
+##### 4 Half-line parameters (0.575 mm out of 1.15 mm CPW)
+
+| Per-unit-Length | Value          | Multiply by 0.575 mm →             |
+|-----------------|----------------|------------------------------------|
+| $R'$            | 3.85 kΩ/m      | $3.85 \cdot 0.000575 = 2.22\ \Omega$ |
+| $L'$            | 423 nH/m       | $423 \cdot 0.000575 = 0.243\ \text{nH}$ |
+| $C'$            | 115 pF/m       | $115 \cdot 0.000575 = 33.1\ \text{fF}$ |
+| $G'$ (5 GHz)    | 0.018 S/m      | $1 / (0.018 \cdot 0.000575) = 24\ \text{k}\Omega$ |
+
+Each half-line has:
+- $R = 2.22\ \Omega$
+- $L = 0.243\ \text{nH}$
+- $C_{\text{up}} = C_{\text{down}} = 33.1\ \text{fF}$
+- $R_{\text{sh}} = 24\ \text{k}\Omega$
+##### 5 Complete lumped network for QUCS
+
+| Schematic Element   | Value                                                                                                             |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **Left half-line**  | $R=2.22\ \Omega,\ L=0.243\ \text{nH},\ C_{\text{up}}=C_{\text{down}}=33.1\ \text{fF},\ R_{sh}=24\ \text{k}\Omega$ |
+| **Gold bump**       | Series $R_b=0.16\ \text{m}\Omega,\ L_b=64\ \text{pH}$ + Shunt $C_b=3.6\ \text{fF}$                                |
+| **Right half-line** | Same as left                                                                                                      |
+| **Ports**           | $Z_0=50\ \Omega$ each                                                                                             |
+| **Sweep**           | 100 MHz → 5 GHz, 100 MHz step                                                                                     |
+
+##### 6 Why is $R_b$ small but $L_b$ still noticeable?
+
+- $R_b$ is tiny because gold is highly conductive and the bump is short.
+- $L_b$ arises from the vertical current path, even a small path length adds measurable inductance at GHz.
+- $C_b$ is small due to the small overlap area and large CPW gap.
+
+### 2. Yield Testing
+Just follow the procedure outlines in types of experiments, there are no predictions or simulations the goal is compare 2 profiles -> calculated vs provided by acceleronix. Both for the gold bump bonding profile and the flip chip bonding profile.
+
+After performing the gold bump placement and the flip chip the goal is extract analyze for [planarity](https://www.microwavejournal.com/articles/3622-gold-stud-bumps-in-flip-chip-applications) which is basically opens between connections and for shorts between parallel rows. The increment count for the analysis and report.
+### 3. RF & Amplifier Performance Testing (confirm successful flip-chip)
 
 ## Types of Experiments (In order)
 ### 1. Extraction of Params + Gold Bump Lump Model (s2p) PORT
