@@ -485,10 +485,103 @@ thin film microstrip on carrier
 [useful](https://chatgpt.com/c/68192ef4-e820-800b-a2aa-e8f590781c12)
 
 
-[ChatGPT](https://chatgpt.com/c/6822b756-4f44-800b-8286-950499679351)
+[presentation](https://chatgpt.com/c/6822b756-4f44-800b-8286-950499679351)
 # Practical Lab-Execution Plan
+## Simulations & Formulas
+### 1. Gold Bump Lump Model
+[calculations for simulations](https://chatgpt.com/c/683c0341-a47c-800b-9d7c-9541408d9f4c)
+S-parameter extracted from simulated lumped models of a GSG CPW line of below dimensions. 1 without the gold bump S21 and S11 and one assuming a gold bump in the middle of the signal line S21 and S11. The goal is to then follow the RP1 in lab expriments to extract in lab S2P files of 10 MHz to 10GHz range 10 MHz steps, to compare the simulated s parameters with the real world ones, and also construct a lump model by putting the real world s parameters, first finding the RLGC of without the gold bump then RLGC with the bump and then substracting to find the LUMP model of the bump RLC. Comparing against Lump model in simulation.
+![[gsg assumption.png|400]]
+
+#### Lump Model without Bump
+##### Symbols & Geometry
+
+| Symbol          | Meaning                | Your CPW                              |
+| --------------- | ---------------------- | ------------------------------------- |
+| $w$             | Signal-strip width     | 69 µm                                 |
+| $s$             | Gap (signal ↔ ground)  | 41 µm                                 |
+| $g$             | Ground-bar width       | 153 µm                                |
+| $t$             | Metal thickness        | 150 nm (Ti/Au)                        |
+| $\rho$          | Resistivity            | $3.9858 \times 10^{-8}\ \Omega\cdot$m |
+| $\varepsilon_r$ | Substrate permittivity | 7.75 (glass)                          |
+| $\tan\delta$    | Loss tangent           | 0.005                                 |
+| $\ell$          | Physical length        | 1.15 mm                               |
+
+Effective permittivity approximation (quasi-TEM):
+
+- $\varepsilon_{\mathrm{eff}} = \frac{\varepsilon_r + 1}{2} = \frac{7.75 + 1}{2} = 4.375$
+
+##### Closed-form CPW Formulas
+
+$k = \frac{w}{w + 2s} = \frac{69}{69 + 2 \cdot 41} = 0.457$
+
+$k' = \sqrt{1 - k^2} = \sqrt{1 - 0.457^2} = 0.889$
+
+$K = \text{EllipticK}(k^2) = \text{EllipticK}(0.209) \approx 1.664$
+
+$K' = \text{EllipticK}(k'^2) = \text{EllipticK}(0.79) \approx 2.238$
+
+$Z_0 = \frac{30\pi}{\sqrt{\varepsilon_{\mathrm{eff}}}} \cdot \frac{K'}{K} = \frac{30\pi}{\sqrt{4.375}} \cdot \frac{2.238}{1.664} \approx 60.6\ \Omega$
+
+$C' = 4 \varepsilon_0 \varepsilon_{\mathrm{eff}} \cdot \frac{K}{K'} = 4 \cdot 8.854 \times 10^{-12} \cdot 4.375 \cdot \frac{1.664}{2.238} \approx 115\ \text{pF/m}$
+
+$L' = Z_0^2 \cdot C' = (60.6)^2 \cdot 115 \times 10^{-12} \approx 423\ \text{nH/m}$
+
+$R'_{\text{dc}} = \frac{\rho}{w \cdot t} = \frac{3.9858 \times 10^{-8}}{69 \times 10^{-6} \cdot 150 \times 10^{-9}} = 3.85\ \text{k}\Omega/\text{m}$
+
+$G'(\omega) = \omega C' \tan\delta = 2\pi \cdot 5 \times 10^9 \cdot 115 \times 10^{-12} \cdot 0.005 \approx 0.018\ \text{S/m}$
+##### Lumped $\pi$-Model Values (for $\ell = 1.15$ mm)
+
+$R_1 = R'_{\text{dc}} \cdot \ell = 3850\ \Omega/\text{m} \cdot 1.15 \times 10^{-3} = 4.43\ \Omega$
+
+$L_1 = L' \cdot \ell = 423 \times 10^{-9}\ \text{H/m} \cdot 1.15 \times 10^{-3} = 0.486\ \text{nH}$
+
+$C_1 = C_2 = \frac{C' \cdot \ell}{2} = \frac{115 \times 10^{-12} \cdot 1.15 \times 10^{-3}}{2} = 66.3\ \text{fF}$
+
+$R_2 = \frac{1}{G' \cdot \ell} = \frac{1}{0.018 \cdot 1.15 \times 10^{-3}} = 48.3\ \text{k}\Omega$
+
+$C_3 = 0\ \text{pF}$ (negligible pad-to-pad coupling)
+
+##### QUCS Simulation Values
+
+| Element           | Value             |
+| ---------------- | ----------------- |
+| Series $R_1$      | 4.43 Ω            |
+| Series $L_1$      | 0.486 nH          |
+| Shunt $C_1$       | 66.3 fF (top node)|
+| Shunt $C_2$       | 66.3 fF (bottom)  |
+| Shunt $R_2$       | 48 kΩ             |
+| End-to-end $C_3$  | 0 pF (omit)       |
+| Sweep range       | 100 MHz to 5 GHz, 100 MHz step |
+##### Formula Reference Sheet
+
+$k = \frac{w}{w + 2s}$
+
+$k' = \sqrt{1 - k^2}$
+
+$\frac{K'}{K} = \frac{\text{EllipticK}(k'^2)}{\text{EllipticK}(k^2)}$
+
+$Z_0 = \frac{30\pi}{\sqrt{\varepsilon_{\mathrm{eff}}}} \cdot \frac{K'}{K}$
+
+$C' = 4\varepsilon_0\varepsilon_{\mathrm{eff}} \cdot \frac{K}{K'}$
+
+$L' = Z_0^2 \cdot C'$
+
+$R' = \frac{\rho}{wt}$
+
+$G'(\omega) = \omega C' \tan\delta$
+
+$R = R' \ell$
+
+$L = L' \ell$
+
+$C = C' \ell$
+
+$R_2 = \frac{1}{G' \ell}$
+
+
 ## Types of Experiments (In order)
-### 1. Extraction of Params + Gold Bump Lump Model (1 Port S-parameter testing) (S1P) OR 2 PORT???
+### 1. Extraction of Params + Gold Bump Lump Model (s2p) PORT
 
 **Can a lumped bump model be de-embedded on a simple RF test die?**
 
@@ -508,7 +601,7 @@ It is **not** the same as the distributed **RLCG** line model of a transmission 
 - **Line geometry**:
   - Ground width: 153 µm
   - Signal width: 69 µm
-  - Length: ~1146.995 µm
+  - Length: ~1150 µm
 - **Test structures**:
 
 | Structure Type       | GSG Connected? | Bump Present? | Purpose                                   |
@@ -522,7 +615,7 @@ It is **not** the same as the distributed **RLCG** line model of a transmission 
 - Use Thru (no bump) as the Thru.
 - Save Touchstone files after calibration.
 #### Step 2: Measure S-Parameters
-Measure from **10 MHz to 10 GHz**, 100 or 10 MHz step:
+Measure from **10 MHz to 10 GHz**, 10 MHz step:
 - Thru (no bump)
 - Thru (with bump)
 - Reflect
@@ -597,8 +690,9 @@ Voltage 2V at VDD_LNA2 AND LNA1 or only one of them?
 The goal is to categorize the performance and verify successful flip chip
 ![[RF die pinout.png|500]]
 
+10 MHz to 10 GHz in 10 MHz step.
 #### Amplifier Die
-28V voltage bias, S parameter extraction at 2 ports to verify against simulation for 10MHZ to 5GHz range.
+28V voltage bias, S parameter extraction at 2 ports to verify against simulation for 10MHZ to 5GHz in 10MHz step.
 
 SMD component adding  performing a ball bonding flip chip and then wire bonding -> complex operation.
 ## Gold Bump Bonding Profile (TPT HB16)
@@ -754,6 +848,7 @@ The goal is to have 1 personally made bonding pressure and thermal changing prof
 | Stage 4 | Heat          | –                        | 0                 | 60000          | $8$                | $240$                    | Yes                  | Apply place force        | PRE_EXEC     |
 | Stage 5 | Cooling       | –                        | 0                 | 30000          | $-5$               | $100$                    | Yes                  | –                        | SKIP_EXEC    |
 
+Only Thermal Profile for Substrate Provided:
 ![[Acceronix thermal profile.png]]
 ## Intermediate Paper Feedback
 - title too long try fitting 2 lines.
