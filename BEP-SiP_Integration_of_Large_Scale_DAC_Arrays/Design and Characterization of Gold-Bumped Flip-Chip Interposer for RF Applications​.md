@@ -488,12 +488,21 @@ thin film microstrip on carrier
 [presentation](https://chatgpt.com/c/6822b756-4f44-800b-8286-950499679351)
 # Practical & Lab-Execution Plan
 ## Simulations & Formulas
-### 1. Gold Bump Lump Model
+### 1. Gold Bump Lump Model (S1P)
 [calculations for simulations](https://chatgpt.com/c/683c0341-a47c-800b-9d7c-9541408d9f4c)
 [Relevant Paper](file:///home/danieltyukov/workspace/tue/tue-notes/BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/litrature/comparing%20coplanar%20waveguide%20to%20a%20grounded%20version.pdf)
-S-parameter extracted from simulated lumped models of a GSG CPW line of below dimensions. 1 without the gold bump S21 and S11 and one assuming a gold bump in the middle of the signal line S21 and S11. The goal is to then follow the RP1 in lab expriments to extract in lab S2P files of 10 MHz to 10GHz range 10 MHz steps, to compare the simulated s parameters with the real world ones, and also construct a lump model by putting the real world s parameters, first finding the RLGC of without the gold bump then RLGC with the bump and then substracting to find the LUMP model of the bump RLC. Comparing against Lump model in simulation.
+S-parameter extracted from simulated lumped models of a GSG CPW line of below dimensions (Length: 1.5mm, Signal line width: 69 microns, Ground line width: 153 microns). The goal is to first use the VNA machine to calibrate for measuring the RF TXFE die and extracting the 1 port S parameters directly from it. Since the die is already on a PCB the calibration happens using a PCB without the die but just with a substrate. The second step is to calibrate and extract the 1 port S parameters from the interposer, specifically of the dimensions previously mentioned of the GSG CPW lines, the goal is to calibrate with an open and a short. The 3rd step is to place the gold bumps on the interposer and then perform a successful flip chip of the RF die onto the interposer with a successful bonding achieved a DC measurement will happen which will confirm the connection and then we will perform the VNA the 1 port s parameter extraction of the full interconnected system. We then perform de-embedding in MATLAB and by subtracting the S parameters of the die and substrate from the full system, achieve the S parameters of the gold bump which can be used to determine the R or RC lump model of the gold bump.
+
+After the first step the goal is to also perform QUCS simulations based on the S parameters from the die and calculated lumped components of the gold bump and the interposer GSG lines and compare them with reality. We will use a 1 port file from the die in the qucs simulation and the calculated estimated lump model of the bump and the line.
+
+The practical experiement:
+1. probe chip, $Z_{in_{die}}(f)$.
+2. probe the open and short GSG lines of the interposers, calculate the reference plain at transmission line end.
+3. probe the chip + interposer + gold bumps (connecting the interposer to die) on the GSG lines.
+4. Use de-embedding to  extract the S-parameters and then the lump model of the gold bumps by subtrsating from the full system in step 3 the step 1 and 2 of the die and interposer.
+5. (all of the above is done as a 1 port system).
 ![[gsg assumption.png|300]]
-#### Lump Model without Bump
+#### Lump Model of the GSG Lines (Simulation)
 ##### Symbols & Geometry
 
 | Symbol          | Meaning                | Your CPW                              |
@@ -578,68 +587,45 @@ $L = L' \ell$
 $C = C' \ell$
 
 $R_2 = \frac{1}{G' \ell}$
+#### Lump Model of the **3 bumps — one per line on (GSG) lines** (Simulation)
+What we will get from the practical simulation is for 3 bumps since that is the reality but then to create a lump model of 1 we will use the equations below to report on.
 
-#### Lump Model with Bump
-##### 1 What changes when a gold bump sits on the signal line?
-Two additions to the CPW model:
-1. **Series elements**: $R_b$, $L_b$ - resistance and inductance through the gold bump
-2. **Shunt element**: $C_b$ - bump-to-ground capacitance
-##### 2 Gold bump size estimation (TPT HB-16, 25 µm Au wire)
-
-| Parameter              | Symbol            | Value | Notes                 |
-| ---------------------- | ----------------- | ----- | --------------------- |
-| Free-air ball diameter | $D_{\text{ball}}$ | 70 µm | After EFO             |
-| Compressed bump height | $h_b$             | 25 µm | Final bonded height   |
-| Contact diameter       | $D_b$             | 70 µm | Assumed same as ball  |
-| Bump radius            | $r_b = D_b / 2$   | 35 µm | $35 \times 10^{-6}$ m |
-##### 3 Lumped element formulas for the bump
-
-$R_b = \frac{\rho_{\text{Au}}\,h_b}{\pi r_b^2}$  
-$L_b = \mu_0 h_b \left[\ln\left(\frac{4h_b}{r_b}\right)+1\right]$  
-$C_b \approx \frac{\varepsilon_0 \varepsilon_{\text{eff}} \pi r_b^2}{s}$
-###### 3.1 Numerical evaluation
+| Parameter              | Symbol            | Value | Notes                |
+| ---------------------- | ----------------- | ----- | -------------------- |
+| Free-air ball diameter | $D_{\text{ball}}$ | 70 µm | After EFO            |
+| Compressed bump height | $h_b$             | 25 µm | Final bonded height  |
+| Contact diameter       | $D_b$             | 70 µm | Assumed same as ball |
+| Bump radius            | $r_b=D_b/2$       | 35 µm | $35\times10^{-6}$ m  |
+##### 2 Lumped element formulas for one bump
+$R_b=\frac{\rho_{\text{Au}}\,h_b}{\pi r_b^2}$  
+$L_b=\mu_0 h_b \left[\ln\left(\frac{4h_b}{r_b}\right)+1\right]$  
+$C_b\approx\frac{\varepsilon_0 \varepsilon_{\text{eff}} \pi r_b^2}{s}$
+##### 3 Values for a **single bump**
 
 | Element | Formula & Calculation                                                                                   | Value       |
 | ------- | ------------------------------------------------------------------------------------------------------- | ----------- |
-| $R_b$   | $\frac{2.44 \times 10^{-8} \cdot 25 \times 10^{-6}}{\pi \cdot (35 \times 10^{-6})^2}$                   | **0.16 mΩ** |
-| $L_b$   | $4\pi \cdot 10^{-7} \cdot 25 \times 10^{-6} \cdot \left[\ln\left(\frac{4 \cdot 25}{35}\right)+1\right]$ | **64 pH**   |
-| $C_b$   | $8.854 \cdot 10^{-12} \cdot 4.375 \cdot \pi \cdot (35 \times 10^{-6})^2 / (41 \times 10^{-6})$          | **3.6 fF**  |
+| $R_b$   | $\frac{2.44\times10^{-8} \cdot 25\times10^{-6}}{\pi\cdot(35\times10^{-6})^2}$                            | **0.16 mΩ** |
+| $L_b$   | $4\pi\times10^{-7}\cdot25\times10^{-6}\cdot\left[\ln\left(\frac{4\cdot25}{35}\right)+1\right]$          | **64 pH**   |
+| $C_b$   | $8.854\times10^{-12}\cdot4.375\cdot\pi\cdot(35\times10^{-6})^2/(41\times10^{-6})$                        | **3.6 fF**  |
+##### 4 Lumped model of **3 bumps** (1 signal, 2 grounds in parallel)
+$R_{\text{3-bump}}=R_b+\frac{R_b}{2}=\frac{3}{2}R_b$  
+$L_{\text{3-bump}}=L_b+\frac{L_b}{2}=\frac{3}{2}L_b$  
+$C_{\text{3-bump}}\approx C_b$
+##### 5 Final simulation values for QUCS (combined 3-bump model)
 
-##### 4 Half-line parameters (0.575 mm out of 1.15 mm CPW)
-
-| Per-unit-Length | Value          | Multiply by 0.575 mm →             |
-|-----------------|----------------|------------------------------------|
-| $R'$            | 3.85 kΩ/m      | $3.85 \cdot 0.000575 = 2.22\ \Omega$ |
-| $L'$            | 423 nH/m       | $423 \cdot 0.000575 = 0.243\ \text{nH}$ |
-| $C'$            | 115 pF/m       | $115 \cdot 0.000575 = 33.1\ \text{fF}$ |
-| $G'$ (5 GHz)    | 0.018 S/m      | $1 / (0.018 \cdot 0.000575) = 24\ \text{k}\Omega$ |
-
-Each half-line has:
-- $R = 2.22\ \Omega$
-- $L = 0.243\ \text{nH}$
-- $C_{\text{up}} = C_{\text{down}} = 33.1\ \text{fF}$
-- $R_{\text{sh}} = 24\ \text{k}\Omega$
-##### 5 Complete lumped network for QUCS
-
-| Schematic Element   | Value                                                                                                             |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| **Left half-line**  | $R=2.22\ \Omega,\ L=0.243\ \text{nH},\ C_{\text{up}}=C_{\text{down}}=33.1\ \text{fF},\ R_{sh}=24\ \text{k}\Omega$ |
-| **Gold bump**       | Series $R_b=0.16\ \text{m}\Omega,\ L_b=64\ \text{pH}$ + Shunt $C_b=3.6\ \text{fF}$                                |
-| **Right half-line** | Same as left                                                                                                      |
-| **Ports**           | $Z_0=50\ \Omega$ each                                                                                             |
-| **Sweep**           | 100 MHz → 5 GHz, 100 MHz step                                                                                     |
-
-##### 6 Why is $R_b$ small but $L_b$ still noticeable?
-
-- $R_b$ is tiny because gold is highly conductive and the bump is short.
-- $L_b$ arises from the vertical current path, even a small path length adds measurable inductance at GHz.
-- $C_b$ is small due to the small overlap area and large CPW gap.
+| Element             | Formula          | Value       |
+| ------------------- | ---------------- | ----------- |
+| $R_{\text{3-bump}}$ | $\frac{3}{2}R_b$ | **0.24 mΩ** |
+| $L_{\text{3-bump}}$ | $\frac{3}{2}L_b$ | **96 pH**   |
+| $C_{\text{3-bump}}$ | $C_b$            | **3.6 fF**  |
 
 ### 2. Yield Testing
 Just follow the procedure outlines in types of experiments, there are no predictions or simulations the goal is compare 2 profiles -> calculated vs provided by acceleronix. Both for the gold bump bonding profile and the flip chip bonding profile.
 
 After performing the gold bump placement and the flip chip the goal is extract analyze for [planarity](https://www.microwavejournal.com/articles/3622-gold-stud-bumps-in-flip-chip-applications) which is basically opens between connections and for shorts between parallel rows. The increment count for the analysis and report.
-### 3. RF & Amplifier Performance Testing (confirm successful flip-chip)
+### 3. Amplifier Performance Testing (Simulation)
+Values were used to create an interposer mask, and also to choose the passive components that will be used on the interposer when fabricated.
+
 Bias at: Vds=Vdd=28V, Ids=128mA bias, Vgs = -2.8V
 #### Passive Component Table
 | Ref                                             | Value / Rating                  | Pkg  |
@@ -650,7 +636,6 @@ Bias at: Vds=Vdd=28V, Ids=128mA bias, Vgs = -2.8V
 | **R<sub>2</sub>**                               | 1 MΩ, 0.1 W                     | 0603 |
 | **C<sub>1</sub>, C<sub>2</sub>, C<sub>3</sub>** | 100 pF, 50 V, NP0               | 0402 |
 | **L<sub>bias</sub>**                            | 4.7 µH, I<sub>sat</sub> = 620 mA | 0603 |
-
 #### Design Calculations and Formulas
 | Quantity                       | Formula                                           | Inputs                  | Result / Value                                              |
 | ------------------------------| ------------------------------------------------- | ----------------------- | ------------------------------------------------------------ |
@@ -662,121 +647,108 @@ Bias at: Vds=Vdd=28V, Ids=128mA bias, Vgs = -2.8V
 | $V_{GSQ}$                      | $V_G - I \cdot R_S$                               | 2.55 V − 0.128 A × 22 Ω | ≈ −0.27 V                                                    |
 | **L<sub>bias</sub> head-room** | $I_{sat} \geq 2 \cdot I_D$                        | $2 \times 0.128$ A      | 0.256 A                                                      |
 
+We have 2 simulation types we have one qucs simulation using the provided amplifier transistor S2P file which is probed and direct S-parameters are extracted that showcase the 5 GHz S21 amplification are around 10.4 dB and with the transistor die on the interposer with the passive components create a common source amplifier with around 8.5 dB at 5GHz which showcases a good design of an interposer. 
+
+The transistor will be flip chipped onto the interposer and then since the gate pad is on the top the gate will be wire bonded after the flip chip. We are using the TGF-2023-2-02 transistor. 
 ## Types of Experiments (In order)
-### 1. Extraction of Params + Gold Bump Lump Model (s2p) PORT
 
-**Can a lumped bump model be de-embedded on a simple RF test die?**
+### 1. RF - Gold Bump Lump Model (S1P)
 
-Yes. A properly designed test die with GSG structures, TRL calibration, and a controlled bump structure can enable extraction of a **lumped RLC model** for a single gold bump.
+> **Objective**  
+> Extract the lumped $R$ (or $R+j\omega L$, optionally $+\dfrac{1}{j\omega C}$) of the **three-bump GSG interconnect** by **1-port de-embedding**, then validate the model in **QUCS**.
+#### A. Physical Items & Measurements
 
-A **lumped model** represents the bump as discrete components:
-- Series: $R + j\omega L$
-- Shunt: $1/(j\omega C)$
+| Item                          | Measured? | Calibration? | Purpose                 |
+| ----------------------------- | --------- | ------------ | ----------------------- |
+| Bare **RF die on PCB**        | ✔         | 1-port OSL   | $S_{11,\text{die}}(f)$  |
+| **Interposer CPW** (no bumps) | ✔         | OSL          | $S_{11,\text{line}}(f)$ |
+| **Die + Interposer + Bumps**  | ✔         | Uses above   | $S_{11,\text{full}}(f)$ |
 
-It is **not** the same as the distributed **RLCG** line model of a transmission line.
-#### Assumptions
-![[gsg assumption.png|400]]
-- **Metal stack**: 50 nm Ti + 100 nm Au = 150 nm total thickness
-- **Substrate**: 1 mm glass
-- **Structure**: Coplanar waveguide (CPW), single-layer, no vias
-- **Probing**: GSG (Ground-Signal-Ground), 3 pins
-- **Line geometry**:
-  - Ground width: 153 µm
-  - Signal width: 69 µm
-  - Length: ~1150 µm
-- **Test structures**:
+![[gsg assumption.png|300]]
+![[RF die pinout.png|400]]
+#### B. Common VNA Settings  
+- Frequency span 10 MHz→10 GHz, 10 MHz step  
+- Port impedance 50 Ω  
+- File format Touchstone *.s1p*
+#### C. Step-by-Step Procedure  
 
-| Structure Type       | GSG Connected? | Bump Present? | Purpose                                   |
-| -------------------- | -------------- | ------------- | ----------------------------------------- |
-| **Thru (no bump)**   | ❌ Open ends    | ❌ No bump     | Reference S-parameter                     |
-| **Thru (with bump)** | ❌ Open ends    | ✅ Yes         | Used to extract bump model                |
-| **Reflect (short)**  | ✅ Shorted      | ❌ No bump     | Calibration (defines 0-length reflection) |
-#### Step 1: VNA Calibration (TRL)
-- Calibrate GSG probe tips up to probe plane.
-- Use Reflect as the short.
-- Use Thru (no bump) as the Thru.
-- Save Touchstone files after calibration.
-#### Step 2: Measure S-Parameters
-Measure from **10 MHz to 10 GHz**, 10 MHz step:
-- Thru (no bump)
-- Thru (with bump)
-- Reflect
-#### Step 3: Extract RLCG (CPW)
-1. Convert $S$-parameters of **Thru (no bump)** to $ABCD$ matrix.
-2. Use:
-   $$
-   \begin{bmatrix}
-   A & B \\
-   C & D
-   \end{bmatrix}
-   =
-   \begin{bmatrix}
-   \cosh(\gamma l) & Z_0\sinh(\gamma l) \\
-   \frac{1}{Z_0}\sinh(\gamma l) & \cosh(\gamma l)
-   \end{bmatrix}
-   $$
-3. Extract $\gamma = \alpha + j\beta$
-4. Use:
-   $$
-   \gamma = \sqrt{(R + j\omega L)(G + j\omega C)}
-   $$
-5. Fit $R$, $L$, $C$, $G$ vs frequency
-6. $Z_{line}=Z_{0}(50 \Omega) \frac{1+S_{11}}{1-S_{11}}-Z_{0}$
-7. $\rho_{trace}=\frac{Z_{line}T_{trace}W_{trace}}{l_{trace}}$
-#### Step 4: Extract $R_{DC}$
-Low-frequency $Z$-matrix:
-$$
-R_{DC} = \text{Re}(Z_{11}) \text{ at 10 MHz}
-$$
+##### Step 0 — Prepare Coupons  
+1. **PCB substrate coupon** (die footprint, no die).  
+2. **Interposer coupon** (CPW pads, no bumps).  
+##### Step 1 — Calibrate & Probe the Die  
+1. On substrate coupon perform **OSL**:  
+   - *Open* bare pads • *Short* • *Load* 50 Ω resistor.  
+1. Shift reference plane to pad centres.  
+2. Probe real die on PCB → save **die_on_pcb.s1p**.  
+   - $Z_{in_\text{die}}(f)=Z_0\frac{1+S_{11}}{1-S_{11}}$
+##### Step 2 — Calibrate Interposer Pads  
+1. On interposer coupon perform **OSL** at GSG pads.  
+2. Set reference plane at CPW-to-bump transition.  
+3. Store as **Cal Set #2**.
+##### Step 3 — Measure CPW (No Bumps)  
+- With Cal Set #2 active probe CPW line → **interposer_openline.s1p**.  
 
-#### Step 5: Extract Resistivity $\rho$
-$$
-\rho = R_{DC} \cdot \frac{w \cdot t}{l}
-$$
-Where:
-- $w = 69 \times 10^{-6}$ m
-- $t = 1.5 \times 10^{-7}$ m
-- $l = 1.146995 \times 10^{-3}$ m
-#### Step 6: Extract Sheet Resistance $R_{\square}$
-$$
-R_{\square} = \frac{\rho}{t}
-$$
-#### Step 7: Extract Lumped Gold Bump Model
+Expected lumped-$\pi$ parameters (for $\ell=1.15\text{ mm}$):  
 
-1. Convert **Thru (no bump)** and **Thru (with bump)** to $Z$-matrix
-2. Subtract:
-   $$
-   Z_{bump} = Z_{\text{with bump}} - Z_{\text{no bump}}
-   $$
-3. Fit lumped RLC model:
-   $$
-   Z_{bump}(s) = R + sL + \frac{1}{sC}
-   $$
-#### Note
+| Element | Value |
+| ------- | ----- |
+| $R_1$ | 4.43 Ω |
+| $L_1$ | 0.486 nH |
+| $C_{1}=C_{2}$ | 66.3 fF |
+| $R_2$ | 48 kΩ |
+##### Step 4 — Assemble & DC-Verify  
+1. Place **Au bumps** (Ø 70 µm) on interposer.  
+2. Flip-chip bond die; reflow.  
+3. Confirm $R_\text{dc}<0.5 \Omega$ between signal nodes.
+##### Step 5 — Measure the Full Stack  
+- Using Cal Set #2 probe the bonded assembly → **full_stack.s1p**.
+##### Step 6 — Data Reduction (MATLAB/Python)  
+1. Load the three *.s1p* files → convert to impedance: $Z=Z_0\frac{1+S_{11}}{1-S_{11}}$.  
+2. Compute bumps-only impedance:
+   $Z_{\text{bump}}(f)=Z_{\text{full}}(f)-Z_{\text{die}}(f)-Z_{\text{line}}(f)$  
+3. $Z_{\text{model}}(f)=R_b+j\omega L_b+\dfrac{1}{j\omega C_b}$  
+4. Scale to 1 bump:  
+   $R_{b}=\frac{R_1}{1.5},\;L_{b}=\frac{L_1}{1.5},\;C_{b} \approx C_1$  
+##### Step 7 — QUCS Validation  
+1. Schematic: port → `die_on_pcb.s1p` → 3-bump RLC → CPW $\pi$.  
+2. Sweep 10 MHz→10 GHz; overlay with **full_stack.s1p**.  
+3. Acceptance: $|S_{11,\text{sim}}-S_{11,\text{meas}}|<0.5\text{ dB}$, phase < 5°.
 
-- Only the **center signal bump** is modeled unless side bumps are separately probed.
-- You do **not** need multiple line lengths if you extract $\gamma$ from ABCD matrix.
-- Ensure Reflect is a **true short** and that bump contact is clean and centered.
+#### D. Deliverables  
+
+| File                      | Description        |
+| ------------------------- | ------------------ |
+| `die_on_pcb.s1p`          | Die input $S_{11}$ |
+| `interposer_openline.s1p` | CPW line $S_{11}$  |
+| `full_stack.s1p`          | Die + bumps + CPW  |
+| MATLAB notebook           | De-embed & fit     |
+| QUCS project              | Validation         |
+#### E. Key Equations  
+
+$Z_{in}=Z_0\frac{1+S_{11}}{1-S_{11}}$  
+
+$Z_{\text{bump}}=Z_{\text{full}}-Z_{\text{die}}-Z_{\text{line}}$  
+
+$R_b=\frac{\rho_{\text{Au}}h_b}{\pi r_b^2}$  
+
+$L_b=\mu_0h_b\left[\ln\left(\frac{4h_b}{r_b}\right)+1\right]$  
+
+$C_b\approx\frac{\varepsilon_0\varepsilon_{\text{eff}}\pi r_b^2}{s}$  
 ### 2. Yield Testing
-**Continuity** test, check for opens, measuring the **resistance** left and right ends of the same row. The goal is that $R_{measured}=R_{DC}$.
+**Continuity** test, check for opens, measuring the **resistance** left and right ends of the same row. The goal is that $R_{measured} \approx R_{DC}$.
 
 **Short** test, check for shorts between the parallel rows the expectation is very high resistance $M\Omega$ range.
 
 We will perform 2 tests on 2 gold bumps and assume 1 gold bump.
 
-Use formulas prior stated and assume R_DC from prior observation.
-### 3. RF & Amplifier Performance Testing (Confirm Successful Flip-chip) (S2P)
-#### RF Die
-RF Performance Testing (via 2 port).
-Voltage 2V at VDD_LNA2 AND LNA1 or only one of them?
-The goal is to categorize the performance and verify successful flip chip
-![[RF die pinout.png|500]]
-
-10 MHz to 10 GHz in 10 MHz step.
+We will get the $R_{DC}$ by probing the interposer line before flip chip and then multiplying by a ratio as the ratio after the flip chip happens is 3 times longer + the bumps but bumps can be counted as irrelevant the goal is to just observe $R_{measured} \approx R_{DC}$.
+### 3. Amplifier Performance Testing (s2p) (Practical)
 #### Amplifier Die
 28V voltage bias, S parameter extraction at 2 ports to verify against simulation for 10MHZ to 5GHz in 10MHz step.
 
-SMD component adding  performing a ball bonding flip chip and then wire bonding -> complex operation.
+Bias at: Vds=Vdd=28V, Ids=128mA bias, Vgs = -2.8V.
+
+SMD component adding  performing a ball bonding flip chip and then wire bonding for the ground pad -> complex operation. Then extracting the S parameters and comparing with the S parameters in the QUCS simulation, as well as comparing it with the BEST direct die transistor S parameters, to really evaluate the quality of the interposer and ability of creating a fully functional transistor amplifier circuit on an interposer (common source amplifier SiP).
 ## Gold Bump Bonding Profile (TPT HB16)
 The goal is to have 2 thermalsonic bonding profiles of creating gold bumps. One from acceleronix and one personally made based off calculations from the substrate.
 
@@ -921,7 +893,8 @@ The goal is to have 1 personally made bonding pressure and thermal changing prof
 | Stage 4 | Heat          | Wait for Touchdown       | 0                 | 60000          | $20$               | $300$                    | Yes                  | Apply place force        | PRE_EXEC     |
 | Stage 5 | Cooling       | –                        | 0                 | 30000          | $-8$               | $80$                     | Yes                  | –                        | SKIP_EXEC    |
 
-### tool-tip
+### tool-tip (IN our case this is not used)
+
 | Stage   | Segment Type | Start Trigger           | Start Delay [ms] | Duration [ms] | Ramp [$^\circ$C/s] | Target Temp [$^\circ$C] | Wait for Completion | Wait Target             | Logic       |
 |---------|---------------|--------------------------|-------------------|----------------|--------------------|--------------------------|----------------------|--------------------------|--------------|
 | Stage 1 | Heat          | –                        | 0                 | 30000          | $5$                | $50$                     | No                   | –                        | –            |
