@@ -486,7 +486,7 @@ thin film microstrip on carrier
 
 
 [presentation](https://chatgpt.com/c/6822b756-4f44-800b-8286-950499679351)
-# Practical & Lab-Execution Plan
+# Practical, Theory & Lab-Execution Plan
 ## Simulations & Formulas
 ### 1. Gold Bump Lump Model (S1P)
 [calculations for simulations](https://chatgpt.com/c/683c0341-a47c-800b-9d7c-9541408d9f4c)
@@ -885,13 +885,13 @@ The goal is to have 1 personally made bonding pressure and thermal changing prof
 75/2 = 37.5
 ### substrate
 
-| Stage   | Segment Type | Start Trigger           | Start Delay [ms] | Duration [ms] | Ramp [$^\circ$C/s] | Target Temp [$^\circ$C] | Wait for Completion | Wait Target             | Logic       |
-|---------|---------------|--------------------------|-------------------|----------------|--------------------|--------------------------|----------------------|--------------------------|--------------|
-| Stage 1 | Heat          | –                        | 0                 | 30000          | $5$                | $90$                     | No                   | –                        | –            |
-| Stage 2 | Heat          | –                        | 0                 | 15000          | $8$                | $150$                    | No                   | –                        | –            |
-| Stage 3 | Heat          | Wait for Touchdown       | 0                 | 10000          | $15$               | $220$                    | No                   | –                        | –            |
-| Stage 4 | Heat          | Wait for Touchdown       | 0                 | 60000          | $20$               | $300$                    | Yes                  | Apply place force        | PRE_EXEC     |
-| Stage 5 | Cooling       | –                        | 0                 | 30000          | $-8$               | $80$                     | Yes                  | –                        | SKIP_EXEC    |
+| Stage   | Segment Type | Start Trigger      | Start Delay [ms] | Duration [ms] | Ramp [$^\circ$C/s] | Target Temp [$^\circ$C] | Wait for Completion | Wait Target       | Logic     |
+| ------- | ------------ | ------------------ | ---------------- | ------------- | ------------------ | ----------------------- | ------------------- | ----------------- | --------- |
+| Stage 1 | Heat         | –                  | 0                | 30000         | $5$                | $90$                    | No                  | –                 | –         |
+| Stage 2 | Heat         | –                  | 0                | 15000         | $8$                | $150$                   | No                  | –                 | –         |
+| Stage 3 | Heat         | Wait for Touchdown | 0                | 10000         | $15$               | $220$                   | No                  | –                 | –         |
+| Stage 4 | Heat         | Wait for Touchdown | 0                | 60000         | $20$               | $300$                   | Yes                 | Apply place force | PRE_EXEC  |
+| Stage 5 | Cooling      | –                  | 0                | 30000         | $10$               | $80$                    | Yes                 | –                 | SKIP_EXEC |
 
 ### tool-tip (IN our case this is not used)
 
