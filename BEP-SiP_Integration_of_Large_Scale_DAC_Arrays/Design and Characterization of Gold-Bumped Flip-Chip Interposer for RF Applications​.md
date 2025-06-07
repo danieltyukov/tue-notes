@@ -652,6 +652,24 @@ We have 2 simulation types we have one qucs simulation using the provided amplif
 The transistor will be flip chipped onto the interposer and then since the gate pad is on the top the gate will be wire bonded after the flip chip. We are using the TGF-2023-2-02 transistor. 
 ## Types of Experiments (In order)
 
+Die metal line (TXFE rf die): $5.14 m \Omega/sq$
+
+164.8/2=82.4
+
+32.2/5=6.4
+
+
+6 * 20 + 2*30 + 5 * 10   /  4 = 57.5 = 58 
+
+
+147 squares internally of signal through inductor curled to ground.
+
+147
+
+0.6
+
+
+
 ### 1. RF - Gold Bump Lump Model (S1P)
 
 > **Objective**  
@@ -949,3 +967,78 @@ Only Thermal Profile for Substrate Provided:
 - through and short is the same.
 - ![[9.png|200]]
 - ![[elaborate dont randomly reference.png|200]]
+
+
+## Actual Data
+### deembedding gold bump
+$Z(f)=Z_{0}\frac{1+S_{11}(f)}{1-S_{11}(f)}$
+
+$Z_{\rm de\!-\!emb}(f)=Z_{\rm OC}(f)\frac{Z_{m}(f)-Z_{\rm SC}(f)}{Z_{\rm OC}(f)-Z_{m}(f)}$
+
+$Z_{3b}(f)=Z_{\rm de\!-\!emb}(f)-Z_{\rm die}(f)$
+
+$Z_{b}(f)=\frac{2}{3}Z_{3b}(f)$
+
+$S_{11}(f)=\frac{Z(f)-Z_{0}}{Z(f)+Z_{0}}$
+
+$Z_{m}$ represents the full system of the: die flip chipped with gold bumps onto the interposer in this case relevant onto the GSG line ends where there were gold bumps. So it includes: die + 3 bumps + 3 lines (GSG). With de-embedding we moved the reference plane removing the line and leaving only die + 3 bumps and then we obtained just the bump. 
+### rlcg of line
+$\omega=2\pi f$
+
+$Z_{\mathrm{in,op}}=Z_0\frac{1+S_{11}^{\mathrm{op}}}{1-S_{11}^{\mathrm{op}}}$
+
+$Z_{\mathrm{in,sh}}=Z_0\frac{1+S_{11}^{\mathrm{sh}}}{1-S_{11}^{\mathrm{sh}}}$
+
+$Z_c=\sqrt{Z_{\mathrm{in,op}}Z_{\mathrm{in,sh}}}$
+
+$\gamma\,l=\operatorname{atanh}\left(\frac{Z_{\mathrm{in,sh}}}{Z_c}\right)$
+
+$\gamma=\frac{\gamma\,l}{l}$
+
+$\alpha=\Re\{\gamma\}$
+
+$\beta=\Im\{\gamma\}$
+
+$R_{\text{per m}}=2\alpha\Re\{Z_c\}$
+
+$G_{\text{per m}}=\frac{2\alpha}{\Re\{Z_c\}}$
+
+$L_{\text{per m}}=\Re\{Z_c\}\frac{\beta}{\omega}$
+
+$C_{\text{per m}}=\frac{\beta}{\omega\Re\{Z_c\}}$
+
+$R=R_{\text{per m}}\times10^{-6}$
+
+$G=G_{\text{per m}}\times10^{-6}$
+
+$L=L_{\text{per m}}\times10^{-6}$
+
+$C=C_{\text{per m}}\times10^{-6}$
+
+$\text{scale}=10^{-6}$
+### rlc of bump
+$Z(f)=Z_0\:\dfrac{1+S_{11}(f)}{1-S_{11}(f)}$
+$R(f)=\Re\{Z(f)\}$
+$L_{\rm eq}(f)=\dfrac{\Im\{Z(f)\}}{\omega}$
+$\omega=2\pi f$
+$C_{\rm eq}(f)=-\dfrac{1}{\omega\,\Im\{Z(f)\}}$
+### Other calculations
+$Z_{0}=50 \Omega$
+GSG line params: $l=1.15mm$, $w_{g}=153 \mu m$, $w_{s}=69 \mu m$
+$R_{DC_{line_{G}}}=2.5 \Omega$
+
+$L = 1.15\times10^{-3}\ \text{m}$  
+$W = 153\times10^{-6}\ \text{m}$  
+$t = 150\times10^{-9}\ \text{m}$  
+$R_{\text{DC}_{line_{G}}} = 2.5\ \Omega$
+
+$A = W \cdot t = (153\times10^{-6}) \cdot (150\times10^{-9}) = 2.295\times10^{-11}\ \text{m}^2$
+
+$\rho = R_{\text{DC}} \cdot \frac{A}{L}$  
+$\rho = 2.5 \cdot \frac{2.295\times10^{-11}}{1.15\times10^{-3}} = 4.989\times10^{-8}\ \Omega\cdot\text{m}$
+
+$R_{\text{sheet}} = \frac{\rho}{t}$  
+$R_{\text{sheet}} = \frac{4.989\times10^{-8}}{150\times10^{-9}} = 0.3326\ \Omega/\square$
+
+$\rho = 4.99\times10^{-8}\ \Omega\cdot\text{m}$  
+$R_{\text{sheet}} = 0.333\ \Omega/\square$
