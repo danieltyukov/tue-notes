@@ -651,25 +651,6 @@ We have 2 simulation types we have one qucs simulation using the provided amplif
 
 The transistor will be flip chipped onto the interposer and then since the gate pad is on the top the gate will be wire bonded after the flip chip. We are using the TGF-2023-2-02 transistor. 
 ## Types of Experiments (In order)
-
-Die metal line (TXFE rf die): $5.14 m \Omega/sq$
-
-164.8/2=82.4
-
-32.2/5=6.4
-
-
-6 * 20 + 2*30 + 5 * 10   /  4 = 57.5 = 58 
-
-
-147 squares internally of signal through inductor curled to ground.
-
-147
-
-0.6
-
-
-
 ### 1. RF - Gold Bump Lump Model (S1P)
 
 > **Objective**  
@@ -889,6 +870,11 @@ Based on interposer stack: **Ti (50 nm) / Au (100 nm) on glass**, 25 µm Au wire
 > * **$E_{\min}$** – energy from Eq 5  
 > * **$P_{\mathrm{US}}$** – ultrasonic power
 
+Final thermal most successful thermal profile after multiple practical experiments ended up being:
+![[thermla profile 1.png|400]]
+![[thermal profile 2.png|400]]
+Where the changes were:
+Temperature increased to 150 degrees, force of the first bond increased to 250mN, and the time of the first bond increased to 500ms.
 ## Flip chip Bonding Profile (Dr. Tretsky T-5300)
 [SC: Values](https://chatgpt.com/c/68357f0e-737c-800f-85c2-44490cd15f72?model=gpt-4o)
 The goal is to have 1 personally made bonding pressure and thermal changing profile for creating a successful flip chip.
@@ -911,15 +897,9 @@ The goal is to have 1 personally made bonding pressure and thermal changing prof
 | Stage 4 | Heat         | Wait for Touchdown | 0                | 60000         | $20$               | $300$                   | Yes                 | Apply place force | PRE_EXEC  |
 | Stage 5 | Cooling      | –                  | 0                | 30000         | $10$               | $80$                    | Yes                 | –                 | SKIP_EXEC |
 
-### tool-tip (IN our case this is not used)
+The final thermal profile during experimentation ended being the ones shown in the picture, where 2 more stages were added to progressively add the temperature even better, before moving to touch down the heating stabilizes at 250 degrees and then during touch down it increases to 300 degrees and as soon as touch down happens it is increases to 350 degrees to have maximal coining.
+During yield testing the pressure was also lowered to 20 grams per bump instead of 35 as the too high pressure caused observant sliding where even when the samples were well aligned on the beamsplitter after the processes a notable sliding took place.
 
-| Stage   | Segment Type | Start Trigger           | Start Delay [ms] | Duration [ms] | Ramp [$^\circ$C/s] | Target Temp [$^\circ$C] | Wait for Completion | Wait Target             | Logic       |
-|---------|---------------|--------------------------|-------------------|----------------|--------------------|--------------------------|----------------------|--------------------------|--------------|
-| Stage 1 | Heat          | –                        | 0                 | 30000          | $5$                | $50$                     | No                   | –                        | –            |
-| Stage 2 | Heat          | –                        | 0                 | 15000          | $8$                | $120$                    | No                   | –                        | –            |
-| Stage 3 | Heat          | Wait for Touchdown       | 0                 | 10000          | $10$               | $180$                    | No                   | –                        | –            |
-| Stage 4 | Heat          | –                        | 0                 | 60000          | $8$                | $240$                    | Yes                  | Apply place force        | PRE_EXEC     |
-| Stage 5 | Cooling       | –                        | 0                 | 30000          | $-5$               | $100$                    | Yes                  | –                        | SKIP_EXEC    |
 
 Only Thermal Profile for Substrate Provided:
 ![[Acceronix thermal profile.png]]
@@ -1016,13 +996,27 @@ $L=L_{\text{per m}}\times10^{-6}$
 $C=C_{\text{per m}}\times10^{-6}$
 
 $\text{scale}=10^{-6}$
+
+RLCG model graphs were obtained to represent the measurements
 ### rlc of bump
 $Z(f)=Z_0\:\dfrac{1+S_{11}(f)}{1-S_{11}(f)}$
 $R(f)=\Re\{Z(f)\}$
 $L_{\rm eq}(f)=\dfrac{\Im\{Z(f)\}}{\omega}$
 $\omega=2\pi f$
 $C_{\rm eq}(f)=-\dfrac{1}{\omega\,\Im\{Z(f)\}}$
+
+plots of RLC were obtained and the concluded relevant lump model of 1 gold bump is $3.456 \Omega$ at $10MHz$
+#### note
+the obtained value at 10MHz was $3.456 \Omega$ which was quickly estimated before writing the script by observing the smith charts impedance at 10MHz.
+$R_{\text{short lines}}=6.54 \Omega$, $R_{\text{die}}=0.421 \Omega$, $R_{\text{die+bumps+lines}}=12.1 \Omega$
+When referring to lines I mean the GSG lines, and when to bumps there are 3 bumps on the end of the GSG on each line there is 1 bump.
+
+$R_{\text{die+bumps+lines}}-R_{\text{short lines}}-R_{\text{die}}=5.139 \Omega$
+And since we want the lump model of 1 gold bump we do: $\frac{2}{3} \cdot 5.139=3.426 \Omega$
+Showcasing a quick way to find out the results at low frequency.
 ### Other calculations
+For the direct current resistance one of the ground lines was chosen as test subject.
+
 $Z_{0}=50 \Omega$
 GSG line params: $l=1.15mm$, $w_{g}=153 \mu m$, $w_{s}=69 \mu m$
 $R_{DC_{line_{G}}}=2.5 \Omega$
@@ -1042,3 +1036,17 @@ $R_{\text{sheet}} = \frac{4.989\times10^{-8}}{150\times10^{-9}} = 0.3326\ \Omega
 
 $\rho = 4.99\times10^{-8}\ \Omega\cdot\text{m}$  
 $R_{\text{sheet}} = 0.333\ \Omega/\square$
+
+### yield testing
+![[yield_die.jpeg]]
+![[yield_interposer.png]]
+
+The yield testing as mentioned before is done in such a way that we have 24 line interposer and a 24 line fake die which when flip chipped would form a short between the 2 ends of the lines on the interposer.
+
+24-2 = 22 lines to work with due to interposer and die mask fabrication caused 2 lines to be open does not count towards the gold bump + flip chip yield.
+
+The gold bump placement caused 3 opens and 2 shorts in total affecting 4 lines. Then due to a large tail on one of the gold bumps marked as deformed during flip chip it shorted 2 lines, so in total 6 lines were effected.
+
+6 out of 22 lines are broken leaving us with 16 lines.
+
+$\text{Yield }(\%)=\frac{\text{number of functional lines}}{\text{total usable lines}} \cdot 100 \%=\frac{16}{22} \cdot 100 \%=72.73\approx 73 \%\text{ yield}$ with the created profiles for gold bump placement and flip chipping.
