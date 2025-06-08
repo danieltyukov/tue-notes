@@ -502,91 +502,59 @@ The practical experiement:
 4. Use de-embedding to  extract the S-parameters and then the lump model of the gold bumps by subtrsating from the full system in step 3 the step 1 and 2 of the die and interposer.
 5. (all of the above is done as a 1 port system).
 ![[gsg assumption.png|300]]
-#### Lump Model of the GSG Lines (Simulation)
+
+#### Lump Model of the GSG Lines (Simulation) — **R L C G view @ 100 MHz**
+
 ##### Symbols & Geometry
 
-| Symbol          | Meaning                | Your CPW                              |
-| --------------- | ---------------------- | ------------------------------------- |
-| $w$             | Signal-strip width     | 69 µm                                 |
-| $s$             | Gap (signal ↔ ground)  | 41 µm                                 |
-| $g$             | Ground-bar width       | 153 µm                                |
-| $t$             | Metal thickness        | 150 nm (Ti/Au)                        |
-| $\rho$          | Resistivity            | $3.9858 \times 10^{-8}\ \Omega\cdot$m |
-| $\varepsilon_r$ | Substrate permittivity | 7.75 (glass)                          |
-| $\tan\delta$    | Loss tangent           | 0.005                                 |
-| $\ell$          | Physical length        | 1.15 mm                               |
+| Symbol | Meaning | Value |
+|--------|---------|-------|
+| $w$ | Signal-strip width | 69 µm |
+| $s$ | Gap (signal ↔ ground) | 41 µm |
+| $g$ | Ground-bar width | 153 µm |
+| $t$ | Metal thickness | 150 nm (Ti/Au) |
+| $\rho$ | Measured resistivity | $4.99\times10^{-8}\;\Omega\!\cdot\text{m}$ |
+| $\varepsilon_r$ | Substrate permittivity | 7.75 (glass) |
+| $\tan\delta$ | Loss tangent | 0.005 |
+| $\ell$ | Physical length | 1.15 mm |
 
-Effective permittivity approximation (quasi-TEM):
+Effective permittivity (thick-substrate, quasi-TEM):  
+$\varepsilon_{\text{eff}}=\dfrac{\varepsilon_r+1}{2}=4.375$
+##### Closed-form R L C G formulas  
 
-- $\varepsilon_{\mathrm{eff}} = \frac{\varepsilon_r + 1}{2} = \frac{7.75 + 1}{2} = 4.375$
+$k=\dfrac{w}{w+2s},\qquad k'=\sqrt{1-k^{2}}$  
+$Z_0=\dfrac{30\pi}{\sqrt{\varepsilon_{\text{eff}}}}\dfrac{K(k')}{K(k)}$  
+$C'=\frac{\sqrt{\varepsilon_{\text{eff}}}}{Z_0 c}$  
+$L'=Z_0^2 C'$  
+$R'=\dfrac{\rho}{w\,t}$  
+$G'(\omega)=\omega\,C'\tan\delta\quad\bigl(\omega=2\pi f\bigr)$  
+##### Per-unit-length results **@ 100 MHz** *(per µm, base SI)*
 
-##### Closed-form CPW Formulas
+| Parameter | Value | Unit |
+|-----------|---------------------------|------|
+| $R'$ | $4.82\times10^{-3}$ | $\Omega/\mu\text{m}$ |
+| $L'$ | $4.23\times10^{-13}$ | $\text{H}/\mu\text{m}$ |
+| $C'$ | $1.15\times10^{-16}$ | $\text{F}/\mu\text{m}$ |
+| $G'(100\ \text{MHz})$ | $3.61\times10^{-10}$ | $\text{S}/\mu\text{m}$ |
+##### Lumped $\pi$-model for $\ell = 1.15\ \text{mm}$
 
-$k = \frac{w}{w + 2s} = \frac{69}{69 + 2 \cdot 41} = 0.457$
+| Element   | Formula               | Value        |
+| --------- | --------------------- | ------------ |
+| $R_1$     | $R'\,\ell$            | **5.54 Ω**   |
+| $L_1$     | $L'\,\ell$            | **0.486 nH** |
+| $C_1=C_2$ | $\dfrac{C'\,\ell}{2}$ | **66.1 fF**  |
+| $R_2$     | $\dfrac{1}{G'\,\ell}$ | **2.41 MΩ**  |
+| $C_3$     | (pad-to-pad)          | **0 pF**     |
+##### QUCS setup
 
-$k' = \sqrt{1 - k^2} = \sqrt{1 - 0.457^2} = 0.889$
-
-$K = \text{EllipticK}(k^2) = \text{EllipticK}(0.209) \approx 1.664$
-
-$K' = \text{EllipticK}(k'^2) = \text{EllipticK}(0.79) \approx 2.238$
-
-$Z_0 = \frac{30\pi}{\sqrt{\varepsilon_{\mathrm{eff}}}} \cdot \frac{K'}{K} = \frac{30\pi}{\sqrt{4.375}} \cdot \frac{2.238}{1.664} \approx 60.6\ \Omega$
-
-$C' = 4 \varepsilon_0 \varepsilon_{\mathrm{eff}} \cdot \frac{K}{K'} = 4 \cdot 8.854 \times 10^{-12} \cdot 4.375 \cdot \frac{1.664}{2.238} \approx 115\ \text{pF/m}$
-
-$L' = Z_0^2 \cdot C' = (60.6)^2 \cdot 115 \times 10^{-12} \approx 423\ \text{nH/m}$
-
-$R'_{\text{dc}} = \frac{\rho}{w \cdot t} = \frac{3.9858 \times 10^{-8}}{69 \times 10^{-6} \cdot 150 \times 10^{-9}} = 3.85\ \text{k}\Omega/\text{m}$
-
-$G'(\omega) = \omega C' \tan\delta = 2\pi \cdot 5 \times 10^9 \cdot 115 \times 10^{-12} \cdot 0.005 \approx 0.018\ \text{S/m}$
-##### Lumped $\pi$-Model Values (for $\ell = 1.15$ mm)
-
-$R_1 = R'_{\text{dc}} \cdot \ell = 3850\ \Omega/\text{m} \cdot 1.15 \times 10^{-3} = 4.43\ \Omega$
-
-$L_1 = L' \cdot \ell = 423 \times 10^{-9}\ \text{H/m} \cdot 1.15 \times 10^{-3} = 0.486\ \text{nH}$
-
-$C_1 = C_2 = \frac{C' \cdot \ell}{2} = \frac{115 \times 10^{-12} \cdot 1.15 \times 10^{-3}}{2} = 66.3\ \text{fF}$
-
-$R_2 = \frac{1}{G' \cdot \ell} = \frac{1}{0.018 \cdot 1.15 \times 10^{-3}} = 48.3\ \text{k}\Omega$
-
-$C_3 = 0\ \text{pF}$ (negligible pad-to-pad coupling)
-
-##### QUCS Simulation Values
-
-| Element           | Value             |
-| ---------------- | ----------------- |
-| Series $R_1$      | 4.43 Ω            |
-| Series $L_1$      | 0.486 nH          |
-| Shunt $C_1$       | 66.3 fF (top node)|
-| Shunt $C_2$       | 66.3 fF (bottom)  |
-| Shunt $R_2$       | 48 kΩ             |
-| End-to-end $C_3$  | 0 pF (omit)       |
-| Sweep range       | 100 MHz to 5 GHz, 100 MHz step |
-##### Formula Reference Sheet
-
-$k = \frac{w}{w + 2s}$
-
-$k' = \sqrt{1 - k^2}$
-
-$\frac{K'}{K} = \frac{\text{EllipticK}(k'^2)}{\text{EllipticK}(k^2)}$
-
-$Z_0 = \frac{30\pi}{\sqrt{\varepsilon_{\mathrm{eff}}}} \cdot \frac{K'}{K}$
-
-$C' = 4\varepsilon_0\varepsilon_{\mathrm{eff}} \cdot \frac{K}{K'}$
-
-$L' = Z_0^2 \cdot C'$
-
-$R' = \frac{\rho}{wt}$
-
-$G'(\omega) = \omega C' \tan\delta$
-
-$R = R' \ell$
-
-$L = L' \ell$
-
-$C = C' \ell$
-
-$R_2 = \frac{1}{G' \ell}$
+| Element              | Value                        |
+| -------------------- | ---------------------------- |
+| Series $R_1$         | 5.54 Ω                       |
+| Series $L_1$         | 0.486 nH                     |
+| Shunt $C_1$ (top)    | 66.1 fF                      |
+| Shunt $C_2$ (bottom) | 66.1 fF                      |
+| Shunt $R_2$          | 2.41 MΩ                      |
+| Sweep                | 10 MHz → 10 GHz, 10 MHz step |
 #### Lump Model of the **3 bumps — one per line on (GSG) lines** (Simulation)
 What we will get from the practical simulation is for 3 bumps since that is the reality but then to create a lump model of 1 we will use the equations below to report on.
 
@@ -619,10 +587,46 @@ $C_{\text{3-bump}}\approx C_b$
 | $L_{\text{3-bump}}$ | $\frac{3}{2}L_b$ | **96 pH**   |
 | $C_{\text{3-bump}}$ | $C_b$            | **3.6 fF**  |
 
-### 2. Yield Testing
-Just follow the procedure outlines in types of experiments, there are no predictions or simulations the goal is compare 2 profiles -> calculated vs provided by acceleronix. Both for the gold bump bonding profile and the flip chip bonding profile.
+#### Lump Model of the **3 bumps — one per line on (GSG) lines** (Simulation)
 
-After performing the gold bump placement and the flip chip the goal is extract analyze for [planarity](https://www.microwavejournal.com/articles/3622-gold-stud-bumps-in-flip-chip-applications) which is basically opens between connections and for shorts between parallel rows. The increment count for the analysis and report.
+The practical one-port measurement loop contains **one signal bump in series and two identical ground bumps in parallel**. Internally on the die the 2 ground pads are shorted and the signal pad is connected to one of the ground pads through an inductor.
+The resulting lumped impedance is therefore:
+
+$Z_{\text{3-bump}} = Z_s + \frac{Z_g}{2} = \frac{3}{2}Z_b$
+
+##### 1 Bump geometry
+
+| Parameter              | Symbol            | Value | Notes                |
+| ---------------------- | ----------------- | ----- | -------------------- |
+| Free-air ball diameter | $D_{\text{ball}}$ | 70 µm | After EFO            |
+| Compressed bump height | $h_b$             | 25 µm | Final bonded height  |
+| Contact diameter       | $D_b$             | 70 µm | Assumed same as ball |
+| Bump radius            | $r_b=D_b/2$       | 35 µm | $35\times10^{-6}$ m  |
+##### 2 Lumped-element formulas for the **3-bump** model
+
+$R_{\text{3-bump}} = \frac{3}{2}R_b = \frac{3}{2}\frac{\rho_{\text{Au}}\,h_b}{\pi r_b^2}$  
+$L_{\text{3-bump}} = \frac{3}{2}L_b = \frac{3}{2}\mu_0 h_b \left[\ln\left(\frac{4h_b}{r_b}\right)+1\right]$  
+$C_{\text{3-bump}} \approx C_b = \frac{\varepsilon_0 \varepsilon_{\text{eff}} \pi r_b^2}{s}$
+##### 3 Numerical values (3 bumps combined)
+
+| Element             | Formula          | Value       |
+| ------------------- | ---------------- | ----------- |
+| $R_{\text{3-bump}}$ | $\frac{3}{2}R_b$ | **0.24 mΩ** |
+| $L_{\text{3-bump}}$ | $\frac{3}{2}L_b$ | **96 pH**   |
+| $C_{\text{3-bump}}$ | $C_b$            | **3.6 fF**  |
+##### 4 QUCS implementation
+
+Use **one series branch** with  
+- $R = 0.24$ mΩ  
+- $L = 96$ pH  
+
+and **one shunt capacitor** to ground  
+- $C = 3.6$ fF  
+
+between the centre node and the reference plane in your one-port schematic.
+
+### 2. Yield Testing
+Report on showcasing the figures of the expected procedure during the experimentation in the lab phase.
 ### 3. Amplifier Performance Testing (Simulation)
 Values were used to create an interposer mask, and also to choose the passive components that will be used on the interposer when fabricated.
 
@@ -734,14 +738,8 @@ $L_b=\mu_0h_b\left[\ln\left(\frac{4h_b}{r_b}\right)+1\right]$
 
 $C_b\approx\frac{\varepsilon_0\varepsilon_{\text{eff}}\pi r_b^2}{s}$  
 ### 2. Yield Testing
-**Continuity** test, check for opens, measuring the **resistance** left and right ends of the same row. The goal is that $R_{measured} \approx R_{DC}$.
-
-**Short** test, check for shorts between the parallel rows the expectation is very high resistance $M\Omega$ range.
-
-We will perform 2 tests on 2 gold bumps and assume 1 gold bump.
-
-We will get the $R_{DC}$ by probing the interposer line before flip chip and then multiplying by a ratio as the ratio after the flip chip happens is 3 times longer + the bumps but bumps can be counted as irrelevant the goal is to just observe $R_{measured} \approx R_{DC}$.
-### 3. Amplifier Performance Testing (s2p) (Practical)
+The goal is to perform a successful flip chip with a fake glass die onto a glass substrate which if successful would cause a short between the 2 ends of the interposer lines. During the process of adding gold bumps on the interposer we perform the first evaluation of the amount of successful gold bumps based on the developed thermal profile, then we also observe where the interposer conductive layers were damaged during the fabrication process these we discard from the 24 lines to evaluate, finally after a flip chip we check any visual problems caused to account for, for instance a short caused between a bump which had a very long tail. Then we perform a continuity test to ensure that that there is a short between the 2 ends of the row of the line and due to bump size there wasnt a caused an issue where due to one bump being bigger than the neighbour it caused the smaller one not to connect, lastly we form a short test between the 2 neighbour bumps in a column to confirm that during flip chip there were no shorts caused in that case.
+### 3. Amplifier Performance Testing (s2p) (Practical) (not mention in paper)
 #### Amplifier Die
 28V voltage bias, S parameter extraction at 2 ports to verify against simulation for 10MHZ to 5GHz in 10MHz step.
 
@@ -757,23 +755,7 @@ The goal is to have 2 thermalsonic bonding profiles of creating gold bumps. One 
 
 **Bump without Tail**:
 ![[bump without tail.png|500]]
-### Acceleronix (Ballbond)
-**Bond 1**
-US(mW): 220
-Time(ms): 200
-Force(mN): 200
-**Bond 2**
-US(mW): 70
-Time(ms): 50
-Force(mN): 20
-**Other**
-YWay($\mu m$) (horizontal direction after BOND1): 135
-Looph($\mu m$) (vertical direction after BOND1): 100
-Heater($\degree C$): 110 (108)
-Tail Step($\mu m$): 20
-EFO Power(mW): 95
-Up CO(clamp open and bondhead move upwards): 300
-### Calculated (Daniel) (Ballbond)
+### Calculated (Ballbond)
 **Bond 1**
 US(mW): 180
 Time(ms): 150
@@ -786,7 +768,7 @@ Force(mN): 35
 YWay($\mu m$) (horizontal direction after BOND1): 120
 Looph($\mu m$) (vertical direction after BOND1): 120
 Heater($\degree C$): 120
-Tail Step($\mu m$): 450 (100 max)
+Tail Step($\mu m$): 400 (100 max, press 4 times for 400)
 EFO Power(mW): 90
 Up CO(clamp open and bondhead move upwards): 300
 
@@ -794,18 +776,18 @@ Up CO(clamp open and bondhead move upwards): 300
 ### Changed Parameters with Justification
 Based on interposer stack: **Ti (50 nm) / Au (100 nm) on glass**, 25 µm Au wire, HB-16 Wire Bonder.
 
-| **Parameter**           | **Acceleronix** | **Calculated**                 | **Justification**                                                                                                                                                                                                                       |
-| ----------------------- | --------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1st Bond Force**      | 200 mN          | 100 mN                         | Lowered to 100 mN, which is ~3× the plastic-flow threshold for 25 µm Au at 120°C. Calculated using: $F_{\min} = \frac{\pi}{4} \cdot \sigma_y(T) \cdot D_w^2$ where $\sigma_y(120^\circ C) \approx 35$ MPa, $D_w = 25 \times 10^{-6}$ m. |
-| **1st Bond Power**      | 220 mW          | 180 mW                         | Reduced to match energy $E = 27$ mJ needed for $\eta \ge 0.98$. Using: $E = P_{\mathrm{US}} \cdot t$ and $E_{\min} = \frac{-\ln(0.02)}{\gamma F}$ with $\gamma = 4.2 \times 10^{-4}$ mJ⁻¹N⁻¹.                                           |
-| **1st Bond Time**       | 200 ms          | 150 ms                         | Shorter time avoids overheating and still delivers required energy: $E = 180 \cdot 150 = 27$ mJ.                                                                                                                                        |
-| **Chuck Temperature**   | 110 °C          | 120 °C                         | Slight increase to soften Au. Lower $\sigma_y(T)$ improves bond coverage at lower force. $\sigma_y(T) = \sigma_0 \cdot e^{-\beta(T - T_0)}$ with $\beta \approx 0.01 \, \text{K}^{-1}$.                                                 |
-| **Y-Way (Forward)**     | 135 µm          | 120 µm                         | Reduced to centre Bond 2 on the mashed bump crown. Too much lateral shift increases risk of off-centre coin tap and uneven break.                                                                                                       |
-| **Looph (Up)**          | 100 µm          | 120 µm                         | Adjusted to ensure second bond head tap clears the ball without hitting it at an angle. Ensures bump height ≈ 40 µm.                                                                                                                    |
-| **Tail Length**         | 20 µm           | 100 µm (press 4 times for 400) | Changed to HB-16 standard (400–500 µm) for Table-Tear. Ensures large, uniform FAB ~75–80 µm.                                                                                                                                            |
-| **2nd Bond Force**      | 20 mN           | 35 mN                          | Slightly increased to just exceed plastic deformation threshold and create a visible groove without squashing the ball. Same $\sigma_y(T)$ relation applies.                                                                            |
-| **2nd Bond Power/Time** | 70 mW / 50 ms   | 60 mW / 60 ms                  | Lowered to deliver ~3.6 mJ: $E = P_{\mathrm{US}} \cdot t$. Enough to create groove for Table-Tear without collapse.                                                                                                                     |
-| **Up CO**               | 300 µm          | 300 µm                         | Retained default. Adequate head lift for wire break without introducing unnecessary delay.                                                                                                                                              |
+| **Parameter**           | **Calculated**                 | **Calculation**                                                                                                                                                                           |
+| ----------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1st Bond Force**      | 100 mN                         | $F = \frac{\pi}{4} \cdot 35 \times 10^6 \cdot (25 \times 10^{-6})^2 = 100$ mN                                                                                                              |
+| **1st Bond Power**      | 180 mW                         | $E = P \cdot t = 180 \cdot 150 = 27$ mJ (required for $\eta \ge 0.98$)                                                                                                                     |
+| **1st Bond Time**       | 150 ms                         | $t = E/P = 27 / 180 = 0.15$ s                                                                                                                                                             |
+| **Chuck Temperature**   | 120 °C                         | $\sigma_y(T) = \sigma_0 \cdot e^{-\beta(T - T_0)} = 100 \cdot e^{-0.01 \cdot (120 - 25)} \approx 35$ MPa                                                                                  |
+| **Y-Way (Forward)**     | 120 µm                         | Manually aligned to centre on mashed bump crown after BOND1                                                                                                                              |
+| **Looph (Up)**          | 120 µm                         | Set to ensure loop height ~120 µm, ensuring 2nd bond head clears FAB                                                                                                                      |
+| **Tail Length**         | 100 µm (×4 = 400)              | Press tail 4× at 100 µm to create standard 400 µm tail for table-tear                                                                                                                     |
+| **2nd Bond Force**      | 35 mN                          | $F = \frac{\pi}{4} \cdot 35 \times 10^6 \cdot (25 \times 10^{-6})^2 = 35$ mN (same $\sigma_y(T)$ used)                                                                                    |
+| **2nd Bond Power/Time** | 60 mW / 60 ms                  | $E = 60 \cdot 60 = 3.6$ mJ; sufficient to make groove but not flatten ball                                                                                                                |
+| **Up CO**               | 300 µm                         | Default lift height—ensures safe clamp lift after tail break                                                                                                                              |
 
 ### Summary of Targeted Design
 
@@ -898,11 +880,7 @@ The goal is to have 1 personally made bonding pressure and thermal changing prof
 | Stage 5 | Cooling      | –                  | 0                | 30000         | $10$               | $80$                    | Yes                 | –                 | SKIP_EXEC |
 
 The final thermal profile during experimentation ended being the ones shown in the picture, where 2 more stages were added to progressively add the temperature even better, before moving to touch down the heating stabilizes at 250 degrees and then during touch down it increases to 300 degrees and as soon as touch down happens it is increases to 350 degrees to have maximal coining.
-During yield testing the pressure was also lowered to 20 grams per bump instead of 35 as the too high pressure caused observant sliding where even when the samples were well aligned on the beamsplitter after the processes a notable sliding took place.
-
-
-Only Thermal Profile for Substrate Provided:
-![[Acceronix thermal profile.png]]
+During yield testing the pressure was also lowered to 20 grams per bump instead of 35 as the too high pressure caused observant sliding where even when the samples were well aligned on the beamsplitter after the processes a notable sliding took place where the fake die evidently slid off the target bump spots.
 ## Intermediate Paper Feedback
 - title too long try fitting 2 lines.
 - too concerned providing numbers, provide more motivation, interpretation, explain how to do things and why you are doing these like that.
