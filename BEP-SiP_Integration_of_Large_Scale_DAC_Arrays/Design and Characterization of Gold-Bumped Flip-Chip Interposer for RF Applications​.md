@@ -503,7 +503,7 @@ The practical experiement:
 5. (all of the above is done as a 1 port system).
 ![[gsg assumption.png|300]]
 
-#### Lump Model of the GSG Lines (Simulation) — **R L C G view @ 100 MHz**
+#### Lump Model of the GSG Lines (Simulation) — **R L C G view @ 10 MHz**
 
 ##### Symbols & Geometry
 
@@ -513,7 +513,7 @@ The practical experiement:
 | $s$ | Gap (signal ↔ ground) | 41 µm |
 | $g$ | Ground-bar width | 153 µm |
 | $t$ | Metal thickness | 150 nm (Ti/Au) |
-| $\rho$ | Measured resistivity | $4.99\times10^{-8}\;\Omega\!\cdot\text{m}$ |
+| $\rho$ | Measured resistivity | $4.99\times10^{-8}\,\Omega\!\cdot\text{m}$ |
 | $\varepsilon_r$ | Substrate permittivity | 7.75 (glass) |
 | $\tan\delta$ | Loss tangent | 0.005 |
 | $\ell$ | Physical length | 1.15 mm |
@@ -524,68 +524,39 @@ $\varepsilon_{\text{eff}}=\dfrac{\varepsilon_r+1}{2}=4.375$
 
 $k=\dfrac{w}{w+2s},\qquad k'=\sqrt{1-k^{2}}$  
 $Z_0=\dfrac{30\pi}{\sqrt{\varepsilon_{\text{eff}}}}\dfrac{K(k')}{K(k)}$  
-$C'=\frac{\sqrt{\varepsilon_{\text{eff}}}}{Z_0 c}$  
-$L'=Z_0^2 C'$  
+$C'=\dfrac{\sqrt{\varepsilon_{\text{eff}}}}{Z_0\,c}$  
+$L'=Z_0^{2}C'$  
 $R'=\dfrac{\rho}{w\,t}$  
-$G'(\omega)=\omega\,C'\tan\delta\quad\bigl(\omega=2\pi f\bigr)$  
-##### Per-unit-length results **@ 100 MHz** *(per µm, base SI)*
+$G'(\omega)=\omega\,C'\tan\delta\quad(\omega=2\pi f)$  
+##### Per-unit-length results **@ 10 MHz** *(per µm, SI units)*
 
 | Parameter | Value | Unit |
 |-----------|---------------------------|------|
 | $R'$ | $4.82\times10^{-3}$ | $\Omega/\mu\text{m}$ |
 | $L'$ | $4.23\times10^{-13}$ | $\text{H}/\mu\text{m}$ |
 | $C'$ | $1.15\times10^{-16}$ | $\text{F}/\mu\text{m}$ |
-| $G'(100\ \text{MHz})$ | $3.61\times10^{-10}$ | $\text{S}/\mu\text{m}$ |
+| $G'(10\ \text{MHz})$ | $3.61\times10^{-11}$ | $\text{S}/\mu\text{m}$ |
 ##### Lumped $\pi$-model for $\ell = 1.15\ \text{mm}$
 
 | Element   | Formula               | Value        |
-| --------- | --------------------- | ------------ |
+|-----------|-----------------------|--------------|
 | $R_1$     | $R'\,\ell$            | **5.54 Ω**   |
 | $L_1$     | $L'\,\ell$            | **0.486 nH** |
 | $C_1=C_2$ | $\dfrac{C'\,\ell}{2}$ | **66.1 fF**  |
-| $R_2$     | $\dfrac{1}{G'\,\ell}$ | **2.41 MΩ**  |
+| $R_2$     | $\dfrac{1}{G'\,\ell}$ | **24.1 MΩ**  |
 | $C_3$     | (pad-to-pad)          | **0 pF**     |
+
 ##### QUCS setup
 
-| Element              | Value                        |
-| -------------------- | ---------------------------- |
-| Series $R_1$         | 5.54 Ω                       |
-| Series $L_1$         | 0.486 nH                     |
-| Shunt $C_1$ (top)    | 66.1 fF                      |
-| Shunt $C_2$ (bottom) | 66.1 fF                      |
-| Shunt $R_2$          | 2.41 MΩ                      |
+| Element              | Value            |
+|----------------------|------------------|
+| Series $R_1$         | 5.54 Ω           |
+| Series $L_1$         | 0.486 nH         |
+| Shunt $C_1$ (top)    | 66.1 fF          |
+| Shunt $C_2$ (bottom) | 66.1 fF          |
+| Shunt $R_2$          | 24.1 MΩ          |
 | Sweep                | 10 MHz → 10 GHz, 10 MHz step |
-#### Lump Model of the **3 bumps — one per line on (GSG) lines** (Simulation)
-What we will get from the practical simulation is for 3 bumps since that is the reality but then to create a lump model of 1 we will use the equations below to report on.
 
-| Parameter              | Symbol            | Value | Notes                |
-| ---------------------- | ----------------- | ----- | -------------------- |
-| Free-air ball diameter | $D_{\text{ball}}$ | 70 µm | After EFO            |
-| Compressed bump height | $h_b$             | 25 µm | Final bonded height  |
-| Contact diameter       | $D_b$             | 70 µm | Assumed same as ball |
-| Bump radius            | $r_b=D_b/2$       | 35 µm | $35\times10^{-6}$ m  |
-##### 2 Lumped element formulas for one bump
-$R_b=\frac{\rho_{\text{Au}}\,h_b}{\pi r_b^2}$  
-$L_b=\mu_0 h_b \left[\ln\left(\frac{4h_b}{r_b}\right)+1\right]$  
-$C_b\approx\frac{\varepsilon_0 \varepsilon_{\text{eff}} \pi r_b^2}{s}$
-##### 3 Values for a **single bump**
-
-| Element | Formula & Calculation                                                                                   | Value       |
-| ------- | ------------------------------------------------------------------------------------------------------- | ----------- |
-| $R_b$   | $\frac{2.44\times10^{-8} \cdot 25\times10^{-6}}{\pi\cdot(35\times10^{-6})^2}$                            | **0.16 mΩ** |
-| $L_b$   | $4\pi\times10^{-7}\cdot25\times10^{-6}\cdot\left[\ln\left(\frac{4\cdot25}{35}\right)+1\right]$          | **64 pH**   |
-| $C_b$   | $8.854\times10^{-12}\cdot4.375\cdot\pi\cdot(35\times10^{-6})^2/(41\times10^{-6})$                        | **3.6 fF**  |
-##### 4 Lumped model of **3 bumps** (1 signal, 2 grounds in parallel)
-$R_{\text{3-bump}}=R_b+\frac{R_b}{2}=\frac{3}{2}R_b$  
-$L_{\text{3-bump}}=L_b+\frac{L_b}{2}=\frac{3}{2}L_b$  
-$C_{\text{3-bump}}\approx C_b$
-##### 5 Final simulation values for QUCS (combined 3-bump model)
-
-| Element             | Formula          | Value       |
-| ------------------- | ---------------- | ----------- |
-| $R_{\text{3-bump}}$ | $\frac{3}{2}R_b$ | **0.24 mΩ** |
-| $L_{\text{3-bump}}$ | $\frac{3}{2}L_b$ | **96 pH**   |
-| $C_{\text{3-bump}}$ | $C_b$            | **3.6 fF**  |
 
 #### Lump Model of the **3 bumps — one per line on (GSG) lines** (Simulation)
 
@@ -655,6 +626,21 @@ We have 2 simulation types we have one qucs simulation using the provided amplif
 
 The transistor will be flip chipped onto the interposer and then since the gate pad is on the top the gate will be wire bonded after the flip chip. We are using the TGF-2023-2-02 transistor. 
 ## Types of Experiments (In order)
+
+### 1. RF - Gold Bump Lump Model (S1P)
+![[RF die pinout.png|400]]
+#### VNA Settings
+- Frequency span 10 MHz→10 GHz, 10 MHz step  
+- Port impedance 50 Ω  
+- File format Touchstone *.s1p*
+#### Step-by-Step Procedure 
+The first goal is to measure the s1p of the die directly, since the die is mounted on a pcb calibration of the vna was done based on open-short measurements on a special pcb wich only contained the substrate that is equivelant the one the die. After the calibration was done the die will be measured and the S1P data will be obtained.
+
+The next step is to measure the open-short of the interposer GSG lines developed for this die to be flip chipped onto, after the s1p are measured there.
+
+The next step is to measure the final DUT system of the die flip chipped onto the interposer which contained gold bumps, so the measurement would obtain the S1P of gold bumps, GSG lines and the die.
+
+After the s1p files of these are obtained we move to making matlab simulations and doing a DUT comparison of qucs simulation to this.
 ### 1. RF - Gold Bump Lump Model (S1P)
 
 > **Objective**  
@@ -737,6 +723,16 @@ $R_b=\frac{\rho_{\text{Au}}h_b}{\pi r_b^2}$
 $L_b=\mu_0h_b\left[\ln\left(\frac{4h_b}{r_b}\right)+1\right]$  
 
 $C_b\approx\frac{\varepsilon_0\varepsilon_{\text{eff}}\pi r_b^2}{s}$  
+
+
+
+
+
+
+
+
+
+
 ### 2. Yield Testing
 The goal is to perform a successful flip chip with a fake glass die onto a glass substrate which if successful would cause a short between the 2 ends of the interposer lines. During the process of adding gold bumps on the interposer we perform the first evaluation of the amount of successful gold bumps based on the developed thermal profile, then we also observe where the interposer conductive layers were damaged during the fabrication process these we discard from the 24 lines to evaluate, finally after a flip chip we check any visual problems caused to account for, for instance a short caused between a bump which had a very long tail. Then we perform a continuity test to ensure that that there is a short between the 2 ends of the row of the line and due to bump size there wasnt a caused an issue where due to one bump being bigger than the neighbour it caused the smaller one not to connect, lastly we form a short test between the 2 neighbour bumps in a column to confirm that during flip chip there were no shorts caused in that case.
 ### 3. Amplifier Performance Testing (s2p) (Practical) (not mention in paper)
