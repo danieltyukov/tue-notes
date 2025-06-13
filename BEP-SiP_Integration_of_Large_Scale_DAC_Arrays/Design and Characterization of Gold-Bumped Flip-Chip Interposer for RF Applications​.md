@@ -1,3 +1,4 @@
+[FINAL PAPER](https://chatgpt.com/c/6845bc45-0000-800b-b993-8cdc2330c5a1)
 # Getting Started Information
 ## Contacts
 **Primary:**
@@ -507,16 +508,17 @@ The practical experiement:
 
 ##### Symbols & Geometry
 
-| Symbol | Meaning | Value |
-|--------|---------|-------|
-| $w$ | Signal-strip width | 69 µm |
-| $s$ | Gap (signal ↔ ground) | 41 µm |
-| $g$ | Ground-bar width | 153 µm |
-| $t$ | Metal thickness | 150 nm (Ti/Au) |
-| $\rho$ | Measured resistivity | $4.99\times10^{-8}\,\Omega\!\cdot\text{m}$ |
-| $\varepsilon_r$ | Substrate permittivity | 7.75 (glass) |
-| $\tan\delta$ | Loss tangent | 0.005 |
-| $\ell$ | Physical length | 1.15 mm |
+| Symbol          | Meaning                | Value                                      |
+| --------------- | ---------------------- | ------------------------------------------ |
+| $w$             | Signal-strip width     | 69 µm                                      |
+| $s$             | Gap (signal ↔ ground)  | 41 µm                                      |
+| $g$             | Ground-bar width       | 153 µm                                     |
+| $t$             | Metal thickness        | 150 nm (Ti/Au)                             |
+| $\rho$          | Measured resistivity   | $4.99\times10^{-8}\,\Omega\!\cdot\text{m}$ |
+| $\varepsilon_r$ | Substrate permittivity | 7.75 (glass)                               |
+| $\tan\delta$    | Loss tangent           | 0.005                                      |
+| $\ell$          | Physical length        | 1.15 mm                                    |
+|                 |                        |                                            |
 
 Effective permittivity (thick-substrate, quasi-TEM):  
 $\varepsilon_{\text{eff}}=\dfrac{\varepsilon_r+1}{2}=4.375$
@@ -633,6 +635,7 @@ The transistor will be flip chipped onto the interposer and then since the gate 
 - Frequency span 10 MHz→10 GHz, 10 MHz step  
 - Port impedance 50 Ω  
 - File format Touchstone *.s1p*
+- we will use Keysight PNA-X N5247B
 #### Step-by-Step Procedure 
 The first goal is to measure the s1p of the die directly, since the die is mounted on a pcb calibration of the vna was done based on open-short measurements on a special pcb wich only contained the substrate that is equivelant the one the die. After the calibration was done the die will be measured and the S1P data will be obtained.
 
@@ -641,101 +644,9 @@ The next step is to measure the open-short of the interposer GSG lines developed
 The next step is to measure the final DUT system of the die flip chipped onto the interposer which contained gold bumps, so the measurement would obtain the S1P of gold bumps, GSG lines and the die.
 
 After the s1p files of these are obtained we move to making matlab simulations and doing a DUT comparison of qucs simulation to this.
-### 1. RF - Gold Bump Lump Model (S1P)
-
-> **Objective**  
-> Extract the lumped $R$ (or $R+j\omega L$, optionally $+\dfrac{1}{j\omega C}$) of the **three-bump GSG interconnect** by **1-port de-embedding**, then validate the model in **QUCS**.
-#### A. Physical Items & Measurements
-
-| Item                          | Measured? | Calibration? | Purpose                 |
-| ----------------------------- | --------- | ------------ | ----------------------- |
-| Bare **RF die on PCB**        | ✔         | 1-port OSL   | $S_{11,\text{die}}(f)$  |
-| **Interposer CPW** (no bumps) | ✔         | OSL          | $S_{11,\text{line}}(f)$ |
-| **Die + Interposer + Bumps**  | ✔         | Uses above   | $S_{11,\text{full}}(f)$ |
-
-![[gsg assumption.png|300]]
-![[RF die pinout.png|400]]
-#### B. Common VNA Settings  
-- Frequency span 10 MHz→10 GHz, 10 MHz step  
-- Port impedance 50 Ω  
-- File format Touchstone *.s1p*
-#### C. Step-by-Step Procedure  
-
-##### Step 0 — Prepare Coupons  
-1. **PCB substrate coupon** (die footprint, no die).  
-2. **Interposer coupon** (CPW pads, no bumps).  
-##### Step 1 — Calibrate & Probe the Die  
-1. On substrate coupon perform **OSL**:  
-   - *Open* bare pads • *Short* • *Load* 50 Ω resistor.  
-1. Shift reference plane to pad centres.  
-2. Probe real die on PCB → save **die_on_pcb.s1p**.  
-   - $Z_{in_\text{die}}(f)=Z_0\frac{1+S_{11}}{1-S_{11}}$
-##### Step 2 — Calibrate Interposer Pads  
-1. On interposer coupon perform **OSL** at GSG pads.  
-2. Set reference plane at CPW-to-bump transition.  
-3. Store as **Cal Set #2**.
-##### Step 3 — Measure CPW (No Bumps)  
-- With Cal Set #2 active probe CPW line → **interposer_openline.s1p**.  
-
-Expected lumped-$\pi$ parameters (for $\ell=1.15\text{ mm}$):  
-
-| Element | Value |
-| ------- | ----- |
-| $R_1$ | 4.43 Ω |
-| $L_1$ | 0.486 nH |
-| $C_{1}=C_{2}$ | 66.3 fF |
-| $R_2$ | 48 kΩ |
-##### Step 4 — Assemble & DC-Verify  
-1. Place **Au bumps** (Ø 70 µm) on interposer.  
-2. Flip-chip bond die; reflow.  
-3. Confirm $R_\text{dc}<0.5 \Omega$ between signal nodes.
-##### Step 5 — Measure the Full Stack  
-- Using Cal Set #2 probe the bonded assembly → **full_stack.s1p**.
-##### Step 6 — Data Reduction (MATLAB/Python)  
-1. Load the three *.s1p* files → convert to impedance: $Z=Z_0\frac{1+S_{11}}{1-S_{11}}$.  
-2. Compute bumps-only impedance:
-   $Z_{\text{bump}}(f)=Z_{\text{full}}(f)-Z_{\text{die}}(f)-Z_{\text{line}}(f)$  
-3. $Z_{\text{model}}(f)=R_b+j\omega L_b+\dfrac{1}{j\omega C_b}$  
-4. Scale to 1 bump:  
-   $R_{b}=\frac{R_1}{1.5},\;L_{b}=\frac{L_1}{1.5},\;C_{b} \approx C_1$  
-##### Step 7 — QUCS Validation  
-1. Schematic: port → `die_on_pcb.s1p` → 3-bump RLC → CPW $\pi$.  
-2. Sweep 10 MHz→10 GHz; overlay with **full_stack.s1p**.  
-3. Acceptance: $|S_{11,\text{sim}}-S_{11,\text{meas}}|<0.5\text{ dB}$, phase < 5°.
-
-#### D. Deliverables  
-
-| File                      | Description        |
-| ------------------------- | ------------------ |
-| `die_on_pcb.s1p`          | Die input $S_{11}$ |
-| `interposer_openline.s1p` | CPW line $S_{11}$  |
-| `full_stack.s1p`          | Die + bumps + CPW  |
-| MATLAB notebook           | De-embed & fit     |
-| QUCS project              | Validation         |
-#### E. Key Equations  
-
-$Z_{in}=Z_0\frac{1+S_{11}}{1-S_{11}}$  
-
-$Z_{\text{bump}}=Z_{\text{full}}-Z_{\text{die}}-Z_{\text{line}}$  
-
-$R_b=\frac{\rho_{\text{Au}}h_b}{\pi r_b^2}$  
-
-$L_b=\mu_0h_b\left[\ln\left(\frac{4h_b}{r_b}\right)+1\right]$  
-
-$C_b\approx\frac{\varepsilon_0\varepsilon_{\text{eff}}\pi r_b^2}{s}$  
-
-
-
-
-
-
-
-
-
-
 ### 2. Yield Testing
 The goal is to perform a successful flip chip with a fake glass die onto a glass substrate which if successful would cause a short between the 2 ends of the interposer lines. During the process of adding gold bumps on the interposer we perform the first evaluation of the amount of successful gold bumps based on the developed thermal profile, then we also observe where the interposer conductive layers were damaged during the fabrication process these we discard from the 24 lines to evaluate, finally after a flip chip we check any visual problems caused to account for, for instance a short caused between a bump which had a very long tail. Then we perform a continuity test to ensure that that there is a short between the 2 ends of the row of the line and due to bump size there wasnt a caused an issue where due to one bump being bigger than the neighbour it caused the smaller one not to connect, lastly we form a short test between the 2 neighbour bumps in a column to confirm that during flip chip there were no shorts caused in that case.
-### 3. Amplifier Performance Testing (s2p) (Practical) (not mention in paper)
+### 3. Amplifier Performance Testing (s2p) (Practical) (just theoretical appraoch not in practice implemented for this research)
 #### Amplifier Die
 28V voltage bias, S parameter extraction at 2 ports to verify against simulation for 10MHZ to 5GHz in 10MHz step.
 
@@ -877,52 +788,6 @@ The goal is to have 1 personally made bonding pressure and thermal changing prof
 
 The final thermal profile during experimentation ended being the ones shown in the picture, where 2 more stages were added to progressively add the temperature even better, before moving to touch down the heating stabilizes at 250 degrees and then during touch down it increases to 300 degrees and as soon as touch down happens it is increases to 350 degrees to have maximal coining.
 During yield testing the pressure was also lowered to 20 grams per bump instead of 35 as the too high pressure caused observant sliding where even when the samples were well aligned on the beamsplitter after the processes a notable sliding took place where the fake die evidently slid off the target bump spots.
-## Intermediate Paper Feedback
-- title too long try fitting 2 lines.
-- too concerned providing numbers, provide more motivation, interpretation, explain how to do things and why you are doing these like that.
-- structure of report: 1. Theory, theoretical model, 2. modeling and simulation. Comparison between theory and simulation. Validation of the simulated model vs the design on paper (expectations from the theory). 3. measurements. comparison between simulated models and the measurement results. explain differences.
-- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/1.png|200]]
-- add footnote on first page, with the context of this paper: BEP project, from to, in which group, supervised by, add all relevant details for the context of the paper.
-- maybe dont use the standard bep paper structure, improve to capture specifics of the project.
-- write in present simple tense, facts are written in present simple tense, avoid future tense.
-- introduction should communicate what has been done and why, right now we are missing the why part, missing the motivation. should better connect the 2 parts of the introduction. EXPLAIN WHAT IS THE PROBLEM dont just jump into numbers. QUANTIFY the problem and tell us how this research solves it. And then put the numbers in the (context of state of the art). Show us how these numbers compare to what the others report in literature.
-- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/2.png|200]]
-- MISSING CURRENTLY: Explicit problem definition, Research question and goals of the project, Research approach: what are you going to do in order to reliably reach the goals and answer the research questions, Literature review that connect to the problem definition and the goals of the BEP. Alternative state-of-the-art approaches and examples.
-- first refer to the figures in the paper and then only add show them visually.
-- Introduce all variables of the equations before using them.
-- If results provided, provide interpretation
-- "made in simulation is not formulated in a good style" rewrite: modeled and simulated perhaps.
-- When writing, think about next student, what can next student use from the report, how can you help the next student have an easier bep.
-- Very important to have measurements and concrete deliverables.
-- dont use term: continuity.
-- what test is used to validate planarity? if not then dont mention.
-- where do these opens and shorts occur?
-- the flow is used to design... dont used "mapped".
-- dont mentioned aluminium or copper wire we use gold usually.
-- dont use "a few" use for example "GHz range".
-- START CITING AT [1]
-- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/3.png|200]] why is this relevant?
-- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/4.png|200]]
-- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/5.png|200]]
-- dont remention things you mention in the table for example.
-- dont write what you dont know for sure.
-- "coupon is not the right word".
-- do not reference diamensions or somehting without providing reference.
-- zoom to relevant structures (USE LATEXT SVG PDF).
-- Sideview diagram
-- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/6.png|200]]
-- ![[7.png|200]]
-- dont use parameter "matrix"
-- ![[8.png|200]]
-- clear models
-- export graphs to matlab and generate better figures.
-- not conforting comparing/evaluating
-- not wafers, substrates/samples.
-- through and short is the same.
-- ![[9.png|200]]
-- ![[elaborate dont randomly reference.png|200]]
-
-
 ## Actual Data
 ### deembedding gold bump
 $Z(f)=Z_{0}\frac{1+S_{11}(f)}{1-S_{11}(f)}$
@@ -1024,3 +889,64 @@ The gold bump placement caused 3 opens and 2 shorts in total affecting 4 lines. 
 6 out of 22 lines are broken leaving us with 16 lines.
 
 $\text{Yield }(\%)=\frac{\text{number of functional lines}}{\text{total usable lines}} \cdot 100 \%=\frac{16}{22} \cdot 100 \%=72.73\approx 73 \%\text{ yield}$ with the created profiles for gold bump placement and flip chipping.
+
+
+
+- Usable chains: $N = 22$  
+- Defective chains: $M = 6$  
+- Bonds per chain: $L = 2$  <!-- two bumps—one at each pad of the interposer line -->
+
+1. **Fraction of defective chains**  
+   $\Lambda = \dfrac{M}{N} \;=\; \dfrac{6}{22} \;\approx\; 0.273$
+
+2. **Defective-bond probability** (Eq. $\lambda = -\tfrac{1}{L}\ln(1-\Lambda)$)  
+   $\lambda \;=\; -\dfrac{1}{2}\ln\!\bigl(1-0.273\bigr) \;\approx\; 0.159$
+
+3. **Single-bump yield** (Eq. $Y_{\text{bump}} = 1-\lambda$)  
+   $Y_{\text{bump}} \;=\; 1 - 0.159 \;=\; 0.841 \;\approx\; \mathbf{84\%}$
+
+
+## Intermediate Paper Feedback
+- title too long try fitting 2 lines.
+- too concerned providing numbers, provide more motivation, interpretation, explain how to do things and why you are doing these like that.
+- structure of report: 1. Theory, theoretical model, 2. modeling and simulation. Comparison between theory and simulation. Validation of the simulated model vs the design on paper (expectations from the theory). 3. measurements. comparison between simulated models and the measurement results. explain differences.
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/1.png|200]]
+- add footnote on first page, with the context of this paper: BEP project, from to, in which group, supervised by, add all relevant details for the context of the paper.
+- maybe dont use the standard bep paper structure, improve to capture specifics of the project.
+- write in present simple tense, facts are written in present simple tense, avoid future tense.
+- introduction should communicate what has been done and why, right now we are missing the why part, missing the motivation. should better connect the 2 parts of the introduction. EXPLAIN WHAT IS THE PROBLEM dont just jump into numbers. QUANTIFY the problem and tell us how this research solves it. And then put the numbers in the (context of state of the art). Show us how these numbers compare to what the others report in literature.
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/2.png|200]]
+- MISSING CURRENTLY: Explicit problem definition, Research question and goals of the project, Research approach: what are you going to do in order to reliably reach the goals and answer the research questions, Literature review that connect to the problem definition and the goals of the BEP. Alternative state-of-the-art approaches and examples.
+- first refer to the figures in the paper and then only add show them visually.
+- Introduce all variables of the equations before using them.
+- If results provided, provide interpretation
+- "made in simulation is not formulated in a good style" rewrite: modeled and simulated perhaps.
+- When writing, think about next student, what can next student use from the report, how can you help the next student have an easier bep.
+- Very important to have measurements and concrete deliverables.
+- dont use term: continuity.
+- what test is used to validate planarity? if not then dont mention.
+- where do these opens and shorts occur?
+- the flow is used to design... dont used "mapped".
+- dont mentioned aluminium or copper wire we use gold usually.
+- dont use "a few" use for example "GHz range".
+- START CITING AT [1]
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/3.png|200]] why is this relevant?
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/4.png|200]]
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/5.png|200]]
+- dont remention things you mention in the table for example.
+- dont write what you dont know for sure.
+- "coupon is not the right word".
+- do not reference diamensions or somehting without providing reference.
+- zoom to relevant structures (USE LATEXT SVG PDF).
+- Sideview diagram
+- ![[BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/attachments/6.png|200]]
+- ![[7.png|200]]
+- dont use parameter "matrix"
+- ![[8.png|200]]
+- clear models
+- export graphs to matlab and generate better figures.
+- not conforting comparing/evaluating
+- not wafers, substrates/samples.
+- through and short is the same.
+- ![[9.png|200]]
+- ![[elaborate dont randomly reference.png|200]]
