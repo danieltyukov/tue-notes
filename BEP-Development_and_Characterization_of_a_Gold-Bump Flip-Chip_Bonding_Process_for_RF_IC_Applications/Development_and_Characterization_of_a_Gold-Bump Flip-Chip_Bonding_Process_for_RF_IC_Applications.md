@@ -1,4 +1,3 @@
-[FINAL PAPER](https://chatgpt.com/c/6845bc45-0000-800b-b993-8cdc2330c5a1)
 # Getting Started Information
 ## Contacts
 **Primary:**
@@ -325,7 +324,6 @@ explore the idea of bump to pillar bonding techniques.
 **PARALLEL PLATE LINE (UNDERSTAND)**
 thin film microstrip on carrier
 
-[parallel plate line](https://chatgpt.com/c/67ea5ef4-2e68-800b-9d1b-75e05c2487c5)
 
 [Interconnection signal property details](https://ewh.ieee.org/r8/norway/ap-mtt/files/DML_Norwegen_2008_Handout.pdf)
 [Planar transmission line - Wikipedia](https://en.wikipedia.org/wiki/Planar_transmission_line)
@@ -469,28 +467,9 @@ thin film microstrip on carrier
 >   • **Use for**: Validating electrical contact and full signal chain  
 >   • **S-parameter setup**: VNA probes on die I/O or breakout pads  
 >   • **Note**: Only used after confirming open/short/through integrity  
-
-[Single-Layer RF Interposer on Glass: Research, Designs, and Test Strategies](https://chatgpt.com/c/68036d28-0098-800b-a1ab-fea9beb1c5c4)
-
-[QUCS Design](https://chatgpt.com/c/68063118-3740-800b-b59f-6e610bde7e49)
-[Ball Bonding](https://chatgpt.com/c/6808d09e-fc00-800f-9838-3db01d2e5c37)
-[evaporation vs sputtering](https://chatgpt.com/c/680e4a76-6cb4-800f-82f7-63085aa72724)
-[interposer pad size calculation](https://chatgpt.com/c/680e5c27-20dc-800f-80f2-d0401ff3e029)
-[amplifier interposer design1](https://chatgpt.com/c/6819e9ef-1908-800b-8fbf-db3921ad4cf1)
-[amplifier interposer design0](https://chatgpt.com/c/68192ef4-e820-800b-a2aa-e8f590781c12)
-
-[coplanar waveguide version of amplifier](https://chatgpt.com/c/681b78f9-7274-800b-a857-ff7ca8e1e761)
-
-[The planar capacitor calculations](https://chatgpt.com/c/6821775a-d8b0-800b-8e38-7d532b53d268)
-
-[useful](https://chatgpt.com/c/68192ef4-e820-800b-a2aa-e8f590781c12)
-
-
-[presentation](https://chatgpt.com/c/6822b756-4f44-800b-8286-950499679351)
 # Practical, Theory & Lab-Execution Plan
 ## Simulations & Formulas
 ### 1. Gold Bump Lump Model (S1P)
-[calculations for simulations](https://chatgpt.com/c/683c0341-a47c-800b-9d7c-9541408d9f4c)
 [Relevant Paper](file:///home/danieltyukov/workspace/tue/tue-notes/BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/litrature/comparing%20coplanar%20waveguide%20to%20a%20grounded%20version.pdf)
 S-parameter extracted from simulated lumped models of a GSG CPW line of below dimensions (Length: 1.5mm, Signal line width: 69 microns, Ground line width: 153 microns). The goal is to first use the VNA machine to calibrate for measuring the RF TXFE die and extracting the 1 port S parameters directly from it. Since the die is already on a PCB the calibration happens using a PCB without the die but just with a substrate. The second step is to calibrate and extract the 1 port S parameters from the interposer, specifically of the dimensions previously mentioned of the GSG CPW lines, the goal is to calibrate with an open and a short. The 3rd step is to place the gold bumps on the interposer and then perform a successful flip chip of the RF die onto the interposer with a successful bonding achieved a DC measurement will happen which will confirm the connection and then we will perform the VNA the 1 port s parameter extraction of the full interconnected system. We then perform de-embedding in MATLAB and by subtracting the S parameters of the die and substrate from the full system, achieve the S parameters of the gold bump which can be used to determine the R or RC lump model of the gold bump.
 
@@ -765,7 +744,6 @@ Final thermal most successful thermal profile after multiple practical experimen
 Where the changes were:
 Temperature increased to 150 degrees, force of the first bond increased to 250mN, and the time of the first bond increased to 500ms.
 ## Flip chip Bonding Profile (Dr. Tretsky T-5300)
-[SC: Values](https://chatgpt.com/c/68357f0e-737c-800f-85c2-44490cd15f72?model=gpt-4o)
 The goal is to have 1 personally made bonding pressure and thermal changing profile for creating a successful flip chip.
 
 | Parameter          | Value                                                                                                        |

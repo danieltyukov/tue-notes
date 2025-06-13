@@ -8,63 +8,16 @@
         "type": "tabs",
         "children": [
           {
-            "id": "2ba2f21b3eb3fe16",
+            "id": "bcbdf79fbd916fed",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "5XIE0/Computation Modeling.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Computation Modeling"
-            }
-          },
-          {
-            "id": "ee2a97f641fb7bc7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "5ETC0/Communication 1 - 5ETC0.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Communication 1 - 5ETC0"
-            }
-          },
-          {
-            "id": "db4858590ddc0650",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "5EPB0/Electromagnetics II - 5EPB0.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Electromagnetics II - 5EPB0"
-            }
-          },
-          {
-            "id": "6fc4c563084432b7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/Design and Characterization of Gold-Bumped Flip-Chip Interposer for RF Applications​.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Design and Characterization of Gold-Bumped Flip-Chip Interposer for RF Applications​"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -111,8 +64,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 407.5026054382324,
-    "collapsed": true
+    "width": 348.5026054382324
   },
   "right": {
     "id": "75fc54ffbb8d3a6a",
@@ -186,31 +138,34 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "6fc4c563084432b7",
+  "active": "bcbdf79fbd916fed",
   "lastOpenFiles": [
-    "5EPB0/Electromagnetics II - 5EPB0.md",
-    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/litrature-preliminary/prior bep v2.pdf",
-    "5ETC0/Communication 1 - 5ETC0.md",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/Midterm_report_Konstantin_Tsonev_1808303.pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/Midterm_report_1319086.pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/23548b53-8621-4d7c-8f55-e938e339d985.jpeg",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/BEP_5XEC0_CS_KevinMalkow_1266152_IEEEMidtermPaperV4.pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/1819283_intermediate_bep_paper_GR (1).pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/litrature/low_loss_interposer_architecture.pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/litrature/investigation_of_de_embedding_techniques_applied_on_uni_traveling_carrier_photodiodes (1).pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/litrature/glass_vs_silicon_interposer.pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/litrature/glass_interposer_flip_chip.pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/litrature/engr241_final_rport_hd_ym.pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/litrature/development of silicon interposer (interposer design example).pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/litrature/design_flip_chip_package.pdf",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/yield_interposer.png",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/yield_die.jpeg",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/yield_die 1.jpeg",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/yield test with bumps.png",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/yield test with bump left.png",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/yield test right side.png",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/types of bonding.png",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/thermla profile 1.png",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/thermal profile 2.png",
+    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications.md",
     "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/Design and Characterization of Gold-Bumped Flip-Chip Interposer for RF Applications​.md",
-    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/intermediate-paper/1819283_intermediate_bep_paper_GR.pdf",
-    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/intermediate-paper",
-    "5EPB0/attachments/must know.png",
-    "5EPB0/answers-reader/EM_II_Ch1_Answers.pdf",
-    "5EPB0/answers-reader",
-    "5EPB0/slts/SLT-A_questions (1).pdf",
-    "5EPB0/slts",
-    "5EPB0/EM_II_Reader_1page.pdf",
-    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/litrature/comparing coplanar waveguide to a grounded version.pdf",
-    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/mini-personal-research/1819283_intermediate_bep_paper.pdf",
-    "5ETC0/attachments/more walk throughs.png",
-    "5ETC0/attachments/line code quiz.png",
-    "5ETC0/attachments/derivation of dealing with digitzation and encoding.png",
-    "5ETC0/attachments/summary of first part of pipeline.png",
-    "5ETC0/attachments/spectral efficiency of linecodes.png",
-    "5ETC0/attachments/power spectra for multilevel signaling.png",
-    "5ETC0/attachments/power spectral density.png",
-    "5ETC0/attachments/bits per sample vs bits per symbol.png",
-    "5ETC0/attachments/Q function definition.png",
+    "BEP-SiP_Integration_of_Large_Scale_DAC_Arrays/Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications.md",
+    "5ETC0/Communication 1 - 5ETC0.md",
+    "5EPB0/Electromagnetics II - 5EPB0.md",
     "5XIE0/Computation Modeling.md",
     "5ETB0/Communication Theory - 5ETB0.md",
     "5XTB0/Photonics - 5XTB0.md",
