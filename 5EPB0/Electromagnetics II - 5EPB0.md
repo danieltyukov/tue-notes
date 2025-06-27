@@ -13,7 +13,7 @@
 $\text{propagation speed: }c=\frac{1}{\sqrt{ \mu \epsilon }}\text{ and Impedance: }Z=\sqrt{ \frac{\mu}{\epsilon} }$
 $I^{\pm}=\pm YV^{\pm}$<=>$V^{\pm}=\pm ZI^{\pm}$
 ![[maxwell PEC.png|500]]
-$c=\frac{1}{\sqrt{ LC }} \text{ and } Z=\sqrt{ \frac{Z}{C} }$
+$c=\frac{1}{\sqrt{ LC }} \text{ and } Z=\sqrt{ \frac{L}{C} }$
 $$
 \begin{bmatrix}
 V^+ \\
@@ -220,6 +220,8 @@ $Z_{eff}(-l)=Z_{1} \frac{Z_{2}+jZ_{1}\tan(k_{1}l)}{Z_{1}+jZ_{2}\tan(k_{1}l)}\tex
 ![[scatter.png|100]]![[scatter-1.png|100]]![[scatter-2.png|100]]![[scatter-3.png|100]]
 $A=D_{1}TC_{2}\to T=C_{1}AD_{2}$
 ![[scatter to transfer matrix.png|300]]![[composition decomposition summary.png|300]]
+
+![[scatter transfer matrix.png]]
 # Scattering matrix, phase and group speed, dispersion
 # new
 quarter-wavelength transformer optimal conditions:
@@ -227,6 +229,9 @@ $l=\frac{\lambda_{2}}{4}\text{ and }Z_{2}=\sqrt{ Z_{1}Z_{3} }$
 ![[scatter matrix-1.png|500]]
 ![[scatter matrix-2.png|500]]
 
+**Scattering matrix** or s-matrix descries how incoming waves are transformed into outgoing waves after interacting with a system.
+
+**Transfer matrix** or m-matrix relates waves amplitudes at different points within the system.
 # old
 $l=\frac{\lambda}{4}\text{ transformer}$
 $k=\beta=\frac{2\pi}{\lambda}$

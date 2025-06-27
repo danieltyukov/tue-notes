@@ -389,6 +389,12 @@ SNR NOT IN dB
 
 SEE INSTRUCTION 8 AND 9
 ## Main
+$10\log_{10}\left( \frac{P_{mW}}{1mW} \right)=dBm$
+- **dBm** is an **absolute power** level (referenced to 1 mW).
+- **dB** is a **relative** ratio between two power levels.
+
+$dB=P_{2}(dBm)-P_{1}(dBm)$
+
 [What is Modulation ? Why Modulation is Required ? Types of Modulation Explained. - YouTube](https://www.youtube.com/watch?v=mHvV_Tv8HDQ)
 [Amplitude Modulation – Physics and Radio-Electronics](https://www.physics-and-radio-electronics.com/blog/amplitude-modulation/)
 - **Baseband(when frequency spectrum irrelevant) vs. Bandpass(eg: for open air transmisison) (spectrum of signal):** Baseband centered at 0Hz, Bandpass re-centered to carrier frequency for open-air transmission.
@@ -493,7 +499,7 @@ single path
 - omnidirectional antenna gain: $G_{Rx}=\frac{4\pi}{\lambda^2}A_{Rx}$
 - $\lambda \text{(wavelength)}=\frac{v(c)}{f}$
 - Friis equation for gain: $P_{Rx}(d) = P_{Tx} \times G_{Tx} \times G_{Rx} \times (\frac{\lambda}{4\pi d})^2$.
-- **Logarithmic scale power:** $P_{Rx}(d)[dB] = P_{Tx} + G_{Tx} + G_{Rx} + 20\log_{10}(\frac{\lambda}{4\pi d})\text{ actually you do minus on last term}$
+- **Logarithmic scale power:** $P_{Rx}(d)[dB] = P_{Tx} + G_{Tx} + G_{Rx} + 20\log_{10}(\frac{\lambda}{4\pi d})$
 ![[fspl.png|200]]
 multi path
 - Single reflection from ground causes phase difference, affecting signal at receiver. $d^{-4}\text{ rule}$
