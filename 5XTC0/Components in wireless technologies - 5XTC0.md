@@ -510,7 +510,7 @@ $10^{db/10}=mW$
 [FSPL](https://en.wikipedia.org/wiki/Free-space_path_loss) - Free Space Path Loss: influenced by frequency operation - Friis equation -> has a wavelength component. $FSPL=\left( \frac{4\pi d}{\lambda} \right)^2$
 # RF systems and Amplifier design
 ![[5XTC0_Module_4_Amplifier_Design.pdf]]
-![[5XTC0_Module_4_RF_Building_Blocks_Study_Guide_2024.pdf]]
+
 ![[5XTC0_Module_4_RF_Systems.pdf]]
 
 >[!NOTE] Formulas
