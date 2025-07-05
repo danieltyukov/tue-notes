@@ -4,35 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "0fd25ebef1e7df27",
+        "id": "56d588ec678a620d",
         "type": "tabs",
         "children": [
           {
-            "id": "6afd4f74cbfecd4d",
+            "id": "297639ec68cb772d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "5XTC0/Components in wireless technologies - 5XTC0.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Components in wireless technologies - 5XTC0"
-            }
-          },
-          {
-            "id": "3dc3c050c3d8569c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "5XIE0/Computation Modeling.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Computation Modeling"
+              "title": "New tab"
             }
           }
         ]
@@ -82,8 +64,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 348.5026054382324,
-    "collapsed": true
+    "width": 348.5026054382324
   },
   "right": {
     "id": "75fc54ffbb8d3a6a",
@@ -157,11 +138,11 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "6afd4f74cbfecd4d",
+  "active": "297639ec68cb772d",
   "lastOpenFiles": [
-    "README.md",
     "5XIE0/Computation Modeling.md",
     "5XTC0/Components in wireless technologies - 5XTC0.md",
+    "README.md",
     "5XTC0/components-wireless-tech-book.pdf",
     "5EPB0/Maths_Formulae_2024_new.pdf",
     "5EPB0/Electromagnetics II - 5EPB0.md",

@@ -31,9 +31,6 @@ This repository contains detailed notes, summaries, exercises, and reference mat
 - **5XTB0** - Photonics
 - **5XTC0** - Components in Wireless Technologies
 
-### Bachelor End Project (BEP)
-- **Development and Characterization of a Gold-Bump Flip-Chip Bonding Process for RF IC Applications**
-
 ## 📁 Folder Structure
 
 Each course folder typically contains:
