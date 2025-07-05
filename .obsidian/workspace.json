@@ -11,10 +11,12 @@
             "id": "297639ec68cb772d",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "type": "pdf",
+              "state": {
+                "file": "2INC0/exercises/qna7.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "qna7"
             }
           }
         ]
@@ -140,6 +142,12 @@
   },
   "active": "297639ec68cb772d",
   "lastOpenFiles": [
+    "2INC0/exercises/qna6.pdf",
+    "2INC0/exercises/qna5.pdf",
+    "2INC0/exercises/qna4.pdf",
+    "2INC0/exercises/qna3.pdf",
+    "2INC0/exercises/qna2.pdf",
+    "2INC0/exercises/qna1.pdf",
     "5XIE0/Computation Modeling.md",
     "5XTC0/Components in wireless technologies - 5XTC0.md",
     "README.md",
@@ -152,12 +160,7 @@
     "5EPB0/EM_II_Reader_1page.pdf",
     "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications.md",
     "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/Midterm_report_Konstantin_Tsonev_1808303.pdf",
-    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/Midterm_report_1319086.pdf",
     "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/23548b53-8621-4d7c-8f55-e938e339d985.jpeg",
-    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/BEP_5XEC0_CS_KevinMalkow_1266152_IEEEMidtermPaperV4.pdf",
-    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/paper-advise/1819283_intermediate_bep_paper_GR (1).pdf",
-    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/litrature/low_loss_interposer_architecture.pdf",
-    "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/litrature/investigation_of_de_embedding_techniques_applied_on_uni_traveling_carrier_photodiodes (1).pdf",
     "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/yield_interposer.png",
     "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/yield_die.jpeg",
     "BEP-Development_and_Characterization_of_a_Gold-Bump Flip-Chip_Bonding_Process_for_RF_IC_Applications/attachments/yield_die 1.jpeg",
@@ -184,7 +187,6 @@
     "2WBB0/Calculus - 2WBB0.md",
     "5EMA0/Math II - 5EMA0.md",
     "5ECB0/Electronics - 5ECB0.md",
-    "2DE20/Math I - 2DE20.md",
-    "2023-07-01.md"
+    "2DE20/Math I - 2DE20.md"
   ]
 }
