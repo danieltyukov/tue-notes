@@ -1,5 +1,13 @@
 # TU/e Course Notes
 
+## ⚠️ **COPYRIGHT NOTICE**
+
+**DUE TO COPYRIGHT MATERIAL RESTRICTIONS, THE COPYRIGHTED MATERIAL WAS REMOVED AND IS ONLY ACCESSIBLE TO PEOPLE WITH TU/E DOMAIN ACCOUNTS. FULL MATERIAL CAN BE ACCESSED AT:**
+
+**🔗 https://tuefullbacheloreematerialdaniel.netlify.app/**
+
+---
+
 A comprehensive collection of course notes from Eindhoven University of Technology (TU/e), organized as an Obsidian vault for optimal cross-referencing and knowledge management.
 
 ## 📚 Overview
