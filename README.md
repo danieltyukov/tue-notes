@@ -1,20 +1,20 @@
 # TU/e Course Notes
 
-## ⚠️ **COPYRIGHT NOTICE**
+## COPYRIGHT NOTICE
 
 **DUE TO COPYRIGHT MATERIAL RESTRICTIONS, THE COPYRIGHTED MATERIAL WAS REMOVED AND IS ONLY ACCESSIBLE TO PEOPLE WITH TU/E DOMAIN ACCOUNTS. FULL MATERIAL CAN BE ACCESSED AT:**
 
-**🔗 https://tuefullbacheloreematerialdaniel.netlify.app/**
+**https://tuefullbacheloreematerialdaniel.netlify.app/**
 
 ---
 
 A comprehensive collection of course notes from Eindhoven University of Technology (TU/e), organized as an Obsidian vault for optimal cross-referencing and knowledge management.
 
-## 📚 Overview
+## Overview
 
 This repository contains detailed notes, summaries, exercises, and reference materials for various TU/e courses, primarily focused on Electrical Engineering and related disciplines. The notes are structured in Markdown format and optimized for use with [Obsidian](https://obsidian.md/).
 
-## 🗂️ Course Structure
+## Course Structure
 
 - **2DE20** - Math I (Linear Algebra, Calculus)
 - **2INC0** - Operating Systems
@@ -39,7 +39,7 @@ This repository contains detailed notes, summaries, exercises, and reference mat
 - **5XTB0** - Photonics
 - **5XTC0** - Components in Wireless Technologies
 
-## 📁 Folder Structure
+## Folder Structure
 
 Each course folder typically contains:
 ```
@@ -53,7 +53,7 @@ Each course folder typically contains:
 └── *.pdf                             # Reference books, formula sheets
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - [Obsidian](https://obsidian.md/) (recommended for best experience)
@@ -80,7 +80,7 @@ Each course folder typically contains:
 - Use backlinks (`[[]]`) to jump between related topics
 - Enable preview mode for better readability of mathematical formulas
 
-## 📖 Content Features
+## Content Features
 
 - **Mathematical Formulas**: LaTeX notation for equations and expressions
 - **Visual Elements**: Embedded diagrams, screenshots, and reference images
@@ -88,7 +88,7 @@ Each course folder typically contains:
 - **Practical Examples**: Real-world applications and problem-solving approaches
 - **Reference Materials**: Formula sheets, textbooks, and additional resources
 
-## 🔗 Key Topics Covered
+## Key Topics Covered
 
 ### Mathematics & Signal Processing
 - Linear Algebra and Calculus
@@ -108,7 +108,7 @@ Each course folder typically contains:
 - Operating Systems
 - Electric Power Systems
 
-## 📝 Contributing
+## Contributing
 
 If you're a TU/e student and would like to contribute:
 1. Ensure content accuracy and proper attribution
@@ -117,11 +117,11 @@ If you're a TU/e student and would like to contribute:
 4. Include relevant attachments in the `attachments/` folder
 5. Add cross-references to related topics where applicable
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 These notes are student-generated study materials and should be used as supplementary resources. Always refer to official course materials and consult with instructors for authoritative information. The content is provided as-is for educational purposes.
 
-## 📄 License
+## License
 
 This work is intended for educational use. Please respect copyright of any included textbooks, slides, or other materials that may have restricted distribution rights.
 
