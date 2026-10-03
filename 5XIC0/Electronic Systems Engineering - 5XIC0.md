@@ -2,8 +2,6 @@
 course: 5XIC0
 name: Electronic Systems Engineering
 area: Electronics
-aliases:
-  - Electronic-Systems Engineering - 5XIC0
 ---
 > [!info] 5XIC0 Electronic Systems Engineering
 > - **Area:** [[Electronics]]

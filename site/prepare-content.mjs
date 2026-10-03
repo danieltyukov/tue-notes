@@ -278,6 +278,20 @@ function withFrontmatter(source, rel, extra = {}) {
       fm.push(`${key}: ${new Date(t).toISOString()}`)
     }
   }
+  // Quartz turns aliases into redirect pages at the site root. Notes use an
+  // alias to keep a renamed note's old URL working, so put the redirect in
+  // the note's own folder, where the old page was.
+  const dir = path.posix.dirname(rel)
+  let inAliases = false
+  fm = fm.map((l) => {
+    if (/^aliases:\s*$/.test(l)) inAliases = true
+    else if (!/^\s+-/.test(l)) inAliases = false
+    const item = inAliases && l.match(/^(\s+-\s+)(.+)$/)
+    if (item && dir !== "." && !item[2].includes("/")) {
+      return `${item[1]}${JSON.stringify(`${dir}/${item[2].replace(/^["']|["']$/g, "")}`)}`
+    }
+    return l
+  })
   for (const [k, v] of Object.entries(extra)) {
     if (!fm.some((l) => l.startsWith(`${k}:`))) fm.push(`${k}: ${JSON.stringify(v)}`)
   }
