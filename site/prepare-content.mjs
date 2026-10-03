@@ -157,7 +157,8 @@ function rewriteLine(line, note) {
       return `[${alias && !isSize(alias) ? alias : name}](${githubUrl(resolved)})`
     }
     const dest = resolved.replace(/\.md$/, "")
-    const label = alias ?? (bang ? undefined : raw)
+    // Without an alias, show the link the way Obsidian does: "Note > Heading".
+    const label = alias ?? (bang ? undefined : raw.replace("#", " > "))
     return `${bang}[[${dest}${anchor}${label !== undefined ? `${escape}|${label}` : ""}]]`
   })
 
@@ -196,18 +197,37 @@ function rewriteLine(line, note) {
   return line
 }
 
+// Also smooths over two things Obsidian accepts but the site's Markdown
+// parser does not: a closing code fence indented more than its opening one,
+// and display math written as "$$formula" ... "formula$$" across lines.
 function rewriteNote(source, note) {
   let fence = null
+  let math = false
   return source
     .split("\n")
     .map((line) => {
-      const m = line.match(/^\s*(```+|~~~+)/)
+      const m = line.match(/^(\s*)(```+|~~~+)(.*)$/)
       if (m) {
-        if (!fence) fence = m[1][0]
-        else if (m[1][0] === fence) fence = null
+        if (!fence) fence = { indent: m[1], char: m[2][0] }
+        else if (m[2][0] === fence.char && !m[3].trim()) {
+          line = fence.indent + m[2]
+          fence = null
+        }
         return line
       }
-      return fence ? line : rewriteLine(line, note)
+      if (fence) return line
+      const t = line.trim()
+      const marks = t.split("$$").length - 1
+      if (t === "$$") {
+        math = !math
+      } else if (!math && marks === 1 && t.startsWith("$$")) {
+        math = true
+        return "$$\n" + t.slice(2)
+      } else if (math && marks === 1 && t.endsWith("$$")) {
+        math = false
+        return t.slice(0, -2) + "\n$$"
+      }
+      return math ? line : rewriteLine(line, note)
     })
     .join("\n")
 }
