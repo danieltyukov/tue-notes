@@ -1,0 +1,26 @@
+name: New course
+description: Suggest a course to add, or say you are working on notes for one.
+labels: ["new course"]
+body:
+  - type: input
+    id: course
+    attributes:
+      label: Course
+      description: Course code and name.
+      placeholder: 5ESD0 Control Systems
+    validations:
+      required: true
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Are you writing the notes?
+      options:
+        - Yes, I will open a pull request
+        - No, I would like someone to add them
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Optional. Which year you took it, what the notes would cover, links to the course page.
