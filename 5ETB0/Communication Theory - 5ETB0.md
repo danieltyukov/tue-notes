@@ -1,3 +1,13 @@
+---
+course: 5ETB0
+name: Communication Theory
+area: Communications and Networking
+---
+> [!info] 5ETB0 Communication Theory
+> - **Area:** [[Communications and Networking]]
+> - **Topics:** [[Filters]] · [[Random Signals and Power Spectral Density]] · [[Noise]] · [[Modulation]] · [[Digital Signaling and Pulse Shaping]] · [[Detection and Matched Filters]] · [[Channel Capacity]]
+> - **Related courses:** [[Communication 1 - 5ETC0]] · [[Math II - 5EMA0]] · [[Signals II (DSP Fundamentals) - 5ESC0]]
+
 # requirements
 ![[Course Schedule.png]]
 ![[learning objectives.png]]
@@ -11,7 +21,7 @@
 
 # Analog vs Digital Communication
 [[Math II - 5EMA0]]
-[[DSP(digital signal processing) fundamentals (signals II) - 5ESC0]]
+[[Signals II (DSP Fundamentals) - 5ESC0]]
 ![[5ETB0/slides/M2.1.pdf]]
 $\omega=2\pi f$
 $|G(f)|^2=G(f) \cdot G^*(f)$
@@ -54,7 +64,7 @@ discrete encoder, since the information is of the sampled signal it reduced the 
 
 [COS 126: Prefix Codes](https://www.cs.princeton.edu/courses/archive/spr01/cs126/assignments/prefix.html)
 [ocw.tudelft.nl/wp-content/uploads/Algoritmiek\_Huffman\_Codes.pdf](https://ocw.tudelft.nl/wp-content/uploads/Algoritmiek_Huffman_Codes.pdf)
-### Side Quest: Signals
+## Side Quest: Signals
 [[Communication 1 - 5ETC0]]
 Bandwidth of a signal is defined as **the difference between the highest and the lowest frequency**
 
@@ -78,6 +88,7 @@ modulation can be on digital and continuous.
 [What is Modulation ? Why Modulation is Required ? Types of Modulation Explained. - YouTube](https://www.youtube.com/watch?v=mHvV_Tv8HDQ&t=143s)
 
 # Decisions Rules for DIDO Channels
+*Topic: [[Detection and Matched Filters]]*
 ![[M3.1.pdf]]
 ![[DIDO interpretation.png|400]]
 $$\hat{M}:\text{ random variable representing decision of receiver and }M:\text{ random variable representing transmitter message}$$
@@ -98,6 +109,7 @@ $\hat{m}_{ML}(r) = \arg \max_{m \in M} \Pr(R = r \mid M = m)$
 
 focuses only on maximizing the likelihood $\Pr(R = r \mid M = m)$, bypassing the need to compute a-priori probabilities $\Pr(M = m)$. This reduces complexity, especially in systems with unknown or uniform priors. While MAP minimizes error probability by incorporating prior probabilities, ML offers a more practical and scalable solution in many applications where computational simplicity is essential.
 # Decision Rules for DICO Channels
+*Topic: [[Detection and Matched Filters]]*
 ![[M4.1.pdf]]
 
 $p_{N}(n|S=s_{m})=p_{N}(n)\text{ since N is independent of signal S}$
@@ -177,52 +189,54 @@ $$Q(x) = 1 - Q(-x)$$
 $$P_I = Q\left(\frac{\Delta}{\sigma}\right)$$
 where $\Delta$ is the perpendicular distance from the signal point to the hyperplane.
 # Waveform Channels
+*Topic: [[Random Signals and Power Spectral Density]]*
 ![[M5.1.pdf]]
 
 ![[M5.2.pdf]]
 
-### Energy of a Waveform
+## Energy of a Waveform
 $E_x = \int_{-\infty}^{\infty} x^2(t) dt$
-### Orthogonality of Waveforms
+## Orthogonality of Waveforms
 $$\int_{-\infty}^{\infty} \phi_i(t) \phi_j(t) dt = 
 \begin{cases} 
 E_i & \text{if } i = j \\
 0 & \text{if } i \neq j 
 \end{cases}$$
-### Synthesis of Waveforms
+## Synthesis of Waveforms
 $sm(t) = \sum_{i=1}^{N} sm_i \phi_i(t), \quad \forall m \in \{1, 2, \dots, |M|\}$
-### Recovery of Signal Vector
+## Recovery of Signal Vector
 $r_i = \int_{-\infty}^{\infty} r(t) \phi_i(t) dt, \quad \forall i \in \{1, 2, \dots, N\}$
-### Additive Noise in Signal Vector
+## Additive Noise in Signal Vector
 $r_i = sm_i + n_i, \quad \text{where } n_i = \int_{-\infty}^{\infty} n_w(t) \phi_i(t) dt$
-### Vector Representation of Noise
+## Vector Representation of Noise
 $n(t) = \sum_{i=1}^{N} n_i \phi_i(t)$
-### Relevant Noise Covariance
+## Relevant Noise Covariance
 $$E[N_i N_j] = 
 \begin{cases} 
 \frac{N_0}{2} & \text{if } i = j \\
 0 & \text{if } i \neq j 
 \end{cases}$$
-### Signal Space Projection
+## Signal Space Projection
 $r(t) = \sum_{i=1}^{N} r_i \phi_i(t)$
 
-### **Gram-Schmidt Process** (See Question 5.1)
-### Step 1: Define the First Basis Function
+## **Gram-Schmidt Process** (See Question 5.1)
+## Step 1: Define the First Basis Function
 $\phi_1(t) = \frac{s_1(t)}{\sqrt{E_1}}, \quad \text{where } E_1 = \int_{-\infty}^{\infty} s_1^2(t) dt\text{ and }s_{11}=\sqrt{ E_{1} }$
-### Step 2: Define the Auxiliary Signal for Subsequent Functions
+## Step 2: Define the Auxiliary Signal for Subsequent Functions
 $\theta_m(t) = s_m(t) - \sum_{i=1}^{n-1} sm_i \phi_i(t)$  
 where  
 $sm_i = \int_{-\infty}^{\infty} s_m(t) \phi_i(t) dt$
-### Step 3: Compute Energy of Auxiliary Signal
+## Step 3: Compute Energy of Auxiliary Signal
 $E_{\theta_m} = \int_{-\infty}^{\infty} \theta_m^2(t) dt$
-### Step 4: Define the New Orthogonal Basis Function
+## Step 4: Define the New Orthogonal Basis Function
 $\phi_n(t) = \frac{\theta_m(t)}{\sqrt{E_{\theta_m}}}$
-### Step 5: Express Each Signal in Terms of Basis Functions
+## Step 5: Express Each Signal in Terms of Basis Functions
 $s_m(t) = \sum_{i=1}^{N} sm_i \phi_i(t)$
 
-#### **see 5.1.c for a different distance based approach**
-#### **see 5.4 and 5.7 for an intuition on gram-schmidt process**
+### **see 5.1.c for a different distance based approach**
+### **see 5.4 and 5.7 for an intuition on gram-schmidt process**
 # Receiver Implementation, Matched Filters
+*Topics: [[Filters]] · [[Detection and Matched Filters]]*
 ![[M6.1.pdf]]
 
 16 messages -> 16 filters needed (needed same amount as messages)
@@ -238,6 +252,7 @@ $\text{optimum receiver: }\hat{m}=argmax_{m \in M}\{(\vec{r} \cdot \vec{s_{m}})+
 ![[macther filter receiver.png|500]]
 ![[direct receiver.png|500]]
 # Signal Energy Considerations, Orthogonal Signals
+*Topic: [[Noise]]*
 ![[M7.1.pdf]]
 
 ![[M7.2.pdf]]
@@ -260,6 +275,7 @@ $\text{energy per transmitted but of information: }E_{b}=\frac{E_{s}}{\log_{2}|M
 ![[reliable communication achieved.png|400]]
 ![[more messages higher energy for same Pe needed.png|400]]
 # Message Sequences, Bandwidth
+*Topic: [[Digital Signaling and Pulse Shaping]]*
 ![[M8.1.pdf]]
 
 $\mathcal{M}=\text{number of messages}$
@@ -267,15 +283,18 @@ $\mathcal{M}=\text{number of messages}$
 ![[M8.2.pdf]]
 
 # Capacity of the Baseband and Wideband Channels
+*Topic: [[Channel Capacity]]*
 ![[M9.1.pdf]]
 
 ![[M9.2.pdf]]
 # Pulse Transmission
+*Topic: [[Digital Signaling and Pulse Shaping]]*
 ![[M10.1.pdf]]
 
 ![[M10.2.pdf]]
 
 # Pass-Band Channels
+*Topic: [[Modulation]]*
 ![[M11.1.pdf]]
 
 ![[M11.2.pdf]]
@@ -309,6 +328,7 @@ $\text{dealyed signal version: }s(t-\Delta)+n_{w}(t)$
 
 ![[serial quadrature.png|400]]
 # Random Carrier-Phase
+*Topic: [[Modulation]]*
 coherent vs **incoherent** reception: no knowledge of $\theta$ means there is only cosine but it can be decomposed to have the sine component.
 
 $\cos(a-b)=\cos a\cos b+\sin a\sin b$

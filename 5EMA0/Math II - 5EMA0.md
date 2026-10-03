@@ -1,3 +1,13 @@
+---
+course: 5EMA0
+name: Math II (Optimization and Probability)
+area: Mathematics
+---
+> [!info] 5EMA0 Math II (Optimization and Probability)
+> - **Area:** [[Mathematics]]
+> - **Topics:** [[Probability and Random Variables]]
+> - **Related courses:** [[Math I - 2DE20]] · [[Calculus - 2WBB0]] · [[Computation Modeling - 5XIE0]] · [[Communication Theory - 5ETB0]]
+
 # Optimizations and Probabilities
 
 >Unconstrained optimization
@@ -201,6 +211,7 @@ $g_{x,d}(z):=f(x+zd)$ for all $z \in R$
 >Theorem: $x^*(t)$ and $u^*(t)$ coverage to optimal solutions as $t\to \infty$.
 
 # Probabilities
+*Topic: [[Probability and Random Variables]]*
 
 De Morgans law: $(A \cup B)^c=A^c \cap B^c$ --> same for swapped operations
 Disjoint: $A \cup B = (A \cap B) \cup (B-A) \cup (A-B)$
@@ -252,6 +263,7 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 > $P[S_{n0,n1}]=(n_{0}+n_{1},n_{0})(1-p)^{n_{0}}p^{n_{1}}=(n_{0}+n_{1},n_{1})(1-p)^{n_{0}}p^{n_{1}}$
 
 # Discrete Random Variables
+*Topic: [[Probability and Random Variables]]*
 
 ![[discrete-random-variables.png]]
 >**WHEN WHICH:**
@@ -294,6 +306,7 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 >$\sigma_{X}=\sqrt{ Var[X] }$
 
 # Continuous Random Variables
+*Topic: [[Probability and Random Variables]]*
 
 ![[continuous-random-variables.png]]
 
@@ -339,6 +352,7 @@ $P[A\cap B]=P[A]P[B]$ => $P[A|B]=P(A)$ and $P[B|A]=P(B)$
 ![[cdf-pdf-pmf.png|700]]
 
 # Pairs of Random Variables
+*Topic: [[Probability and Random Variables]]*
 
 > [!NOTE] Joint CDF
 > $F_{X,Y}(x,y)=P(X\leq x,Y\leq y)$

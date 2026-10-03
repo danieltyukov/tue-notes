@@ -1,4 +1,15 @@
-# extra
+---
+course: 5EPB0
+name: Electromagnetics II
+area: Electromagnetics and Waves
+---
+> [!info] 5EPB0 Electromagnetics II
+> - **Area:** [[Electromagnetics and Waves]]
+> - **Topics:** [[Vector Calculus]] · [[Maxwell Equations]] · [[Plane Waves and Reflection]] · [[Transmission Lines]] · [[Waveguides]] · [[Antennas and Radiation]] · [[S-Parameters and Impedance Matching]]
+> - **Related courses:** [[Electromagnetics I - 5EPA0]] · [[Components in Wireless Technologies - 5XTC0]] · [[Photonics - 5XTB0]]
+
+# General notes
+*Topic: [[Vector Calculus]]*
 [Plane wave - Wikipedia](https://en.wikipedia.org/wiki/Plane_wave)
 **result of a gradient is a vector field, while the result of a divergence is a scalar field.**
 ![[gradient divergence and curl.png|300]]![[divergence gradien and curl.png|300]]
@@ -8,7 +19,7 @@
 **solve W.E->for fundamental unknown...**
 ![[summary of EM solutions.png|400]]![[note.png]]
 # Waves in time and one spatial dimension
-# new
+## Summary
 ![[what i should know.png|500]]
 $\text{propagation speed: }c=\frac{1}{\sqrt{ \mu \epsilon }}\text{ and Impedance: }Z=\sqrt{ \frac{\mu}{\epsilon} }$
 $I^{\pm}=\pm YV^{\pm}$<=>$V^{\pm}=\pm ZI^{\pm}$
@@ -32,7 +43,7 @@ $$\Gamma = \frac{Z_L - Z}{Z_L + Z}, \quad V^- = \Gamma V^+$$
 - $Z_L = \infty \rightarrow$ open circuit → total reflection with same polarity -> $\Gamma=1$  
 - $Z_L = 0 \rightarrow$ short circuit → total reflection with inverted polarity -> $\Gamma=-1$
 
-# old
+## Detailed notes
 
 **DON'T FORGET THE MINUS SIGN WHEN DECOMPOSING FOR CURRENT I-**
 **LEARN CIRCUIT ANALYSIS BETTER**
@@ -48,7 +59,8 @@ $P=VI=\frac{V^2}{Z}$ Z is the specific impedance over which the power is measure
 ![[circuit theory.png|300]]![[bounce diagram reference.png|300]]
 ![[characteristic impedance example.png|characteristic impedance example|200]]
 ![[characteristic impedance bounce diagram.png|200]]
-## Uniform plane waves
+### Uniform plane waves
+*Topics: [[Maxwell Equations]] · [[Plane Waves and Reflection]]*
 ![[maxwell equations.png|300]]![[maxwell equation application.png|230]]![[maxwell in unofrm.png|300]]![[maxwell equations + integral.png|300]]
 **source free region**
 divergence: $\nabla \cdot$ curl: $\nabla \times$
@@ -80,7 +92,8 @@ $\mu_{0}=4\pi \cdot 10^{-7}\text{ and }  \epsilon_{0}=8.85 \cdot10^{-12}$
 $\text{but in general: }Z=\sqrt{ \frac{j\omega \mu}{\sigma+j\omega \epsilon}}$
 $\text{in summary: }I^{\pm}=\pm YV^\pm,V^\pm=\pm ZI^\pm$
 impedance $Z_{0}$ is frequency dependent because $\epsilon$ is.
-## TEM-wave propagation along transmission lines (Transverse)
+### TEM-wave propagation along transmission lines (Transverse)
+*Topic: [[Transmission Lines]]*
 ![[perfect electric conductor PEC.png|300]]![[free space uniform plane wave.png|238]]
 ![[application of boundary condition in a wire.png|boundary condition application wire|300]]
 $LC=\mu \epsilon=\frac{1}{c^2}\to V=V^+\left( t-\frac{z}{c} \right)+V^-\left( t+\frac{z}{c} \right)\implies\left( \frac{\delta^2}{\delta z^2}-LC \frac{\delta^2}{\delta t^2} \right)V=0$
@@ -88,7 +101,7 @@ characteristic impedance (only when waves propagated not during steady state ): 
 $V=V^++V^- \to I^+\left( t-\frac{z}{c} \right)=+YV^+\left( t-\frac{z}{c} \right)$
 $I=I^++I^- \to I^-\left( t+\frac{z}{c} \right)=-YV^-\left( t+\frac{z}{c} \right)$
 lumped components: $V(z,t)-V(z+\nabla z,t)=L\nabla z \frac{\delta I}{\delta t}(z,t)\text{ and } I(z,t)-I(z+\nabla z,t)=C\nabla z \frac{\delta V}{\delta t}(z,t)$
-## Wave reflection
+### Wave reflection
 ![[wave (de)composition.png|wave (de)composition|300]]
 ![[wave decomposition-1.png|200]]
 ![[wave composition example.png|wave composition|300]]
@@ -116,16 +129,17 @@ time domain reflection (TDR): used for cable testing: quick pulse with switch.
 ![[detailed bounce diagram.png|bounce diagram detailed|600]]
 ![[example of wave additions.png|300]]
 # Transmission lines reflection and transmission
-# new
+*Topic: [[Transmission Lines]]*
+## Summary
 ![[what to know-1.png|500]]
 ![[transmission line circuit.png|500]]
 ![[bounce diagram.png|500]]
 $V_{steady}=\lim_{ t \to \infty }V(z,t)=V_{steady}^++V^-_{steady}=\frac{Z_{L}}{Z_{L}+Z_{g}}V_{g}$
 $I_{steady}=\lim_{ t \to \infty }I(z,t)=I^{+}_{steady}+I^-_{steady}=\frac{1}{Z_{L}+Z_{g}}V_{g}=YV^{+}-YV^{-}$
 
-# old
+## Detailed notes
 [SUMMARY](https://chatgpt.com/c/6820402d-98d8-800b-8878-eaa9558dba0a)
-## Boundary conditions for penetrable media & Reflection and Transmission & Bounce diagrams
+### Boundary conditions for penetrable media & Reflection and Transmission & Bounce diagrams
 incident, reflected, transmitted field
 ![[5EPB0/attachments/boundary conditions.png|300]]![[transient signal transfer.png|265]]
 on the boundary of plane dielectric layers: $[\lim_{ z \downarrow 0 }V(z,t)-\lim_{ z \uparrow 0 }V(z,t)]a_{z} \times e_{t}=0$
@@ -145,7 +159,7 @@ steady state no characteristic impedance, since no waves propagate. TL is short-
 For circuit theory see exam question example in folder...
 ![[wave propagation theory-1.png|300]]
 If there is complex load impedance there is phase and amplitude modulation of the reflected waves.
-## Transverse field vectors & Electromagnetic Power Balance
+### Transverse field vectors & Electromagnetic Power Balance
 [Poynting vector - YouTube](https://www.youtube.com/watch?v=g6IjaH7bjnI)
 $B=B_{0}\cos(kx-\omega t)$
 $E=E_{0}\cos(kx-\omega t)$
@@ -171,7 +185,7 @@ $W_{em}$ stored electromagnetic energy in (electric/magnetic field)
 $P_{diss}\text{ charge in free space}$
 
 ![[wave analysis.png|300]]![[bounce diagram two side.png|300]]
-### extra
+#### extra
 for transverse field: helmholz decomposition $F=-\nabla \Phi+\nabla  \times A$
 laplace equation...
 voltage and current normalization
@@ -182,11 +196,11 @@ for electromagnetic power balance: $F=qE+q\mu_{0}v \times H$ coulomb force + lor
 
 **!!!** **moment in time just after the switch has been activated, but before possible reflections from the end of the line have returned:**$\frac{V_{comp}}{Z}+I_{steady}=0\text{ since }I_{total}|_{z=0,t>0}$
 # Time-harmonic waves
-# new
+## Summary
 ![[should know.png|500]]
 $V_{SWR}=\frac{1+|\Gamma|}{1-|\Gamma|}$
 ![[wave decomposiiton.png|300]]
-# old
+## Detailed notes
 $E=Re[E_{s}(\omega)e^{j\omega t}]$
 ![[transfer and scatter matrix.png]]
 now instead of $\left\{ V^+\left( t-\frac{z}{c_{0}} \right),V^-\left( t+\frac{z}{c_{0}} \right) \right\}$
@@ -223,7 +237,8 @@ $A=D_{1}TC_{2}\to T=C_{1}AD_{2}$
 
 ![[scatter transfer matrix.png]]
 # Scattering matrix, phase and group speed, dispersion
-# new
+*Topic: [[S-Parameters and Impedance Matching]]*
+## Summary
 quarter-wavelength transformer optimal conditions:
 $l=\frac{\lambda_{2}}{4}\text{ and }Z_{2}=\sqrt{ Z_{1}Z_{3} }$
 ![[scatter matrix-1.png|500]]
@@ -232,7 +247,7 @@ $l=\frac{\lambda_{2}}{4}\text{ and }Z_{2}=\sqrt{ Z_{1}Z_{3} }$
 **Scattering matrix** or s-matrix descries how incoming waves are transformed into outgoing waves after interacting with a system.
 
 **Transfer matrix** or m-matrix relates waves amplitudes at different points within the system.
-# old
+## Detailed notes
 $l=\frac{\lambda}{4}\text{ transformer}$
 $k=\beta=\frac{2\pi}{\lambda}$
 $kl=\frac{\pi}{4}$
@@ -251,6 +266,7 @@ $V_{0}^+=f(t)\cos(\omega_{0}t)$ where $\omega_{0}$ carrier wave angular frequenc
 
 # PART 2
 # Plane waves in arbitrary directions - reflection and refraction at planar interfaces
+*Topic: [[Plane Waves and Reflection]]*
 ## slide info
 
 ## Summary
@@ -378,6 +394,7 @@ $\vec{H}=\frac{10}{\omega \mu}ke^{-jkz}(\vec{a_{z}}\times \vec{a_{x}})=\frac{10}
 $\text{time avgd power density: }\vec{S_{h}}=\frac{1}{2}Re\{\vec{E} \times \vec{H^*}\}=\frac{10^2}{2} \frac{k}{\mu \omega}\vec{a_{z}}$
 
 ## Reflection and Refraction
+*Topic: [[Plane Waves and Reflection]]*
 **only flat discontinuity is considered...**
 **boundary conditions essential... are solutions to integral form Maxwell equations**
 **Boundary Conditions:**
@@ -479,6 +496,7 @@ $\tan^2\theta_{B}=\frac{\epsilon_{2}}{\epsilon_{1}}=\frac{n_{2}^2}{n_{1}^2}$
 ![[5EPB0/attachments/TIR.png|300]]![[inhomogeneous plane wave.png|300]]
 5. $E=A\exp(-ax)\exp(-j\beta z) \text{ Waves that travel in one direction and decay (evanesce) in another direction Inhomogeneous wave}$
 # Guided waves
+*Topic: [[Waveguides]]*
 ## Summary
  $n_{1}>n_{2}\text{ then we have TIR, reasoning behind dielectric slab...}$
  ![[field description of TM modes inside and outside.png|300]]
@@ -532,6 +550,7 @@ The indices m, n, and p in the context of resonant cavities represent the mode n
 
 
 ## Parallel-Plate Waveguide
+*Topic: [[Waveguides]]*
 [Waveguides Explained - YouTube](https://www.youtube.com/watch?v=r9-m17IPOco)
 ![[mode propagation.png|200]]
 
@@ -570,6 +589,7 @@ The indices m, n, and p in the context of resonant cavities represent the mode n
 - $\vec{E_{z}}=0$
 ![[field distribution tem.png|200]]
 ## Rectangular Waveguides
+*Topic: [[Waveguides]]*
 - **The rectangular guide will support the TE and TM modes, but it will not support a TEM mode.**
 - $\text{propagation coefficient: }j\gamma \text{ free space: }\beta$
 - so the graph $\omega,(j\gamma/\beta)\text{ has straight line if }j\gamma \text{ since plane wave, otherwise if }\beta=\frac{\omega}{c}\text{ not straight...}$
@@ -682,6 +702,7 @@ $k_0 d \sqrt{n_1^2 - n_2^2} < \pi$ single mode condition
 
 $\lambda > 2d\sqrt{n_1^2 - n_2^2}\text{ since }k=\frac{2\pi}{\lambda}$ wavelength range of single mode operation
 # Radiation
+*Topic: [[Antennas and Radiation]]*
 ## Summary
 see behavior of far field and how dipole electric properties behave ($r$)
 
@@ -689,6 +710,7 @@ $S_{h,max}=\frac{G_{d}P_{rad}}{4\pi r^2}$ **Radiated Power**
 $S_{h}=\frac{1}{2}R\{ E \times H^* \}=\frac{\mid E_{\theta}\mid^2}{2Z_{0}(377 \Omega)}$ **Electric Field Calculation**
 
 ## The Electric Point Dipole
+*Topic: [[Antennas and Radiation]]*
 ![[deriving the dipole field equation.png|200]]![[expressing magnetic field.png|200]]![[expressing electric field.png|200]]
 ![[inhomogeneous helmholtz equation p1.png|300]]![[p2.png|300]]
 
@@ -713,6 +735,7 @@ $E=\frac{1}{j\omega \epsilon \mu}[\nabla \nabla \cdot A+k^2A]$
 ![[radiated power calculation.png|300]]
 $\beta=\omega \sqrt{ \mu \epsilon } \text{ and } Z=\sqrt{ \frac{\mu}{\epsilon} } \to \vec{S_{h}}=|I_{0}|^2(\beta d)^2Z \frac{\sin^2(\theta)}{32\pi^2r^2}$
 ## Magnetic point dipole & Antenna Specifications
+*Topic: [[Antennas and Radiation]]*
 [Near and far field - Wikipedia](https://en.wikipedia.org/wiki/Near_and_far_field)
 where antenna radiates: radiation pattern...
 ![[radiation pattern.png|300]]![[antenna load application.png|300]]
@@ -748,6 +771,7 @@ The directive gain of an antenna is the ratio of the maximum power flux in the f
 $\eta_{r}=\frac{P_{r}}{P_{in}}=\frac{G(\theta,\phi)}{D(\theta,\phi)}=\frac{G_{max}}{D_{max}}$
 $D(\theta,\phi)=\frac{1}{\eta_{r}}G(\theta,\phi)$
 ## Dipole Arrays
+*Topic: [[Antennas and Radiation]]*
 controlling distance and phase...
 ![[example of controlling the dipole antenna.png|300]]![[2 dipoles analysis.png|300]]
 ![[dipole array control.png|200]]![[pair of dipoles.png|200]]![[pair of dipoles assumptions.png|200]]

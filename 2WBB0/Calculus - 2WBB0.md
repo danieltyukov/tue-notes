@@ -1,3 +1,13 @@
+---
+course: 2WBB0
+name: Calculus
+area: Mathematics
+---
+> [!info] 2WBB0 Calculus
+> - **Area:** [[Mathematics]]
+> - **Topics:** [[Complex Numbers]] · [[Differential Equations]]
+> - **Related courses:** [[Math I - 2DE20]] · [[Math II - 5EMA0]] · [[Systems - 5ESB0]]
+
 ![[Calculus_2.pdf]]
 # Preliminaries
 ![[Calculus - 2WBB.png]]
@@ -173,6 +183,7 @@ $\cos(\pi-x)=-\cos x\text{ and }\sin(\pi-x)=\sin x$
 
 $\text{period of }\cos\left( \frac{\pi x}{2} \right)\text{ when }x=4\text{ then }\cos(2\pi)\text{ which is 1 period so one period in 4}$
 # Complex Numbers
+*Topic: [[Complex Numbers]]*
 https://medium.com/all-math-before-college/complex-numbers-4a1aeda2abb6
 
 imaginary component: y
@@ -512,6 +523,7 @@ $\int \ln(x) \, dx=\int 1\ln(x) \, dx$
 ![[partial fraction decomposition-2.png|400]]
 ![[interesting integration.png|300]]
 # Differential Equations
+*Topic: [[Differential Equations]]*
 ![[seperable differential eq.png|300]]![[linear diff.png|300]]
 
 ![[separable-differential-equations.png|400]]

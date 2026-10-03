@@ -1,3 +1,14 @@
+---
+course: 5ESB0
+name: Systems
+area: Signals and Systems
+---
+> [!info] 5ESB0 Systems
+> - **Area:** [[Signals and Systems]]
+> - **Topics:** [[Complex Numbers]] · [[Differential Equations]] · [[Fourier Transform]] · [[Laplace Transform]] · [[Transfer Functions and Frequency Response]] · [[Feedback and Stability]] · [[Controller Design]]
+> - **Related courses:** [[Signals II (DSP Fundamentals) - 5ESC0]] · [[Control Systems - 5ESD0]] · [[Calculus - 2WBB0]]
+> - **Notes by a friend:** [[Systems (friend) - 5ESB0]]
+
 > Dynamic systems (theory)
 > Transfer functions
 > Laplace transform
@@ -8,12 +19,13 @@
 > Feedback and feedforward
 > Feedback controllers (PID)
 
-[[Laplace Transform]]
-[[Fourier Analysis - Transform(Series)]]
+[[Laplace Transform (friend) - 5ESC0]]
+[[Fourier Analysis (friend) - 5ESC0]]
 ![[laplace transform table-1.png|300]]![[example of a transfer function.png|300]]
 
 $H(s)=\frac{3}{10s+3}\to \frac{1}{10} \frac{3}{s+ \frac{3}{10}} \to h(t)=\frac{3}{10}e^{-0.3t}$
 # Transfer Functions
+*Topic: [[Transfer Functions and Frequency Response]]*
 ![[system.png|500]]
 
 $y(t)=[g(t-t_{1})-g(t-t_{2})]c$
@@ -51,6 +63,7 @@ $\delta(t)\to$ 1 when $t=0$ and 0 $otherwise$ $\implies$ impulse signal
 	2. Decompose $u$ in piecewise constant terms -> $y(t)=\int_{-\infty}^{\infty} h(\tau)u(t-\tau) \, d\tau$ | $h(t)$ impulse response
 
 ## Extra: Complex Exponentials
+*Topic: [[Complex Numbers]]*
 ---
 ![[complex-exponentials.png|500]]
 ![[complex-coords.png|500]]
@@ -68,6 +81,7 @@ $\text{since open loop }E\to Y\text{ }E=-Y\text{ since }Y=G_{2} \cdot G_{1}\text
 ![[system types.png|300]]
     
 # Laplace Transform
+*Topic: [[Laplace Transform]]*
 Relation between $H(s)$ and $h(t)$
 >[!NOTE] Laplace Derivation
 > Substitute $u(t)=e^{st}$
@@ -92,11 +106,12 @@ Relation between $H(s)$ and $h(t)$
 ![[trig-ident.png|500]]
 ![[trig-ident-other.jpg|500]]
 
-### Inverse Laplace Transform:
+## Inverse Laplace Transform:
 ![[inverse-laplace-1.png|500]]
 ![[inverse-laplace-2.png|500]]
 
 # Dynamic Responses of Linear Systems
+*Topic: [[Differential Equations]]*
 
 Poles and zeros of $H$ come in complex conjugate pairs damping and (undamped) natural frequency.
 > Poles determine the natural (unforced) response of the system
@@ -111,6 +126,7 @@ only poles needed to determine stability of the system
 ![[dynamic-response-eg.png|500]]
 ![[s plane shifting.png|500]]
 # Second Order Systems / Fourier Transforms / System Interconnections and Stability
+*Topic: [[Fourier Transform]]*
 $\text{laplace transform of s:}s=-\sigma\pm j\omega_{d}$
 steady state $\sigma=0$
 
@@ -190,6 +206,7 @@ $\text{standard second-order system step response: }y(t)=1-\frac{e^{-\sigma t}}{
 > Bounded input-Bounded output (BIBO) = Stability (absolutely integrable): $\int_{-\infty}^{\infty} |h(t)| \, dt < \infty$
 
 # Feedback and Feedforward
+*Topic: [[Feedback and Stability]]*
 
 ![[closed-loop-analysis.jpg|500]]
 
@@ -237,6 +254,7 @@ $e_{ss}\lim_{ s \to 0 }[sE(s)]=\lim_{ s \to 0 }\left[ \frac{sR(s)}{1+G(s)} \righ
 ![[system-type.png|500]]
 
 # Feedback Controllers (PID)
+*Topic: [[Controller Design]]*
 [Pid Control Basics In Detail](https://theautomization.com/pid-control-basics-in-detail-part-2/)
 [Simple Examples of PID Control - YouTube](https://www.youtube.com/watch?v=XfAt6hNV8XM)
 [Proportional–integral–derivative controller - Wikipedia](https://en.wikipedia.org/wiki/Proportional%E2%80%93integral%E2%80%93derivative_controller#:~:text=An%20everyday%20example%20is%20the,engine%20in%20a%20controlled%20manner.)

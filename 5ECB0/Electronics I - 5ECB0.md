@@ -1,5 +1,16 @@
+---
+course: 5ECB0
+name: Electronics I
+area: Electronics
+---
+> [!info] 5ECB0 Electronics I
+> - **Area:** [[Electronics]]
+> - **Topics:** [[Semiconductors and PN Junctions]] · [[MOSFET]] · [[Transistor Amplifiers]] · [[Current Mirrors]] · [[Differential Amplifiers]] · [[Operational Amplifiers]] · [[Oscillators and Waveform Generators]]
+> - **Related courses:** [[Electronics II - 5ECC0]] · [[Biopotential and Neural Interface Circuits - 5XCC0]] · [[Photonics - 5XTB0]]
+
 ![[anode-cathode.png|300]]
-## Carriers
+# Carriers
+*Topic: [[Semiconductors and PN Junctions]]*
 - Intrinsic: electron-hole pair generated from thermal energy $n_{i} = p_{i}$
 - Doped: n-type (donor, n) and p-type (acceptor, p) $\to p\neq q,$ fixed (local) charge, globally neutral
 $$n_{i}*p_{i}=n*p=AT^3e^{-\frac{E_{g}}{kT}}$$
@@ -10,7 +21,7 @@ $$n_{i}*p_{i}=n*p=AT^3e^{-\frac{E_{g}}{kT}}$$
 > $p = N_{a}$ and $n=\frac{n_{i}^2}{N_{a}}$
 > $n = N_{d}$ and $p = \frac{p_{i}^2}{N_{d}}$
 
-## Current
+# Current
 - Drift current: directional, ~E
 	- $v_{pdrift} = \mu_{p}E,\ \mu=\frac{v}{E}$
 	- $v_{ndrift} = \mu_{n}E\ (\mu_{n} \approx 3\mu_{p} > \mu_{p})$
@@ -21,7 +32,8 @@ $$n_{i}*p_{i}=n*p=AT^3e^{-\frac{E_{g}}{kT}}$$
 	- $D = \mu\frac{kT}{q} = \mu V_{T} \\ \text{ (thermal voltage, } \frac{kT}{q} \approx 25mV - Si)$
 	- $J_{d} = q(F_{n} - F_{d}) = \frac{kT}{q}\left( \mu_{n}\frac{ \partial n }{ \partial x } - \mu_{p}\frac{ \partial p }{ \partial x }\right)$
 
-## P-N junction
+# P-N junction
+*Topic: [[Semiconductors and PN Junctions]]*
 - Equilibrium: diffusion of majority carriers, forming depletion region with E ($V_{0} = V_{T}\ln{\frac{N_{A}N_{D}}{n_{i}^2}} \approx 0.7V$) that cause drift that balance diffusion 
 ![[Pasted image 20230220161228.png|300]]
 ![[reversebiaseddiode.png|300]]
@@ -32,31 +44,33 @@ $$n_{i}*p_{i}=n*p=AT^3e^{-\frac{E_{g}}{kT}}$$
 $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_{0} \approx 0.7V,\ \partial v_{D}\approx-2mV/K)$
 - Reverse Bias: Capacitors, Forward Bias: Diodes
 
-### Small signal
+## Small signal
 - Resistance: $r_{d} = \frac{1}{\frac{ \partial i_{D} }{ \partial v_{D} }} = \frac{1}{\frac{I_{D}}{V_{T}}} = \frac{V_{T}}{I_{D}} = 25\Omega @1mA$
 - Capacitance:
 	- Depletion: $Q \propto \sqrt{ V_{0} + V_{R}} \to C_{j} = \frac{ \partial Q }{ \partial V } = \frac{C_{j_{0}}}{1 + \frac{V_{R}}{V_{0}}}$
 	- Diffusion: $C_{d} = \tau_{T} \frac{I_{D}}{V_{T}}$ 
 	![[Pasted image 20230220180955.png|300]]
 
-## Op-Amps
+# Op-Amps
+*Topic: [[Operational Amplifiers]]*
 
 - $v_{o}=A(V_{+}-V_{-})$
-### Inverting
+## Inverting
 ![[inverting.png|500]]
 - Ideal: $\frac{v_{o}}{v_{i}}=-\frac{R_{2}}{R_{1}}$
 - $R_{i}=R_{1}$ and $R_{o}=0$
 
 ![[weighted-summer.png]]
 
-### Non-Inverting
+## Non-Inverting
 ![[non-inverting.png|500]]
 - Ideal: $\frac{v_{o}}{v_{i}}=1+\frac{R_{2}}{R_{1}}$
 - $R_{i}=\infty$ and $R_{o}=0$
 
 > Voltage follower where no resistances on Non-inverting -> Amplify Current while keeping the voltage the same.
 
-### Difference Amplifiers
+## Difference Amplifiers
+*Topic: [[Differential Amplifiers]]*
 ![[difference-amp.png]]
 - $CMMR=20\log\left( \frac{A_{d}}{A_{cm}} \right)$
 > **Difference**
@@ -68,7 +82,8 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 > **Common Mode**
 > $A_{cm}=\left( 1+\frac{R_{2}}{R_{1}} \right)\left( \frac{R_{4}}{R_{3}+R_{4}} \right)v_{cm} - \frac{R_{2}}{R_{1}}v_{cm}$
 
-## Diodes
+# Diodes
+*Topic: [[Semiconductors and PN Junctions]]*
 
 **Bias analysis:**
 > V source = SC
@@ -88,6 +103,7 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 - half wave rectifier: $V_{avg}=\frac{v_{i}}{\pi}$
 
 # MOSFET/MOST
+*Topic: [[MOSFET]]*
 
 **When we say for example $V_{GS}$ means current is S->G since that's how charge flows.**
 
@@ -99,7 +115,7 @@ $\to i_{D} \propto e^{\frac{V_{D}-V_{th}}{V_{T}}},\ 60mV/decade,\ \ (V_{th} = V_
 ![[Pasted image 20230312200929.png]]
 
 ![[Pasted image 20230313195803.png]]
-### Small $v_{GS}$
+## Small $v_{GS}$
 Conductance: $g_{DS} = (\mu_{n}C_{ox})\left( \frac{W}{L} \right)(v_{GS}-V_{th}) = (\mu_{n}C_{ox})\left( \frac{W}{L} \right)v_{OV}$
 > $\mu_{n}$: mobility
 > $C_{ox}$: oxide capacitance
@@ -108,7 +124,7 @@ Conductance: $g_{DS} = (\mu_{n}C_{ox})\left( \frac{W}{L} \right)(v_{GS}-V_{th}) 
 > $v_{ov}=v_{GS}-V_{th}$: overdrive voltage
 -> Voltage controlled resistor with small $v_{DS}$
 
-### Tapered channel 
+## Tapered channel
 **Triode:** $i_{D}=k'_{n}\left( \frac{W}{L} \right)* \frac{1}{2}[V_{OV}+(V_{OV}-v_{DS})]v_{DS}=k'_{n}\left( \frac{W}{L} \right)( V_{OV}v_{DS}-\frac{1}{2} v^2_{DS})$
 	- Voltage controlled Resistor
 edge of saturation $V_{ov}=V_{DS}$
@@ -130,6 +146,7 @@ $V_{t}=V_{t_{0}}+\gamma [\sqrt{ 2\phi_{f}+V_{SB}} - \sqrt{ 2\phi_{f} }]$
 > $2\phi_{f} \approx 0.6V,\ \gamma \approx 0.4V^{1/2}$
 
 # Amplifier
+*Topic: [[Transistor Amplifiers]]*
 
 ![[volt-transfer-char.png]]
 
@@ -173,6 +190,7 @@ Maximum $v_{gs}$ swing: $V_{DS}-A_{v}\hat{v}_{gs}\geq V_{OV}+\hat{v}_{gs} \to v_
 Input resistance: $R_{in} = \frac{v_{in}}{i_{in}} = \frac{v_{in}}{\frac{v_{in}-v_{out}}{R_{G}}} = \frac{R_{G}}{1-A_{v}},\ A_{v} < 0$
 
 # Configurations
+*Topic: [[Transistor Amplifiers]]*
 ## Common source:
 
 ![[5ECB0/attachments/amp_cs.png]]
@@ -210,6 +228,7 @@ $A_{v}=\frac{g_{m}R_{L}v_{gs}}{v_{gs}(1+g_{m}R_{L})}=\frac{R_{L}}{R_{L}+\frac{1}
 - Last stage for low $R_{out}$
 ![[transistor-amplifier-summery.png]]
 # Current steering
+*Topic: [[Current Mirrors]]*
 ![[5ECB0/attachments/ss_current_mirror.png]]
 ![[iv_current_mirror.png]]
 
@@ -258,8 +277,9 @@ $\frac{v_{o_{1}}}{v_{cm}}=\frac{v_{o_{2}}}{v_{cm}}=-R_{D}i_{cm}=-\frac{R_{D}}{\f
 $A_{cm}=-\frac{R_{D}}{2R_{ss}} \frac{\Delta R_{D}}{R_{D}}$
 $CMRR=\frac{|A_{d}|}{|A_{cm}|}=(2g_{m}R_{ss}) / (\frac{\Delta R_{D}}{R_{D}}) \to (2g_{m}R_{ss}) / (\frac{\Delta g_{m}}{g_{m}})$
 $CMRR(dB)=20log \frac{|A_{d}|}{|A_{cm}|}$
-# Summery for EC2
+# Summary for EC2
 ## Limiters
+*Topic: [[Oscillators and Waveform Generators]]*
 [!NOTE] (Passive) Limiter Circuits
 >amplitude dependent gain
 >Hard Limiter (clipper): higher amplitude -> higher attenuation -> distortion

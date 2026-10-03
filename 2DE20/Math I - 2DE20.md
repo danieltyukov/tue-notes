@@ -1,13 +1,22 @@
+---
+course: 2DE20
+name: Math I (Linear Algebra)
+area: Mathematics
+---
+> [!info] 2DE20 Math I (Linear Algebra)
+> - **Area:** [[Mathematics]]
+> - **Topics:** [[Differential Equations]] · [[Linear Algebra]]
+> - **Related courses:** [[Calculus - 2WBB0]] · [[Math II - 5EMA0]] · [[Control Systems - 5ESD0]]
+
 Recommended: [3b1b](https://www.3blue1brown.com/topics/linear-algebra)
 
-## 2DE20
 $(ABC)^T = C^T B^T A^T$
 ![[matrix inverse.png]]
 ![[Pasted image 20230213220426.png]]
 ![[matrix multi.png]]
 ![[rref.jpg|500]]
 
-### Determinant
+# Determinant
 
 Triangular matrix: Product of diagonal
 Transforms:
@@ -18,7 +27,7 @@ Transforms:
 - Inverse: $\det(B)=\frac{1}{\det(A)}$
 - Scale: $\det(B)=k^n\det(A)$
 
-### Invertible
+# Invertible
 $(A^T)^{-1} = (A^{-1})^T$
 $(AB)^{-1}=B^{-1}A^{-1}$
 - A is row equivalent to $I_{n}$
@@ -27,7 +36,7 @@ $(AB)^{-1}=B^{-1}A^{-1}$
 - $\det(A)$ != 0
 - [[#Column Space]] of A == $R^{n}$
 
-### Vector space 
+# Vector space 
 - Addition 
 	1. V is closed under addition $u + v \in V, \forall u,v \in V$
 	2. Commutative
@@ -36,13 +45,13 @@ $(AB)^{-1}=B^{-1}A^{-1}$
 - Multiplication 
 	1. Distributive (scalar & vector)
 	2. Identity element: $1 \in V,\ 1u = u,\ \forall u \in V$
-#### Subspace
+## Subspace
 A subspace of vector space V is a subset W of V that has:
 1. The zero vector 0 of V is in W
 2. $u + v \in W,\ \forall u,v \in W$ is closed under vector addition
 3. $c \cdot u \in W,\ \forall u \in W c \in R$
 4.  **$0, V$** are trivial subspaces of V
-#### Column Space 
+## Column Space
 >Span: set of linear combinations of vectors
 >Colume space: span of column vectors
 >Basis: minimal subset of span that spans the vector space
@@ -67,22 +76,23 @@ $$
 > $rank(A) + \dim(null(A)) = size(A) \leftarrow \text{pivot cols + non-pivot cols = cols}$
 
 [Matrix Rank](https://statFranktrek.com/matrix-algebra/matrix-rank#:~:text=The%20maximum%20number%20of%20linearly%20independent%20vectors%20in%20a%20matrix,number%20of%20non%2Dzero%20rows.)
-### Eigenvalue, eigenvector
+# Eigenvalue, eigenvector
+*Topic: [[Linear Algebra]]*
 $Av=\lambda v \to \det(A-\lambda I_{n}) = 0$
 > $\det(A-\lambda I_{n})$: characteristic polynomial
 
 Eigenspace $E_{\lambda} = nul(A-\lambda I)$: containing all eigenvectors corresponding to $\lambda$
 
 ![[eigenvalues.png|400]]
-### Orthogonality
+# Orthogonality
 - If $\{w_{1}, w_{2},\dots, w_{m}\}$ is an orthogonal basis for subspace W in $\mathbb{R}^{n}$ then: $proj_{w}v = \displaystyle{\sum_{i=1}^{m}} \, \frac{v\cdot w_{i}}{w_{i}^{2}}w_{i}=UU^{T}v,\ U=[w_{1}, w_{2},\dots, w_{m}]$
 - Spectral decomposition: Eigenvectors ${w_{1},w_{2},\dots,w_{n}}$ forming orthonormal basis of $\mathbb{R}^{n}$ corresponding to eigenvalues $\lambda_{1}, \lambda_{2},\dots, \lambda_{n}$: $A\to \displaystyle{\sum_{i=1}^{n}} \, \lambda_{i}w_{i}w_{i}^{T}$
-### Gram-Schmidt process
+# Gram-Schmidt process
 Convert arbitrary basis $S=\{u_{1}, u_{2},\dots ,u_{m}\} \to \text{orthogonal basis } T=v_{1}, v_{2},\dots ,v_{m}$
 - $v_{1} = u_{1}$
 - $W_{i}=Span \{u_{1}, u_{2},\dots ,u_{i}\} = Span \{ v_{1}, v_{2},\dots,u_{i} \},\ v_{i}\perp W_{i-1} \to v_{i} = u_{i} - proj_{W_{i-1}}u_{i} = u_{i}-\displaystyle{\sum_{n=1}^{i-1}} \, \frac{u_{i}v_{n}}{v_{n}^{2}}v_{n}$
 
-### Diagonalization
+# Diagonalization
 Similar matrix: $\exists P,\ P^{-1}AP=B\to$ A similar to B 
 > $A\to P^{-1}AP$: similar transformation -> switching to eigenvectors basis -> guarantee diagonal matrix
 > Same characteristic polynomial -> same eigenvalues
@@ -128,7 +138,8 @@ Re(\lambda) & Im(\lambda) \\
 \end{pmatrix}
 $$
 
-### Differential equation:
+# Differential equation:
+*Topic: [[Differential Equations]]*
 $x'=Ax \Rightarrow \text{Decoupled system: }u'=Du,\ u=P^{-1}x,\ D=P^{-1}AP$
 $\Rightarrow x(t)=\displaystyle{\sum_{i=1}^{n}} \,b_{i}p_{i}e^{\lambda_{1}t},\ P = [p_{1}, p_{2},\dots, p_{n}] \,$
 
@@ -139,7 +150,7 @@ Real solution:  $x_{1}=Re(x)=\frac{1}{2}(x+\overline{x})$
 $x_{2}=Im(x)=\frac{1}{2}(x-\overline{x})$
 $x_{real}=b_{1}x_{1}+b_{2}x_{2}$
 
-## Symmetric matrix:
+# Symmetric matrix:
 Symmetric matrix: $A=A^{T}$
 > [!cite] Theorem:
 > 1. Have n real eigenvalues

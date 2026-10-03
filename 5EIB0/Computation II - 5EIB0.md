@@ -1,6 +1,17 @@
+---
+course: 5EIB0
+name: Computation II
+area: Computer Engineering
+---
+> [!info] 5EIB0 Computation II
+> - **Area:** [[Computer Engineering]]
+> - **Topics:** [[Digital Logic]] · [[Finite State Machines and Automata]] · [[Hardware Description Languages and FPGAs]] · [[Instruction Set Architecture]] · [[Processor Datapath and Pipelining]] · [[Caches and Memory Hierarchy]] · [[Processes, Threads and Synchronization]] · [[Parallel Computing]]
+> - **Related courses:** [[Operating Systems - 2INC0]] · [[Computation Modeling - 5XIE0]] · [[Electronics II - 5ECC0]]
+> - **Resit notes:** [[Cache (resit) - 5EIB0]] · [[Compiler (resit) - 5EIB0]] · [[Computation I Recap (resit) - 5EIB0]] · [[FPGA (resit) - 5EIB0]] · [[Finite State Machine (resit) - 5EIB0]] · [[Floating Point (resit) - 5EIB0]] · [[GPU (resit) - 5EIB0]] · [[Instructions (resit) - 5EIB0]] · [[Overview (resit) - 5EIB0]] · [[Parallel Computing (resit) - 5EIB0]] · [[Processor Design (resit) - 5EIB0]]
+
 # Goals
 [The Hitchhiker's Guide to the CPU Hardware - YouTube](https://www.youtube.com/watch?v=OKt1SPaqeVs&list=WL&index=48)
-### Summary
+## Summary
 **Computer architecture:**
 - multi-cycle processors (hardware-performance trade off)
 - pipelining (hazards and forwarding)
@@ -18,12 +29,12 @@
 - embedded system design concepts
 - real-time systems
 - interfacing with sensors and actuators i/o
-### Learning Goals
+## Learning Goals
 - synthesize a pipelined computer architecture using a hardware description language (HDL);
 - develop custom hardware using synthesis tools;
 - integrate computer systems within a larger embedded control system;
 - develop systems that meet the real-time constraints of embedded applications.
-### General Goals
+## General Goals
 In depth:
 	- computer architecture (including memory hierarchy)
 	- Processor Design and Implementation of RISC processors (all the details about 5-stage pipelined MIPS)
@@ -32,7 +43,7 @@ Introductory:
 	- Operating systems
 	- multi core processors
 	- GPUs (Graphic Processing Units) and Vector processors
-### Learning Outcomes
+## Learning Outcomes
 • Working knowledge of the properties and function of modern computer architectures and be able to compare them. 
 • Quantitatively analyze the performance of modern computer architectures, including their memory subsystem. 
 • Working knowledge of the basic functionality of Operating Systems – Basic knowledge of implementing a Linux driver 
@@ -41,11 +52,11 @@ Introductory:
 • Design an FSM and code it in Verilog 
 • Design a pipelined RISC type of processor in Verilog 
 • Optimize execution of a specific application by adapting: – the application program – processor hardware
-### Labs
+## Labs
 Lab is split in two parts: 
 – Verilog: Hardware design using Finite State Machines (FSMs) 
 – mMIPS: Computer Architecture and Hardware Design
-### Theory
+## Theory
 • Book "Comp. Org and Design" (6th ed.), study sections: 
 	• Appendix B1-5, B7-8, B10 (important for labs) 
 	• 2.1-2.14 • 4.1-4.13 
@@ -64,6 +75,7 @@ Lab is split in two parts:
 - **Combinational Logic**: No memory; output based only on current inputs. (AND, OR etc...)
 - **Sequential Logic**: Contains memory; output depends on inputs and stored state. (registers / flip-flops, register files, RAM, etc...)
 ## Combinational Logic
+*Topic: [[Digital Logic]]*
 **Decoders**
 - Converts $n\text{-bit}$ input to max $2^n$ outputs. (could also be $2n$ etc..)
 - Only one output is true based on the input's binary value.
@@ -101,6 +113,7 @@ Lab is split in two parts:
 - ROMs for storing fixed logic functions, especially useful in initialization or configuration settings.
 
 ## HDL Verilog
+*Topic: [[Hardware Description Languages and FPGAs]]*
 ref: https://sutherland-hdl.com/pdfs/verilog_2001_ref_guide.pdf
 ![[verilog flow.png|300]]
 short:https://www.youtube.com/watch?v=2IReMT_zjK8
@@ -208,6 +221,7 @@ endmodule
 - Signed and unsigned types, arrays, initialization with declaration.
 
 ## Arithmetic Logic Unit (ALU)
+*Topic: [[Digital Logic]]*
 **Overview**
 - The ALU is the core component that performs arithmetic (addition, subtraction) and logical operations (AND, OR) in a computer.
 - A 32-bit wide ALU can be constructed by connecting 32 1-bit ALUs.
@@ -246,6 +260,7 @@ https://www.youtube.com/watch?v=wx0NyUfpm48
 **Sequential Logic Design**
 - Involves state elements providing inputs to combinational logic blocks, whose outputs are then fed back into state elements. This cycle requires careful timing to ensure data sampled by the clock edge is valid.
 ## Memory Elements: Flip-Flops, Latches, and Registers
+*Topic: [[Digital Logic]]*
 **S-R Latch**
 - Built from cross-coupled NOR gates, storing state when neither S (Set) nor R (Reset) are asserted.
 - Asserting S sets Q, asserting R resets Q. Asserting both S and R can lead to unpredictable behavior.
@@ -278,6 +293,7 @@ https://www.youtube.com/watch?v=wx0NyUfpm48
 ![[register file.png|200]]![[register file deeper.png|200]]
 
 ## Finite-State Machines
+*Topic: [[Finite State Machines and Automata]]*
 main: https://www.youtube.com/watch?v=kb-Ww8HaHuE
 difference: https://www.youtube.com/watch?v=YiQxeuB56i0
 **Definition and Components**
@@ -299,6 +315,7 @@ difference: https://www.youtube.com/watch?v=YiQxeuB56i0
 
 ![[moore machine.png|400]]![[mealy machine.png|400]]![[example of moore mealy.png|300]]![[register transfer level (RTL) moore mealy.png|300]]
 ## FSM Verilog
+*Topic: [[Hardware Description Languages and FPGAs]]*
 ![[moore machine in RTL.png|400]]
 ![[parity checker.png|400]]
 ![[moore fsm test bench.png|400]]
@@ -306,6 +323,7 @@ difference: https://www.youtube.com/watch?v=YiQxeuB56i0
 ![[operators.png|400]]
 ![[short version of verilog.png|400]]
 # MIPS Recap, MIPS Pipelined
+*Topic: [[Instruction Set Architecture]]*
 ## Lecture
 (lui) not really a load doesn't load from data memory
 branch instruction works in the following way:
@@ -374,6 +392,7 @@ pseudo blt
 - Sign extension: Extends a number to a larger bit width by replicating the sign bit.
 - Negation shortcut: Invert all bits and add $1$ to negate a two's complement number.
 ## Representing Instructions in the Computer
+*Topic: [[Instruction Set Architecture]]*
 - Register mapping: `$s0-$s7` map to registers `16-23`; `$t0-$t7` map to registers `8-15`.
 - Hexadecimal conversion is utilized for easier representation and understanding of binary instructions. (4 bits, 0-F) (base 16)
 ![[mips instruction formats.png|400]]
@@ -478,6 +497,7 @@ Exit loop if the character 0. Exit if last character of string.
 - **Compiler Role**:
     - Modern compilers can optimize array code to match pointer efficiency, negating the traditional performance rationale for using pointers.
 # MIPS Hazards, Branch Predictions
+*Topic: [[Processor Datapath and Pipelining]]*
 forwarding conditions exam questions
 [L8 4 forwarding - YouTube](https://www.youtube.com/watch?v=7n5VY1k8a4o)
 you can bypass but at least one bubble is needed in between
@@ -509,6 +529,7 @@ you can bypass but at least one bubble is needed in between
 
 - **False Statement**: Multiple register files are not required for edge-triggered writes in MIPS datapath.
 ## Building a Datapath
+*Topic: [[Processor Datapath and Pipelining]]*
 - **Components**: Instruction memory, PC (Program Counter), adder (increments PC), register file, ALU, data memory, sign extension unit.
 
 - **R-type Instructions**:
@@ -549,6 +570,7 @@ you can bypass but at least one bubble is needed in between
 - $CPU=\frac{\text{CPU clock cycles}}{\text{Instruction count}}=\frac{\sum\text{Instruction count}_{i}CPI_{i}}{\text{Instruction count}}=\sum \frac{\text{Instruction count}_{i}}{\text{Instruction count}}\times CPI_{i}$
 ![[multicycle execution.png|200]]![[cpi penalty.png|200]]![[CPI impact of branches.png|200]]
 ## An Overview of Pipelining
+*Topic: [[Processor Datapath and Pipelining]]*
 - **Pipelining**: Technique to overlap instruction execution, improving throughput without affecting latency per instruction.
 - **MIPS Pipeline Stages**: 5 - Fetch, Decode, Execute, Memory Access, Write Back.
 - **Hazards**:
@@ -571,6 +593,7 @@ you can bypass but at least one bubble is needed in between
 - **Control Lines Grouped**: By stages. Key ones are `RegDst`, `ALUOp`, `ALUSrc` for EX; `Branch`, `MemRead`, `MemWrite` for MEM; `MemtoReg`, `RegWrite` for WB.
 - **Control Implementation**: Set during ID, passed down with extended pipeline registers.
 ## Data Hazards: Forwarding versus Stalling
+*Topic: [[Processor Datapath and Pipelining]]*
 - **Data Hazards**: Instructions depend on the results of previous instructions.
 - **Forwarding**: Directly passes results to dependent instructions, reducing wait times.
 - **Stalling**: Inserts NOPs(no operation instructions) to wait for necessary data, used when forwarding is not feasible.
@@ -627,6 +650,7 @@ x86 controll can be improved with funny loop
 - **DGEMM Optimization with AVX512**: Utilizes subword parallelism for significant speedup in matrix multiplication, showcasing the impact of SIMD extensions on computational efficiency.
 - **Performance Boost**: AVX implementation of DGEMM achieves a 7.5x speedup, closely approaching the theoretical 8x improvement expected from using parallel operations.
 ## Introduction to Operating Systems
+*Topic: [[Processes, Threads and Synchronization]]*
 ![[networking distribution systems.png|200]]![[time sharing process control block.png|200]]
 - **Computer System Levels**:
 	- **Level 0**: Digital Logic/Gate Level
@@ -688,6 +712,7 @@ x86 controll can be improved with funny loop
 - **Context Switch**: Saving and restoring process state for CPU handoff.
 - **Process Scheduler**: Algorithm that selects the next process for execution.
 ## Process Synchronization
+*Topic: [[Processes, Threads and Synchronization]]*
 ### Concepts
 - **Critical Section:** Code accessing shared resources, requiring mutual exclusion.
 - Race Conditions: Unpredictable outcomes from concurrent access.
@@ -717,6 +742,7 @@ x86 controll can be improved with funny loop
 - **Atomicity**: Essential for operations on shared resources.
 - **Semaphores**: Key tool for managing concurrent process interactions.
 ## Threads
+*Topic: [[Processes, Threads and Synchronization]]*
 [Difference between Process and Thread - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-process-and-thread/)
 ![[thread example.png|300]]
 ### Concepts
@@ -741,6 +767,7 @@ x86 controll can be improved with funny loop
 ### Efficiency
 - Threads offer a model for concurrent execution with minimal overhead, ideal for tasks requiring frequent interaction or shared data access.
 # Memory/JVM, Cache, I/O, Virtual Memory and SIMD (Memory Hierarchy)
+*Topic: [[Caches and Memory Hierarchy]]*
 ![[associative block example.png|300]]![[cache memory performance equation.png|300]]
 ## Introduction to Large and Fast: Exploiting Memory Hierarchy
 ![[5EIB0/attachments/memory hierarchy.png|200]]![[cache memory performance improvement.png|200]]
@@ -774,6 +801,7 @@ x86 controll can be improved with funny loop
 - Faster memory = higher cost.
 - Hierarchies balance access speed with storage cost.
 ## The Basics of Caches
+*Topic: [[Caches and Memory Hierarchy]]*
 ![[direct cache mapping.png|200]]![[cache memory behaviour.png|200]]![[cache operation flow.png|200]]
 ![[cache size calculation.png|200]]![[mapping an address to a multiword cache block.png|200]]![[block organization.png|200]]
 
@@ -791,7 +819,7 @@ x86 controll can be improved with funny loop
 ### Access Steps
 1. **Address to Cache**: Checks if data is in cache.
 2. **Hit or Miss**: If miss, fetch from memory and refill cache.
-### Accessing a Cache 
+### Accessing a Cache
 1. **Read Requests**: Simple; involve checking tag and valid bit. 
 2. **Write Requests**: More complex due to maintaining cache and memory consistency. Options include write-through and write-back strategies.
 ### Intrinsity FastMATH Example
@@ -804,6 +832,7 @@ x86 controll can be improved with funny loop
 - **Memory Bandwidth**: Crucial for transferring large blocks efficiently.
 - **Write Buffer**: Mitigates stall times in write-through caches. (A queue that holds data while the data is waiting to be written to memory.)
 ## Measuring and Improving Cache Performance
+*Topic: [[Caches and Memory Hierarchy]]*
 - **CPU Time** = (CPU execution clock cycles + Memory - stall clock cycles) * Clock cycle time
 ![[stall clock cycles.png|200]]![[cache performance.png|200]]
 ### Multilevel Caches
@@ -888,6 +917,7 @@ vector processing
 - **Directory-Based Coherence**: Tracks shared data in a central directory for scalability.
 - **Consistency Models**: Dictate when updates to shared data become visible across processors.
 # MIMD/GPU, Deep Learning and Neural Processing Units, Operating Systems
+*Topic: [[Parallel Computing]]*
 **A process is an instance of a program that is being executed or processed.** **Thread is a segment of a process or a lightweight process that is managed by the scheduler independently**.
 [Difference between Process and Thread - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-process-and-thread/)
 Check how to create an IPC and understand the code.
@@ -922,6 +952,7 @@ latency hiding.
 - **Strong scaling** limited by Amdahl's Law.
 - **Load balancing** crucial for utilization and speed-up.
 ## SISD, MIMD, SIMD, SPMD, and Vector
+*Topic: [[Parallel Computing]]*
 ![[amdahl law.png|200]]![[amdahl example.png|200]]![[amdahl scaling example.png|200]]
 ![[flynn model.png|200]]
 - **SISD**: Single Instruction stream, Single Data stream. Classic uniprocessor.
@@ -961,6 +992,7 @@ latency hiding.
   - Proper synchronization ensures data consistency across processors.
   - OpenMP aids in loop parallelization and data reduction in SMPs.
 ## Introduction to Graphics Processing Units
+*Topic: [[Parallel Computing]]*
 ![[gpu vs cpu.png|200]]![[gpu summary.png|200]]![[gpu warps.png|200]]
 ![[thread diverge in warp.png|200]]
 - **GPUs vs CPUs**: GPUs focus on parallel processing for graphics; CPUs handle diverse tasks. GPUs use multithreading and high-bandwidth memory; CPUs use caches for memory efficiency.

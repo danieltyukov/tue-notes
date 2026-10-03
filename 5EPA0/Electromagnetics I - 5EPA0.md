@@ -1,3 +1,13 @@
+---
+course: 5EPA0
+name: Electromagnetics I
+area: Electromagnetics and Waves
+---
+> [!info] 5EPA0 Electromagnetics I
+> - **Area:** [[Electromagnetics and Waves]]
+> - **Topics:** [[Vector Calculus]] · [[Maxwell Equations]] · [[Magnetic Circuits and Transformers]]
+> - **Related courses:** [[Electromagnetics II - 5EPB0]] · [[Electromechanics - 5EWA0]]
+
 Gauss Divergence Theorem: https://www.youtube.com/watch?v=zZqxbwl3Dno | https://www.youtube.com/watch?v=pY4t-ikhzhU
 Stokes Theorem: https://www.youtube.com/watch?v=0UvNF_cfBJ4
 
@@ -19,12 +29,13 @@ flux: https://www.youtube.com/watch?v=m1PPujngqAw
 [What Is a Plane Wave?](https://www.youtube.com/watch?v=ES2WFevGM0g)
 [Here's What Maxwell's Equations ACTUALLY Mean.](https://www.youtube.com/watch?v=XAKAlNH9dDw)
 # Mathematical Tools
+*Topic: [[Vector Calculus]]*
 
 ![[phasor form.png|200]]![[polar to phasor.png|150]]
 ![[fourier transform properties.png|200]]![[5EPB0/attachments/fourier transform pairs.png|200]]
 ![[unit vector cross product.png|200]]
 
-### Vector calculations for EM shapes
+## Vector calculations for EM shapes
 - Dot product: cos
 - Cross product: sin
 - So think if things are parallel or perpendicular to each other in the plane, if its 0 or 1
@@ -42,31 +53,31 @@ flux: https://www.youtube.com/watch?v=m1PPujngqAw
 >$\rho _s=area$ $\rho_{V}=volume$
 
 - unit vector, vector divide by distance
-###### Two Points
+### Two Points
 Distance: $R=\mid r_{2}-r_{1}\mid=\sqrt{ (x_{2}-x_{1})^2+(y_{2}-y_{1})^2+(z_{2}-z_{1})^2 }$
 Line through two points: $r=r_{1}+p(r_{2}-r_{1})$
 Projection: A onto B $\frac{A \cdot{B} }{\mid B\mid}$
-###### Dot Product - Scalar
+### Dot Product - Scalar
 $A \cdot B=\mid A\mid\mid B\mid \cos(\psi)$
 >[!NOTE] Dot Product of Unit Vectors
 >$a_{z}\cdot a_{r}=\cos(\theta)$ as they are unit vectors
-###### Cross Product - Vector
+### Cross Product - Vector
 $\mid A \times B \mid=\mid A\mid\mid B\mid \sin(\psi)$
 
 ![[cross-prod.png|300]]
 
-###### Cartesian Coordinates
+### Cartesian Coordinates
 **Unit vectors: $a_{x},a_{y},a_{z}$, Position vector: $r_{p}=xa_{x}+ya_{y}+za_{z}$, Vector field: $A=A_{x}a_{x}+A_{y}a_{y}+A_{z}+Aa_{z}$, Line elements: $dx,dy,dz$, Incremental distance: $dl=dxa_{x}+d_{y}a_{y}+d_{z}a_{z}$, Volume element: $dV=dxdydz$**
 ![[cart-coord-1.png|100]]
 ![[cart-coord-2.png|100]]
 
-###### Circular Cylindrical Coordinates
+### Circular Cylindrical Coordinates
 ![[circ-coord.png|300]]
 **Unit vector: $a_{p},a_{\phi},a_{z}$, Position vector: $r_{p}=\rho a_{\rho}(\phi)+za_{z}$, Vector field: $A=A_{\rho}a_{\rho}+A_{\phi}a_{\phi}+A_{z}a_{z}$, Line elements: $d\rho,\rho d\phi,dz$, Incremental distance: $dl=d\rho a_{\rho}+\rho d\phi a_{\phi}+dza_{z}$, Volume element: $dV=\rho do\rho d\phi dz$**
 ![[circl-coord-1.png|200]]
 ![[circ-coord-2.png|200]]
 
-###### Spherical coordinates
+### Spherical coordinates
 ![[spher-coord.png|300]]
 **Unit vectors: $a_{r},a_{\theta},a_{\phi}$, Position vector: $r_{p}=ra_{r}(\theta,\phi)$, Vector field: $A=A_{r}a_{r}+A_{\theta}a_{\theta}+A_{\phi}a_{\phi}$, Line elements: $dr,rd\theta,r\sin \theta d\phi$, Incremental distance: $dl=dra_{r}+rd\theta a_{\theta}+r\sin\theta d\phi a_{\phi}$, Volume element: $dV=r^2\sin \theta drd\theta d\phi$**
 ![[spher-coord-1.png|200]]
@@ -75,6 +86,7 @@ $\mid A \times B \mid=\mid A\mid\mid B\mid \sin(\psi)$
 ![[paramtrization.png|300]]
 ![[differential-operatorss.png]]
 # Electrostatics
+*Topic: [[Maxwell Equations]]*
 
 $E=\frac{V}{length}$
 
@@ -193,6 +205,7 @@ $F=q(E+v \times B)$
 
 $q \cdot \vec{v}=I$
 # Magnetostatics
+*Topics: [[Maxwell Equations]] · [[Magnetic Circuits and Transformers]]*
 
 **The magnetic field H might be thought of as the magnetic field produced by the flow of current in wires and the magnetic field B as the total magnetic field including also the contribution M made b OP for Live Preview. You can also use Minimal Theme which includes the snippet bundled in, and is kept up to date for new versions of Obsidian.y the magnetic properties of the materials in the field.**
 
@@ -258,6 +271,7 @@ The dot product boundary condition: Normal, while the cross product is the tange
 ![[flux-linkage.png|400]]
 ![[mutual-coupling.png|400]]
 # Time-Dependent Fields & Waves
+*Topic: [[Maxwell Equations]]*
 
 **Lenz's Law: The direction of the induced current is such as to oppose the very cause producing it**
 
