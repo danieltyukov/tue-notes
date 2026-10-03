@@ -1,0 +1,28 @@
+@use "./base.scss";
+@use "./variables.scss" as *;
+
+// Site styles on top of Quartz's defaults. Copied to quartz/styles/custom.scss
+// by site/build.sh.
+
+// Long formulas scroll sideways inside the text column instead of making the
+// whole page scroll on small screens. MathJax cannot wrap inline math.
+@media all and #{$mobile} {
+  article mjx-container {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    vertical-align: middle;
+    scrollbar-width: thin;
+  }
+
+  article mjx-container[display="true"] {
+    display: block;
+  }
+}
+
+// Callout bodies are grid containers; without this their paragraphs grow to
+// fit a wide formula and get cut off instead of letting it scroll.
+.callout-content > * {
+  min-width: 0;
+}

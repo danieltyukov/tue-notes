@@ -1,0 +1,67 @@
+name: Website
+
+# Builds the notes website with Quartz. Pushes to the default branch are
+# deployed to GitHub Pages; pull requests are only built, to catch problems
+# before they are merged.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-${{ github.event_name == 'pull_request' && github.ref || 'deploy' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Full history gives each page a real "last updated" date. The blob
+          # filter skips downloading old versions of files, which keeps the
+          # checkout fast.
+          fetch-depth: 0
+          filter: blob:none
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Configure Pages
+        id: pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v6
+
+      - name: Build site
+        run: ./site/build.sh
+        env:
+          SITE_BASE_URL: ${{ steps.pages.outputs.base_url }}
+          SITE_REPO: ${{ github.repository }}
+          SITE_BRANCH: ${{ github.event.repository.default_branch }}
+
+      - name: Upload site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/.build/quartz/public
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
