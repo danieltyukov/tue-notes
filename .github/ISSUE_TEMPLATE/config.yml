@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How to contribute
+    url: https://github.com/danieltyukov/tue-notes/blob/master/CONTRIBUTING.md
+    about: Read this before opening a pull request.

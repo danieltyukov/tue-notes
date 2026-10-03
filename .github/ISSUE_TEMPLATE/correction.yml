@@ -1,0 +1,24 @@
+name: Mistake or unclear explanation
+description: Report an error, a broken image or link, or something that is hard to follow.
+labels: ["correction"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Link to the page on the website, or the path of the note in the repository.
+      placeholder: https://danieltyukov.github.io/tue-notes/5ESD0/Control-systems---5ESD0
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Quote the part of the note if you can, and say what you think it should be.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: Optional. A textbook section, lecture, or other reference that backs up the correction.
