@@ -8,33 +8,43 @@ Corrections, better explanations and notes for new courses are welcome. See [Con
 
 ## Courses
 
-| Code | Course | Extra notes |
+| Area | Code | Course |
 | --- | --- | --- |
-| 2DE20 | [Math I (linear algebra)](2DE20/Math%20I%20-%202DE20.md) | |
-| 2INC0 | [Operating Systems](2INC0/Operating%20Systems%20-%202INC0.md) | |
-| 2WBB0 | [Calculus](2WBB0/Calculus%20-%202WBB0.md) | |
-| 5ECB0 | [Electronics I](5ECB0/Electronics%20I%20-%205ECB0.md) | |
-| 5ECC0 | [Electronics II](5ECC0/Electronics%20II%20-%205ECC0.md) | `ec2-resit/` |
-| 5EIB0 | [Computation II](5EIB0/Computation%20II%20-%205EIB0.md) | `resit/` |
-| 5EMA0 | [Math II](5EMA0/Math%20II%20-%205EMA0.md) | |
-| 5EPA0 | [Electromagnetics I](5EPA0/Electromagnetics%20I%20-%205EPA0.md) | |
-| 5EPB0 | [Electromagnetics II](5EPB0/Electromagnetics%20II%20-%205EPB0.md) | |
-| 5ESB0 | [Systems](5ESB0/Systems%20-%205ESB0.md) | |
-| 5ESC0 | [Signals II (DSP fundamentals)](5ESC0/DSP%28digital%20signal%20processing%29%20fundamentals%20%28signals%20II%29%20-%205ESC0.md) | `friends-notes/` |
-| 5ESD0 | [Control Systems](5ESD0/Control%20systems%20-%205ESD0.md) | |
-| 5ETB0 | [Communication Theory](5ETB0/Communication%20Theory%20-%205ETB0.md) | |
-| 5ETC0 | [Communication 1](5ETC0/Communication%201%20-%205ETC0.md) | |
-| 5EWA0 | [Electromechanics](5EWA0/Electromechanics%20-%205EWA0.md) | |
-| 5EWB0 | [Electric Power Systems](5EWB0/EPS%20-%205EWB0.md) | |
-| 5XCC0 | [Biopotential and Neural Interface Circuits](5XCC0/Biopotential%20and%20neural%20interface%20circuits%20-%205XCC0.md) | |
-| 5XIC0 | [Electronic Systems Engineering](5XIC0/Electronic-Systems%20Engineering%20-%205XIC0.md) | |
-| 5XIE0 | [Computation Modeling](5XIE0/Computation%20Modeling.md) | |
-| 5XTA0 | [Telecommunication Systems](5XTA0/Telecommunications%20Systems.md) | |
-| 5XTB0 | [Photonics](5XTB0/Photonics%20-%205XTB0.md) | |
-| 5XTC0 | [Components in Wireless Technologies](5XTC0/Components%20in%20wireless%20technologies%20-%205XTC0.md) | |
-| BEP | [Bachelor end project: gold-bump flip-chip bonding for RF ICs](BEP/Development_and_Characterization_of_a_Gold-Bump%20Flip-Chip_Bonding_Process_for_RF_IC_Applications.md) | |
+| [Mathematics](Areas/Mathematics.md) | 2DE20 | [Math I (linear algebra)](2DE20/Math%20I%20-%202DE20.md) |
+| [Mathematics](Areas/Mathematics.md) | 2WBB0 | [Calculus](2WBB0/Calculus%20-%202WBB0.md) |
+| [Mathematics](Areas/Mathematics.md) | 5EMA0 | [Math II (optimization and probability)](5EMA0/Math%20II%20-%205EMA0.md) |
+| [Signals and Systems](Areas/Signals%20and%20Systems.md) | 5ESB0 | [Systems](5ESB0/Systems%20-%205ESB0.md) (+ notes by a friend) |
+| [Signals and Systems](Areas/Signals%20and%20Systems.md) | 5ESC0 | [Signals II (DSP fundamentals)](5ESC0/Signals%20II%20%28DSP%20Fundamentals%29%20-%205ESC0.md) (+ notes by a friend) |
+| [Signals and Systems](Areas/Signals%20and%20Systems.md) | 5ESD0 | [Control Systems](5ESD0/Control%20Systems%20-%205ESD0.md) |
+| [Electronics](Areas/Electronics.md) | 5ECB0 | [Electronics I](5ECB0/Electronics%20I%20-%205ECB0.md) |
+| [Electronics](Areas/Electronics.md) | 5ECC0 | [Electronics II](5ECC0/Electronics%20II%20-%205ECC0.md) (+ resit notes) |
+| [Electronics](Areas/Electronics.md) | 5XCC0 | [Biopotential and Neural Interface Circuits](5XCC0/Biopotential%20and%20Neural%20Interface%20Circuits%20-%205XCC0.md) |
+| [Electronics](Areas/Electronics.md) | 5XIC0 | [Electronic Systems Engineering](5XIC0/Electronic%20Systems%20Engineering%20-%205XIC0.md) |
+| [Electronics](Areas/Electronics.md) | BEP | [Bachelor end project: gold-bump flip-chip bonding for RF ICs](BEP/Bachelor%20End%20Project%20-%20BEP.md) |
+| [Electromagnetics and Waves](Areas/Electromagnetics%20and%20Waves.md) | 5EPA0 | [Electromagnetics I](5EPA0/Electromagnetics%20I%20-%205EPA0.md) |
+| [Electromagnetics and Waves](Areas/Electromagnetics%20and%20Waves.md) | 5EPB0 | [Electromagnetics II](5EPB0/Electromagnetics%20II%20-%205EPB0.md) |
+| [Electromagnetics and Waves](Areas/Electromagnetics%20and%20Waves.md) | 5XTB0 | [Photonics](5XTB0/Photonics%20-%205XTB0.md) |
+| [Electromagnetics and Waves](Areas/Electromagnetics%20and%20Waves.md) | 5XTC0 | [Components in Wireless Technologies](5XTC0/Components%20in%20Wireless%20Technologies%20-%205XTC0.md) |
+| [Communications and Networking](Areas/Communications%20and%20Networking.md) | 5ETB0 | [Communication Theory](5ETB0/Communication%20Theory%20-%205ETB0.md) |
+| [Communications and Networking](Areas/Communications%20and%20Networking.md) | 5ETC0 | [Communication 1](5ETC0/Communication%201%20-%205ETC0.md) |
+| [Communications and Networking](Areas/Communications%20and%20Networking.md) | 5XTA0 | [Telecommunications Systems](5XTA0/Telecommunications%20Systems%20-%205XTA0.md) |
+| [Computer Engineering](Areas/Computer%20Engineering.md) | 2INC0 | [Operating Systems](2INC0/Operating%20Systems%20-%202INC0.md) |
+| [Computer Engineering](Areas/Computer%20Engineering.md) | 5EIB0 | [Computation II](5EIB0/Computation%20II%20-%205EIB0.md) (+ resit notes) |
+| [Computer Engineering](Areas/Computer%20Engineering.md) | 5XIE0 | [Computation Modeling](5XIE0/Computation%20Modeling%20-%205XIE0.md) |
+| [Power and Energy](Areas/Power%20and%20Energy.md) | 5EWA0 | [Electromechanics](5EWA0/Electromechanics%20-%205EWA0.md) |
+| [Power and Energy](Areas/Power%20and%20Energy.md) | 5EWB0 | [Electric Power Systems](5EWB0/Electric%20Power%20Systems%20-%205EWB0.md) |
 
-Each course has its own folder named after the course code. The main note is `Course Name - CODE.md`, images are in `attachments/`, and some courses have extra folders with exercises, summaries or PDFs.
+Each course has its own folder named after the course code. The main note is `Course Name - CODE.md`, images are in `attachments/`, and some courses have extra notes in a subfolder (resit notes, a friend's notes). Every course note starts with the same header: its area, the topics it covers and related courses.
+
+## Areas and topics
+
+The notes are linked into one map, which you can see in the graph view on the website or in Obsidian:
+
+- **Areas** (`Areas/`) group the courses into seven fields, such as Signals and Systems or Electronics.
+- **Topics** (`Topics/`) are concepts that come up in more than one course, such as the Fourier transform, transmission lines or op-amps. Each topic note has a short definition and links to the exact section of every course that covers it, so you can compare how different courses explain the same thing.
+- **Courses** link to their area and topics, and each section that covers a topic links back to it.
+
+When the same topic appears in several courses, it has one topic note instead of being repeated. The explanations stay in the courses, since each course looks at the topic from its own angle.
 
 ## Reading the notes
 

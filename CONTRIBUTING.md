@@ -27,17 +27,35 @@ Open the folder in Obsidian (*Open folder as vault*), make your changes, commit 
 ## Adding a course
 
 1. Create a folder named after the course code, for example `5ESD0/`.
-2. Create the main note as `Course Name - CODE.md`, for example `5ESD0/Control systems - 5ESD0.md`. In Obsidian you can start from the course template: run *Templates: Insert template* from the command palette and pick `Course Name - CODE`. The template is in [`templates/`](templates/).
-3. Put images in `CODE/attachments/`. Use descriptive file names (`bode plot lead compensator.png`, not `Pasted image 20250101.png`) where you can.
-4. Add a row for the course to the table in [README.md](README.md). The README is also the home page of the website.
-5. Open a pull request.
+2. Create the main note as `Course Name - CODE.md`, for example `5ESD0/Control Systems - 5ESD0.md`. In Obsidian, start from the course template: run *Templates: Insert template* from the command palette and pick `Course Name - CODE`. The template is in [`templates/`](templates/).
+3. Fill in the header at the top of the note: the area, the topics the course covers and related courses (see [Areas and topics](#areas-and-topics)).
+4. Put images in `CODE/attachments/`. Use descriptive file names (`bode plot lead compensator.png`, not `Pasted image 20250101.png`) where you can.
+5. Add a row for the course to the table in [README.md](README.md) and to its area note in `Areas/`. The README is also the home page of the website.
+6. Open a pull request.
 
-Extra notes for the same course (resit notes, topic notes) can go in a subfolder, like `5ECC0/ec2-resit/`.
+Extra notes for the same course go in a subfolder, named `Topic (resit) - CODE.md` or similar, like `5ECC0/ec2-resit/MOSFET (resit) - 5ECC0.md`. Every note name ends in the course code, so names never clash and the graph shows where each note belongs.
+
+## Areas and topics
+
+The notes are tied together by two kinds of notes, which give the graph view its structure:
+
+- **Areas** (`Areas/`): seven fields such as Electronics or Signals and Systems. Each lists its courses and topics.
+- **Topics** (`Topics/`): concepts that more than one course covers. Each has a one or two sentence definition and links to the section of every course that explains it.
+
+When you write about something that already has a topic note:
+
+- Add `*Topic: [[Topic Name]]*` on the line under the section heading.
+- Add the topic to the **Topics** line in the course header.
+- Add your section to the topic's **Covered in** list.
+
+Don't copy an explanation from another course; link to it.
+
+If a concept now appears in a second course and has no topic note yet, create one from the `Topic Name` template and add it to its area note.
 
 ## Writing notes
 
 - Write in Markdown with Obsidian syntax. Wikilinks (`[[Systems - 5ESB0]]`), image embeds (`![[diagram.png|400]]`), callouts (`> [!NOTE]`) and LaTeX math (`$...$`, `$$...$$`) all work in Obsidian and on the website.
-- Link to related notes in other courses when it helps, for example from control systems to signals.
+- Link to related notes in other courses when it helps, for example from control systems to signals, and link shared concepts to their topic note.
 - Keep the course code in file names so notes with similar titles don't clash.
 - PDFs and other documents are not shown on the website. Links to them open the file on GitHub instead.
 
