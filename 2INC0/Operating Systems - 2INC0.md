@@ -1,3 +1,13 @@
+---
+course: 2INC0
+name: Operating Systems
+area: Computer Engineering
+---
+> [!info] 2INC0 Operating Systems
+> - **Area:** [[Computer Engineering]]
+> - **Topics:** [[Caches and Memory Hierarchy]] · [[Processes, Threads and Synchronization]]
+> - **Related courses:** [[Computation II - 5EIB0]]
+
 # Prior-knowledge
 ![[microcontroller.pdf]]
 ![[RTS.CS-prior-knowledge.pdf]]
@@ -64,6 +74,7 @@ An **[interrupt](http://en.wikipedia.org/wiki/Interrupt)** is something genera
 3. Provides a simplified view of the execution platform
 4. Provides support for shared functionality
 # Processes, threads and scheduling
+*Topic: [[Processes, Threads and Synchronization]]*
 # Processes
 ## Slides
 ![[OS-02-process.pdf]]
@@ -399,6 +410,7 @@ Fundamentally, then, **data parallelism** involves the distribution of data acro
 [Fixed-priority pre-emptive scheduling - Wikipedia](https://en.wikipedia.org/wiki/Fixed-priority_pre-emptive_scheduling#:~:text=Fixed%2Dpriority%20preemptive%20scheduling%20is,are%20currently%20ready%20to%20execute.)
 for a non-preemptive the time is the decider or what completes first, not flexible on priority.
 # Concurrency and Synchronization
+*Topic: [[Processes, Threads and Synchronization]]*
 # Atomicity and Interference, Traces and Mutual Exclusion
 ## Slides
 ![[OS-03-slides_preparation_videos.pdf]]
@@ -848,6 +860,7 @@ limit of action synchronization:
 ![[signal and wait.png|300]]![[signal and urgent wait.png|300]]
 
 # Deadlocks
+*Topic: [[Processes, Threads and Synchronization]]*
 ## Slides
 ![[OS-06-slides_preparation_videos.pdf]]
 
@@ -1054,6 +1067,7 @@ A system in **unsafe** state does not imply **deadlock**.''
 ![[distributed file system.png|400]]
 ![[sharing semantics and implementing distributive file system.png|400]]
 # Memory Management
+*Topic: [[Caches and Memory Hierarchy]]*
 ## Slides
 ![[OS-07-Preparation_slides.pdf]]
 

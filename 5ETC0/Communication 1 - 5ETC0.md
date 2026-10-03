@@ -1,3 +1,13 @@
+---
+course: 5ETC0
+name: Communication 1
+area: Communications and Networking
+---
+> [!info] 5ETC0 Communication 1
+> - **Area:** [[Communications and Networking]]
+> - **Topics:** [[Fourier Transform]] · [[Sampling]] · [[Filters]] · [[Random Signals and Power Spectral Density]] · [[Data Converters]] · [[Noise]] · [[Modulation]] · [[Digital Signaling and Pulse Shaping]] · [[Detection and Matched Filters]] · [[Channel Capacity]] · [[Wireless Channel]] · [[Networks and Error Control]]
+> - **Related courses:** [[Communication Theory - 5ETB0]] · [[Telecommunications Systems - 5XTA0]] · [[Signals II (DSP Fundamentals) - 5ESC0]]
+
 ![[5ETC0/attachments/schedule.png|400]]
 
 ![[course map.png|500]]
@@ -7,6 +17,7 @@ CONVERSIONS BETWEEN W AND DB ALWAYS NOT DBM
 ADDITION IN DB = MULTIPLICATION IN W -> same for div/sub
 snr = dB
 # Orthogonal basis and the Fourier transform/series
+*Topic: [[Fourier Transform]]*
 ## Fourier series
 - $\omega=\frac{2\pi}{T}$
 - $f=\frac{1}{T}$
@@ -45,6 +56,7 @@ $L=10^{L_{dB}/10}$
 ![[convert between dB.png|200]]
 $dBm(\text{absolute})=dB(\text{ratio})+30$
 # Sampling theory
+*Topic: [[Sampling]]*
 ![[sampling visualized.png|400]]
 ![[sampling-1.png|200]]
 ![[sampling transforms.png|400]]
@@ -83,6 +95,7 @@ $\omega_{m}\leq \omega_{c}\leq \omega_{s}-\omega_{m}$
 $m(t)=\sum^\infty_{n=-\infty}m_{n} \frac{\sin\left( \pi f_{s}\left[ \frac{n}{f_{s}} \right] \right)}{\pi f_{s}\left[ t-\left( \frac{n}{f_{s}} \right) \right]}$
 $\omega_{m}=\text{always }B_{analog}$
 # Sampling Methods (Pulse Amplitude Modulation)
+*Topic: [[Sampling]]*
 ![[graph analysis.png|400]]
 [Signals Sampling Techniques](https://www.tutorialspoint.com/signals_and_systems/signals_sampling_techniques.htm)
 ## Gating (natural sampling)
@@ -131,6 +144,7 @@ if $\tau=T_{s}$ then the first zero of the sinc envelope is at center of each re
 
 ![[flat top sampling-3.png|400]]
 # Digitization
+*Topic: [[Data Converters]]*
 ## Pulse Code Modulation (PCM)
 
 
@@ -185,6 +199,7 @@ PCM involves converting an analog signal into a digital one through santizmpling
 ![[types of errors.png|500]]
 ![[snr.png|500]]
 ## Signal-to-noise ratio
+*Topic: [[Noise]]*
 [Signal-to-noise ratio - Wikipedia](https://en.wikipedia.org/wiki/Signal-to-noise_ratio#:~:text=SNR%20is%20defined%20as%20the,indicates%20more%20signal%20than%20noise.)
 [Noise spectral density - Wikipedia](https://en.wikipedia.org/wiki/Noise_spectral_density)i
 not mentioned in the reader: $SNR_{input}=\frac{P_{signal}}{P_{noise}}=\frac{P}{N_{O}\cdot n\cdot f_{s}}=\frac{SNR_{analog}}{\text{Bandwidth ratio}}=Q=\sqrt{ SNR_{in} }=SNR_{old} \cdot n_{ratio}\left( \frac{old}{new} \right)$
@@ -228,8 +243,10 @@ $\text{attenuation: } \frac{1}{P_{signal}}$
 6. $SNR_{out}$ Lower
 7. **MORE M Levels -> HIGHER CHANCE OF OVERLAP OVER THOSE LEVELS -> $P_{e}$**
 # Digital signaling
+*Topic: [[Digital Signaling and Pulse Shaping]]*
 [Line code - Wikipedia](https://en.wikipedia.org/wiki/Line_code#:~:text=In%20telecommunication%2C%20a%20line%20code,code%20in%20data%20storage%20systems.)
 ## Vectorial representation of digital signaling
+*Topic: [[Detection and Matched Filters]]*
 ![[pcm signaling.png|200]]
 - **Orthogonality Condition**: $\int_a^b \phi_n(t)\phi_m^*(t) dt = 0$ for $n \neq m$.
 - **Signal Representation**: $w(t) = \sum_{k=1}^{N} w_k\phi_k(t)$.
@@ -268,7 +285,9 @@ $D\leq 2B \text{ it can only become worse, higher bandwidth, (2 is sinc) nyquest
 - Relationship between bandwidth $B$ and baud rate $D$: $D = \frac{N}{T_0} \leq \frac{N_D}{T_0} = 2B$.
 - **Baseline wander:** occurs when the signal has a strong Low Frequency component, together with AC coupling in the system.
 # Linecodes and their spectras
+*Topics: [[Random Signals and Power Spectral Density]] · [[Digital Signaling and Pulse Shaping]]*
 ## Power spectral density (PSD)
+*Topic: [[Random Signals and Power Spectral Density]]*
 ![[power spectral density.png|500]]
 
 
@@ -325,6 +344,7 @@ $\frac{R}{B}=2.5\to l=2\to \frac{D}{B}=1.25\to \text{cosine rolloff}$
 ![[more walk throughs.png|500]]
 [ChatGPT](https://chatgpt.com/c/68173752-0334-800b-a099-8bebe173bf45)
 # Inter-symbol interference
+*Topic: [[Digital Signaling and Pulse Shaping]]*
 [Intersymbol interference - Wikipedia](https://en.wikipedia.org/wiki/Intersymbol_interference)
 ![[isi topic map.png|300]]
 ## What is inter-symbol interference?
@@ -340,6 +360,7 @@ Nyquist's First Criterion for zero ISI suggests that ideal sinc pulses, which ar
 
 ![[sinc pulse.png|300]]![[sinc pulse-1.png|300]]![[summary of idea zero isi.png|300]]![[zero isi pulse shape.png|300]]
 ## Raised cosine-rolloff Nyquist filtering (one of zero isi filters)
+*Topic: [[Filters]]*
 - **Raised Cosine-Rolloff Filtering:** Minimizes ISI, customizable rolloff factor $r$ (more bandwidth).
 - [Module 5: Pulse Shaping - YouTube](https://www.youtube.com/watch?v=uTI0qLLbS74)
 ![[raised cosine rolloff nyquist filter transfer function.png|300]]![[raised-cosine pulses.png|300]]
@@ -358,6 +379,7 @@ Nyquist's First Criterion for zero ISI suggests that ideal sinc pulses, which ar
 - To address this, on the otherhand sending a raised-cosine filtered pulse with a 0.75 roll-off factor, fitting the channel’s bandwidth, results in significantly reduced pulse spreading
 ![[reason for cosine rolloff.png|300]]![[raised cosine filter example.png|300]]
 # Information Theory
+*Topic: [[Channel Capacity]]*
 ![[error correction map.png|300]]
 ## Shannon–Hartley channel capacity theorem
 SNR NOT IN dB
@@ -367,6 +389,7 @@ SNR NOT IN dB
 - **Bandwidth-Limited Region:** High SNR ($\text{SNR} >> 1$), capacity constrained by bandwidth, not SNR.
 ![[shannon hartley channel capacity.png|300]]
 ## Error detection and correction schemes
+*Topic: [[Networks and Error Control]]*
 [Hamming code - Wikipedia](https://en.wikipedia.org/wiki/Hamming_code)
 [But what are Hamming codes? The origin of error correction - YouTube](https://www.youtube.com/watch?v=X8jsijhllIA)
 - **Parity Bit Checking:** Fails with multiple bit flips, only detects odd number of errors.
@@ -381,6 +404,7 @@ SNR NOT IN dB
 ![[effective rate.png|400]]
 ![[bi switch.png|300]]![[bit switch.png|300]]
 # Amplitude, Frequency and Phase Modulation
+*Topic: [[Modulation]]*
 [Pulse-code modulation - Wikipedia](https://en.wikipedia.org/wiki/Pulse-code_modulation)
 [Amplitude modulation - Wikipedia](https://en.wikipedia.org/wiki/Amplitude_modulation)
 [Frequency modulation - Wikipedia](https://en.wikipedia.org/wiki/Frequency_modulation)
@@ -488,6 +512,7 @@ Represents signal in the frequency domain, where the spectrum is a sum of Bessel
 ![[product detector-2.png|200]]![[modulated signal.png|200]]
 ![[5ETC0/attachments/noncoherent detection.png|200]]![[coherent product detector.png|200]]
 # The Physical channel
+*Topic: [[Wireless Channel]]*
 ## Wired and wireless comparison
 - radio frequency (RF) wireless channel, wired optical fiber channel
 - **Wired:** stable, higher capacity via cables/fibers, constant delay, low BER(bit error rate) ($\text{exponential on SNR}$), high fidelity, secure, fixed, size variable, grid power, health-safe.

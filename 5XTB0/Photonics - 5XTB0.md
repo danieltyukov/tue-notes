@@ -1,3 +1,13 @@
+---
+course: 5XTB0
+name: Photonics
+area: Electromagnetics and Waves
+---
+> [!info] 5XTB0 Photonics
+> - **Area:** [[Electromagnetics and Waves]]
+> - **Topics:** [[Semiconductors and PN Junctions]] · [[Maxwell Equations]] · [[Plane Waves and Reflection]] · [[Waveguides]]
+> - **Related courses:** [[Electromagnetics II - 5EPB0]] · [[Electronics I - 5ECB0]]
+
 # Quantities and Units of Light (Ch 1,2)
 ![[02-Units.pdf]]
 ## Electromagnetic Spectrum
@@ -45,7 +55,7 @@ $F_{S}^e\text{ radiant flux}\to F\text{ luminous flux }F=K\int F_{s}^e(\lambda)V
 
 $\text{spectral density: }F_{s}(\lambda)=KV(\lambda)F_{s}^e(\lambda)$
 ![[unit relation.png|500]]
-##  Relations between different quantities (Illuminance)
+## Relations between different quantities (Illuminance)
 $dF\text{ radiant energy can also be optained: }Power[Watt] \cdot \text{conversion efficiency}[lm/Watt]$
 ![[point source illuminance.png|500]]
 ![[not a point source illuminance.png|500]]
@@ -109,6 +119,7 @@ $$\text{magnification (not perceived magnification): }M=-\frac{s'}{s}=\frac{|s'|
 Microscope: $M_{ob}=-\frac{s'}{s}=-s'\left( \frac{1}{f}-\frac{1}{s'} \right)=1-\frac{s'}{f}$
 Telescope: $M_{ob}=-\frac{s'}{s}=-\frac{1}{s}\left( \frac{1}{f}-\frac{1}{s} \right)^{-1}\approx-\frac{f}{s}\text{ and }M_{tot}=-\frac{f_{ob}}{f_{oc}}$
 # Scalar Wave Optics (Ch 4)
+*Topic: [[Plane Waves and Reflection]]*
 ![[04-waves.pdf]]
 [Fresnel equations - Wikipedia](https://en.wikipedia.org/wiki/Fresnel_equations)
 ## Postulates of wave optics
@@ -126,6 +137,7 @@ $\text{complex amplitude for spherical wave fronts: } U(r)=\frac{A}{r}e^{-j\omeg
 Wave fronts: constant phase
 Rays: Perpendicular to wave fronts
 ## Reflection & refraction
+*Topic: [[Plane Waves and Reflection]]*
 ![[reflection and refraction.png|500]]
 ## Interference
 $\text{two wave interference: }I=I_{1}+I_{2}+2\sqrt{ I_{1}I_{2} }\cos \phi$
@@ -148,6 +160,7 @@ $b_{0}=\frac{\pi w_{0}^2}{\lambda}\text{ Rayleigh range}$
 ## Other
 ![[telescopes.png|300]]![[m2 factor.png|300]]
 # Electromagnetic Optics (Ch 6)
+*Topic: [[Maxwell Equations]]*
 ![[06-electromagnetism.pdf]]
 
 ![[5XTB0/attachments/tir.png|200]]![[5XTB0/attachments/boundary conditions.png|300]]
@@ -180,6 +193,7 @@ $\text{for highly reflective coating: }n_{2}>n_{1}\text{ and }n_{2}>n_{3}$
 there is also complex coatings in filters, power/polarization splitters, needs CAD tools.
 ![[from exercise.png|300]]
 # Waveguides (Ch 7)
+*Topic: [[Waveguides]]*
 ![[07-waveguides.pdf]]
 # Photon Optics (Ch 8)
 ![[08-Photons.pdf]]
@@ -286,6 +300,7 @@ The wider the laser spectrum, the shorter the pulses.
 ## Types of lasers
 see reader...
 # Semiconductor Light Sources (Ch 14)
+*Topic: [[Semiconductors and PN Junctions]]*
 ![[5XTB0/slides/14-SemiLS.pdf]]
 ## Optical properties of semiconductors (semidconductor materials)
 [[Electronics I - 5ECB0]]
@@ -335,6 +350,7 @@ $J\to J_{th}\implies J_{th}=\frac{a_{r}+a}{a}J_{T}\text{ the smaller the thresho
 $\text{if }J>J_{th}\text{ laser oscillations begin and photon flux produced}$
 $\text{ photon flux leaving resonator: }\Phi_{o}=\eta_{e}\eta_{i} \frac{i-i_{th}}{e}$
 # Semiconductor Detectors (Ch 15)
+*Topic: [[Semiconductors and PN Junctions]]*
 ![[15-Detectors.pdf]]
 ## Phototubes, Photoconductors
 $\text{photoconductivity: }\Delta \sigma=e\Delta n(\mu_{e}+\mu_{h})\text{ where }\Delta n\text{ change in carrier density and }\mu_{e}\mu_{h}\text{ are electron hole mobilities}$

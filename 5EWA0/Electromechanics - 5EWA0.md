@@ -1,7 +1,17 @@
+---
+course: 5EWA0
+name: Electromechanics
+area: Power and Energy
+---
+> [!info] 5EWA0 Electromechanics
+> - **Area:** [[Power and Energy]]
+> - **Topics:** [[Magnetic Circuits and Transformers]] · [[Electric Machines]] · [[Three-Phase Power]]
+> - **Related courses:** [[Electric Power Systems - 5EWB0]] · [[Electromagnetics I - 5EPA0]]
+
 # Content
 **2 Weekly Instructions, 4 Homework, Labs**
 **Cheat Sheet 4 Pages**
-#### **Magnetic equivalent circuits**
+## **Magnetic equivalent circuits**
 
 - apply all governing laws and rules which describe the relations among electrical, magnetic and mechanical quantities.
 - use engineering language related to electrical machine and explain and define the related quantities (such as MMF, EMF, flux linkage, apparent and incremental inductance, leakage, fringing, stacking factor, saturation, BH-curve, remanence, coercivity, and $\lambda−i$ diagram).
@@ -9,7 +19,7 @@
 - analyze magnetic circuits with and without non-linear magnetic materials.
 - use the electrical quantity inductance to link magnetic field variables to an electric circuit.
 - calculate the electromagnetic force using magnetic energy and magnetic co-energy.
-#### **DC machines**
+## **DC machines**
 
 - describe the different parts of a DC machine and indicate them in a cross-section.
 - derive an expression for the EMF in the armature as function of the construction of a DC machine.
@@ -19,7 +29,7 @@
 - analyse the DC machine with the equivalent circuit and the power flow.
 - analyse and explain different speed control methods for DC machines.
 
-#### **Synchronous machines**
+## **Synchronous machines**
 
 - describe the different parts of a synchronous machine and indicate them in a cross-section.
 - classify synchronous machines based on the physical construction of the stator and rotor.
@@ -31,7 +41,7 @@
 - analyze the behaviour of an isolated synchronous machine.
 - analyze the behaviour of interconnected/grid-connected synchronous machines.
 - analyze the behaviour of a synchronous motor.
-#### **Induction machines**
+## **Induction machines**
 - describe the different parts of an induction machine and indicate them in a cross-section.
 - classify an induction machine based on the physical construction of the stator and rotor.
 - explain methods to reduce harmonics in the stator field of an induction machine.
@@ -81,6 +91,7 @@ https://hermitageautomation.com/difference-between-ac-and-dc-motor/
     
 12. **Lambda-i Diagram**: The lambda-i (Ψ-I) diagram is a graph representing the flux linkage (Ψ) versus the current (I) in an electrical machine. This diagram is useful in analyzing the magnetic characteristics of the machine, including saturation and non-linear inductance effects.
 # Magnetic Circuits & Energy Conversion
+*Topic: [[Magnetic Circuits and Transformers]]*
 magnetic circuits with air gap: https://www.youtube.com/watch?v=T99_3l0UqB8
 b-h curve: https://www.youtube.com/watch?v=sEGLcpmIIBY
 
@@ -241,6 +252,7 @@ $MMF=H_{1}l_{1}+H_{2}l_{2}+H_{3}l_{3}+H_{4}l_{4}$
 >motoring: motor
 
 # DC Machines
+*Topic: [[Electric Machines]]*
 https://www.youtube.com/watch?v=LAtPHANEfQo
 
 ![[dc-machine-cross-section.png|300]]
@@ -312,7 +324,7 @@ we have multiple fields on the motor that effect the torque. field and armature.
 speed regulation for shunt dc motor: $SR=\frac{n_{m,noload}-n_{m,full load}}{n_{m,full load}}\cdot100$%
 - When it is operated as a motor, the machine will have a higher shaft speed. When it is operated as a generator, it will have a lower terminal voltage.
 
-###### Power Flow
+## Power Flow
 generator: $P_{out}=V_{t}I_{L}=I_{a}^2R_{L}$ motor: $P_{out}=P_{s}$
 generator: $P_{in}=EI_{a}+P_{fw}+(V_{f}I_{f})$, motor: $P_{in}=V_{t}I_{L}+(V_{f}I_{f})$
 
@@ -349,6 +361,7 @@ speed control through: field, armature resistance, armature voltage control
 **armature resistance** control for shunt motor: external resistors added to armature circuit so $\omega_{m}=\frac{V_{t}}{K\phi_{p}}-\frac{R_{a}+\sum_{i}R_{i}}{(K\phi_{p})^2}T_{d}$
 **armature voltage** control for seperatly DC motor: variable high power DC voltage source feeds armature, so $\omega_{m}=\frac{V_{adc}}{K\phi_{p}}-\frac{R_{a}}{(K\phi_{p})^2}T_{d}$
 # Synchronous Machines
+*Topic: [[Electric Machines]]*
 https://www.youtube.com/watch?v=Vk2jDXxZIhs
 **always: do equivalent circuit, phasor diagram, equations, simulations**
 
@@ -443,12 +456,13 @@ pf unity => $Im{[I_{a}]}=0$
 ![[operation-modes.png|300]]
 
 ![[sync vs dc.png|300]]![[sync vs dc 2.png|300]]
-###### Isolated & Interconnected Generator
+## Isolated & Interconnected Generator
 ![[isolated-generator.png|300]]![[interconnected sync gen.png|300]]
 
 ![[field weakaning.png|300]]
 # Induction Machines
-#### General Theory
+*Topics: [[Electric Machines]] · [[Three-Phase Power]]*
+## General Theory
 https://www.youtube.com/watch?v=AOC7uTnxmTI
 https://www.electricaleasy.com/2015/06/difference-between-synchronous-and-induction-motor.html
 ![[model for induction machine mmf.png|300]]
@@ -508,8 +522,8 @@ if something comes before for instance before: $3P_{g}=P_{t}-3P_{cu,s}-3P_{core}
 ![[assumed stator rpm.png|300]]
 ![[rms value of phase voltage.png|300]]
 **If the shaft speed is equal to the synchronous speed, the slip is zero, and there is no current flowing in the rotor. Therefore, the equivalent impedance seen from the terminals does not include the secondary side (as the rotor impedance is infinite due to zero slip)**
-#### Model Parameters
-##### Blocked Rotor
+## Model Parameters
+### Blocked Rotor
 Motor is excited with three-phase supply at rated rotor frequency and current (hence, requires reduced supply voltage and frequency)
 ![[blocked rotor schematic.png|300]]
 $\omega_{m}=0$, sleep $s=1$
@@ -519,7 +533,7 @@ input power (per phase): $P_{br}=\frac{P_{T}}{3}$
 $R_{eq}=\frac{P_{br}}{I^2_{_{br}}}$, $Z_{br}=\frac{V_{br}}{I_{br}}$, $X_{br}=\sqrt{ Z_{br}^2-R_{eq}^2 }$
 $R_{1}=\frac{1}{2} \frac{V_{dc}}{I_{dc}}\implies R_{2}'=R_{eq}-R_{1}$
 $X_{eq}=\frac{f}{f_{br}}X_{br}\implies X_{eq}=X_{1}+X_{2}$
-##### No-load Rotor
+### No-load Rotor
 Motor is operated with rated voltage and frequency but without mechanical load
 ![[no load rotor.png|300]]
 $s\approx0$
@@ -542,11 +556,11 @@ $Q_{m}=V_{nl}I_{nl}\sin \theta_{nl}-I^2_{nl}X_{1}-(I_{2}')^2X_{2}'\implies X_{m}
 the current is lagging the voltage due to inductive reactance
 
 *if we have the rated operating point slip: $s_{1}$ then no-load condition slip $s_{2}\implies s_{2}=\frac{3T_{d_{2}}}{3T_{d_{1}}}s_{1}\implies n_{m_{2}}=(1-s_{2})\cdot n_{s}$ where $3T_{d_{2}}=T_{fw}$*
-#### Final Parameters
+## Final Parameters
 ![[thevenin analysis.png|300]]![[nature of developed torque.png|300]]
 *small slip approximation is only valid in that drop line in the graph, where speed and developed torque is proportional in manipulating the slip in that area of graph*
 ![[small slip approximation.png|300]]![[small slip approximation last.png|300]]
-#### General unimportant
+## General unimportant
 ![[max torque.png|400]]
 *effects of rotor resistance:* • Large $R_{2}'$ typically for small induction motors • Large $R_{2}'$ is inefficient, but more stable • Heat in rotor may increase $R_{2}'$ with 0.4%/°C
 
