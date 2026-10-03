@@ -1,5 +1,8 @@
 {
   "alwaysUpdateLinks": true,
   "promptDelete": false,
-  "attachmentFolderPath": "./attachments"
+  "attachmentFolderPath": "./attachments",
+  "userIgnoreFilters": [
+    "templates/"
+  ]
 }

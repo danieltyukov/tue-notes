@@ -5,8 +5,65 @@
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
-  "collapse-color-groups": true,
-  "colorGroups": [],
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:Areas/",
+      "color": {
+        "a": 1,
+        "rgb": 15583560
+      }
+    },
+    {
+      "query": "[area:\"Mathematics\"] OR path:2DE20/ OR path:2WBB0/ OR path:5EMA0/",
+      "color": {
+        "a": 1,
+        "rgb": 5142951
+      }
+    },
+    {
+      "query": "[area:\"Signals and Systems\"] OR path:5ESB0/ OR path:5ESC0/ OR path:5ESD0/",
+      "color": {
+        "a": 1,
+        "rgb": 15896107
+      }
+    },
+    {
+      "query": "[area:\"Electronics\"] OR path:5ECB0/ OR path:5ECC0/ OR path:5XCC0/ OR path:5XIC0/ OR path:BEP/",
+      "color": {
+        "a": 1,
+        "rgb": 14767961
+      }
+    },
+    {
+      "query": "[area:\"Electromagnetics and Waves\"] OR path:5EPA0/ OR path:5EPB0/ OR path:5XTB0/ OR path:5XTC0/",
+      "color": {
+        "a": 1,
+        "rgb": 7780274
+      }
+    },
+    {
+      "query": "[area:\"Communications and Networking\"] OR path:5ETB0/ OR path:5ETC0/ OR path:5XTA0/",
+      "color": {
+        "a": 1,
+        "rgb": 5873999
+      }
+    },
+    {
+      "query": "[area:\"Computer Engineering\"] OR path:2INC0/ OR path:5EIB0/ OR path:5XIE0/",
+      "color": {
+        "a": 1,
+        "rgb": 11565729
+      }
+    },
+    {
+      "query": "[area:\"Power and Energy\"] OR path:5EWA0/ OR path:5EWB0/",
+      "color": {
+        "a": 1,
+        "rgb": 10253663
+      }
+    }
+  ],
   "collapse-display": true,
   "showArrow": false,
   "textFadeMultiplier": 0,
