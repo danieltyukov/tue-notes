@@ -64,8 +64,11 @@ const config: QuartzConfig = {
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
+      // Obsidian shows a single line break as a break; do the same here.
+      Plugin.HardLineBreaks(),
       Plugin.TableOfContents(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      // prettyLinks would cut link text at the last "/" (e.g. "MOSFET/MOST").
+      Plugin.CrawlLinks({ markdownLinkResolution: "shortest", prettyLinks: false }),
       Plugin.Description(),
       // MathJax matches what Obsidian uses, so formulas render the same.
       Plugin.Latex({ renderEngine: "mathjax" }),
