@@ -1,0 +1,12 @@
+# Website build (Quartz checkout, staged content, output)
+site/.build/
+node_modules/
+
+# Obsidian per-user state: open tabs, pane layout, recent files
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
+
+# OS files
+.DS_Store
+Thumbs.db
