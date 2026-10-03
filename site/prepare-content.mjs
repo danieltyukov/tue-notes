@@ -140,6 +140,12 @@ function rewriteLine(line, note) {
     const hash = raw.indexOf("#")
     const target = hash >= 0 ? raw.slice(0, hash) : raw
     const anchor = hash >= 0 ? raw.slice(hash) : ""
+    // Quartz leaves the "^" in same-note block links ([[#^id]]) but drops it
+    // from the block's id, so the link never matches. Written as a link to
+    // the note itself, the anchor gets normalised the same way as the id.
+    if (!target && !bang && anchor.startsWith("#^")) {
+      return `[[${note.replace(/\.md$/, "")}${anchor}${escape}|${alias ?? raw}]]`
+    }
     if (!target) return whole
     const resolved = resolve(target, noteDir)
     const name = path.posix.basename(target)
